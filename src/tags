@@ -1,0 +1,57 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Barostat	functions.cpp	/^void Barostat(Particle* cube, std::list<Particle*>& gas)$/;"	f
+CheckBoundaries	functions.cpp	/^void CheckBoundaries(Particle* cube,std::list<Particle*> &particles)$/;"	f
+CheckBoundaries	functions.cpp	/^void CheckBoundaries(std::list<Particle*> &particles)$/;"	f
+CheckBoundaries	functions.cpp	/^void CheckBoundaries(std::vector<Particle*> &particles)$/;"	f
+ComputeAccelerations	functions.cpp	/^void ComputeAccelerations(Particle* particle) $/;"	f
+ComputeSoftSphere	functions.cpp	/^void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube)$/;"	f
+Distance	functions.cpp	/^double Distance(Particle* particle, int i, int j)$/;"	f
+EHEX_FLAG	globals.cpp	/^bool EHEX_FLAG = false;$/;"	v
+FG	globals.cpp	/^double FG;$/;"	v
+Force	functions.cpp	/^double* Force(Particle *particle,int i,int j)$/;"	f
+GenerateOutput	functions.cpp	/^void GenerateOutput(Particle *cube, std::list<Particle*> gas,FILE *combinedOut)$/;"	f
+GenerateOutput	functions.cpp	/^void GenerateOutput(Particle *cube, std::list<Particle*> gas,int Run)$/;"	f
+GenerateOutput	functions.cpp	/^void GenerateOutput(Particle *cube, std::vector<Particle*> gas,FILE *combinedOut)$/;"	f
+InitBarostat	functions.cpp	/^void InitBarostat(std::list<Particle*>& particles)$/;"	f
+InitBarostat	functions.cpp	/^void InitBarostat(std::vector<Particle*>& particles)$/;"	f
+InitPositions	functions.cpp	/^void InitPositions(Particle* particle)$/;"	f
+InitVelocities	functions.cpp	/^void InitVelocities(Particle* particle)$/;"	f
+L	globals.cpp	/^const double L = pow(N\/rho,1.0\/3);$/;"	v
+N	globals.cpp	/^const int N = 864;$/;"	v
+NumberOfParticles	functions.cpp	/^unsigned int NumberOfParticles()$/;"	f
+PBC_FLAG	globals.cpp	/^bool PBC_FLAG = false;$/;"	v
+Particle	classes.cpp	/^Particle::Particle()$/;"	f	class:Particle
+Particle	classes.cpp	/^Particle::Particle(double x,double y, double z, double v1, double v2, double v3)$/;"	f	class:Particle
+Particle	classes.cpp	/^Particle::Particle(double x,double y, double z, double v1, double v2, double v3,std::string Name)$/;"	f	class:Particle
+Particle	classes.cpp	/^Particle::Particle(std::string Name)$/;"	f	class:Particle
+Pressure	functions.cpp	/^double Pressure(Particle* particle)$/;"	f
+PrintAllData	functions.cpp	/^void PrintAllData(Particle* cube, std::list<Particle*> gas,FILE* output)$/;"	f
+T	globals.cpp	/^const gsl_rng_type *T = gsl_rng_taus;$/;"	v
+VelocityVerlet	functions.cpp	/^void VelocityVerlet(Particle* particle,FILE* output)$/;"	f
+VelocityVerlet	functions.cpp	/^void VelocityVerlet(Particle* particle,int WRITE,FILE* output)$/;"	f
+calcCM	functions.cpp	/^void calcCM(Particle* particles,double *rCM, double* vCM)$/;"	f
+calcTemp	functions.cpp	/^void calcTemp(Particle* cube,FILE* output)$/;"	f
+checkIfOnLine	functions.cpp	/^bool checkIfOnLine(std::list<Particle*>::iterator iterator)$/;"	f
+dQ	globals.cpp	/^const double dQ=0.200;$/;"	v
+dt	globals.cpp	/^const double dt = 0.01;$/;"	v
+eHEX	functions.cpp	/^void eHEX(Particle* cube,FILE* output)$/;"	f
+eps	globals.cpp	/^const double eps = 0.5;$/;"	v
+fileExist	functions.cpp	/^bool fileExist(const std::string& filename)$/;"	f
+g_ID	globals.cpp	/^int g_ID=1;$/;"	v
+harmonicTrap	functions.cpp	/^void harmonicTrap(Particle* particles)$/;"	f
+main	main.cpp	/^int main(int argc,char** argv)$/;"	f
+printDistances	functions.cpp	/^void printDistances(Particle* cube, std::list<Particle*> &particles,int Run)$/;"	f
+r	globals.cpp	/^gsl_rng *r = gsl_rng_alloc(T);$/;"	v
+r1	globals.cpp	/^gsl_rng *r1 = gsl_rng_alloc(T);$/;"	v
+rCMStart	globals.cpp	/^double* rCMStart = new double[3];$/;"	v
+rCutOff	globals.cpp	/^const double rCutOff = 2.5;$/;"	v
+readPositions	functions.cpp	/^void readPositions(Particle* particles, std::string filename)$/;"	f
+rho	globals.cpp	/^const double rho = 1.1;$/;"	v
+totErg	functions.cpp	/^double totErg(Particle* particles)$/;"	f
+trackParticle	functions.cpp	/^void trackParticle(Particle* cube, std::list<Particle*> gas, int partID, FILE* output)$/;"	f
+writePositions	functions.cpp	/^void writePositions(Particle* particles, std::string filename)$/;"	f

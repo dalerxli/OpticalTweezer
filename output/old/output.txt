@@ -1,0 +1,247 @@
+Particle 0: 0.1896840.9505110.677955
+Particle 1: 0.7670150.2163240.583798
+Particle 2: 0.8920550.3402180.693081
+Particle 3: 0.9684080.8318280.856919
+Particle 4: 0.1396830.3929980.401822
+Particle 5: 0.9434620.07821060.0625081
+Particle 6: 0.8774110.6190930.168637
+Particle 7: 0.2330130.5290750.56003
+Particle 8: 0.6774520.4076870.22893
+Particle 9: 0.5044320.3844650.415405
+Particle 10: 0.4686790.8594380.27482
+Particle 11: 0.4295760.2527070.276639
+Particle 12: 0.2338930.3304940.59031
+Particle 13: 0.03869820.02169140.225549
+Particle 14: 0.3801550.786830.48439
+Particle 15: 0.03068970.6707410.214638
+Particle 16: 0.5156620.719990.0161225
+Particle 17: 0.1786070.2799120.446454
+Particle 18: 0.4481980.2102570.108921
+Particle 19: 0.9862380.2907480.917794
+
+Starting Position: Particle 2
+Particle 1(0.43561,0.700421,0.515936)
+Particle 2(0.358329,0.984346,0.100938)
+Particle 3(0.348204,0.165102,0.485608)
+Particle 4(0.0792606,0.99262,0.774523)
+Particle 5(0.824448,0.318592,0.0482477)
+Particle 6(0.430672,0.884703,0.257825)
+Particle 7(0.187555,0.405506,0.30782)
+Particle 8(0.7862,0.0884605,0.849194)
+
+
+Distance Particle 1 to Testparticle 0: 0.386361
+Distance Particle 1 to Testparticle 1: 0.59058
+Distance Particle 1 to Testparticle 2: 0.60784
+Distance Particle 1 to Testparticle 3: 0.646074
+Distance Particle 1 to Testparticle 4: 0.441705
+Distance Particle 1 to Testparticle 5: 0.922311
+Distance Particle 1 to Testparticle 6: 0.567819
+Distance Particle 1 to Testparticle 7: 0.268978
+Distance Particle 1 to Testparticle 8: 0.475976
+Distance Particle 1 to Testparticle 9: 0.338631
+Distance Particle 1 to Testparticle 10: 0.290718
+Distance Particle 1 to Testparticle 11: 0.507688
+Distance Particle 1 to Testparticle 12: 0.427863
+Distance Particle 1 to Testparticle 13: 0.838175
+Distance Particle 1 to Testparticle 14: 0.107409
+Distance Particle 1 to Testparticle 15: 0.50559
+Distance Particle 1 to Testparticle 16: 0.506562
+Distance Particle 1 to Testparticle 17: 0.497701
+Distance Particle 1 to Testparticle 18: 0.637244
+Distance Particle 1 to Testparticle 19: 0.795308
+Distance Particle 2 to Testparticle 0: 0.602108
+Distance Particle 2 to Testparticle 1: 0.995006
+Distance Particle 2 to Testparticle 2: 1.02489
+Distance Particle 2 to Testparticle 3: 0.983344
+Distance Particle 2 to Testparticle 4: 0.698592
+Distance Particle 2 to Testparticle 5: 1.07932
+Distance Particle 2 to Testparticle 6: 0.638309
+Distance Particle 2 to Testparticle 7: 0.658591
+Distance Particle 2 to Testparticle 8: 0.671385
+Distance Particle 2 to Testparticle 9: 0.692888
+Distance Particle 2 to Testparticle 10: 0.240862
+Distance Particle 2 to Testparticle 11: 0.755807
+Distance Particle 2 to Testparticle 12: 0.826131
+Distance Particle 2 to Testparticle 13: 1.02196
+Distance Particle 2 to Testparticle 14: 0.431885
+Distance Particle 2 to Testparticle 15: 0.467572
+Distance Particle 2 to Testparticle 16: 0.319111
+Distance Particle 2 to Testparticle 17: 0.804928
+Distance Particle 2 to Testparticle 18: 0.77933
+Distance Particle 2 to Testparticle 19: 1.24202
+Distance Particle 3 to Testparticle 0: 0.824011
+Distance Particle 3 to Testparticle 1: 0.433206
+Distance Particle 3 to Testparticle 2: 0.607853
+Distance Particle 3 to Testparticle 3: 0.983386
+Distance Particle 3 to Testparticle 4: 0.320059
+Distance Particle 3 to Testparticle 5: 0.735457
+Distance Particle 3 to Testparticle 6: 0.765924
+Distance Particle 3 to Testparticle 7: 0.388953
+Distance Particle 3 to Testparticle 8: 0.482841
+Distance Particle 3 to Testparticle 9: 0.278309
+Distance Particle 3 to Testparticle 10: 0.73556
+Distance Particle 3 to Testparticle 11: 0.240757
+Distance Particle 3 to Testparticle 12: 0.22668
+Distance Particle 3 to Testparticle 13: 0.428942
+Distance Particle 3 to Testparticle 14: 0.622549
+Distance Particle 3 to Testparticle 15: 0.655676
+Distance Particle 3 to Testparticle 16: 0.745895
+Distance Particle 3 to Testparticle 17: 0.208513
+Distance Particle 3 to Testparticle 18: 0.392341
+Distance Particle 3 to Testparticle 19: 0.780807
+Distance Particle 4 to Testparticle 0: 0.152616
+Distance Particle 4 to Testparticle 1: 1.05452
+Distance Particle 4 to Testparticle 2: 1.04542
+Distance Particle 4 to Testparticle 3: 0.907319
+Distance Particle 4 to Testparticle 4: 0.708592
+Distance Particle 4 to Testparticle 5: 1.44567
+Distance Particle 4 to Testparticle 6: 1.06942
+Distance Particle 4 to Testparticle 7: 0.533404
+Distance Particle 4 to Testparticle 8: 0.998825
+Distance Particle 4 to Testparticle 9: 0.824371
+Distance Particle 4 to Testparticle 10: 0.647369
+Distance Particle 4 to Testparticle 11: 0.958165
+Distance Particle 4 to Testparticle 12: 0.704454
+Distance Particle 4 to Testparticle 13: 1.11612
+Distance Particle 4 to Testparticle 14: 0.465901
+Distance Particle 4 to Testparticle 15: 0.647639
+Distance Particle 4 to Testparticle 16: 0.916485
+Distance Particle 4 to Testparticle 17: 0.790855
+Distance Particle 4 to Testparticle 18: 1.09144
+Distance Particle 4 to Testparticle 19: 1.15575
+Distance Particle 5 to Testparticle 0: 1.09489
+Distance Particle 5 to Testparticle 1: 0.548244
+Distance Particle 5 to Testparticle 2: 0.648729
+Distance Particle 5 to Testparticle 3: 0.968548
+Distance Particle 5 to Testparticle 4: 0.774244
+Distance Particle 5 to Testparticle 5: 0.268609
+Distance Particle 5 to Testparticle 6: 0.328024
+Distance Particle 5 to Testparticle 7: 0.809951
+Distance Particle 5 to Testparticle 8: 0.249383
+Distance Particle 5 to Testparticle 9: 0.491482
+Distance Particle 5 to Testparticle 10: 0.685872
+Distance Particle 5 to Testparticle 11: 0.460899
+Distance Particle 5 to Testparticle 12: 0.801703
+Distance Particle 5 to Testparticle 13: 0.858481
+Distance Particle 5 to Testparticle 14: 0.779014
+Distance Particle 5 to Testparticle 15: 0.884165
+Distance Particle 5 to Testparticle 16: 0.507446
+Distance Particle 5 to Testparticle 17: 0.759721
+Distance Particle 5 to Testparticle 18: 0.396209
+Distance Particle 5 to Testparticle 19: 0.884908
+Distance Particle 6 to Testparticle 0: 0.48879
+Distance Particle 6 to Testparticle 1: 0.816159
+Distance Particle 6 to Testparticle 2: 0.835935
+Distance Particle 6 to Testparticle 3: 0.806765
+Distance Particle 6 to Testparticle 4: 0.589223
+Distance Particle 6 to Testparticle 5: 0.975465
+Distance Particle 6 to Testparticle 6: 0.527331
+Distance Particle 6 to Testparticle 7: 0.506822
+Distance Particle 6 to Testparticle 8: 0.537847
+Distance Particle 6 to Testparticle 9: 0.529632
+Distance Particle 6 to Testparticle 10: 0.0487003
+Distance Particle 6 to Testparticle 11: 0.632277
+Distance Particle 6 to Testparticle 12: 0.675585
+Distance Particle 6 to Testparticle 13: 0.948406
+Distance Particle 6 to Testparticle 14: 0.251918
+Distance Particle 6 to Testparticle 15: 0.455665
+Distance Particle 6 to Testparticle 16: 0.304588
+Distance Particle 6 to Testparticle 17: 0.681829
+Distance Particle 6 to Testparticle 18: 0.69091
+Distance Particle 6 to Testparticle 19: 1.04738
+Distance Particle 7 to Testparticle 0: 0.658813
+Distance Particle 7 to Testparticle 1: 0.669125
+Distance Particle 7 to Testparticle 2: 0.805612
+Distance Particle 7 to Testparticle 3: 1.04546
+Distance Particle 7 to Testparticle 4: 0.106228
+Distance Particle 7 to Testparticle 5: 0.859475
+Distance Particle 7 to Testparticle 6: 0.735454
+Distance Particle 7 to Testparticle 7: 0.284509
+Distance Particle 7 to Testparticle 8: 0.496213
+Distance Particle 7 to Testparticle 9: 0.335304
+Distance Particle 7 to Testparticle 10: 0.534952
+Distance Particle 7 to Testparticle 11: 0.287913
+Distance Particle 7 to Testparticle 12: 0.29593
+Distance Particle 7 to Testparticle 13: 0.41981
+Distance Particle 7 to Testparticle 14: 0.462254
+Distance Particle 7 to Testparticle 15: 0.32193
+Distance Particle 7 to Testparticle 16: 0.540039
+Distance Particle 7 to Testparticle 17: 0.187279
+Distance Particle 7 to Testparticle 18: 0.3816
+Distance Particle 7 to Testparticle 19: 1.0115
+Distance Particle 8 to Testparticle 0: 1.06221
+Distance Particle 8 to Testparticle 1: 0.295215
+Distance Particle 8 to Testparticle 2: 0.314576
+Distance Particle 8 to Testparticle 3: 0.765412
+Distance Particle 8 to Testparticle 4: 0.84313
+Distance Particle 8 to Testparticle 5: 0.802316
+Distance Particle 8 to Testparticle 6: 0.867784
+Distance Particle 8 to Testparticle 7: 0.76405
+Distance Particle 8 to Testparticle 8: 0.706016
+Distance Particle 8 to Testparticle 9: 0.595973
+Distance Particle 8 to Testparticle 10: 1.01249
+Distance Particle 8 to Testparticle 11: 0.694245
+Distance Particle 8 to Testparticle 12: 0.656235
+Distance Particle 8 to Testparticle 13: 0.975782
+Distance Particle 8 to Testparticle 14: 0.886382
+Distance Particle 8 to Testparticle 15: 1.14565
+Distance Particle 8 to Testparticle 16: 1.07983
+Distance Particle 8 to Testparticle 17: 0.753673
+Distance Particle 8 to Testparticle 18: 0.822851
+Distance Particle 8 to Testparticle 19: 0.292646
+Starting Position: Particle 9
+Particle 1(0.43561,0.700421,0.515936)
+Particle 2(0.358329,0.984346,0.100938)
+Particle 3(0.348204,0.165102,0.485608)
+Particle 4(0.0792606,0.99262,0.774523)
+Particle 5(0.824448,0.318592,0.0482477)
+Particle 6(0.430672,0.884703,0.257825)
+Particle 7(0.187555,0.405506,0.30782)
+Particle 8(0.7862,0.0884605,0.849194)
+Particle 9(0.532944,0.756872,0.721924)
+Particle 10(0.999356,0.605388,0.121377)
+
+
+Starting Position: Particle 11
+Particle 1(0.43561,0.700421,0.515936)
+Particle 2(0.358329,0.984346,0.100938)
+Particle 3(0.348204,0.165102,0.485608)
+Particle 4(0.0792606,0.99262,0.774523)
+Particle 5(0.824448,0.318592,0.0482477)
+Particle 6(0.430672,0.884703,0.257825)
+Particle 7(0.187555,0.405506,0.30782)
+Particle 8(0.7862,0.0884605,0.849194)
+Particle 9(0.532944,0.756872,0.721924)
+Particle 10(0.999356,0.605388,0.121377)
+Particle 11(0.443758,0.0155341,0.589547)
+Particle 12(0.0861425,0.366881,0.061405)
+Particle 13(0.502549,0.340737,0.0615979)
+Particle 14(0.542491,0.402747,0.906961)
+Particle 15(0.314595,0.803397,0.504213)
+Particle 16(0.8428,0.741051,0.334441)
+
+
+Starting Position: Particle 17
+Particle 1(0.43561,0.700421,0.515936)
+Particle 2(0.358329,0.984346,0.100938)
+Particle 3(0.348204,0.165102,0.485608)
+Particle 4(0.0792606,0.99262,0.774523)
+Particle 5(0.824448,0.318592,0.0482477)
+Particle 6(0.430672,0.884703,0.257825)
+Particle 7(0.187555,0.405506,0.30782)
+Particle 8(0.7862,0.0884605,0.849194)
+Particle 9(0.532944,0.756872,0.721924)
+Particle 10(0.999356,0.605388,0.121377)
+Particle 11(0.443758,0.0155341,0.589547)
+Particle 12(0.0861425,0.366881,0.061405)
+Particle 13(0.502549,0.340737,0.0615979)
+Particle 14(0.542491,0.402747,0.906961)
+Particle 15(0.314595,0.803397,0.504213)
+Particle 16(0.8428,0.741051,0.334441)
+Particle 17(0.659637,0.700577,0.483362)
+Particle 18(0.718333,0.109262,0.859111)
+Particle 19(0.775564,0.364149,0.433693)
+
+
+Last Node: Particle 19
