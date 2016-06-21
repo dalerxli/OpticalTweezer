@@ -1,0 +1,39 @@
+% This file was created with JabRef 2.10b2.
+% Encoding: UTF-8
+
+
+@Book{Frenkel2001,
+  Title                    = {Understanding Molecular Simulation: From Algorithms to Applications},
+  Author                   = {Frenkel, D. and Smit, B.},
+  Publisher                = {Elsevier Science},
+  Year                     = {2001},
+  Series                   = {Computational science series},
+
+  __markedentry            = {[motz:6]},
+  ISBN                     = {9780080519982},
+  Lccn                     = {2001091477},
+  Owner                    = {motz},
+  Timestamp                = {2016.06.20},
+  Url                      = {https://books.google.at/books?id=5qTzldS9ROIC}
+}
+
+@Article{Gieseler2014,
+  Title                    = {Dynamic relaxation of a levitated nanoparticle from a non-equilibrium steady state},
+  Author                   = {Gieseler, Jan and Quidant, Romain and Dellago, Christoph and Novotny, Lukas},
+  Journal                  = {Nat Nano},
+  Year                     = {2014},
+
+  Month                    = may,
+  Number                   = {5},
+  Pages                    = {358--364},
+  Volume                   = {9},
+
+  __markedentry            = {[motz:]},
+  Abstract                 = {Fluctuation theorems are a generalization of thermodynamics on small scales and provide the tools to characterize the fluctuations of thermodynamic quantities in non-equilibrium nanoscale systems. They are particularly important for understanding irreversibility and the second law in fundamental chemical and biological processes that are actively driven, thus operating far from thermal equilibrium. Here, we apply the framework of fluctuation theorems to investigate the important case of a system relaxing from a non-equilibrium state towards equilibrium. Using a vacuum-trapped nanoparticle, we demonstrate experimentally the validity of a fluctuation theorem for the relative entropy change occurring during relaxation from a non-equilibrium steady state. The platform established here allows non-equilibrium fluctuation theorems to be studied experimentally for arbitrary steady states and can be extended to investigate quantum fluctuation theorems as well as systems that do not obey detailed balance.},
+  ISSN                     = {1748-3387},
+  Owner                    = {motz},
+  Publisher                = {Nature Publishing Group},
+  Timestamp                = {2016.06.20},
+  Url                      = {http://dx.doi.org/10.1038/nnano.2014.40}
+}
+

@@ -12,6 +12,8 @@ Particle::Particle()
     vhalf = new double[3];
     r0 = new double[3];
     v0 = new double[3];
+    m = 1.;
+    potE = 0;
     
 
     for(int i=0;i<3;i++)
@@ -53,6 +55,8 @@ Particle::Particle(double x,double y, double z, double v1, double v2, double v3)
     ID = g_ID;
     type=2;
     g_ID++;
+    m = 1.;
+    potE = 0;
 }
 
 Particle::Particle(double x,double y, double z, double v1, double v2, double v3,std::string Name)
@@ -80,6 +84,11 @@ Particle::Particle(double x,double y, double z, double v1, double v2, double v3,
     type=2;
     g_ID++;
     name = Name;
+    if(strcmp(name.c_str(),"GasIn")==0 || strcmp(name.c_str(),"GasOut")==0)
+        m = 0.1;
+    else
+        m = 1.;
+    potE = 0;
 }
 
 Particle::Particle(std::string Name)
@@ -104,5 +113,10 @@ Particle::Particle(std::string Name)
     type = 0;
     g_ID++;
     name = Name;
+    if(strcmp(name.c_str(),"GasIn")==0 || strcmp(name.c_str(),"GasOut")==0)
+        m = 0.1;
+    else
+        m = 1.;
+    potE = 0;
 }
 

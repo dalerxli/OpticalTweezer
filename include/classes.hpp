@@ -15,6 +15,8 @@ class Particle
      double *vhalf;
      double* r0;
      double* v0;
+     double m;
+     double potE;
      int type;
      int ID;
      std::string name;

@@ -762,6 +762,7 @@ void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube)
     
     for (iter=gas.begin();iter!=gas.end();iter++)
     {
+        (*iter)->potE = 0.;
         for(unsigned int n=0;n<N;n++)
         {
             rSqd=0;
@@ -772,6 +773,7 @@ void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube)
             }
             if(rSqd < 2.5*2.5)
             {
+                (*iter)->potE += pow(rSqd,-6);
                 (*iter)->type = 4;
                 f = 12 * pow(rSqd,-6);
                 for(unsigned int m=0;m<3;m++)
@@ -1022,22 +1024,54 @@ void harmonicTrap(double* rCM, double* vCM, double* pos, Particle* particles)
      for(unsigned int k=0;k<3;k++)
          particles[i].r[k] += (rCMtemp[k] - rCM[k]);
 }
+
 void trackParticle(Particle* cube, std::list<Particle*> gas, int partID, FILE* output)
 {
-    std::list<Particle*>::iterator gasIter;
-    for(gasIter = gas.begin();gasIter!=gas.end();gasIter++)
-    {
-        if((*gasIter)->ID == partID)
-        {
-            fprintf(output,"%d\ntest\n",N+1);
-            for(unsigned int j=0;j<N;j++)
-            {
-                    fprintf(output,"%s\t\%lf\t\%lf\t%lf\n",(cube[j].name).c_str(),cube[j].r[0],cube[j].r[1],cube[j].r[2]);
-            }
-            fprintf(output,"%s\t\%lf\t\%lf\t%lf\n",
-                    ((*gasIter)->name).c_str(),(*gasIter)->r[0],(*gasIter)->r[1],(*gasIter)->r[2]);
-        }
-    }
+    /*
+     *  VERSION 1 -- Cube and Gas particles
+     *std::list<Particle*>::iterator gasIter;
+     *for(gasIter = gas.begin();gasIter!=gas.end();gasIter++)
+     *{
+     *    if((*gasIter)->ID == partID)
+     *    {
+     *        fprintf(output,"%d\ntest\n",N+1);
+     *        for(unsigned int j=0;j<N;j++)
+     *        {
+     *                fprintf(output,"%s\t\%lf\t\%lf\t%lf\n",(cube[j].name).c_str(),cube[j].r[0],cube[j].r[1],cube[j].r[2]);
+     *        }
+     *        fprintf(output,"%s\t\%lf\t\%lf\t%lf\n",
+     *                ((*gasIter)->name).c_str(),(*gasIter)->r[0],(*gasIter)->r[1],(*gasIter)->r[2]);
+     *    }
+     *}
+     */
+
+     std::list<Particle*>::iterator gasIter;
+     for(gasIter = gas.begin();gasIter!=gas.end();gasIter++)
+     {
+         if((*gasIter)->ID == partID)
+         {
+             fprintf(output,"1\ntest\n");
+             /*
+              *fprintf(output,"%s\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",
+              *        ((*gasIter)->name).c_str(),(*gasIter)->r[0],(*gasIter)->r[1],(*gasIter)->r[2],\
+              *        (*gasIter)->v[0],(*gasIter)->v[1],(*gasIter)->v[2],sqrt((*gasIter)->v[0]*(*gasIter)->v[0]+(*gasIter)->v[1]*(*gasIter)->v[1]+(*gasIter)->v[2]*(*gasIter)->v[2]),\
+              *        (*gasIter)->a[0],(*gasIter)->a[1],(*gasIter)->a[2],sqrt((*gasIter)->a[0]*(*gasIter)->a[0]+(*gasIter)->a[1]*(*gasIter)->a[1]+(*gasIter)->a[2]*(*gasIter)->a[2]),\
+              *        (*gasIter)->potE),(*gasIter)->m*((*gasIter)->v[0]*(*gasIter)->v[0]+(*gasIter)->v[1]*(*gasIter)->v[1]+(*gasIter)->v[2]*(*gasIter)->v[2])/2.;
+              */
+
+             fprintf(output,"%s",((*gasIter)->name).c_str());
+             fprintf(output,"\t%lf\t%lf\t%lf",(*gasIter)->r[0],(*gasIter)->r[1],(*gasIter)->r[2]);
+             fprintf(output,"\t%lf\t%lf\t%lf",(*gasIter)->v[0],(*gasIter)->v[1],(*gasIter)->v[2]);
+             fprintf(output,"\t%lf",sqrt((*gasIter)->v[0]*(*gasIter)->v[0]+(*gasIter)->v[1]*(*gasIter)->v[1]+(*gasIter)->v[2]*(*gasIter)->v[2]));
+             fprintf(output,"\t%lf\t%lf\t%lf",(*gasIter)->a[0],(*gasIter)->a[1],(*gasIter)->a[2]);
+             fprintf(output,"\t%lf",sqrt((*gasIter)->a[0]*(*gasIter)->a[0]+(*gasIter)->a[1]*(*gasIter)->a[1]+(*gasIter)->a[2]*(*gasIter)->a[2]));
+             fprintf(output,"\t%lf",(*gasIter)->potE);
+             fprintf(output,"\t%lf",(*gasIter)->m*((*gasIter)->v[0]*(*gasIter)->v[0]+(*gasIter)->v[1]*(*gasIter)->v[1]+(*gasIter)->v[2]*(*gasIter)->v[2])/2.);
+             fprintf(output,"\n");
+
+
+         }
+     }
         
 
 }
