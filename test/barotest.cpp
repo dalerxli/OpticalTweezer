@@ -25,7 +25,7 @@ int main(int argc, char** argv)
         trackdata[i-1000] = fopen(fileopen.c_str(),"w");
     }
 
-    FILE* trackdata_1000 = fopen("output/id_1000.dat","w");
+    //FILE* trackdata_1000 = fopen("output/id_1000.dat","w");
     int run=0;
     gsl_rng_set(r,98);
     Particle *cube = new Particle[N];
@@ -46,6 +46,7 @@ int main(int argc, char** argv)
             if(run%100 == 0)
                 calcTemp(cube,tempdata); 
     }
+    writePositions(cube,"output/positions.dat");
 
     ComputeSoftSphere(gas,cube);
 

@@ -612,6 +612,8 @@ void CheckBoundaries(Particle* cube,std::list<Particle*> &particles)
     std::list<Particle*>::iterator temp;
     double lowerBound = -(L/2 + eps);
     double upperBound = L + L/2 + eps;
+    double aTotOld = 0;
+    double aTotNew = 0;
     //double dist[3] = {0,0,0};
     //double distSqd = 0.;
     //double vSqd = 0.;
@@ -645,6 +647,10 @@ void CheckBoundaries(Particle* cube,std::list<Particle*> &particles)
          *    }
          *}
          */
+        aTotOld = sqrt((*temp)->aOld[0]*(*temp)->aOld[0]+(*temp)->aOld[1]*(*temp)->aOld[1]+(*temp)->aOld[2]*(*temp)->aOld[2]);
+        aTotNew = sqrt((*temp)->a[0]*(*temp)->a[0]+(*temp)->a[1]*(*temp)->a[1]+(*temp)->a[2]*(*temp)->a[2]);
+        if(aTotOld > aTotNew)
+            (*temp)->name = "GasOut";
         if((*temp)->r[0] < lowerBound || (*temp)->r[0] > upperBound || 
                 (*temp)->r[1] < lowerBound || (*temp)->r[1] > upperBound 
                 ||(*temp)->r[2] < lowerBound || (*temp)->r[2] > upperBound)
@@ -753,6 +759,8 @@ void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube)
     for (iter=gas.begin();iter!=gas.end();iter++)         // set all accelerations to zero
     {
         for(unsigned int i=0;i<3;i++)
+            (*iter)->aOld[i] = (*iter)->a[i];
+        for(unsigned int i=0;i<3;i++)
         {
             (*iter)->a[i]=0;
             (*iter)->type = 3;
@@ -778,7 +786,7 @@ void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube)
                 f = 12 * pow(rSqd,-6);
                 for(unsigned int m=0;m<3;m++)
                 {
-                    (*iter) -> a[m] += rij[m]*f;
+                    (*iter) -> a[m] += rij[m]*f/(*iter)->m;
                     cube[n].a[m] -= rij[m] *f;
                 }
             }
@@ -1050,7 +1058,7 @@ void trackParticle(Particle* cube, std::list<Particle*> gas, int partID, FILE* o
      {
          if((*gasIter)->ID == partID)
          {
-             fprintf(output,"1\ntest\n");
+             fprintf(output,"%d\ntest\n",N+1);
              /*
               *fprintf(output,"%s\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",
               *        ((*gasIter)->name).c_str(),(*gasIter)->r[0],(*gasIter)->r[1],(*gasIter)->r[2],\
@@ -1068,6 +1076,10 @@ void trackParticle(Particle* cube, std::list<Particle*> gas, int partID, FILE* o
              fprintf(output,"\t%lf",(*gasIter)->potE);
              fprintf(output,"\t%lf",(*gasIter)->m*((*gasIter)->v[0]*(*gasIter)->v[0]+(*gasIter)->v[1]*(*gasIter)->v[1]+(*gasIter)->v[2]*(*gasIter)->v[2])/2.);
              fprintf(output,"\n");
+             for(unsigned int j=0;j<N;j++)
+             {
+                     fprintf(output,"%s\t\%lf\t\%lf\t%lf\n",(cube[j].name).c_str(),cube[j].r[0],cube[j].r[1],cube[j].r[2]);
+             }
 
 
          }

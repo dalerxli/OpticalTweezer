@@ -7,6 +7,7 @@ Particle::Particle()
     r = new double[3];
     v = new double[3];      
     a = new double[3];
+    aOld = new double[3];
     rnew = new double[3];
     vnew = new double[3];
     vhalf = new double[3];
@@ -18,14 +19,15 @@ Particle::Particle()
 
     for(int i=0;i<3;i++)
     {
-            r[i]=0;
-            v[i]=0;
-            r0[i]=0;
-            v0[i]=0;
-            a[i]=0;
-            rnew[i]=0;
-            vnew[i]=0;
-            vhalf[i]=0;
+        r[i]=0;
+        v[i]=0;
+        r0[i]=0;
+        v0[i]=0;
+        a[i]=0;
+        aOld[i]=0;
+        rnew[i]=0;
+        vnew[i]=0;
+        vhalf[i]=0;
     }
     ID = g_ID;
     type = 0;
@@ -38,8 +40,12 @@ Particle::Particle(double x,double y, double z, double v1, double v2, double v3)
     r = new double[3];
     v = new double[3];      
     a = new double[3];
+    aOld = new double[3];
     for(int i=0;i<3;i++)
-            a[i]=0;
+    {
+        a[i]=0;
+        aOld[i]=0;
+    }
     r[0]=x;
     r[1]=y;
     r[2]=z;
@@ -66,8 +72,12 @@ Particle::Particle(double x,double y, double z, double v1, double v2, double v3,
     r0 = new double[3];
     v0 = new double[3];      
     a = new double[3];
+    aOld = new double[3];
     for(int i=0;i<3;i++)
-            a[i]=0;
+    {
+        a[i]=0;
+        aOld[i]=0;
+    }
     r[0]=x;
     r[1]=y;
     r[2]=z;
@@ -96,18 +106,20 @@ Particle::Particle(std::string Name)
     r = new double[3];
     v = new double[3];      
     a = new double[3];
+    aOld = new double[3];
     rnew = new double[3];
     vnew = new double[3];
     vhalf = new double[3];
 
     for(int i=0;i<3;i++)
     {
-            r[i]=0;
-            v[i]=0;
-            a[i]=0;
-            rnew[i]=0;
-            vnew[i]=0;
-            vhalf[i]=0;
+        r[i]=0;
+        v[i]=0;
+        a[i]=0;
+        aOld[i]=0;
+        rnew[i]=0;
+        vnew[i]=0;
+        vhalf[i]=0;
     }
     ID = g_ID;
     type = 0;
