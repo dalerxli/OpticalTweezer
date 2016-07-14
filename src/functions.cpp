@@ -78,8 +78,8 @@ void ComputeAccelerations(Particle* particle)
             rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
             if(rSqd <= rCutOff*rCutOff)
             {       
-                //double f = 8*48 * ( pow(rSqd,-7.) - 0.5*pow(rSqd,-4.) );
-                double f = 48 * ( pow(rSqd,-7) - 0.5*pow(rSqd,-4) );
+                double f = 8*48 * ( pow(rSqd,-7.) - 0.5*pow(rSqd,-4.) );
+                //double f = 48 * ( pow(rSqd,-7) - 0.5*pow(rSqd,-4) );
                 for(unsigned int m=0; m<3; m++)
                 {
                     particle[i].a[m] += rij[m] * f;
@@ -1084,8 +1084,6 @@ void trackParticle(Particle* cube, std::list<Particle*> gas, int partID, FILE* o
 
          }
      }
-        
-
 }
 
 /*

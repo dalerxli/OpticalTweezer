@@ -36,22 +36,20 @@ int main(int argc,char** argv)
     InitVelocities(cube);
     fprintf(pressure,"%lf\n",Pressure(cube));
     ComputeAccelerations(cube);
-/*
- *    for(run=0;run<10000;run++)
- *    {
- *            if(run%200==0)
- *                printf("Zeitschritt %d\n",run);
- *            VelocityVerlet(cube,0,output);
- *            if(run%100 == 0)
- *            {
- *                calcTemp(cube,tempout); 
- *                //energy = totErg(cube);
- *                //fprintf(totErgData,"%d\t%lf\n",run,energy);
- *            }
- *    }
- *
- *    writePositions(cube,"output/states/LJequilibriumSur.dat");
- */
+    for(run=0;run<10000;run++)
+    {
+            if(run%200==0)
+                printf("Zeitschritt %d\n",run);
+            VelocityVerlet(cube,0,output);
+            if(run%100 == 0)
+            {
+                calcTemp(cube,tempout); 
+                //energy = totErg(cube);
+                //fprintf(totErgData,"%d\t%lf\n",run,energy);
+            }
+    }
+
+    writePositions(cube,"output/states/LJequilibriumSur.dat");
 
     /*
      *for(run;run<50000;run++)
@@ -68,7 +66,7 @@ int main(int argc,char** argv)
      *}
      */
     
-    readPositions(cube,"output/states/LJequilibriumSur.dat");
+    //readPositions(cube,"output/states/LJequilibriumSur.dat");
     //readPositions(cube,"output/states/eHEXEquilibrium.dat");
         
     ComputeSoftSphere(gas,cube);
