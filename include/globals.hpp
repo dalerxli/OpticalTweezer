@@ -30,16 +30,20 @@ extern const unsigned int N;
 
 extern double FG;
 extern double* rCMStart;
-extern const double eps;
-extern const double dQ;
-extern const double rho;
-extern const double L;
-extern const double rCutOff;
-extern const double dt;
+extern double eps;
+extern double dQ;
+extern double rho;
+extern double Temp;
+extern double L;
+extern double rCutOff;
+extern double dt;
+
+extern char* input;
 
 extern bool EHEX_FLAG;
 extern bool PBC_FLAG;
 
 enum Cubeface { X0, XL, Y0, YL, Z0, ZL };
+
 
 #endif

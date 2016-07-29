@@ -36,7 +36,7 @@ unsigned int NumberOfParticles()
         double mu;
         //double P=0.0024;
         //This is the calculated atmospheric pressure with LJ units
-        double P=5;
+        double P=4;
         double k=1.0;
         double T=0.9;
         mu = 0.01*L*L*P*pow((1/(2*M_PI*k*T)),0.5);
@@ -276,20 +276,20 @@ void InitBarostat(std::list<Particle*>& particles)
         //std::cout << "N = " << N << std::endl;
         for(i=0;i<N;i++)
         {
+                particles.push_back(new Particle(-L/2,
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn"));
                 /*
-                 *particles.push_back(new Particle(-L/2,
-                 *            gsl_rng_uniform(r)*L,
-                 *            gsl_rng_uniform(r)*L,
+                 *particles.push_back(new Particle(-L/2.,
+                 *            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
+                 *            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
                  *            gsl_ran_rayleigh(r,sigma),
                  *            gsl_ran_gaussian(r,sigma),
                  *            gsl_ran_gaussian(r,sigma),"GasIn"));
                  */
-                particles.push_back(new Particle(-L/2.,
-                            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            gsl_ran_rayleigh(r,sigma),
-                            gsl_ran_gaussian(r,sigma),
-                            gsl_ran_gaussian(r,sigma),"GasIn"));
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
                 fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
@@ -300,20 +300,20 @@ void InitBarostat(std::list<Particle*>& particles)
         //std::cout << "N = " << N << std::endl;
         for(i=0;i<N;i++)
         {
+                particles.push_back(new Particle(L+L/2.,
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn"));
                 /*
                  *particles.push_back(new Particle(L+L/2.,
-                 *            gsl_rng_uniform(r)*L,
-                 *            gsl_rng_uniform(r)*L,
+                 *            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
+                 *            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
                  *            gsl_ran_rayleigh(r,sigma)*(-1.),
                  *            gsl_ran_gaussian(r,sigma),
                  *            gsl_ran_gaussian(r,sigma),"GasIn"));
                  */
-                particles.push_back(new Particle(L+L/2.,
-                            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            gsl_ran_rayleigh(r,sigma)*(-1.),
-                            gsl_ran_gaussian(r,sigma),
-                            gsl_ran_gaussian(r,sigma),"GasIn"));
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
                 fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
@@ -324,20 +324,20 @@ void InitBarostat(std::list<Particle*>& particles)
         //std::cout << "N = " << N << std::endl;
         for(i=0;i<N;i++)
         {
+                particles.push_back(new Particle(gsl_rng_uniform(r)*L,
+                            -L/2.,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn"));
                 /*
-                 *particles.push_back(new Particle(gsl_rng_uniform(r)*L,
+                 *particles.push_back(new Particle((2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
                  *            -L/2.,
-                 *            gsl_rng_uniform(r)*L,
+                 *            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
                  *            gsl_ran_gaussian(r,sigma),
                  *            gsl_ran_rayleigh(r,sigma),
                  *            gsl_ran_gaussian(r,sigma),"GasIn"));
                  */
-                particles.push_back(new Particle((2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            -L/2.,
-                            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            gsl_ran_gaussian(r,sigma),
-                            gsl_ran_rayleigh(r,sigma),
-                            gsl_ran_gaussian(r,sigma),"GasIn"));
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
                 fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
@@ -348,6 +348,12 @@ void InitBarostat(std::list<Particle*>& particles)
         //std::cout << "N = " << N << std::endl;
         for(i=0;i<N;i++)
         {
+                particles.push_back(new Particle(gsl_rng_uniform(r)*L,
+                            L+L/2.,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,sigma),"GasIn"));
                 /*
                  *particles.push_back(new Particle((2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
                  *            L+L/2.,
@@ -356,12 +362,6 @@ void InitBarostat(std::list<Particle*>& particles)
                  *            gsl_ran_rayleigh(r,sigma)*(-1.),
                  *            gsl_ran_gaussian(r,sigma),"GasIn"));
                  */
-                particles.push_back(new Particle((2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            L+L/2.,
-                            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            gsl_ran_gaussian(r,sigma),
-                            gsl_ran_rayleigh(r,sigma)*(-1.),
-                            gsl_ran_gaussian(r,sigma),"GasIn"));
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
                 fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
@@ -372,6 +372,13 @@ void InitBarostat(std::list<Particle*>& particles)
         //std::cout << "N = " << N << std::endl;
         for(i=0;i<N;i++)
         {
+                particles.push_back(new Particle(
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            -L/2.,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),"GasIn"));
                 /*
                  *particles.push_back(new Particle((2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
                  *            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
@@ -380,12 +387,6 @@ void InitBarostat(std::list<Particle*>& particles)
                  *            gsl_ran_gaussian(r,sigma),
                  *            gsl_ran_rayleigh(r,sigma),"GasIn"));
                  */
-                particles.push_back(new Particle((2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            -L/2.,
-                            gsl_ran_gaussian(r,sigma),
-                            gsl_ran_gaussian(r,sigma),
-                            gsl_ran_rayleigh(r,sigma),"GasIn"));
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
                 fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
@@ -396,6 +397,13 @@ void InitBarostat(std::list<Particle*>& particles)
         //std::cout << "N = " << N << std::endl;
         for(i=0;i<N;i++)
         {
+                particles.push_back(new Particle(
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            L+L/2.,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn"));
                 /*
                  *particles.push_back(new Particle((2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
                  *            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
@@ -404,24 +412,20 @@ void InitBarostat(std::list<Particle*>& particles)
                  *            gsl_ran_gaussian(r,sigma),
                  *            gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn"));
                  */
-                particles.push_back(new Particle((2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
-                            L+L/2.,
-                            gsl_ran_gaussian(r,sigma),
-                            gsl_ran_gaussian(r,sigma),
-                            gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn"));
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
                 fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
         }   
         fclose(baroOut);
-        iter = particles.begin();
-        for(unsigned int t=0;t<particles.size();t++)
-        {
-                //printf("2\t\%lf\t\%lf\t%lf\n",
-                                                //(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
-                iter++;
-        }
+        //iter = particles.begin();
+        /*
+         *for(unsigned int t=0;t<particles.size();t++)
+         *{
+         *        //printf("2\t\%lf\t\%lf\t%lf\n",
+         *                                        //(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
+         *        iter++;
+         *}
+         */
 }
 
 void InitBarostat(std::vector<Particle*>& particles)
@@ -557,9 +561,22 @@ void GenerateOutput(Particle *cube, std::list<Particle*> gas,int Run)
         //with varying particle number
         //const int maxParticles = 80000; 
 
-        std::string filename = "output/combined/combined_";
-        filename += numberToString(Run);
-        filename += ".xyz";
+        std::string filename;
+        if(input != NULL)
+        {
+            filename = "output/combined_";
+            std::string prefix(input);
+            filename += prefix;
+            filename += "/combined_";
+            filename += numberToString(Run);
+            filename += ".xyz";
+        }
+        else
+        {
+            std::string filename = "output/combined/combined_";
+            filename += numberToString(Run);
+            filename += ".xyz";
+        }
         
         FILE* combinedOut = fopen(filename.c_str(),"w");
         int printed = 0;
@@ -590,7 +607,7 @@ void GenerateOutput(Particle *cube, std::list<Particle*> gas,int Run)
         //{
                 //fprintf(combinedOut,"Dummy\t%lf\t%lf\t%lf\n",L/2,L/2,L/2);
         //}
-        printDistances(cube,gas,Run);
+        //printDistances(cube,gas,Run);
         
         fclose(combinedOut);
 }
@@ -864,7 +881,8 @@ void PrintAllData(Particle* cube, std::list<Particle*> gas,FILE* output)
 
 }
 
-void eHEX(Particle* cube,FILE* output)
+//void eHEX(Particle* cube,FILE* output)
+void eHEX(Particle* cube)
 {
 	double eps[N][3];
 	double K=0;
@@ -878,7 +896,7 @@ void eHEX(Particle* cube,FILE* output)
 	for(n=0;n<N;n++)
 		for(i=0;i<3;i++)
 			K+=(cube[n].v[i]*cube[n].v[i]);
-	K=K/2;
+	K=K/2.;
 	if(K==0)
 		printf("Error, K must not be 0!");
 	xi = sqrt(1+dQ/K);
@@ -976,6 +994,20 @@ void calcCM(Particle* particles,double *rCM, double* vCM)
     }
 }
 
+void calcCM(Particle* particles,double *rCM, FILE* output)
+{
+    for(unsigned int i=0;i<3;i++)
+        rCM[i] = 0;
+
+    for(unsigned int i=0;i<N;i++)
+        for(unsigned int k=0;k<3;k++)
+            rCM[k]+=particles[i].r[k];
+
+    for(unsigned int i=0;i<3;i++)
+        rCM[i]/=N;
+    fprintf(output,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
+}
+
 bool fileExist(const std::string& filename)
 {
     struct stat buffer;
@@ -1047,7 +1079,7 @@ void harmonicTrap(double* rCM, double* vCM, double* pos, Particle* particles)
     //double rSqd = 0;
     double rCMtemp[3] = {0,0,0};
     double aCM[3] = {0,0,0};
-    const double k = 5.;
+    const double k = 15.;
 
     for(unsigned int i=0;i<3;i++)
         rCMtemp[i] = rCM[i];
@@ -1200,3 +1232,25 @@ bool checkIfOnLine(std::list<Particle*>::iterator iterator)
     else
         return false;
 }
+std::string DateToString()
+{
+    time_t now = time(0);
+    tm* ltm = localtime(&now);
+    std::string datestring = "";
+    datestring += numberToString((1900+ltm->tm_year)-2000);
+    if(1+ltm->tm_mon < 10)
+        datestring += "0";
+    datestring += numberToString(1+ltm->tm_mon);
+    if(1+ltm->tm_mday < 10)
+        datestring += "0";
+    datestring += numberToString(ltm->tm_mday);
+    datestring += "_";
+    if(1+ltm->tm_hour < 10)
+        datestring += "0";
+    datestring += numberToString(ltm->tm_hour);
+    if(1+ltm->tm_min < 10)
+        datestring += "0";
+    datestring += numberToString(ltm->tm_min);
+    return datestring;
+     //FILE* runData = fopen(filename.c_str(),"w");
+} 

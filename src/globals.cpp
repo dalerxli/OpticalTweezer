@@ -8,14 +8,17 @@ gsl_rng *r1 = gsl_rng_alloc(T);
 int g_ID=1;
 const unsigned int N = 864;
 
-double FG;
 double* rCMStart = new double[3];
-const double rho = 1.1;
-const double L = pow(N/rho,1.0/3);
-const double rCutOff = 2.5;
-const double dt = 0.01;
-const double eps = 0.5;
-const double dQ=0.010;
+double rho = 1.1;
+double Temp;
+double L = pow(N/rho,1.0/3);
+double rCutOff = 2.5;
+double dt = 0.01;
+double eps = 0.5;
+double dQ=0.050;
+char* input;
+//ACHTUNG: FG war bis jetzt nicht gesetzt!!! moegliche Aenderungen hier beginnen nachzuvollziehen
+double FG = dQ/dt;
 
 bool PBC_FLAG = false;
 bool EHEX_FLAG = false;

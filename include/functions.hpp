@@ -24,9 +24,11 @@ void CheckBoundaries(std::vector<Particle*> &particles);
 void Barostat(Particle* cube, std::list<Particle*>& gas);
 void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube);
 void PrintAllData(Particle* cube, std::list<Particle*> gas,FILE* output);
-void eHEX(Particle* cube,FILE* output);
+//void eHEX(Particle* cube,FILE* output);
+void eHEX(Particle* cube);
 void calcTemp(Particle* cube,FILE* output);
 void calcCM(Particle* particles,double *rCM, double* vCM);
+void calcCM(Particle* particles,double *rCM, FILE* output);
 bool fileExist(const std::string& filename);
 double totErg(Particle* particles);
 void writePositions(Particle* particles, std::string filename);
@@ -44,6 +46,7 @@ std::string numberToString(T number)
 void printDistances(Particle* cube, std::list<Particle*> &particles,int Run);
 //bool checkIfOnLine(Particle* particle);
 bool checkIfOnLine(std::list<Particle*>::iterator iterator);
+std::string DateToString();
 
 
 #endif
