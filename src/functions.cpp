@@ -561,22 +561,27 @@ void GenerateOutput(Particle *cube, std::list<Particle*> gas,int Run)
         //with varying particle number
         //const int maxParticles = 80000; 
 
-        std::string filename;
-        if(input != NULL)
-        {
-            filename = "output/combined_";
-            std::string prefix(input);
-            filename += prefix;
-            filename += "/combined_";
-            filename += numberToString(Run);
-            filename += ".xyz";
-        }
-        else
-        {
-            std::string filename = "output/combined/combined_";
-            filename += numberToString(Run);
-            filename += ".xyz";
-        }
+        //std::string filename;
+        std::string filename = "output/combined/combined_";
+        filename += numberToString(Run);
+        filename += ".xyz";
+        /*
+         *if(input != NULL)
+         *{
+         *    filename = "output/combined_";
+         *    std::string prefix(input);
+         *    filename += prefix;
+         *    filename += "/combined_";
+         *    filename += numberToString(Run);
+         *    filename += ".xyz";
+         *}
+         *else
+         *{
+         *    std::string filename = "output/combined/combined_";
+         *    filename += numberToString(Run);
+         *    filename += ".xyz";
+         *}
+         */
         
         FILE* combinedOut = fopen(filename.c_str(),"w");
         int printed = 0;

@@ -13,7 +13,7 @@ int main(int argc,char** argv)
      *std::string dirname(input);
      *makedir += dirname;
      *system(makedir.c_str());
-     *system("rm output/combined/*");
+     *system("rm output/combined/ *");
      */
     std::string folderName = "output/runs/";
     folderName += DateToString();
@@ -24,6 +24,7 @@ int main(int argc,char** argv)
         mkdir(folderName.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     }
     chdir(folderName.c_str()); 
+    system("mkdir combined");
     std::ofstream params;
     params.open("parameters.txt");
     params << rho;
