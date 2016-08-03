@@ -44,9 +44,9 @@ std::string numberToString(T number)
     return convert.str();
 }
 void printDistances(Particle* cube, std::list<Particle*> &particles,int Run);
-//bool checkIfOnLine(Particle* particle);
-bool checkIfOnLine(std::list<Particle*>::iterator iterator);
 std::string DateToString();
+void rescaleVelocities(Particle* cube);
+void setValues(double temp, double dq, double Eps, double Pressure, double ambienttemp);
 
 
 #endif

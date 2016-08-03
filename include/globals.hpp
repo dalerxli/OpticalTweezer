@@ -34,6 +34,8 @@ extern double eps;
 extern double dQ;
 extern double rho;
 extern double Temp;
+extern double AmbientTemp;
+extern double P;
 extern double L;
 extern double rCutOff;
 extern double dt;

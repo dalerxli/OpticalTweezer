@@ -36,10 +36,10 @@ unsigned int NumberOfParticles()
         double mu;
         //double P=0.0024;
         //This is the calculated atmospheric pressure with LJ units
-        double P=4;
+        //double P=4;
         double k=1.0;
-        double T=0.9;
-        mu = 0.01*L*L*P*pow((1/(2*M_PI*k*T)),0.5);
+        //double T=0.9;
+        mu = dt*L*L*P*pow((1/(2*M_PI*k*AmbientTemp)),0.5);
         //std::cout << mu << std::endl;
         return gsl_ran_poisson(r,mu);
 }
@@ -202,6 +202,8 @@ void InitVelocities(Particle* particle)
      particle[n].v[2] -= (omega[0]*dx[1]-omega[1]*dx[0]);
     }
 
+    rescaleVelocities(particle);
+
 }
 
 double Pressure(Particle* particle)
@@ -263,7 +265,7 @@ double Distance(Particle* particle, int i, int j)
 
 void InitBarostat(std::list<Particle*>& particles)
 {
-        FILE *baroOut = fopen("output/barostat.dat","a");
+        //FILE *baroOut = fopen("output/barostat.dat","a");
         //int i,j,k;
         unsigned int i;
         unsigned int N;
@@ -292,7 +294,7 @@ void InitBarostat(std::list<Particle*>& particles)
                  */
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
-                fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
+                //fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
         }
 
         //side xL
@@ -316,7 +318,7 @@ void InitBarostat(std::list<Particle*>& particles)
                  */
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
-                fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
+                //fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
         }   
 
         //side y0
@@ -340,7 +342,7 @@ void InitBarostat(std::list<Particle*>& particles)
                  */
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
-                fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
+                //fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
         }   
 
         //side yL
@@ -364,7 +366,7 @@ void InitBarostat(std::list<Particle*>& particles)
                  */
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
-                fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
+                //fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
         }   
         
         //side z0
@@ -389,7 +391,7 @@ void InitBarostat(std::list<Particle*>& particles)
                  */
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
-                fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
+                //fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
         }   
 
         //side zL
@@ -414,9 +416,9 @@ void InitBarostat(std::list<Particle*>& particles)
                  */
                 iter++;
                 //printf("%d: (%lf,%lf,%lf)\n",(*iter)->ID,(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
-                fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
+                //fprintf(baroOut,"%lf\t%lf\t%lf\n",(*iter)->r[0],(*iter)->r[1],(*iter)->r[2]);
         }   
-        fclose(baroOut);
+        //fclose(baroOut);
         //iter = particles.begin();
         /*
          *for(unsigned int t=0;t<particles.size();t++)
@@ -562,7 +564,8 @@ void GenerateOutput(Particle *cube, std::list<Particle*> gas,int Run)
         //const int maxParticles = 80000; 
 
         //std::string filename;
-        std::string filename = "output/combined/combined_";
+        //std::string filename = "output/combined/combined_";
+        std::string filename = "combined/combined_";
         filename += numberToString(Run);
         filename += ".xyz";
         /*
@@ -584,14 +587,14 @@ void GenerateOutput(Particle *cube, std::list<Particle*> gas,int Run)
          */
         
         FILE* combinedOut = fopen(filename.c_str(),"w");
-        int printed = 0;
+        //int printed = 0;
         fprintf(combinedOut,"%ld\nFrame 0\n",N+gas.size());
         std::list<Particle*>::iterator gasIter = gas.begin();
         unsigned int t=0;
         for(unsigned int j=0;j<N;j++)
         {
                 fprintf(combinedOut,"%s\t\%lf\t\%lf\t%lf\t%d\n",(cube[j].name).c_str(),cube[j].r[0],cube[j].r[1],cube[j].r[2],cube[j].ID);
-                printed++;
+                //printed++;
         }
         for(t=0;t<gas.size();t++)
         {
@@ -1173,70 +1176,6 @@ void trackParticle(Particle* cube, std::list<Particle*> gas, int partID, FILE* o
      }
 }
 
-/*
- *bool checkIfOnLine(Particle* particle)
- *{
- *    double l;
- *    if(particle->v0[0] != 0)
- *    {
- *        l = (particle->r[0] - particle->r0[0])/particle->v0[0];
- *        if((particle->r[1] == particle->r0[1]+l*particle->v0[1]) && (particle->r[2] == particle->r0[2]+l*particle->v0[2]))
- *            return true;
- *        else
- *            return false;
- *    }
- *    else if(particle->v0[1] != 0)
- *    {
- *        l = (particle->r[1] - particle->r0[1])/particle->v0[1];
- *        if((particle->r[0] == particle->r0[0]+l*particle->v0[0]) && (particle->r[2] == particle->r0[2]+l*particle->v0[2]))
- *            return true;
- *        else
- *            return false;
- *    }
- *    else if(particle->v0[2] != 0)
- *    {
- *        l = (particle->r[2] - particle->r0[2])/particle->v0[2];
- *        if((particle->r[0] == particle->r0[0]+l*particle->v0[0]) && (particle->r[1] == particle->r0[1]+l*particle->v0[1]))
- *            return true;
- *        else
- *            return false;
- *    }
- *    else
- *        return false;
- *}
- */
-
-
-bool checkIfOnLine(std::list<Particle*>::iterator iterator)
-{
-    double l;
-    if((*iterator)->v0[0] != 0)
-    {
-        l = ((*iterator)->r[0] - (*iterator)->r0[0])/(*iterator)->v0[0];
-        if(((*iterator)->r[1] == (*iterator)->r0[1]+l*(*iterator)->v0[1]) && ((*iterator)->r[2] == (*iterator)->r0[2]+l*(*iterator)->v0[2]))
-            return true;
-        else
-            return false;
-    }
-    else if((*iterator)->v0[1] != 0)
-    {
-        l = ((*iterator)->r[1] - (*iterator)->r0[1])/(*iterator)->v0[1];
-        if(((*iterator)->r[0] == (*iterator)->r0[0]+l*(*iterator)->v0[0]) && ((*iterator)->r[2] == (*iterator)->r0[2]+l*(*iterator)->v0[2]))
-            return true;
-        else
-            return false;
-    }
-    else if((*iterator)->v0[2] != 0)
-    {
-        l = ((*iterator)->r[2] - (*iterator)->r0[2])/(*iterator)->v0[2];
-        if(((*iterator)->r[0] == (*iterator)->r0[0]+l*(*iterator)->v0[0]) && ((*iterator)->r[1] == (*iterator)->r0[1]+l*(*iterator)->v0[1]))
-            return true;
-        else
-            return false;
-    }
-    else
-        return false;
-}
 std::string DateToString()
 {
     time_t now = time(0);
@@ -1259,3 +1198,25 @@ std::string DateToString()
     return datestring;
      //FILE* runData = fopen(filename.c_str(),"w");
 } 
+
+void rescaleVelocities(Particle* cube)
+{
+    double vSum = 0;
+    for(int i=0;i<N;i++)
+        for(int k=0;k<3;k++)
+            vSum += cube[i].v[k] * cube[i].v[k];
+    double lambda = sqrt(3*(N-1)*Temp/vSum);
+    for(int i=0;i<N;i++)
+        for(int k=0;k<3;k++)
+            cube[i].v[k] *= lambda;
+}
+
+void setValues(double temp, double dq, double Eps, double Pressure, double ambienttemp)
+{
+    Temp = temp;
+    dQ = dq;
+    eps = Eps;
+    P = Pressure;
+    AmbientTemp = ambienttemp;
+}
+

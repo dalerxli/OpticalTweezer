@@ -10,7 +10,9 @@ const unsigned int N = 864;
 
 double* rCMStart = new double[3];
 double rho = 1.1;
-double Temp;
+double Temp = 0.2;
+double AmbientTemp = 0.9;
+double P= 4.0;
 double L = pow(N/rho,1.0/3);
 double rCutOff = 2.5;
 double dt = 0.01;

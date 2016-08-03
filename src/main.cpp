@@ -2,8 +2,32 @@
 #include "../include/classes.hpp"
 #include "../include/functions.hpp"
 
+void mainLoop();
+
+
 int main(int argc,char** argv)
 {
+    //int returnValue;
+    setValues(0.2,0.05,0.5,4,0.9);
+/*
+ *void setValues(double temp, double dq, double Eps, double Pressure, double ambienttemp)
+ *double rho = 1.1;
+ *double Temp = 0.2;
+ *double AmbientTemp = 0.9;
+ *double P= 4.0;
+ *double L = pow(N/rho,1.0/3);
+ *double rCutOff = 2.5;
+ *double dt = 0.01;
+ *double eps = 0.5;
+ *double dQ=0.050;
+ */
+
+    mainLoop();
+    return 0;
+}
+
+
+void mainLoop() {
     /*
      *if(argc > 1)
      *    input = argv[1];
@@ -69,23 +93,8 @@ int main(int argc,char** argv)
      *FILE* surfacedata = fopen("output/surfacedata.xyz","w");
      *FILE* particleTracker = fopen("output/combined/id_1400.xyz","w");
      */
-    //FILE* output = fopen("box_test.xyz","w");
-    //FILE* pressure = fopen("output/pressure.dat","w");
-    //FILE* baroOut = fopen("output/barostat.dat","w");
-    //FILE* combinedOut = fopen("output/combined.xyz","w");
-    //FILE* particledata = fopen("output/particledata.dat","w");
     FILE* tempout = fopen("temperature_internal.dat","w");
     FILE* comData = fopen("comdata.dat","w");
-    //FILE* cmData = fopen("output/cmdata.dat","w");
-    //FILE* equiData = fopen("output/equidata.dat","w");
-    //FILE* readData = fopen("output/equidata.dat","r");
-    //FILE* totErgData = fopen("output/energy.dat","w");
-    //FILE* equidata = fopen("output/readwritetest.dat","w");
-    //FILE* equidata2 = fopen("output/readwritetest2.dat","w");
-    //FILE* surfacedata = fopen("output/surfacedata.xyz","w");
-    //FILE* particleTracker = fopen("output/combined/id_1400.xyz","w");
-    //fclose(combinedOut);
-    std::cout << "works!" << std::endl;
     Particle *cube = new Particle[N];
     std::list<Particle*> gas;
     double* rCM = new double[3];
@@ -93,11 +102,9 @@ int main(int argc,char** argv)
     double* vCM = new double[3];
     double energy = 0;
     InitPositions(cube);
-    //fclose(surfacedata);
     calcCM(cube,rCMStart,vCM);
     calcCM(cube,rCM,vCM);
     InitVelocities(cube);
-    //fprintf(pressure,"%lf\n",Pressure(cube));
     ComputeAccelerations(cube);
     for(run=0;run<10000;run++)
     {
@@ -105,10 +112,13 @@ int main(int argc,char** argv)
                 printf("Zeitschritt %d\n",run);
             VelocityVerlet(cube,0,NULL);
             if(run%100 == 0)
+            {
+                rescaleVelocities(cube);
                 calcTemp(cube,tempout); 
+            }
     }
 
-    //writePositions(cube,"output/states/LJequilibriumSur.dat");
+    writePositions(cube,"../../states/LJequilibriumSur.dat");
 
     /*
      *for(run;run<50000;run++)
@@ -125,22 +135,25 @@ int main(int argc,char** argv)
      *}
      */
     
-    //readPositions(cube,"output/states/LJequilibriumSur.dat");
+    //readPositions(cube,"../../states/LJequilibriumSur.dat");
     //readPositions(cube,"output/states/eHEXEquilibrium.dat");
         
     ComputeSoftSphere(gas,cube);
 
-    for(run = 0;run<20000;run++)
+    for(run = 0;run<40000;run++)
     {
         if(run%100==0)
             printf("Zeitschritt %d\n",run);
         eHEX(cube);
         Barostat(cube,gas);
-        //harmonicTrap(rCM,vCM,rCMStart,cube);
+        //std::cout << "works!" << std::endl;
+        harmonicTrap(rCM,vCM,rCMStart,cube);
+        //std::cout << "works!" << std::endl;
         if(run%10==0)
         {
             //trackParticle(cube,gas,1400,particleTracker);
             GenerateOutput(cube,gas,run);
+            //std::cout << "works!" << std::endl;
             calcCM(cube,rCMtemp,comData);
         }
         if(run%10==0)
@@ -163,5 +176,5 @@ int main(int argc,char** argv)
      *fclose(totErgData);
      */
     delete [] cube;
-    return 0;
+    //return 0;
 }
