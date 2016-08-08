@@ -30,3 +30,6 @@
 
 # vim-swap files
 .*.swp
+
+# combined data files
+combined*

@@ -16,7 +16,7 @@ double P= 4.0;
 double L = pow(N/rho,1.0/3);
 double rCutOff = 2.5;
 double dt = 0.01;
-double eps = 0.5;
+double eps = 0.5; //margin for boundary conditions
 double dQ=0.050;
 char* input;
 //ACHTUNG: FG war bis jetzt nicht gesetzt!!! moegliche Aenderungen hier beginnen nachzuvollziehen

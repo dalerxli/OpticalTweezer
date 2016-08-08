@@ -1192,7 +1192,7 @@ std::string DateToString()
     if(1+ltm->tm_hour < 10)
         datestring += "0";
     datestring += numberToString(ltm->tm_hour);
-    if(1+ltm->tm_min < 10)
+    if(1+ltm->tm_min < 10 || 1+ltm->tm_min == 9)
         datestring += "0";
     datestring += numberToString(ltm->tm_min);
     return datestring;

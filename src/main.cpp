@@ -8,7 +8,6 @@ void mainLoop();
 int main(int argc,char** argv)
 {
     //int returnValue;
-    setValues(0.2,0.05,0.5,4,0.9);
 /*
  *void setValues(double temp, double dq, double Eps, double Pressure, double ambienttemp)
  *double rho = 1.1;
@@ -21,8 +20,16 @@ int main(int argc,char** argv)
  *double eps = 0.5;
  *double dQ=0.050;
  */
-
-    mainLoop();
+    double q = 0.06;
+    while(q < 0.15)
+    {
+        setValues(0.2,q,0.5,4,0.9);
+        std::cout << "==================================================" << std::endl;
+        std::cout << "q: " << q << std::endl;
+        std::cout << "==================================================" << std::endl;
+        mainLoop();
+        q += 0.01;
+    }
     return 0;
 }
 
@@ -42,7 +49,7 @@ void mainLoop() {
     std::string folderName = "output/runs/";
     folderName += DateToString();
     int dir = mkdir(folderName.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-    if(dir == -1)
+    while(dir == -1)
     {
         folderName += "_1";
         mkdir(folderName.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
@@ -51,11 +58,13 @@ void mainLoop() {
     system("mkdir combined");
     std::ofstream params;
     params.open("parameters.txt");
-    params << rho;
-    params << Temp;
-    params << dt;
-    params << eps;
-    params << dQ;
+    params << "rho = " << rho << std::endl;
+    params << "Temp = " << Temp << std::endl;
+    params << "dt = " << dt << std::endl;
+    params << "eps = " << eps << std::endl;
+    params << "P = " << P << std::endl;
+    params << "dQ = " << dQ << std::endl;
+    params << "AmbientTemp = " << AmbientTemp << std::endl;
     params.close();
 /*
  *double FG;
@@ -109,7 +118,7 @@ void mainLoop() {
     for(run=0;run<10000;run++)
     {
             if(run%200==0)
-                printf("Zeitschritt %d\n",run);
+                printf("(INIT) Zeitschritt %d\n",run);
             VelocityVerlet(cube,0,NULL);
             if(run%100 == 0)
             {
@@ -118,7 +127,7 @@ void mainLoop() {
             }
     }
 
-    writePositions(cube,"../../states/LJequilibriumSur.dat");
+    //writePositions(cube,"../../states/LJequilibriumSur.dat");
 
     /*
      *for(run;run<50000;run++)
@@ -143,38 +152,25 @@ void mainLoop() {
     for(run = 0;run<40000;run++)
     {
         if(run%100==0)
-            printf("Zeitschritt %d\n",run);
+            printf("(MEASURE)Zeitschritt %d\n",run);
         eHEX(cube);
         Barostat(cube,gas);
         //std::cout << "works!" << std::endl;
         harmonicTrap(rCM,vCM,rCMStart,cube);
         //std::cout << "works!" << std::endl;
-        if(run%10==0)
+        if(run%200==0)
         {
             //trackParticle(cube,gas,1400,particleTracker);
             GenerateOutput(cube,gas,run);
             //std::cout << "works!" << std::endl;
             calcCM(cube,rCMtemp,comData);
         }
-        if(run%10==0)
+        if(run%100==0)
             calcTemp(cube,tempout); 
     }
-
-    //writePositions(cube,"output/states/eHEXEquilibrium.dat");
-
-
-
-
-    /*
-     *fclose(pressure);
-     *fclose(output);
-     *fclose(baroOut);
-     *fclose(particledata);
-     *fclose(tempout);
-     *fclose(cmData);
-     *fclose(equiData);
-     *fclose(totErgData);
-     */
+    std::string upFolder = "../";
+    chdir(upFolder.c_str()); 
     delete [] cube;
-    //return 0;
+    fclose(tempout);
+    fclose(comData);
 }

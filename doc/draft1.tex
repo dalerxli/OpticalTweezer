@@ -96,7 +96,8 @@
 \thispagestyle{empty}
 \newpage
 \section{Introduction}
-
+%something about computer science in general, optical tweezers and the need to study the
+%systems on computers yada yada
 
 
 
@@ -104,7 +105,7 @@
 
 \newpage
 \section{Motivation}
-
+%introduction of the experiment, the problem and the idea
 
 
 
@@ -113,11 +114,23 @@
 
 \newpage
 \section{Simulation}
+%simulation techniques and general concept of the simulation itself, used methods and so on 
+To study the problem on the computer, one needs certain techniques. These techniques and their application will be described in this section.
+
 \subsection{Molecular Dynamics}
 
 
-\subsection{The Glass Nanoparticle}
 
+\subsection{Reduced Units}
+\subsection{The Glass Nanoparticle}
+The glass particle from the experiment will be represented by a system of particles, interacting via a Lennard-Jones potential of the form
+\begin{equation}
+    U(r) = 4\varepsilon\left[\left(\frac\sigma r\right)^{12} - \left(\frac\sigma r\right)^6\right]
+\end{equation}
+or, using reduced units:
+\begin{equation}
+    U(r^*) = 4\left[{r^*}^{-12} - {r^*}^{-6}\right]
+\end{equation}
 
 
 
@@ -125,7 +138,7 @@
 
 \newpage
 \section{Results}
-
+% results with different parameters, graphs, etc.
 
 
 
@@ -133,6 +146,7 @@
 
 \newpage
 \section{Conclusion}
+% what does this all tell us? do we need to study more of this? 
 
 
 

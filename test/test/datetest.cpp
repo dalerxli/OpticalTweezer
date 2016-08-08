@@ -24,12 +24,18 @@ int main(int argc, char** argv)
     chdir("../");
     sleep(65);
     //std::cout << dir << std::endl;
-    test = DateToString();
-    dir = mkdir(test.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-    if(dir == -1)
+    for(int k=0;k<5;k++)
     {
-        test += "_1";
-        mkdir(test.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+        test = DateToString();
+        dir = mkdir(test.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+        int i=1;
+        //if(dir == -1)
+        while(dir == -1)
+        {
+            std::string folder = test+"_"+numberToString(i);
+            dir = mkdir(folder.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+            i++;
+        }
     }
     std::cout << test << std::endl;
     chdir(test.c_str()); 
