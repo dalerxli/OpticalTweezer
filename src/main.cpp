@@ -20,16 +20,25 @@ int main(int argc,char** argv)
  *double eps = 0.5;
  *double dQ=0.050;
  */
-    double q = 0.06;
-    while(q < 0.15)
+    double q = 0.01;
+    double at = 0.5;
+    while(q < 0.12)
     {
-        setValues(0.2,q,0.5,4,0.9);
-        std::cout << "==================================================" << std::endl;
-        std::cout << "q: " << q << std::endl;
-        std::cout << "==================================================" << std::endl;
-        mainLoop();
+        at = 0.6;
+        while(at < 1.3)
+        {
+            setValues(0.2,q,0.2,4,at);
+            std::cout << "==================================================" << std::endl;
+            std::cout << "q: " << q << std::endl;
+            std::cout << "Ambient Temperature: " << at << std::endl;
+            std::cout << "==================================================" << std::endl;
+            mainLoop();
+            at += 0.1;
+        }
         q += 0.01;
     }
+    //setValues(0.2,0.06,0.2,4,1.1);
+    //mainLoop();
     return 0;
 }
 
@@ -49,10 +58,16 @@ void mainLoop() {
     std::string folderName = "output/runs/";
     folderName += DateToString();
     int dir = mkdir(folderName.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+    int i=1;
     while(dir == -1)
     {
-        folderName += "_1";
-        mkdir(folderName.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+        std::string newFolderName = folderName + "_" + numberToString(i);
+        //folderName += "_";
+        //folderName += numberToString(i);
+        dir = mkdir(newFolderName.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+        if(dir == 0)
+            folderName = newFolderName;
+        i++;
     }
     chdir(folderName.c_str()); 
     system("mkdir combined");
@@ -117,7 +132,7 @@ void mainLoop() {
     ComputeAccelerations(cube);
     for(run=0;run<10000;run++)
     {
-            if(run%200==0)
+            if(run%500==0)
                 printf("(INIT) Zeitschritt %d\n",run);
             VelocityVerlet(cube,0,NULL);
             if(run%100 == 0)
@@ -125,6 +140,8 @@ void mainLoop() {
                 rescaleVelocities(cube);
                 calcTemp(cube,tempout); 
             }
+            if(run%400 == 0)
+                GenerateOutput(cube,gas,run);
     }
 
     //writePositions(cube,"../../states/LJequilibriumSur.dat");
@@ -151,26 +168,28 @@ void mainLoop() {
 
     for(run = 0;run<40000;run++)
     {
-        if(run%100==0)
+        if(run%500==0)
             printf("(MEASURE)Zeitschritt %d\n",run);
         eHEX(cube);
         Barostat(cube,gas);
         //std::cout << "works!" << std::endl;
         harmonicTrap(rCM,vCM,rCMStart,cube);
         //std::cout << "works!" << std::endl;
-        if(run%200==0)
+        if(run%400==0)
         {
             //trackParticle(cube,gas,1400,particleTracker);
-            GenerateOutput(cube,gas,run);
+            GenerateOutput(cube,gas,run+10000);
             //std::cout << "works!" << std::endl;
             calcCM(cube,rCMtemp,comData);
         }
         if(run%100==0)
             calcTemp(cube,tempout); 
     }
-    std::string upFolder = "../";
-    chdir(upFolder.c_str()); 
+    chdir("../../../");
     delete [] cube;
+    gas.clear(); 
+    g_ID = 1;
+	EHEX_FLAG = false;
     fclose(tempout);
     fclose(comData);
 }

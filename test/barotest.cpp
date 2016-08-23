@@ -35,18 +35,22 @@ int main(int argc, char** argv)
     InitPositions(cube);
     calcCM(cube,rCMStart,vCM);
     calcCM(cube,rCM,vCM);
-    InitVelocities(cube);
-    ComputeAccelerations(cube);
-
-    for(run=0;run<10000;run++)
-    {
-            if(run%200==0)
-                printf("Zeitschritt %d\n",run);
-            VelocityVerlet(cube,0,NULL);
-            if(run%100 == 0)
-                calcTemp(cube,tempdata); 
-    }
-    writePositions(cube,"output/positions.dat");
+/*
+ *    InitVelocities(cube);
+ *    ComputeAccelerations(cube);
+ *
+ *    for(run=0;run<10000;run++)
+ *    {
+ *            if(run%200==0)
+ *                printf("Zeitschritt %d\n",run);
+ *            VelocityVerlet(cube,0,NULL);
+ *            if(run%100 == 0)
+ *                calcTemp(cube,tempdata); 
+ *    }
+ */
+    //writePositions(cube,"output/positions.dat");
+    readPositions(cube,"output/positions.dat");
+    chdir("output");
 
     ComputeSoftSphere(gas,cube);
 
@@ -55,7 +59,7 @@ int main(int argc, char** argv)
         if(run%100==0)
             printf("Zeitschritt %d\n",run);
         VelocityVerlet(cube,0,NULL);
-        Barostat(cube,gas);
+        BarostatNew(cube,gas);
         harmonicTrap(rCM,vCM,rCMStart,cube);
         for(int k=1000;k<1500;k++)
             trackParticle(cube,gas,k,trackdata[k-1000]);

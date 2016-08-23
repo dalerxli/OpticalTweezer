@@ -739,6 +739,69 @@ void CheckBoundaries(Particle* cube,std::list<Particle*> &particles)
 
 }
 
+void CheckBoundariesNew(Particle* cube,std::list<Particle*> &particles)
+{
+    std::list<Particle*>::iterator temp;
+    double lowerBound = -(L/2 + eps);
+    double upperBound = L + L/2 + eps;
+    double aTotOld = 0;
+    double aTotNew = 0;
+    //double dist[3] = {0,0,0};
+    //double distSqd = 0.;
+    //double vSqd = 0.;
+
+    for(temp=particles.begin();temp!=particles.end();)
+    {
+        //if(!checkIfOnLine(temp))
+            //(*temp)->name = "GasOut";
+        /*
+         *vSqd = 0.;
+         *for(int m=0;m<3;m++)
+         *    vSqd += (*temp)->v[m];
+         *if(vSqd < 1e-4)
+         *    (*temp)->name = "GasOut";
+         */
+
+
+        /*
+         *for(int i=0;i<N;i++) // iterate over all particles
+         *{
+         *    if(cube[i].surface && std::strcmp(((*temp)->name).c_str(),"GasOut") != 0) // if particle is on the surface
+         *    {
+         *       for(int m=0;m<3;m++)
+         *          dist[m] = (*temp)->r[m] - cube[i].r[m];
+         *      distSqd = dist[0]*dist[0]+dist[1]*dist[1]+dist[2]*dist[2];
+         *      if(distSqd < 1.2)
+         *      {
+         *          (*temp)->name = "GasOut";
+         *          //std::cout << (*temp)->ID << std::endl;
+         *      }
+         *    }
+         *}
+         */
+        aTotOld = sqrt((*temp)->aOld[0]*(*temp)->aOld[0]+(*temp)->aOld[1]*(*temp)->aOld[1]+(*temp)->aOld[2]*(*temp)->aOld[2]);
+        aTotNew = sqrt((*temp)->a[0]*(*temp)->a[0]+(*temp)->a[1]*(*temp)->a[1]+(*temp)->a[2]*(*temp)->a[2]);
+        /*
+         *if(aTotOld > aTotNew)
+         *    (*temp)->name = "GasOut";
+         */
+        if(aTotNew > aTotOld && strcmp((*temp)->name.c_str(),"GasIn") == 0)
+            (*temp)->name = "GasChange";
+        if(std::abs(aTotNew-aTotOld) < 10e-9 && strcmp((*temp)->name.c_str(),"GasChange") == 0)
+            (*temp)->name = "GasOut";
+        if((*temp)->r[0] < lowerBound || (*temp)->r[0] > upperBound || 
+                (*temp)->r[1] < lowerBound || (*temp)->r[1] > upperBound 
+                ||(*temp)->r[2] < lowerBound || (*temp)->r[2] > upperBound)
+        {
+            //std::cout << "Deleted [ID]: " << (*temp)->ID << std::endl;
+            temp=particles.erase(temp);
+        }
+        else
+            ++temp;
+    }
+
+}
+
 void printDistances(Particle* cube, std::list<Particle*> &particles,int Run)
 {
     std::list<Particle*>::iterator temp;
@@ -823,6 +886,27 @@ void Barostat(Particle* cube, std::list<Particle*>& gas)
         for(unsigned int m=0;m<3;m++)
             (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
     CheckBoundaries(cube,gas);
+}
+
+void BarostatNew(Particle* cube, std::list<Particle*>& gas)
+{
+    std::list<Particle*>::iterator gasIter;
+    InitBarostat(gas);
+    
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+    {
+        for(unsigned int m=0;m<3;m++)
+        {
+            (*gasIter)->r[m] += (*gasIter)->v[m]*dt + 0.5 * (*gasIter)->a[m] * dt * dt;
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
+        }
+    }
+
+    ComputeSoftSphere(gas,cube);
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+        for(unsigned int m=0;m<3;m++)
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
+    CheckBoundariesNew(cube,gas);
 }
 
 void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube)
@@ -1157,6 +1241,24 @@ void trackParticle(Particle* cube, std::list<Particle*> gas, int partID, FILE* o
               *        (*gasIter)->potE),(*gasIter)->m*((*gasIter)->v[0]*(*gasIter)->v[0]+(*gasIter)->v[1]*(*gasIter)->v[1]+(*gasIter)->v[2]*(*gasIter)->v[2])/2.;
               */
 
+             /*
+              * Row     variable name
+              * ---------------------------
+              *  1      Name
+              *  2      x
+              *  3      y
+              *  4      z
+              *  5      v_x
+              *  6      v_y
+              *  7      v_z
+              *  8      |v|
+              *  9      a_x
+              *  10     a_y
+              *  11     a_z      
+              *  12     |a|
+              *  13     E_pot
+              *  14     E_tot
+              */
              fprintf(output,"%s",((*gasIter)->name).c_str());
              fprintf(output,"\t%lf\t%lf\t%lf",(*gasIter)->r[0],(*gasIter)->r[1],(*gasIter)->r[2]);
              fprintf(output,"\t%lf\t%lf\t%lf",(*gasIter)->v[0],(*gasIter)->v[1],(*gasIter)->v[2]);
@@ -1182,17 +1284,17 @@ std::string DateToString()
     tm* ltm = localtime(&now);
     std::string datestring = "";
     datestring += numberToString((1900+ltm->tm_year)-2000);
-    if(1+ltm->tm_mon < 10)
+    if(1+ltm->tm_mon < 10 || 1+ltm->tm_mon == 9)
         datestring += "0";
     datestring += numberToString(1+ltm->tm_mon);
-    if(1+ltm->tm_mday < 10)
+    if(ltm->tm_mday < 10)
         datestring += "0";
     datestring += numberToString(ltm->tm_mday);
     datestring += "_";
-    if(1+ltm->tm_hour < 10)
+    if(ltm->tm_hour < 10)
         datestring += "0";
     datestring += numberToString(ltm->tm_hour);
-    if(1+ltm->tm_min < 10 || 1+ltm->tm_min == 9)
+    if(ltm->tm_min < 10)
         datestring += "0";
     datestring += numberToString(ltm->tm_min);
     return datestring;
