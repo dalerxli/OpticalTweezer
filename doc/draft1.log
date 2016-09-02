@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.3)  23 AUG 2016 13:11
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.3)  2 SEP 2016 18:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1138,43 +1138,35 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 96.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] (.
-/draft1.bbl
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] (./dra
+ft1.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 201.
+ [7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 201.
 
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
-
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 195.
- [8]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 195.
- (./draft1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 195.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 195.
+(./draft1.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 201.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 201.
 Package rerunfilecheck Info: File `draft1.out' has not changed.
-(rerunfilecheck)             Checksum: B227DE95906C9CAC2B0653F4DDD77B6D;362.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 195.
+(rerunfilecheck)             Checksum: E7CDACF09486AF1B3F6596F7A395329B;291.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 201.
  ) 
 Here is how much of TeX's memory you used:
- 16698 strings out of 494678
- 274014 string characters out of 6172559
- 387034 words of memory out of 5000000
- 19779 multiletter control sequences out of 15000+600000
- 12096 words of font info for 47 fonts, out of 8000000 for 9000
+ 16674 strings out of 494678
+ 273758 string characters out of 6172559
+ 383034 words of memory out of 5000000
+ 19766 multiletter control sequences out of 15000+600000
+ 8096 words of font info for 31 fonts, out of 8000000 for 9000
  102 hyphenation exceptions out of 8191
- 44i,12n,49p,314b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,11n,49p,314b,344s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy8.pfb>
-Output written on draft1.pdf (8 pages, 102185 bytes).
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on draft1.pdf (7 pages, 55776 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
- 21 named destinations out of 1000 (max. 500000)
- 57 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
+ 16 named destinations out of 1000 (max. 500000)
+ 49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

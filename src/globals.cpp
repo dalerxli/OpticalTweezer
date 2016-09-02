@@ -22,7 +22,13 @@ char* input;
 //ACHTUNG: FG war bis jetzt nicht gesetzt!!! moegliche Aenderungen hier beginnen nachzuvollziehen
 double FG = dQ/dt;
 
+double*** Forces = new double**[N];
+double*** Distances = new double**[N];
+
+std::vector<double> virial;
+
 bool PBC_FLAG = false;
 bool EHEX_FLAG = false;
+
 
 //enum Cubeface { X0, XL, Y0, YL, Z0, ZL };

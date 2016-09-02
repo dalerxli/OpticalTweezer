@@ -1,3 +1,9 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{Frenkel2001}
+D.~Frenkel and B.~Smit.
+\newblock {\em Understanding Molecular Simulation: From Algorithms to
+  Applications}.
+\newblock Computational science series. Elsevier Science, 2001.
 
 \end{thebibliography}

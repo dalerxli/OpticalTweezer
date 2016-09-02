@@ -1,0 +1,7 @@
+rho = 1.1
+Temp = 0.4
+dt = 0.01
+eps = 0.2
+P = 4
+dQ = 0.08
+AmbientTemp = 0.6

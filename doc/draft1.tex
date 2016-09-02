@@ -115,56 +115,62 @@
 \newpage
 \section{Simulation}
 %simulation techniques and general concept of the simulation itself, used methods and so on 
-To study the problem on the computer, one needs certain techniques. These techniques and their application will be described in this section.
+The problem at hand can be studied on an atomic level with the use of computer simulation. There is a variety of methods for computer simulations
+that are widely used, one of which being Molecular Dynamics (MD) simulations. The following section will give a brief overview of the concepts of this
+method, which is followed by the application to the simulation of the experiment.
 
 \subsection{Molecular Dynamics}
+Molecular Dynamics\cite{Frenkel2001} simulations is a technique for simulating, as the name suggests, the dynamics of a classical many-body system. In this case,
+classical means, that the trajectories of the individual particles are calculated using classical mechanics rather then quantum mechanics. For
+relatively big atoms/molecules this is a very good approximation, whereas for systems consisting of hydrogen or helium the effects of quantum
+mechanics cannot be neglected and other methods (such as ab-initio simulation) has to be used.\\
+The dynamics of the system are obtained by solving Newton's equations of motion for every particle. 
 
 
-
-\subsection{The Glass Nanoparticle}
-The glass particle from the experiment will be represented by a system of 864 particles, aligned regularly on a FCC (face centered cubic) lattice.
-This alignment is achieved by defining a minimum cell, containing points:
-\begin{eqnarray*}
-    p_1 &=& \{0,0,0\}\\
-    p_2 &=& \{0.5,0.5,0\}\\
-    p_3 &=& \{0.5,0,0.5\}\\
-    p_4 &=& \{0,0.5,0.5\}
-\end{eqnarray*}
-The whole system is then  created by copying this unit cell.\\
-The interaction between the atoms is modeled by the Lennard-Jones potential. It has the form
-\begin{equation}
-    U(r) = 4\varepsilon\left[\left(\frac\sigma r\right)^{12} - \left(\frac\sigma r\right)^6\right].
-\end{equation}
-To simplify the equation and computation of the potential and other quantities, like the forces or pressure, it is useful to introduce reduced units.
-In general, reduced units BLABLABLA THINK OF GOOD TEXT HEREJKA\\
-The basic units in a system with Lennard-Jones interaction are length ($\sigma$), energy ($\varepsilon$ or $\varepsilon / k_B$) and mass ($m$). Every 
-quantity can now be written in terms of this units, so they become reduced quantities, denotet by an asterisk. The most important ones are:
-\begin{eqnarray*}
-    r^* &=& r/\sigma\\
-    T^* &=& k_B/\varepsilon \ T\\
-    U^* &=& U/\varepsilon \\
-    P^* &=& P \sigma^3/\varepsilon 
-\end{eqnarray*}
-With the above introduced reduced units, the Lennard-Jones potential can be written as
-\begin{equation}
-    U(r^*) = 4\left[{r^*}^{-12} - {r^*}^{-6}\right].
-\end{equation}
-Since this is the most practical form, it will be used without the asterisk from here on.\\
-The Lennard-Jones potential is an additive pair-potential, so the total energy of the system can be calculated by summing over all pairs of atoms:
-\begin{equation}
-    U_{\text{tot}} = \sum_{i=1}^{N-1}\sum_{j=i+1}^N4\left[{r_{ij}}^{-12} - {r_{ij}}^{-6}\right]
-\end{equation}
-where $r_{ij}$ denotes the distance between atom $i$ and $j$. \\
-The Velocity-Verlet algorithm uses the forces to calculate the positions and velocities for the next timestep, we need to calculate the derivative of
-the potential energy:
-\begin{eqnarray}
-    F_{x} &=& -\frac{\partial}{\partial x} U(r) \nonumber\\
-                &=& -\frac{\partial}{\partial x} 4\left[{r}^{-12} - {r}^{-6}\right] \nonumber\\
-                &=& -4 \left[(-12){r}^{-13} - (-6){r}^{-7}\right] \frac{\partial r}{\partial x} \nonumber\\
-                &=& 48 \left[r^{-13} - 0.5 \ r^{-7}\right] \frac{x}{r} \nonumber\\
-    \label{eq:ljforce} &=& 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
-\end{eqnarray}
-This is the component of the force in x-direction -- the other components are calculated analogously.
+%\subsection{The Glass Nanoparticle}
+%The glass particle from the experiment will be represented by a system of 864 particles, aligned regularly on a FCC (face centered cubic) lattice.
+%This alignment is achieved by defining a minimum cell, containing points:
+%\begin{eqnarray*}
+    %p_1 &=& \{0,0,0\}\\
+    %p_2 &=& \{0.5,0.5,0\}\\
+    %p_3 &=& \{0.5,0,0.5\}\\
+    %p_4 &=& \{0,0.5,0.5\}
+%\end{eqnarray*}
+%The whole system is then  created by copying this unit cell.\\
+%The interaction between the atoms is modeled by the Lennard-Jones potential. It has the form
+%\begin{equation}
+    %U(r) = 4\varepsilon\left[\left(\frac\sigma r\right)^{12} - \left(\frac\sigma r\right)^6\right].
+%\end{equation}
+%To simplify the equation and computation of the potential and other quantities, like the forces or pressure, it is useful to introduce reduced units.
+%In general, reduced units BLABLABLA THINK OF GOOD TEXT HEREJKA\\
+%The basic units in a system with Lennard-Jones interaction are length ($\sigma$), energy ($\varepsilon$ or $\varepsilon / k_B$) and mass ($m$). Every 
+%quantity can now be written in terms of this units, so they become reduced quantities, denotet by an asterisk. The most important ones are:
+%\begin{eqnarray*}
+    %r^* &=& r/\sigma\\
+    %T^* &=& k_B/\varepsilon \ T\\
+    %U^* &=& U/\varepsilon \\
+    %P^* &=& P \sigma^3/\varepsilon 
+%\end{eqnarray*}
+%With the above introduced reduced units, the Lennard-Jones potential can be written as
+%\begin{equation}
+    %U(r^*) = 4\left[{r^*}^{-12} - {r^*}^{-6}\right].
+%\end{equation}
+%Since this is the most practical form, it will be used without the asterisk from here on.\\
+%The Lennard-Jones potential is an additive pair-potential, so the total energy of the system can be calculated by summing over all pairs of atoms:
+%\begin{equation}
+    %U_{\text{tot}} = \sum_{i=1}^{N-1}\sum_{j=i+1}^N4\left[{r_{ij}}^{-12} - {r_{ij}}^{-6}\right]
+%\end{equation}
+%where $r_{ij}$ denotes the distance between atom $i$ and $j$. \\
+%The Velocity-Verlet algorithm uses the forces to calculate the positions and velocities for the next timestep, we need to calculate the derivative of
+%the potential energy:
+%\begin{eqnarray}
+    %F_{x} &=& -\frac{\partial}{\partial x} U(r) \nonumber\\
+                %&=& -\frac{\partial}{\partial x} 4\left[{r}^{-12} - {r}^{-6}\right] \nonumber\\
+                %&=& -4 \left[(-12){r}^{-13} - (-6){r}^{-7}\right] \frac{\partial r}{\partial x} \nonumber\\
+                %&=& 48 \left[r^{-13} - 0.5 \ r^{-7}\right] \frac{x}{r} \nonumber\\
+    %\label{eq:ljforce} &=& 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
+%\end{eqnarray}
+%This is the component of the force in x-direction -- the other components are calculated analogously.
 
 
 

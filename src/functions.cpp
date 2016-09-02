@@ -46,11 +46,19 @@ unsigned int NumberOfParticles()
 
 void ComputeAccelerations(Particle* particle) 
 {
+    double f = 0;
+    double v = 0;
     double rij[3];
     double rSqd = 0;
     for (unsigned int i = 0; i < N; i++)         // set all accelerations to zero
         for (unsigned int k = 0; k < 3; k++)
             particle[i].a[k] = 0;
+    /*
+     *for(unsigned int i=0;i<N;i++)
+     *    for(unsigned int j=0;j<N;j++)
+     *        for(unsigned int k=0;k<3;k++)
+     *            Forces[i][j]
+     */
     
     for(unsigned int i=0;i<N-1;i++)
     {
@@ -60,6 +68,8 @@ void ComputeAccelerations(Particle* particle)
             for(unsigned int m=0;m<3;m++)
             {
                 rij[m] = particle[i].r[m]-particle[j].r[m];
+                Distances[i][j][m] = rij[m];
+                Distances[j][i][m] = (-1.)*rij[m];
                 /*
                  *if(PBC_FLAG)
                  *{               
@@ -79,7 +89,7 @@ void ComputeAccelerations(Particle* particle)
             if(rSqd <= rCutOff*rCutOff)
             {       
                 //double f = 8*48 * ( pow(rSqd,-7.) - 0.5*pow(rSqd,-4.) );
-                double f = 48 * ( pow(rSqd,-7) - 0.5*pow(rSqd,-4) );
+                f = 48 * ( pow(rSqd,-7) - 0.5*pow(rSqd,-4) );
                 for(unsigned int m=0; m<3; m++)
                 {
                     particle[i].a[m] += rij[m] * f;
@@ -88,6 +98,14 @@ void ComputeAccelerations(Particle* particle)
             }
         }
     }
+
+    for(unsigned int i=0;i<N-1;i++)
+        for(unsigned int j=i+i;j<N;j++)
+            for(unsigned int m=0;m<3;m++)
+            {
+                    Forces[i][j][m] = particle[i].a[m];
+                    Forces[j][i][m] = particle[j].a[m];
+            }
 }
 
 void VelocityVerlet(Particle* particle,int WRITE,FILE* output)
@@ -1064,6 +1082,15 @@ void calcTemp(Particle* cube,FILE* output)
     fprintf(output,"%lf\n",T);
 }
 
+void calcCOMTemp(double* vCOM,FILE* output)
+{
+    double T=0;
+    for(unsigned int k=0;k<3;k++)
+        T+=vCOM[k]*vCOM[k];
+    T = T/(3);
+    fprintf(output,"%lf\n",T);
+}
+
 void calcCM(Particle* particles,double *rCM, double* vCM)
 {
     for(unsigned int i=0;i<3;i++)
@@ -1322,3 +1349,23 @@ void setValues(double temp, double dq, double Eps, double Pressure, double ambie
     AmbientTemp = ambienttemp;
 }
 
+/*
+ *void calcPressure(Particle* cube,FILE* output)
+ *{
+ *    double pressure = 0;
+ *    double w = 0;
+ *    double dist[3];
+ *    double distSqd = 0;
+ *    
+ *    for(int i=0;i<N-1;i++)
+ *    {
+ *        for(int j=i+1;j<N;j++)
+ *        {
+ *            for(int k=0;k<3;k++)
+ *                dist[k] = cube[i].r[k] - cube[j].r[k];
+ *            distSqd = dist[0]*dist[0]+dist[1]*dist[1]+dist[2]*dist[2];
+ *            w += dist[k]
+ *        }
+ *    }
+ *}
+ */

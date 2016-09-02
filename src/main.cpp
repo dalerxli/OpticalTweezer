@@ -20,14 +20,26 @@ int main(int argc,char** argv)
  *double eps = 0.5;
  *double dQ=0.050;
  */
+    for(unsigned int i=0;i<N;i++)
+    {
+        Forces[i] = new double*[N];
+        Distances[i] = new double*[N];
+    }
+    for(unsigned int i=0;i<N;i++)
+        for(unsigned int j=0;j<N;j++)
+        {
+            Forces[i][j] = new double[3];
+            Distances[i][j] = new double[3];
+        }
+
     double q = 0.01;
     double at = 0.5;
     while(q < 0.12)
     {
-        at = 0.6;
+        at = 0.5;
         while(at < 1.3)
         {
-            setValues(0.2,q,0.2,4,at);
+            setValues(0.4,q,0.2,4,at);
             std::cout << "==================================================" << std::endl;
             std::cout << "q: " << q << std::endl;
             std::cout << "Ambient Temperature: " << at << std::endl;
@@ -118,7 +130,9 @@ void mainLoop() {
      *FILE* particleTracker = fopen("output/combined/id_1400.xyz","w");
      */
     FILE* tempout = fopen("temperature_internal.dat","w");
+    FILE* COMtempout = fopen("temperature_com.dat","w");
     FILE* comData = fopen("comdata.dat","w");
+    FILE* vCOMData = fopen("vCOMData.dat","w");
     Particle *cube = new Particle[N];
     std::list<Particle*> gas;
     double* rCM = new double[3];
@@ -183,8 +197,16 @@ void mainLoop() {
             calcCM(cube,rCMtemp,comData);
         }
         if(run%100==0)
+        {
             calcTemp(cube,tempout); 
+            calcCOMTemp(vCM,COMtempout);
+            fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
+        }
     }
+    FILE* pressure = fopen("inst_pressure.dat","w");
+    for(unsigned int i=0;i<virial.size();i++)
+        fprintf(pressure,"%lf\n",virial[i]);
+    fclose(pressure);
     chdir("../../../");
     delete [] cube;
     gas.clear(); 
@@ -192,4 +214,6 @@ void mainLoop() {
 	EHEX_FLAG = false;
     fclose(tempout);
     fclose(comData);
+    fclose(COMtempout);
+    fclose(vCOMData);
 }

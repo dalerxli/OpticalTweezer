@@ -13,6 +13,7 @@ int main(int argc, char** argv)
 {
     system("rm output/combined/*");
     FILE* tempdata = fopen("tempdata.dat","w");
+    FILE* COMtempout = fopen("temperature_com.dat","w");
     FILE* trackdata[500];
     std::string filename = "output/id/";
     std::string number;
@@ -69,7 +70,10 @@ int main(int argc, char** argv)
             //trackParticle(cube,gas,1000, trackdata_1000);
         }
         if(run%10==0)
+        {
             calcTemp(cube,tempdata); 
+            calcCOMTemp(vCM,COMtempout);
+        }
     }
     return 0;
 }

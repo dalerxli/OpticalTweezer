@@ -28,7 +28,9 @@ void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube);
 void PrintAllData(Particle* cube, std::list<Particle*> gas,FILE* output);
 //void eHEX(Particle* cube,FILE* output);
 void eHEX(Particle* cube);
+void calcPressure(Particle cube,FILE* output);
 void calcTemp(Particle* cube,FILE* output);
+void calcCOMTemp(double* vCOM,FILE* output);
 void calcCM(Particle* particles,double *rCM, double* vCM);
 void calcCM(Particle* particles,double *rCM, FILE* output);
 bool fileExist(const std::string& filename);
@@ -49,6 +51,7 @@ void printDistances(Particle* cube, std::list<Particle*> &particles,int Run);
 std::string DateToString();
 void rescaleVelocities(Particle* cube);
 void setValues(double temp, double dq, double Eps, double Pressure, double ambienttemp);
+
 
 
 #endif

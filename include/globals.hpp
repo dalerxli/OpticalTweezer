@@ -40,6 +40,11 @@ extern double L;
 extern double rCutOff;
 extern double dt;
 
+extern double*** Forces;
+extern double*** Distances;
+
+extern std::vector<double> virial;
+
 extern char* input;
 
 extern bool EHEX_FLAG;
@@ -47,5 +52,10 @@ extern bool PBC_FLAG;
 
 enum Cubeface { X0, XL, Y0, YL, Z0, ZL };
 
+/*
+ *extern std::vector<std::vector<double>> energyIn;
+ *extern std::vector<std::vector<double>> energyOut;
+ */
 
 #endif
+
