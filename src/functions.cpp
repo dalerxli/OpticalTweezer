@@ -448,7 +448,202 @@ void InitBarostat(std::list<Particle*>& particles)
          */
 }
 
+void InitBarostat(std::list<Particle*>& particles,std::list<Particle*>& particlesHistory)
+{
+        //FILE *baroOut = fopen("output/barostat.dat","a");
+        //int i,j,k;
+        unsigned int i;
+        unsigned int N;
+        double sigma=1.1;
+
+        Particle *px0;
+        Particle *pxL;
+        Particle *py0;
+        Particle *pyL;
+        Particle *pz0;
+        Particle *pzL;
+
+        //side: x0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            
+            px0 = new Particle(-L/2,
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(px0);
+            particlesHistory.push_back(px0);
+        }
+
+        //side xL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pxL = new Particle(L+L/2.,
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(pxL);
+            particlesHistory.push_back(pxL);
+        }   
+
+        //side y0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            py0 = new Particle(gsl_rng_uniform(r)*L,
+                            -L/2.,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(py0);
+            particlesHistory.push_back(py0);
+        }   
+
+        //side yL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pyL = new Particle(gsl_rng_uniform(r)*L,
+                            L+L/2.,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(pyL);
+            particlesHistory.push_back(pyL);
+        }   
+        
+        //side z0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pz0 = new Particle(
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            -L/2.,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),"GasIn");
+            particles.push_back(pz0);
+            particlesHistory.push_back(pz0);
+        }   
+
+        //side zL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pzL = new Particle(
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            L+L/2.,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn");
+            particles.push_back(pzL);
+            particlesHistory.push_back(pzL);
+        }   
+        /*
+         *delete px0;
+         *delete pxL;
+         *delete py0;
+         *delete pyL;
+         *delete pz0;
+         *delete pzL;
+         */
+        
+}
 void InitBarostat(std::vector<Particle*>& particles)
+{
+        //unsigned int i,j,k;
+        unsigned int i;
+        unsigned int N;
+        double sigma=1.1;
+
+        //side: x0
+        N = NumberOfParticles();
+        //std::cout << "N = " << N << std::endl;
+        for(i=0;i<N;i++)
+        {
+                particles.push_back(new Particle(-L/2,
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn"));
+        }
+
+        //side xL
+        N = NumberOfParticles();
+        //std::cout << "N = " << N << std::endl;
+        for(i=0;i<N;i++)
+        {
+                particles.push_back(new Particle(L+L/2,
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_rayleigh(r,sigma)*(-1),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn"));
+        }   
+
+        //side y0
+        N = NumberOfParticles();
+        //std::cout << "N = " << N << std::endl;
+        for(i=0;i<N;i++)
+        {
+                particles.push_back(new Particle(gsl_rng_uniform(r)*L,
+                            -L/2,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn"));
+        }   
+
+        //side yL
+        N = NumberOfParticles();
+        //std::cout << "N = " << N << std::endl;
+        for(i=0;i<N;i++)
+        {
+                particles.push_back(new Particle(gsl_rng_uniform(r)*L,
+                            L+L/2,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1),
+                            gsl_ran_gaussian(r,sigma),"GasIn"));
+        }   
+        
+        //side z0
+        N = NumberOfParticles();
+        //std::cout << "N = " << N << std::endl;
+        for(i=0;i<N;i++)
+        {
+                particles.push_back(new Particle(gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,-L/2,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),"GasIn"));
+        }   
+
+        //side zL
+        N = NumberOfParticles();
+        //std::cout << "N = " << N << std::endl;
+        for(i=0;i<N;i++)
+        {
+                particles.push_back(new Particle(gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,L+L/2,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1),"GasIn"));
+        }   
+}
+
+void InitBarostat(std::vector<Particle*>& particles,std::vector<Particle*>& particleHistory)
 {
         //unsigned int i,j,k;
         unsigned int i;
@@ -693,6 +888,7 @@ void CheckBoundaries(std::list<Particle*> &particles)
         {
             //std::cout << "Deleted [ID]: " << (*temp)->ID << std::endl;
             temp=particles.erase(temp);
+            //(*temp)->name = "GasGone";
         }
         else
             ++temp;
@@ -750,6 +946,7 @@ void CheckBoundaries(Particle* cube,std::list<Particle*> &particles)
         {
             //std::cout << "Deleted [ID]: " << (*temp)->ID << std::endl;
             temp=particles.erase(temp);
+            //(*temp)->name = "GasGone";
         }
         else
             ++temp;
@@ -813,6 +1010,8 @@ void CheckBoundariesNew(Particle* cube,std::list<Particle*> &particles)
         {
             //std::cout << "Deleted [ID]: " << (*temp)->ID << std::endl;
             temp=particles.erase(temp);
+            //(*temp)->name = "GasGone";
+            //++temp;
         }
         else
             ++temp;
@@ -906,10 +1105,52 @@ void Barostat(Particle* cube, std::list<Particle*>& gas)
     CheckBoundaries(cube,gas);
 }
 
+void Barostat(Particle* cube, std::list<Particle*>& gas,std::list<Particle*>& gasHistory)
+{
+    std::list<Particle*>::iterator gasIter;
+    InitBarostat(gas,gasHistory);
+    
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+    {
+        for(unsigned int m=0;m<3;m++)
+        {
+            (*gasIter)->r[m] += (*gasIter)->v[m]*dt + 0.5 * (*gasIter)->a[m] * dt * dt;
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
+        }
+    }
+
+    ComputeSoftSphere(gas,cube);
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+        for(unsigned int m=0;m<3;m++)
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
+    CheckBoundaries(cube,gas);
+}
+
 void BarostatNew(Particle* cube, std::list<Particle*>& gas)
 {
     std::list<Particle*>::iterator gasIter;
     InitBarostat(gas);
+    
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+    {
+        for(unsigned int m=0;m<3;m++)
+        {
+            (*gasIter)->r[m] += (*gasIter)->v[m]*dt + 0.5 * (*gasIter)->a[m] * dt * dt;
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
+        }
+    }
+
+    ComputeSoftSphere(gas,cube);
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+        for(unsigned int m=0;m<3;m++)
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
+    CheckBoundariesNew(cube,gas);
+}
+
+void BarostatNew(Particle* cube, std::list<Particle*>& gas,std::list<Particle*>& gasHistory)
+{
+    std::list<Particle*>::iterator gasIter;
+    InitBarostat(gas,gasHistory);
     
     for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
     {
@@ -1369,3 +1610,27 @@ void setValues(double temp, double dq, double Eps, double Pressure, double ambie
  *    }
  *}
  */
+
+void writeHistory(std::list<Particle*>& gasHistory,int run)
+{
+    std::list<Particle*>::iterator temp;
+    double kinEner;
+    double potEner;
+    double totEner;
+    for(temp = gasHistory.begin();temp != gasHistory.end();temp++)
+    {
+        kinEner = 0;
+        potEner = 0;
+        totEner = 0;
+
+        for(int i=0;i<3;i++)
+        {
+            kinEner += (*temp)->v[i] * (*temp)->v[i]; 
+        }
+        kinEner = (*temp)->m * kinEner * 0.5;
+        (*temp)->kineticEnergy.push_back(std::make_pair((*temp)->name,kinEner));
+     //potentialEnergy;
+     //totalEnergy;
+    }
+}
+

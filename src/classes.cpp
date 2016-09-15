@@ -132,3 +132,15 @@ Particle::Particle(std::string Name)
     potE = 0;
 }
 
+Particle::~Particle()
+{
+    delete [] r;
+    delete [] v;
+    delete [] a;
+    delete [] aOld;
+    delete [] rnew;
+    delete [] vnew;
+    delete [] vhalf;
+    delete [] r0;
+    delete [] v0;
+}

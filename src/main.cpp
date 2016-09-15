@@ -32,25 +32,27 @@ int main(int argc,char** argv)
             Distances[i][j] = new double[3];
         }
 
-    double q = 0.01;
-    double at = 0.5;
-    while(q < 0.12)
-    {
-        at = 0.5;
-        while(at < 1.3)
-        {
-            setValues(0.4,q,0.2,4,at);
-            std::cout << "==================================================" << std::endl;
-            std::cout << "q: " << q << std::endl;
-            std::cout << "Ambient Temperature: " << at << std::endl;
-            std::cout << "==================================================" << std::endl;
-            mainLoop();
-            at += 0.1;
-        }
-        q += 0.01;
-    }
-    //setValues(0.2,0.06,0.2,4,1.1);
-    //mainLoop();
+    /*
+     *double q = 0.01;
+     *double at = 0.5;
+     *while(q < 0.12)
+     *{
+     *    at = 0.5;
+     *    while(at < 1.3)
+     *    {
+     *        setValues(0.4,q,0.2,4,at);
+     *        std::cout << "==================================================" << std::endl;
+     *        std::cout << "q: " << q << std::endl;
+     *        std::cout << "Ambient Temperature: " << at << std::endl;
+     *        std::cout << "==================================================" << std::endl;
+     *        mainLoop();
+     *        at += 0.1;
+     *    }
+     *    q += 0.01;
+     *}
+     */
+    setValues(0.2,0.06,0.2,4,1.1);
+    mainLoop();
     return 0;
 }
 
@@ -135,6 +137,7 @@ void mainLoop() {
     FILE* vCOMData = fopen("vCOMData.dat","w");
     Particle *cube = new Particle[N];
     std::list<Particle*> gas;
+    std::list<Particle*> gasHistory;
     double* rCM = new double[3];
     double* rCMtemp = new double[3];
     double* vCM = new double[3];
@@ -183,9 +186,10 @@ void mainLoop() {
     for(run = 0;run<40000;run++)
     {
         if(run%500==0)
-            printf("(MEASURE)Zeitschritt %d\n",run);
+            printf("(MEASURE) Zeitschritt %d - Number of Gas particles: %d\n",run,gas.size());
         eHEX(cube);
-        Barostat(cube,gas);
+        //BarostatNew(cube,gas);
+        BarostatNew(cube,gas,gasHistory);
         //std::cout << "works!" << std::endl;
         harmonicTrap(rCM,vCM,rCMStart,cube);
         //std::cout << "works!" << std::endl;
@@ -216,4 +220,11 @@ void mainLoop() {
     fclose(comData);
     fclose(COMtempout);
     fclose(vCOMData);
+    for(int i=0;i<N;i++)
+    {
+        delete [] Forces[i];
+        delete [] Distances[i];
+    }
+    delete [] Forces;
+    delete [] Distances;
 }

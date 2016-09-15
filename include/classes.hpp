@@ -23,10 +23,15 @@ class Particle
      std::string name;
      bool surface;
 
+     std::vector<std::pair<std::string,double> >  kineticEnergy;
+     std::vector<std::pair<std::string,double> >  potentialEnergy;
+     std::vector<std::pair<std::string,double> >  totalEnergy;
+
      Particle();
      Particle(std::string name);
      Particle(double x,double y, double z, double v1, double v2, double v3);
      Particle(double x,double y, double z, double v1, double v2, double v3, std::string Name);
+     ~Particle();
 };
 
 #endif
