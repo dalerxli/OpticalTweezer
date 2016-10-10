@@ -68,8 +68,8 @@ void ComputeAccelerations(Particle* particle)
             for(unsigned int m=0;m<3;m++)
             {
                 rij[m] = particle[i].r[m]-particle[j].r[m];
-                Distances[i][j][m] = rij[m];
-                Distances[j][i][m] = (-1.)*rij[m];
+                //Distances[i][j][m] = rij[m];
+                //Distances[j][i][m] = (-1.)*rij[m];
                 /*
                  *if(PBC_FLAG)
                  *{               
@@ -103,8 +103,8 @@ void ComputeAccelerations(Particle* particle)
         for(unsigned int j=i+i;j<N;j++)
             for(unsigned int m=0;m<3;m++)
             {
-                    Forces[i][j][m] = particle[i].a[m];
-                    Forces[j][i][m] = particle[j].a[m];
+                    //Forces[i][j][m] = particle[i].a[m];
+                    //Forces[j][i][m] = particle[j].a[m];
             }
 }
 
@@ -302,6 +302,7 @@ void InitBarostat(std::list<Particle*>& particles)
                             gsl_ran_rayleigh(r,sigma),
                             gsl_ran_gaussian(r,sigma),
                             gsl_ran_gaussian(r,sigma),"GasIn"));
+
                 /*
                  *particles.push_back(new Particle(-L/2.,
                  *            (2*(gsl_rng_uniform(r)-0.5)*L)+0.5*L,
@@ -448,6 +449,133 @@ void InitBarostat(std::list<Particle*>& particles)
          */
 }
 
+void InitBarostatNew(std::list<Particle*>& particles)
+{
+        //FILE *baroOut = fopen("output/barostat.dat","a");
+        //int i,j,k;
+        unsigned int i;
+        unsigned int N;
+        double sigma=1.1;
+
+        Particle *px0;
+        Particle *pxL;
+        Particle *py0;
+        Particle *pyL;
+        Particle *pz0;
+        Particle *pzL;
+
+        double kinE = 0.;
+
+        //side: x0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            
+            px0 = new Particle(-L/2.,
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(px0);
+            kinE = px0->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }
+
+        //side xL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pxL = new Particle(L+L/2.,
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(pxL);
+            kinE = pxL->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side y0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            py0 = new Particle(gsl_rng_uniform(r)*L,
+                            -L/2.,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(py0);
+            kinE = py0->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side yL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pyL = new Particle(gsl_rng_uniform(r)*L,
+                            L+L/2.,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(pyL);
+            kinE = pyL->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+        
+        //side z0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pz0 = new Particle(
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            -L/2.,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),"GasIn");
+            particles.push_back(pz0);
+            kinE = pz0->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side zL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pzL = new Particle(
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            L+L/2.,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn");
+            particles.push_back(pzL);
+            kinE = pzL->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+        /*
+         *delete px0;
+         *delete pxL;
+         *delete py0;
+         *delete pyL;
+         *delete pz0;
+         *delete pzL;
+         */
+
+        //delete px0; segfault
+        //delete pxL; NO segfault
+        //delete py0; NO segfault
+        //delete pyL; NO segfault
+        //delete pz0; segfault
+        //delete pzL; NO segfault
+        
+}
+
 void InitBarostat(std::list<Particle*>& particles,std::list<Particle*>& particlesHistory)
 {
         //FILE *baroOut = fopen("output/barostat.dat","a");
@@ -468,7 +596,7 @@ void InitBarostat(std::list<Particle*>& particles,std::list<Particle*>& particle
         for(i=0;i<N;i++)
         {
             
-            px0 = new Particle(-L/2,
+            px0 = new Particle(-L/2.,
                             gsl_rng_uniform(r)*L,
                             gsl_rng_uniform(r)*L,
                             gsl_ran_rayleigh(r,sigma),
@@ -557,8 +685,16 @@ void InitBarostat(std::list<Particle*>& particles,std::list<Particle*>& particle
          *delete pz0;
          *delete pzL;
          */
+
+        //delete px0; segfault
+        //delete pxL; NO segfault
+        //delete py0; NO segfault
+        //delete pyL; NO segfault
+        //delete pz0; segfault
+        //delete pzL; NO segfault
         
 }
+
 void InitBarostat(std::vector<Particle*>& particles)
 {
         //unsigned int i,j,k;
@@ -967,6 +1103,8 @@ void CheckBoundariesNew(Particle* cube,std::list<Particle*> &particles)
 
     for(temp=particles.begin();temp!=particles.end();)
     {
+        double kinE = 0.;
+        double kinEOld = 0;
         //if(!checkIfOnLine(temp))
             //(*temp)->name = "GasOut";
         /*
@@ -996,14 +1134,23 @@ void CheckBoundariesNew(Particle* cube,std::list<Particle*> &particles)
          */
         aTotOld = sqrt((*temp)->aOld[0]*(*temp)->aOld[0]+(*temp)->aOld[1]*(*temp)->aOld[1]+(*temp)->aOld[2]*(*temp)->aOld[2]);
         aTotNew = sqrt((*temp)->a[0]*(*temp)->a[0]+(*temp)->a[1]*(*temp)->a[1]+(*temp)->a[2]*(*temp)->a[2]);
+
         /*
          *if(aTotOld > aTotNew)
          *    (*temp)->name = "GasOut";
          */
         if(aTotNew > aTotOld && strcmp((*temp)->name.c_str(),"GasIn") == 0)
+        {
             (*temp)->name = "GasChange";
+            kinEOld = (*temp)->m*((*temp)->vOld[0]*(*temp)->vOld[0]+(*temp)->vOld[1]*(*temp)->vOld[1]+(*temp)->vOld[2]*(*temp)->vOld[2])*0.5;
+            gsl_histogram_increment(gas_real_in,kinEOld);
+        }
         if(std::abs(aTotNew-aTotOld) < 10e-9 && strcmp((*temp)->name.c_str(),"GasChange") == 0)
+        {
             (*temp)->name = "GasOut";
+            kinE = (*temp)->m*((*temp)->v[0]*(*temp)->v[0]+(*temp)->v[1]*(*temp)->v[1]+(*temp)->v[2]*(*temp)->v[2])*0.5;
+            gsl_histogram_increment(gas_out,kinE);
+        }
         if((*temp)->r[0] < lowerBound || (*temp)->r[0] > upperBound || 
                 (*temp)->r[1] < lowerBound || (*temp)->r[1] > upperBound 
                 ||(*temp)->r[2] < lowerBound || (*temp)->r[2] > upperBound)
@@ -1129,7 +1276,7 @@ void Barostat(Particle* cube, std::list<Particle*>& gas,std::list<Particle*>& ga
 void BarostatNew(Particle* cube, std::list<Particle*>& gas)
 {
     std::list<Particle*>::iterator gasIter;
-    InitBarostat(gas);
+    InitBarostatNew(gas);
     
     for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
     {
@@ -1177,7 +1324,10 @@ void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube)
     for (iter=gas.begin();iter!=gas.end();iter++)         // set all accelerations to zero
     {
         for(unsigned int i=0;i<3;i++)
+        {
             (*iter)->aOld[i] = (*iter)->a[i];
+            (*iter)->vOld[i] = (*iter)->v[i];
+        }
         for(unsigned int i=0;i<3;i++)
         {
             (*iter)->a[i]=0;
@@ -1611,26 +1761,78 @@ void setValues(double temp, double dq, double Eps, double Pressure, double ambie
  *}
  */
 
-void writeHistory(std::list<Particle*>& gasHistory,int run)
+void writeHistory(std::list<Particle*>& gas, int run)
 {
     std::list<Particle*>::iterator temp;
     double kinEner;
     double potEner;
     double totEner;
-    for(temp = gasHistory.begin();temp != gasHistory.end();temp++)
+    std::string prefix = "gas/";
+    std::string filename;
+/*
+ *    for(temp = gasHistory.begin();temp != gasHistory.end();temp++)
+ *    {
+ *        kinEner = 0;
+ *        totEner = 0;
+ *
+ *        for(int i=0;i<3;i++)
+ *            kinEner += (*temp)->v[i] * (*temp)->v[i]; 
+ *        potEner = (*temp)->potE;
+ *        totEner = kinEner+potEner;
+ *        kinEner = (*temp)->m * kinEner * 0.5;
+ *        (*temp)->kineticEnergy.push_back(std::make_pair((*temp)->name,kinEner));
+ *        (*temp)->potentialEnergy.push_back(std::make_pair((*temp)->name,potEner));
+ *        (*temp)->totalEnergy.push_back(std::make_pair((*temp)->name,totEner));
+ *     //potentialEnergy;
+ *     //totalEnergy;
+ *    }
+ */
+    //std::cout << "Length: " << gas.size() << std::endl;
+    for(temp = gas.begin();temp != gas.end();temp++)
     {
+        FILE* output;
+        filename = prefix;
+        //filename += "id_";
+        filename += numberToString((*temp)->ID);
+        filename += ".dat";
+        output = fopen(filename.c_str(),"a");
         kinEner = 0;
-        potEner = 0;
         totEner = 0;
-
         for(int i=0;i<3;i++)
-        {
             kinEner += (*temp)->v[i] * (*temp)->v[i]; 
-        }
         kinEner = (*temp)->m * kinEner * 0.5;
-        (*temp)->kineticEnergy.push_back(std::make_pair((*temp)->name,kinEner));
-     //potentialEnergy;
-     //totalEnergy;
-    }
+        potEner = (*temp)->potE;
+        totEner = kinEner+potEner;
+        fprintf(output,"%s \t %lf \t %lf \t %lf \n",((*temp)->name).c_str(),kinEner,potEner,totEner);
+        fclose(output);
+     }
 }
 
+void calculateGasTemperature(std::list<Particle*> gas,FILE* output)
+{
+    std::list<Particle*>::iterator temp;
+    double inTemp = 0;
+    double outTemp = 0;
+    int inCount = 0;
+    int outCount = 0;
+
+    for(temp = gas.begin();temp != gas.end(); temp++)
+    {
+        if(strcmp((*temp)->name.c_str(),"GasIn") == 0)
+        {
+            inCount++;
+            inTemp += (*temp)->v[0]*(*temp)->v[0]+(*temp)->v[1]*(*temp)->v[1]+(*temp)->v[2]*(*temp)->v[2];
+        }
+        else if(strcmp((*temp)->name.c_str(),"GasOut") == 0)
+        {
+            outCount++;
+            outTemp += (*temp)->v[0]*(*temp)->v[0]+(*temp)->v[1]*(*temp)->v[1]+(*temp)->v[2]*(*temp)->v[2];
+        }
+    }
+
+    inTemp = inTemp/(3*inCount);
+    outTemp = outTemp/(3*outCount);
+    //std::cout << "\tInTemp: " << inTemp << std::endl;
+    //std::cout << "\tOutTemp: " << outTemp << std::endl;
+    fprintf(output,"%lf\t%lf\t%s\n",inTemp,outTemp,inTemp-outTemp,inTemp>outTemp ? "InTemp" : "OutTemp");
+}

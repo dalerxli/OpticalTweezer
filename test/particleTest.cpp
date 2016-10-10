@@ -24,6 +24,12 @@ int main(int argc, char** argv)
     p2 = new Particle();
     p3 = new Particle();
 
+    std::list<Particle*> particles;
+    std::list<Particle*> history;
+    InitBarostat(particles,history);
+
+
+
     delete p1;
     delete p2;
     delete p3;

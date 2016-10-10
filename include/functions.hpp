@@ -21,6 +21,7 @@ void InitBarostat(std::list<Particle*>& particles);
 void InitBarostat(std::list<Particle*>& particles,std::list<Particle*>& particlesHistory);
 void InitBarostat(std::vector<Particle*>& particles,std::vector<Particle*>& particleHistory);
 void InitBarostat(std::vector<Particle*>& particles);
+void InitBarostatNew(std::list<Particle*>& particles);
 
 void GenerateOutput(Particle *cube, std::list<Particle*> gas,FILE *combinedOut);
 void GenerateOutput(Particle *cube, std::vector<Particle*> gas,FILE *combinedOut);
@@ -64,7 +65,8 @@ void printDistances(Particle* cube, std::list<Particle*> &particles,int Run);
 std::string DateToString();
 void rescaleVelocities(Particle* cube);
 void setValues(double temp, double dq, double Eps, double Pressure, double ambienttemp);
-void writeHistory(std::list<Particle*>& gasHistory,int run);
+void writeHistory(std::list<Particle*>& gas, int run);
+void calculateGasTemperature(std::list<Particle*> gas,FILE* output);
 
 
 #endif

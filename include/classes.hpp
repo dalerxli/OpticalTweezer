@@ -14,6 +14,7 @@ class Particle
      double *rnew;
      double *vnew;
      double *vhalf;
+     double *vOld;
      double* r0;
      double* v0;
      double m;

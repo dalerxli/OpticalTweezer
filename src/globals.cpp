@@ -5,6 +5,10 @@ const gsl_rng_type *T = gsl_rng_taus;
 gsl_rng *r = gsl_rng_alloc(T);
 gsl_rng *r1 = gsl_rng_alloc(T);
 
+gsl_histogram *gas_in = gsl_histogram_alloc(1000);
+gsl_histogram *gas_out = gsl_histogram_alloc(1000);
+gsl_histogram *gas_real_in = gsl_histogram_alloc(1000);
+
 int g_ID=1;
 const unsigned int N = 864;
 

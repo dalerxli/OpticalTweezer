@@ -35,25 +35,3 @@
   Url                      = {http://dx.doi.org/10.1038/nnano.2014.40}
 }
 
-@Article{Liu1996,
-  Title                    = {Soft Sticky Dipole Potential for Liquid Water:  A New Model},
-  Author                   = {Liu, Yi and Ichiye, Toshiko},
-  Journal                  = {J. Phys. Chem.},
-  Year                     = {1996},
-
-  Month                    = jan,
-  Number                   = {7},
-  Pages                    = {2723--2730},
-  Volume                   = {100},
-
-  __markedentry            = {[motz:6]},
-  Booktitle                = {The Journal of Physical Chemistry},
-  Comment                  = {doi: 10.1021/jp952324t},
-  Doi                      = {10.1021/jp952324t},
-  ISSN                     = {0022-3654},
-  Owner                    = {motz},
-  Publisher                = {American Chemical Society},
-  Timestamp                = {2016.07.04},
-  Url                      = {http://dx.doi.org/10.1021/jp952324t}
-}
-

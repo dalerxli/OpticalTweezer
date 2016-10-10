@@ -10,10 +10,30 @@
 
   Address                  = {New York, NY, USA},
 
-  __markedentry            = {[motz:6]},
+  __markedentry            = {[motz:]},
   ISBN                     = {0-19-855645-4},
   Owner                    = {motz},
   Timestamp                = {2016.08.08}
+}
+
+@Article{Crooks1999,
+  Title                    = {Entropy production fluctuation theorem and the nonequilibrium work relation for free energy differences},
+  Author                   = {Crooks, Gavin E.},
+  Journal                  = {Phys. Rev. E},
+  Year                     = {1999},
+
+  Month                    = {Sep},
+  Pages                    = {2721--2726},
+  Volume                   = {60},
+
+  __markedentry            = {[motz:6]},
+  Doi                      = {10.1103/PhysRevE.60.2721},
+  Issue                    = {3},
+  Numpages                 = {0},
+  Owner                    = {motz},
+  Publisher                = {American Physical Society},
+  Timestamp                = {2016.10.04},
+  Url                      = {http://link.aps.org/doi/10.1103/PhysRevE.60.2721}
 }
 
 @Book{Frenkel2001,
@@ -22,6 +42,7 @@
   Publisher                = {Elsevier Science},
   Year                     = {2001},
   Series                   = {Computational science series},
+
   ISBN                     = {9780080519982},
   Lccn                     = {2001091477},
   Owner                    = {motz},
@@ -39,6 +60,7 @@
   Number                   = {5},
   Pages                    = {358--364},
   Volume                   = {9},
+
   Abstract                 = {Fluctuation theorems are a generalization of thermodynamics on small scales and provide the tools to characterize the fluctuations of thermodynamic quantities in non-equilibrium nanoscale systems. They are particularly important for understanding irreversibility and the second law in fundamental chemical and biological processes that are actively driven, thus operating far from thermal equilibrium. Here, we apply the framework of fluctuation theorems to investigate the important case of a system relaxing from a non-equilibrium state towards equilibrium. Using a vacuum-trapped nanoparticle, we demonstrate experimentally the validity of a fluctuation theorem for the relative entropy change occurring during relaxation from a non-equilibrium steady state. The platform established here allows non-equilibrium fluctuation theorems to be studied experimentally for arbitrary steady states and can be extended to investigate quantum fluctuation theorems as well as systems that do not obey detailed balance.},
   ISSN                     = {1748-3387},
   Owner                    = {motz},
@@ -57,7 +79,6 @@
   Pages                    = {98--103},
   Volume                   = {159},
 
-  __markedentry            = {[motz:]},
   Doi                      = {10.1103/PhysRev.159.98},
   Issue                    = {1},
   Numpages                 = {0},

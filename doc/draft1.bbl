@@ -1,9 +1,21 @@
 \begin{thebibliography}{1}
 
+\bibitem{Crooks1999}
+Gavin~E. Crooks.
+\newblock Entropy production fluctuation theorem and the nonequilibrium work
+  relation for free energy differences.
+\newblock {\em Phys. Rev. E}, 60:2721--2726, Sep 1999.
+
 \bibitem{Frenkel2001}
 D.~Frenkel and B.~Smit.
 \newblock {\em Understanding Molecular Simulation: From Algorithms to
   Applications}.
 \newblock Computational science series. Elsevier Science, 2001.
+
+\bibitem{Gieseler2014}
+Jan Gieseler, Romain Quidant, Christoph Dellago, and Lukas Novotny.
+\newblock Dynamic relaxation of a levitated nanoparticle from a non-equilibrium
+  steady state.
+\newblock {\em Nat Nano}, 9(5):358--364, May 2014.
 
 \end{thebibliography}

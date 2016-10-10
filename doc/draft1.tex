@@ -13,8 +13,9 @@
 \usepackage{color}
 \usepackage{bbold}
 \usepackage{float}
-\usepackage[font=small,labelfont=bf]{caption}
-\usepackage{subcaption}
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+%\usepackage[font=footnotesize,labelfont=bf]{caption}
+%\usepackage{subcaption}
 \usepackage{fancyhdr}
 \setlength{\headheight}{15.2pt}
 \pagestyle{fancy}
@@ -24,6 +25,7 @@
 \usepackage[english]{babel}
 \usepackage{mathtools}
 \usepackage{graphicx}
+
 
 
 %%%%%%%%         EIGENEBEFEHLE  %%%%%%%%%
@@ -106,6 +108,34 @@
 \newpage
 \section{Motivation}
 %introduction of the experiment, the problem and the idea
+\section{The experiment}
+The starting point of this thesis is an experiment conducted by Gieseler et al \cite{Gieseler2014}. It is an optical tweezer experiment, where the
+motion of a glass nanoparticle in a laser trap was used to investigate the fluctuation theorem\cite{Crooks1999}.
+\subsection{Experimental setup}
+In the experiment, a silica nano particle with a radius of about 75 nm and mass of about $3 \times 10^{-18}$kg is trapped in a laser beam within a
+vacuum chamber. The trapping of the silica nano particle (which will be referred to as \textit{glass particle}) is achieved by a gradient force of the
+laser beam acting on the particle. The experimental setup is depicted in fig. \ref{fig:setup}.\\
+The particle fluctuates within the trap in all three spatial directions. These fluctuations can be approximated
+such that they are decoupled, which means that they can be described by a 1-dimensional Langevin equation:
+\begin{equation}
+    \ddot{x} + \Gamma_0 \dot{x} + \Omega^2_0x = \frac 1 m \left(F_\text{fluct} + F_\text{ext}\right)
+\end{equation}
+%The experiment is set up as follows: a glass sphere with radius $r \approx 75$ nm and mass $m \approx 3 \times 10^{-18}$ kg is trapped in a laser beam
+%in a vacuum chamber. The initial state of the glass particle is prepared by modulation of the laser, such that the oscillation of the glass particle
+%is suppressed in every direction. This is done by measuring the oscillation of the particle in every direction (assuming that the oscillation in every
+%direction is decoupled) and using this information as feedback for the laser. This experimental setup can be seen in figure \ref{fig:setup}.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.3]{images/experimental_setup.jpg}
+        \caption{Experimental setup of the optical tweezer experiment. A silica nano particle is trapped in a laser beam via gradient force in a
+        vacuum. The feedback is used to cool down the particle and create a non-equilibrium steady state. In the first part of the experiment, the
+    feedback is turned off and the motion of the particle towards an equilibrated state is observed. In the second part of the experiment, the steady state
+of the particle is modified by a parametric drive. Both the parametric drive and the feedback are turned off and -- as in the first part -- the
+motion of the particle towards an equilibrated state is observerd.}
+        \label{fig:setup}
+    \end{center}
+\end{figure}
+
 
 
 

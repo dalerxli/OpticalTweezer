@@ -85,6 +85,7 @@ void mainLoop() {
     }
     chdir(folderName.c_str()); 
     system("mkdir combined");
+    system("mkdir gas");
     std::ofstream params;
     params.open("parameters.txt");
     params << "rho = " << rho << std::endl;
@@ -115,6 +116,9 @@ void mainLoop() {
     int a;
     int run=0;
     gsl_rng_set(r,98);
+    gsl_histogram_set_ranges_uniform(gas_in,-1,5);
+    gsl_histogram_set_ranges_uniform(gas_out,-1,5);
+    gsl_histogram_set_ranges_uniform(gas_real_in,-1,5);
     /*
      *FILE* output = fopen("output/box_test.xyz","w");
      *FILE* pressure = fopen("output/pressure.dat","w");
@@ -135,6 +139,10 @@ void mainLoop() {
     FILE* COMtempout = fopen("temperature_com.dat","w");
     FILE* comData = fopen("comdata.dat","w");
     FILE* vCOMData = fopen("vCOMData.dat","w");
+    FILE* gasInData = fopen("histogram_in","w");
+    FILE* gasOutData = fopen("histogram_out","w");
+    FILE* gasRealInData = fopen("histogram_real_in","w");
+    FILE* gasTempData = fopen("gasTempData.dat","w");
     Particle *cube = new Particle[N];
     std::list<Particle*> gas;
     std::list<Particle*> gasHistory;
@@ -183,13 +191,15 @@ void mainLoop() {
         
     ComputeSoftSphere(gas,cube);
 
-    for(run = 0;run<40000;run++)
+    for(run = 0;run<80000;run++)
     {
         if(run%500==0)
+        {
             printf("(MEASURE) Zeitschritt %d - Number of Gas particles: %d\n",run,gas.size());
+        }
         eHEX(cube);
-        //BarostatNew(cube,gas);
-        BarostatNew(cube,gas,gasHistory);
+        BarostatNew(cube,gas);
+        //BarostatNew(cube,gas,gasHistory);
         //std::cout << "works!" << std::endl;
         harmonicTrap(rCM,vCM,rCMStart,cube);
         //std::cout << "works!" << std::endl;
@@ -205,12 +215,30 @@ void mainLoop() {
             calcTemp(cube,tempout); 
             calcCOMTemp(vCM,COMtempout);
             fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
+            calculateGasTemperature(gas,gasTempData);
         }
+        //std::cout << "works!" << std::endl;
+        writeHistory(gas,run);
     }
     FILE* pressure = fopen("inst_pressure.dat","w");
     for(unsigned int i=0;i<virial.size();i++)
         fprintf(pressure,"%lf\n",virial[i]);
     fclose(pressure);
+
+    gsl_histogram_fprintf(gasInData,gas_in,"%f","%f");
+    gsl_histogram_fprintf(gasOutData,gas_out,"%f","%f");
+    gsl_histogram_fprintf(gasRealInData,gas_real_in,"%f","%f");
+/*
+ *    FILE* id_test = fopen("id_test.dat","w");
+ *    std::list<Particle*>::iterator p_iter = gasHistory.begin();
+ *    for(int i=0;i<10;i++)
+ *        ++p_iter;
+ *    for(int i=0;i<(*p_iter)->kineticEnergy.size();i++)
+ *        fprintf(id_test,"%s \t %lf \n",((*p_iter)->kineticEnergy[i].first).c_str(),(*p_iter)->kineticEnergy[i].second);
+ *     //std::vector<std::pair<std::string,double> >  kineticEnergy;
+ *
+ *    fclose(id_test);
+ */
     chdir("../../../");
     delete [] cube;
     gas.clear(); 
@@ -220,6 +248,10 @@ void mainLoop() {
     fclose(comData);
     fclose(COMtempout);
     fclose(vCOMData);
+    fclose(gasInData);
+    fclose(gasOutData);
+    fclose(gasRealInData);
+    fclose(gasTempData);
     for(int i=0;i<N;i++)
     {
         delete [] Forces[i];
