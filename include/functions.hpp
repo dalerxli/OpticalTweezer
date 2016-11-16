@@ -22,6 +22,8 @@ void InitBarostat(std::list<Particle*>& particles,std::list<Particle*>& particle
 void InitBarostat(std::vector<Particle*>& particles,std::vector<Particle*>& particleHistory);
 void InitBarostat(std::vector<Particle*>& particles);
 void InitBarostatNew(std::list<Particle*>& particles);
+void InitBarostatFull(std::list<Particle*>& particles);
+void InitBarostatFullNew(std::list<Particle*>& particles);
 
 void GenerateOutput(Particle *cube, std::list<Particle*> gas,FILE *combinedOut);
 void GenerateOutput(Particle *cube, std::vector<Particle*> gas,FILE *combinedOut);
@@ -35,6 +37,9 @@ void Barostat(Particle* cube, std::list<Particle*>& gas);
 void Barostat(Particle* cube, std::list<Particle*>& gas,std::list<Particle*>& gasHistory);
 void BarostatNew(Particle* cube, std::list<Particle*>& gas);
 void BarostatNew(Particle* cube, std::list<Particle*>& gas,std::list<Particle*>& gasHistory);
+
+//void BarostatTest(std::list<Particle*>& gas);
+void BarostatTest(Particle* cube, std::list<Particle*>& gas);
 
 void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube);
 void PrintAllData(Particle* cube, std::list<Particle*> gas,FILE* output);
@@ -68,5 +73,6 @@ void setValues(double temp, double dq, double Eps, double Pressure, double ambie
 void writeHistory(std::list<Particle*>& gas, int run);
 void calculateGasTemperature(std::list<Particle*> gas,FILE* output);
 
+double calculateEnergies(Particle* cube, std::list<Particle*> gas);
 
 #endif

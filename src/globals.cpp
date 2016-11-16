@@ -10,10 +10,13 @@ gsl_histogram *gas_out = gsl_histogram_alloc(1000);
 gsl_histogram *gas_real_in = gsl_histogram_alloc(1000);
 
 int g_ID=1;
-const unsigned int N = 864;
+//const unsigned int N = 864;
+//const unsigned int N = 500;
+//const unsigned int N = 108;
+const unsigned int N = 256;
 
 double* rCMStart = new double[3];
-double rho = 1.1;
+double rho = 0.9;
 double Temp = 0.2;
 double AmbientTemp = 0.9;
 double P= 4.0;

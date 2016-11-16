@@ -9,8 +9,7 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{paralist}
-\usepackage{dsfont}
-\usepackage{color}
+\usepackage{dsfont} \usepackage{color}
 \usepackage{bbold}
 \usepackage{float}
 \usepackage[font=scriptsize,labelfont=bf]{caption}
@@ -135,6 +134,21 @@ motion of the particle towards an equilibrated state is observerd.}
         \label{fig:setup}
     \end{center}
 \end{figure}
+On the left hand side we have the friction coefficient $\Gamma_0$ and the angular frequency that describes the fluctuation along the chosen axis. On
+the right hand side, there are two forces. The first one is $F_\text{fluct}$, which describes a stochastic force caused by interactions with the gas
+in the vacuum chamber. This force is given by
+\begin{equation}
+    F_\text{fluct} = \sqrt{2m\Gamma_0k_BT_0} \ \xi\left(t\right)
+\end{equation}
+where $T_0$ is the temperature of the heat bath (i.e. the surrounding gas in the vacuum chamber), $k_B$ is the Boltzmann constant and $\xi(t)$ is
+white noise, which obeys the equations $\left\langle\xi(t)\right\rangle= 0$ and $\left\langle\xi(t)\xi(t')\right\rangle= \delta(t-t')$, which means
+that it is a random force. The term $\Gamma_0$ appears in the formulat due to the fluctuation-dissipation theorem, which links the damping rate to the
+stochastic force.\\
+The external force $F_\text{ext}$ is part of the experimental setup, where the frequency of the fluctuation along an axis, $\Omega_0$, is measured and
+used to suppress the motion along said axis. This causes a decrease in the particle fluctuations and thus acts as a cooling mechanism for the particle
+in the trap. This process creates a non-equilibrium steady state $\rho_{ss}(u,\alpha)$, which is not known analytically. This state is the starting
+point of this thesis.\\
+
 
 
 
@@ -155,6 +169,54 @@ classical means, that the trajectories of the individual particles are calculate
 relatively big atoms/molecules this is a very good approximation, whereas for systems consisting of hydrogen or helium the effects of quantum
 mechanics cannot be neglected and other methods (such as ab-initio simulation) has to be used.\\
 The dynamics of the system are obtained by solving Newton's equations of motion for every particle. 
+
+\subsection{The Glass Particle}
+The glass particle from the experiment will be modeled as a system of particles interacting via a Lennard-Jones pair potential, 
+\begin{equation}
+    \label{eq:lj}
+    U(r) = 4\varepsilon\left[\left(\frac\sigma r\right)^{12} - \left(\frac\sigma r\right)^6\right]
+\end{equation}
+where $\varepsilon$ is the depth of the potential well (and thus its unit is energy) and $\sigma$ is the distance at which the potential is zero. 
+The form of the potential and the relation to the parameters is depicted in Fig. \ref{fig:lj}.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.2]{images/LJ-2.pdf}
+        \caption{The Lennard-Jones 12-6 potential from \eqref{eq:lj}. The x-axis is the particle distance divided by $\sigma$ and  the y-axis is the
+        potential divided by the depth of the potential well.}
+        \label{fig:lj}
+    \end{center}
+\end{figure}
+Since $\varepsilon$ and $\sigma$ are crucial parameters for the simulation and do (usually) not change over time, it is practical to use them to
+define the dimensions of the system. This means that the unit of distance is $\sigma$, the unit of energy is $\varepsilon$ and the unit of mass is 
+the mass of the simulated particle. The so called \textit{reduced units} can be constructed from these three parameters and put into relation to the
+original units. Here are some examples:
+\begin{itemize}
+    \item {distance:} $r^* = r/\sigma$
+    \item {potential energy:} $U^* = U/\varepsilon$
+    \item {temperature:} $T^* = k_B T/\varepsilon$
+    \item {time:} $t^* = t\sqrt{\varepsilon/(m\sigma^2)}$
+    \item {pressure:} $P^* = P\sigma^3/\varepsilon$
+    \item {density:} $\rho^* = \rho \sigma^3$
+\end{itemize}
+One very popular choice for the simulated atoms is Argon because it is an inert gas and the atoms behave 
+approximately like hard spheres which attract each other with weak van der Waals forces, which justifies the use of the Lennard-Jones potential. 
+Argon has a mass of m = $6.69 \times 10^{-26}$ kg, $\sigma = 3.4 \times 10^{-10}$m and $\varepsilon = 1.65 \times 10^{-21}$J.\\
+With the above introduced reduced units, the Lennard-Jones potential can be written as
+\begin{equation}
+    U(r^*) = 4\left[{r^*}^{-12} - {r^*}^{-6}\right].
+\end{equation}
+Since the reduced units will be used throughout the rest of this thesis, i will drop the asterisk henceforth.\\
+From the Lennard-Jones potential the corresponding force can be calculated by taking the derivative with respect to the direction of interest:
+\begin{eqnarray}
+    F_{x} &=& -\frac{\partial}{\partial x} U(r) \nonumber\\
+                &=& -\frac{\partial}{\partial x} 4\left[{r}^{-12} - {r}^{-6}\right] \nonumber\\
+                &=& -4 \left[(-12){r}^{-13} - (-6){r}^{-7}\right] \frac{\partial r}{\partial x} \nonumber\\
+                &=& 48 \left[r^{-13} - 0.5 \ r^{-7}\right] \frac{x}{r} \nonumber\\
+    \label{eq:ljforce} &=& 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
+\end{eqnarray}
+The force in the y and z direction can be calculated analogously.\\
+
+
 
 
 %\subsection{The Glass Nanoparticle}

@@ -39,7 +39,7 @@ unsigned int NumberOfParticles()
         //double P=4;
         double k=1.0;
         //double T=0.9;
-        mu = dt*L*L*P*pow((1/(2*M_PI*k*AmbientTemp)),0.5);
+        mu = dt*L*L*P*pow((1./(2*M_PI*k*AmbientTemp)),0.5);
         //std::cout << mu << std::endl;
         return gsl_ran_poisson(r,mu);
 }
@@ -88,7 +88,7 @@ void ComputeAccelerations(Particle* particle)
             rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
             if(rSqd <= rCutOff*rCutOff)
             {       
-                //double f = 8*48 * ( pow(rSqd,-7.) - 0.5*pow(rSqd,-4.) );
+                //f = 8*48 * ( pow(rSqd,-7.) - 0.5*pow(rSqd,-4.) );
                 f = 48 * ( pow(rSqd,-7) - 0.5*pow(rSqd,-4) );
                 for(unsigned int m=0; m<3; m++)
                 {
@@ -447,6 +447,841 @@ void InitBarostat(std::list<Particle*>& particles)
          *        iter++;
          *}
          */
+}
+
+void InitBarostatFull(std::list<Particle*>& particles)
+{
+        unsigned int i;
+        unsigned int N;
+        //double sigma=1.1;
+        double sigma=AmbientTemp;
+
+        Particle *px0;
+        Particle *pxL;
+        Particle *py0;
+        Particle *pyL;
+        Particle *pz0;
+        Particle *pzL;
+
+        double kinE = 0.;
+
+        //side: x0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            
+            px0 = new Particle(-L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(px0);
+            kinE = px0->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }
+
+        //side xL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pxL = new Particle(2.*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(pxL);
+            kinE = pxL->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side y0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            py0 = new Particle(((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            -L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(py0);
+            kinE = py0->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side yL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pyL = new Particle(((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            2.*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(pyL);
+            kinE = pyL->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+        
+        //side z0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pz0 = new Particle(
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            -L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),"GasIn");
+            particles.push_back(pz0);
+            kinE = pz0->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side zL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pzL = new Particle(
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            2.*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn");
+            particles.push_back(pzL);
+            kinE = pzL->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+/*
+ *
+ *        //side: x0
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            
+ *            px0 = new Particle(-L/2.,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(px0);
+ *            kinE = px0->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side xL
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pxL = new Particle(L+L/2.,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            gsl_ran_rayleigh(r,sigma)*(-1.),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pxL);
+ *            kinE = pxL->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }   
+ *
+ *        //side y0
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            py0 = new Particle(((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            -L/2.,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(py0);
+ *            kinE = py0->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }   
+ *
+ *        //side yL
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pyL = new Particle(((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            L+L/2.,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_rayleigh(r,sigma)*(-1.),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pyL);
+ *            kinE = pyL->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }   
+ *        
+ *        //side z0
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pz0 = new Particle(
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            -L/2.,
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_rayleigh(r,sigma),"GasIn");
+ *            particles.push_back(pz0);
+ *            kinE = pz0->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }   
+ *
+ *        //side zL
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pzL = new Particle(
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            L+L/2.,
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn");
+ *            particles.push_back(pzL);
+ *            kinE = pzL->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }   
+ */
+        /*
+         *delete px0;
+         *delete pxL;
+         *delete py0;
+         *delete pyL;
+         *delete pz0;
+         *delete pzL;
+         */
+
+        //delete px0; segfault
+        //delete pxL; NO segfault
+        //delete py0; NO segfault
+        //delete pyL; NO segfault
+        //delete pz0; segfault
+        //delete pzL; NO segfault
+}
+
+void InitBarostatFullNew(std::list<Particle*>& particles)
+{
+    /* fix mistake that i made: forgot to add some sides
+     * so for every face, there are two more "on the side"
+     */
+
+        unsigned int i;
+        unsigned int N;
+        double sigma=AmbientTemp;
+
+        Particle *px0;
+        Particle *pxL;
+        Particle *py0;
+        Particle *pyL;
+        Particle *pz0;
+        Particle *pzL;
+
+        Particle *px0Left;
+        Particle *px0Right;
+        Particle *px0Front;
+        Particle *px0Back;
+
+        Particle *pxLLeft;
+        Particle *pxLRight;
+        Particle *pxLFront;
+        Particle *pxLBack;
+
+        Particle *py0Left;
+        Particle *py0Right;
+        Particle *py0Front;
+        Particle *py0Back;
+
+        Particle *pyLLeft;
+        Particle *pyLRight;
+        Particle *pyLFront;
+        Particle *pyLBack;
+
+        Particle *pz0Left;
+        Particle *pz0Right;
+        Particle *pz0Front;
+        Particle *pz0Back;
+
+        Particle *pzLLeft;
+        Particle *pzLRight;
+        Particle *pzLFront;
+        Particle *pzLBack;
+
+        double kinE = 0.;
+
+        //side: x0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            
+            px0 = new Particle(-L*0.5,
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(px0);
+            //kinE = px0->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
+            //gsl_histogram_increment(gas_in,kinE);
+        }
+
+        //side xL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pxL = new Particle(L+0.5*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(pxL);
+            //kinE = pxL->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
+            //gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side y0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            py0 = new Particle(gsl_rng_uniform(r)*L,
+                            -L*0.5,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(py0);
+            //kinE = py0->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
+            //gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side yL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pyL = new Particle(gsl_rng_uniform(r)*L,
+                            L+0.5*L,
+                            gsl_rng_uniform(r)*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
+            particles.push_back(pyL);
+            //kinE = pyL->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
+            //gsl_histogram_increment(gas_in,kinE);
+        }   
+        
+        //side z0
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pz0 = new Particle(
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            -L*0.5,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma),"GasIn");
+            particles.push_back(pz0);
+            //kinE = pz0->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
+            //gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side zL
+        N = NumberOfParticles();
+        for(i=0;i<N;i++)
+        {
+            pzL = new Particle(
+                            gsl_rng_uniform(r)*L,
+                            gsl_rng_uniform(r)*L,
+                            L+0.5*L,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn");
+            particles.push_back(pzL);
+            //kinE = pzL->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
+            //gsl_histogram_increment(gas_in,kinE);
+        }   
+/*
+ *
+ *        //side: x0Left
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            px0Left = new Particle((gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            L,
+ *                            gsl_rng_uniform(r)*L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(px0Left);
+ *            //kinE = px0Left->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: x0Right
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            px0Right = new Particle((gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            0.,
+ *                            gsl_rng_uniform(r)*L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(px0Right);
+ *            //kinE = px0Right->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: x0Back
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            px0Back = new Particle((gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            gsl_rng_uniform(r)*L,
+ *                            0.,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(px0Back);
+ *            //kinE = px0Back->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: x0Front
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            px0Front = new Particle((gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            gsl_rng_uniform(r)*L,
+ *                            L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(px0Front);
+ *            //kinE = px0Front->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: xLLeft
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pxLLeft = new Particle((gsl_rng_uniform(r)*0.5*L)+L,
+ *                            L,
+ *                            gsl_rng_uniform(r)*L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pxLLeft);
+ *            //kinE = pxLLeft->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: xLRight
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pxLRight = new Particle((gsl_rng_uniform(r)*0.5*L)+L,
+ *                            0.,
+ *                            gsl_rng_uniform(r)*L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pxLRight);
+ *            //kinE = pxLRight->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: xLBack
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pxLBack = new Particle((gsl_rng_uniform(r)*0.5*L)+L,
+ *                            gsl_rng_uniform(r)*L,
+ *                            0.,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pxLBack);
+ *            //kinE = pxLBack->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: xLFront
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pxLFront = new Particle((gsl_rng_uniform(r)*0.5*L)+L,
+ *                            gsl_rng_uniform(r)*L,
+ *                            L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pxLFront);
+ *            //kinE = pxLFront->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: y0Left
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            py0Left = new Particle(0.,
+ *                            (gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            gsl_rng_uniform(r)*L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(py0Left);
+ *            //kinE = py0Left->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: y0Right
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            py0Right = new Particle(L,
+ *                            (gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            gsl_rng_uniform(r)*L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(py0Right);
+ *            //kinE = py0Right->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *        
+ *        //side: y0Back
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            py0Back = new Particle(gsl_rng_uniform(r)*L,
+ *                            (gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            0.,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(py0Back);
+ *            //kinE = py0Back->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: y0Front
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            py0Front = new Particle(gsl_rng_uniform(r)*L,
+ *                            (gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(py0Front);
+ *            //kinE = py0Front->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *        
+ *        //side: yLLeft
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pyLLeft = new Particle(0.,
+ *                            (gsl_rng_uniform(r)*0.5*L)+L,
+ *                            gsl_rng_uniform(r)*L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pyLLeft);
+ *            //kinE = pyLLeft->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: yLRight
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pyLRight = new Particle(L,
+ *                            (gsl_rng_uniform(r)*0.5*L)+L,
+ *                            gsl_rng_uniform(r)*L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pyLRight);
+ *            //kinE = pyLRight->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *        
+ *        //side: yLBack
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pyLBack = new Particle(gsl_rng_uniform(r)*L,
+ *                            (gsl_rng_uniform(r)*0.5*L)+L,
+ *                            0.,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pyLBack);
+ *            //kinE = pyLBack->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: yLFront
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pyLFront = new Particle(gsl_rng_uniform(r)*L,
+ *                            (gsl_rng_uniform(r)*0.5*L)+L,
+ *                            L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pyLFront);
+ *            //kinE = pyLFront->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: z0Left
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pz0Left = new Particle(0.,
+ *                            gsl_rng_uniform(r)*L,
+ *                            (gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pz0Left);
+ *            //kinE = pz0Left->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: z0Right
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pz0Right = new Particle(L,
+ *                            gsl_rng_uniform(r)*L,
+ *                            (gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pz0Right);
+ *            //kinE = pz0Right->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *        
+ *        //side: z0Back
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pz0Back = new Particle(gsl_rng_uniform(r)*L,
+ *                            0.,
+ *                            (gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pz0Back);
+ *            //kinE = pz0Back->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: z0Front
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pz0Front = new Particle(gsl_rng_uniform(r)*L,
+ *                            L,
+ *                            (gsl_rng_uniform(r)*(-1.)*0.5*L),
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pz0Front);
+ *            //kinE = pz0Front->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *        
+ *        //side: zLLeft
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pzLLeft = new Particle(0.,
+ *                            gsl_rng_uniform(r)*L,
+ *                            (gsl_rng_uniform(r)*0.5*L)+L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pzLLeft);
+ *            //kinE = pzLLeft->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: zLRight
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pzLRight = new Particle(L,
+ *                            gsl_rng_uniform(r)*L,
+ *                            (gsl_rng_uniform(r)*0.5*L)+L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pzLRight);
+ *            //kinE = pzLRight->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *        
+ *        //side: zLBack
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pzLBack = new Particle(gsl_rng_uniform(r)*L,
+ *                            0.,
+ *                            (gsl_rng_uniform(r)*0.5*L)+L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pzLBack);
+ *            //kinE = pzLBack->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side: zLFront
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pzLFront = new Particle(gsl_rng_uniform(r)*L,
+ *                            L,
+ *                            (gsl_rng_uniform(r)*0.5*L)+L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pzLFront);
+ *            //kinE = pzLFront->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
+ *            //gsl_histogram_increment(gas_in,kinE);
+ *        }
+ */
+/*
+ *
+ *        //side: x0
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            
+ *            px0 = new Particle(-L/2.,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(px0);
+ *            kinE = px0->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }
+ *
+ *        //side xL
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pxL = new Particle(L+L/2.,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            gsl_ran_rayleigh(r,sigma)*(-1.),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pxL);
+ *            kinE = pxL->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }   
+ *
+ *        //side y0
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            py0 = new Particle(((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            -L/2.,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_rayleigh(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(py0);
+ *            kinE = py0->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }   
+ *
+ *        //side yL
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pyL = new Particle(((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            L+L/2.,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_rayleigh(r,sigma)*(-1.),
+ *                            gsl_ran_gaussian(r,sigma),"GasIn");
+ *            particles.push_back(pyL);
+ *            kinE = pyL->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }   
+ *        
+ *        //side z0
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pz0 = new Particle(
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            -L/2.,
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_rayleigh(r,sigma),"GasIn");
+ *            particles.push_back(pz0);
+ *            kinE = pz0->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }   
+ *
+ *        //side zL
+ *        N = NumberOfParticles();
+ *        for(i=0;i<N;i++)
+ *        {
+ *            pzL = new Particle(
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            ((gsl_rng_uniform(r)-0.5)*2*L)+0.5*L,
+ *                            L+L/2.,
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_gaussian(r,sigma),
+ *                            gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn");
+ *            particles.push_back(pzL);
+ *            kinE = pzL->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
+ *            gsl_histogram_increment(gas_in,kinE);
+ *        }   
+ */
+        /*
+         *delete px0;
+         *delete pxL;
+         *delete py0;
+         *delete pyL;
+         *delete pz0;
+         *delete pzL;
+         */
+
+        //delete px0; segfault
+        //delete pxL; NO segfault
+        //delete py0; NO segfault
+        //delete pyL; NO segfault
+        //delete pz0; segfault
+        //delete pzL; NO segfault
 }
 
 void InitBarostatNew(std::list<Particle*>& particles)
@@ -1015,6 +1850,8 @@ void CheckBoundaries(std::list<Particle*> &particles)
     std::list<Particle*>::iterator temp;
     double lowerBound = -(L/2 + eps);
     double upperBound = L + L/2 + eps;
+    //double lowerBound = -(L + eps);
+    //double upperBound = 2.*L + eps;
 
     for(temp=particles.begin();temp!=particles.end();)
     {
@@ -1093,8 +1930,10 @@ void CheckBoundaries(Particle* cube,std::list<Particle*> &particles)
 void CheckBoundariesNew(Particle* cube,std::list<Particle*> &particles)
 {
     std::list<Particle*>::iterator temp;
-    double lowerBound = -(L/2 + eps);
-    double upperBound = L + L/2 + eps;
+    //double lowerBound = -(L/2 + eps);
+    //double upperBound = L + L/2 + eps;
+    double lowerBound = -(L + eps);
+    double upperBound = 2.*L + eps;
     double aTotOld = 0;
     double aTotNew = 0;
     //double dist[3] = {0,0,0};
@@ -1276,7 +2115,29 @@ void Barostat(Particle* cube, std::list<Particle*>& gas,std::list<Particle*>& ga
 void BarostatNew(Particle* cube, std::list<Particle*>& gas)
 {
     std::list<Particle*>::iterator gasIter;
-    InitBarostatNew(gas);
+    //InitBarostatNew(gas);
+    InitBarostatFull(gas);
+    
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+    {
+        for(unsigned int m=0;m<3;m++)
+        {
+            (*gasIter)->r[m] += (*gasIter)->v[m]*dt + 0.5 * (*gasIter)->a[m] * dt * dt;
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
+        }
+    }
+
+    ComputeSoftSphere(gas,cube);
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+        for(unsigned int m=0;m<3;m++)
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
+    CheckBoundariesNew(cube,gas);
+}
+
+void BarostatTest(Particle* cube, std::list<Particle*>& gas)
+{
+    std::list<Particle*>::iterator gasIter;
+    //InitBarostatFullNew(gas);
     
     for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
     {
@@ -1589,7 +2450,7 @@ void harmonicTrap(double* rCM, double* vCM, double* pos, Particle* particles)
     //double rSqd = 0;
     double rCMtemp[3] = {0,0,0};
     double aCM[3] = {0,0,0};
-    const double k = 15.;
+    const double k = 150.;
 
     for(unsigned int i=0;i<3;i++)
         rCMtemp[i] = rCM[i];
@@ -1835,4 +2696,83 @@ void calculateGasTemperature(std::list<Particle*> gas,FILE* output)
     //std::cout << "\tInTemp: " << inTemp << std::endl;
     //std::cout << "\tOutTemp: " << outTemp << std::endl;
     fprintf(output,"%lf\t%lf\t%s\n",inTemp,outTemp,inTemp-outTemp,inTemp>outTemp ? "InTemp" : "OutTemp");
+}
+
+double calculateEnergies(Particle* cube, std::list<Particle*> gas)
+{
+    double* energies = new double[3];
+    double ePot = 0;
+    double eKin = 0;
+    double eTot = 0;
+    double rij[3] = {0,0,0};
+    double rSqd = 0;
+    std::list<Particle*>::iterator iter;
+
+    for(int i=0;i<N-1;i++)
+    {
+        eKin += (cube[i].v[0]*cube[i].v[0]+cube[i].v[1]*cube[i].v[1]+cube[i].v[2]*cube[i].v[2])*0.5;
+        for(int j=i+1;j<N;j++)
+        {
+            for(int m=0;m<3;m++)
+                rij[m] = cube[i].r[m] - cube[j].r[m];
+            rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+            if(rSqd < 2.5*2.5)
+                ePot += 4*(pow(rSqd,-6)-pow(rSqd,-3));
+        }
+
+    }
+    for(iter=gas.begin();iter!=gas.end();iter++)
+    {
+        eKin += ((*iter)->v[0]*(*iter)->v[0]+(*iter)->v[1]*(*iter)->v[1]+(*iter)->v[2]*(*iter)->v[2])*0.5;
+        for(int i=0;i<N;i++)
+        {
+            for(int m=0;m<3;m++)
+                rij[m] = cube[i].r[m] - (*iter)->r[m];
+            rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+            if(rSqd < 2.5*2.5)
+                ePot += 4*(pow(rSqd,-6)-pow(rSqd,-3));
+        }
+    }
+    
+    return eKin+ePot;
+        
+    
+    /*
+     *for(int i=0;i<N-1;i++)
+     *{
+     *    eKin += (cube[i].v[0]*cube[i].v[0]+cube[i].v[1]*cube[i].v[1]+cube[i].v[2]*cube[i].v[2])*0.5;
+     *    for(int j=i+1;j<N;j++)
+     *    {
+     *        for(int m=0;m<3;m++)
+     *            rij[m] = cube[i].r[m] - cube[j].r[m];
+     *        rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+     *        if(rSqd < 2.5*2.5)
+     *            ePot += 4*(pow(rSqd,-6)-pow(rSqd,-3));
+     *    }
+     *}
+     *eKin += (cube[N].v[0]*cube[N].v[0]+cube[N].v[1]*cube[N].v[1]+cube[N].v[2]*cube[N].v[2])*0.5;
+     */
+
+    /*
+     *for(iter=gas.begin();iter!=gas.end();iter++)
+     *{
+     *    eKin += ((*iter)->v[0]*(*iter)->v[0]+(*iter)->v[1]*(*iter)->v[1]+(*iter)->v[2]*(*iter)->v[2])*0.5;
+     *    for(int i=0;i<N;i++)
+     *    {
+     *        for(int m=0;m<3;m++)
+     *            rij[m] = cube[i].r[m] - (*iter)->r[m];
+     *        rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+     *        if(rSqd < 2.5*2.5)
+     *            ePot += 4*(pow(rSqd,-6)-pow(rSqd,-3));
+     *    }
+     *}
+     */
+    /*
+     *eTot = eKin+ePot;
+     *energies[0] = eKin;
+     *energies[1] = ePot;
+     *energies[2] = eTot;
+     */
+    
+    return eTot;
 }

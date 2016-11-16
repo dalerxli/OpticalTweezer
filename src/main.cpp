@@ -51,7 +51,7 @@ int main(int argc,char** argv)
      *    q += 0.01;
      *}
      */
-    setValues(0.2,0.06,0.2,4,1.1);
+    setValues(0.2,0.06,0.2,4,0.09);
     mainLoop();
     return 0;
 }
@@ -164,9 +164,10 @@ void mainLoop() {
             {
                 rescaleVelocities(cube);
                 calcTemp(cube,tempout); 
+                calcCM(cube,rCMtemp,comData);
             }
-            if(run%400 == 0)
-                GenerateOutput(cube,gas,run);
+            //if(run%400 == 0)
+                //GenerateOutput(cube,gas,run);
     }
 
     //writePositions(cube,"../../states/LJequilibriumSur.dat");
@@ -214,16 +215,18 @@ void mainLoop() {
         {
             calcTemp(cube,tempout); 
             calcCOMTemp(vCM,COMtempout);
-            fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
+            //fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
             calculateGasTemperature(gas,gasTempData);
         }
         //std::cout << "works!" << std::endl;
-        writeHistory(gas,run);
+        //writeHistory(gas,run);
     }
-    FILE* pressure = fopen("inst_pressure.dat","w");
-    for(unsigned int i=0;i<virial.size();i++)
-        fprintf(pressure,"%lf\n",virial[i]);
-    fclose(pressure);
+    /*
+     *FILE* pressure = fopen("inst_pressure.dat","w");
+     *for(unsigned int i=0;i<virial.size();i++)
+     *    fprintf(pressure,"%lf\n",virial[i]);
+     *fclose(pressure);
+     */
 
     gsl_histogram_fprintf(gasInData,gas_in,"%f","%f");
     gsl_histogram_fprintf(gasOutData,gas_out,"%f","%f");
