@@ -47,6 +47,7 @@ void PrintAllData(Particle* cube, std::list<Particle*> gas,FILE* output);
 void eHEX(Particle* cube);
 void calcPressure(Particle cube,FILE* output);
 void calcTemp(Particle* cube,FILE* output);
+void calcTemp(Particle* cube,FILE* output,int run);
 void calcCOMTemp(double* vCOM,FILE* output);
 
 void calcCM(Particle* particles,double *rCM, double* vCM);

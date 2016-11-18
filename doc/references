@@ -69,6 +69,16 @@
   Url                      = {http://dx.doi.org/10.1038/nnano.2014.40}
 }
 
+@Article{unitcell,
+  Title                    = {Hallo Erstmal},
+  Author                   = {Peter Lustig},
+  Journal                  = {Pubblicazioni della Stazione Zoologica di Napoli. Section II: History and Philosophy of the Life Sciences},
+  Year                     = {2016},
+
+  Owner                    = {motz},
+  Timestamp                = {2016.11.16}
+}
+
 @Article{Verlet1967,
   Title                    = {Computer "Experiments" on Classical Fluids. I. Thermodynamical Properties of Lennard-Jones Molecules},
   Author                   = {Verlet, Loup},

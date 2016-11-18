@@ -2334,6 +2334,16 @@ void calcTemp(Particle* cube,FILE* output)
     fprintf(output,"%lf\n",T);
 }
 
+void calcTemp(Particle* cube,FILE* output,int run)
+{
+    double T=0;
+    for(unsigned int i=0;i<N;i++)
+        for(unsigned int k=0;k<3;k++)
+            T+=cube[i].v[k]*cube[i].v[k];
+    T = T/(3*N);
+    fprintf(output,"%d\t%lf\n",run,T);
+}
+
 void calcCOMTemp(double* vCOM,FILE* output)
 {
     double T=0;

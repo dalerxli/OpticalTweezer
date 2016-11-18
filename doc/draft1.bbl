@@ -1,5 +1,13 @@
 \begin{thebibliography}{1}
 
+\bibitem{unitcell}
+Image taken from
+  \url{https://upload.wikimedia.org/wikipedia/commons/2/27/Elementarzelle_einer_kubisch_raumzentrierten_Elementarzelle.png}.
+
+\bibitem{buffalo}
+Idea taken from the Molecular Dynamics part of this lecture:
+  \url{http://www.physics.buffalo.edu/phy411-506/}.
+
 \bibitem{Crooks1999}
 Gavin~E. Crooks.
 \newblock Entropy production fluctuation theorem and the nonequilibrium work

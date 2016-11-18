@@ -51,7 +51,7 @@ int main(int argc,char** argv)
      *    q += 0.01;
      *}
      */
-    setValues(0.2,0.06,0.2,4,0.09);
+    setValues(0.2,0.06,0.2,4,0.08);
     mainLoop();
     return 0;
 }
@@ -139,9 +139,9 @@ void mainLoop() {
     FILE* COMtempout = fopen("temperature_com.dat","w");
     FILE* comData = fopen("comdata.dat","w");
     FILE* vCOMData = fopen("vCOMData.dat","w");
-    FILE* gasInData = fopen("histogram_in","w");
-    FILE* gasOutData = fopen("histogram_out","w");
-    FILE* gasRealInData = fopen("histogram_real_in","w");
+    FILE* gasInData = fopen("histogram_in.dat","w");
+    FILE* gasOutData = fopen("histogram_out.dat","w");
+    FILE* gasRealInData = fopen("histogram_real_in.dat","w");
     FILE* gasTempData = fopen("gasTempData.dat","w");
     Particle *cube = new Particle[N];
     std::list<Particle*> gas;

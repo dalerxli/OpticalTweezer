@@ -34,3 +34,5 @@
 # combined data files
 combined*
 *.dat
+*.xyz
+histogram*

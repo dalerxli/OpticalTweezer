@@ -14,7 +14,7 @@
 \usepackage{float}
 \usepackage[font=scriptsize,labelfont=bf]{caption}
 %\usepackage[font=footnotesize,labelfont=bf]{caption}
-%\usepackage{subcaption}
+\usepackage{subcaption}
 \usepackage{fancyhdr}
 \setlength{\headheight}{15.2pt}
 \pagestyle{fancy}
@@ -215,9 +215,79 @@ From the Lennard-Jones potential the corresponding force can be calculated by ta
     \label{eq:ljforce} &=& 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
 \end{eqnarray}
 The force in the y and z direction can be calculated analogously.\\
+The initial configuration of the particles is a face centered cubic (FCC) lattice. A schematic of the FCC lattice is depicted in fig. \ref{fig:fcc}.
+With the choice of FCC as initial configuration, there are optimal numbers for the numbers of the particles in the system. Since once FCC cell (as
+depicted) shares its atoms with its next neighbours, the number of atom per unit cell is 4, as depicted in fig. \ref{fig:wiki}. The whole system of
+atoms is then created by repeating this cell structure. One convenient way is to arrange the unit cells in a cubic system, so if there are $M$ FCC
+unit cells on one edge, the whole system consists of $M^3$ cells. Since there are 4 particles per cell, there are ideal or so called \textit{magic
+numbers} for atoms for which this setup works perfectly: $N = 4M^3 = 4,32,108,256,500,864,\ldots$.\\
+\begin{figure}[h]
+    \begin{center}
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.3]{images/fcc-2.pdf}
+            \caption{Schematic figure of a face centered cubic (FCC) lattice}
+            \label{fig:fcc}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.15]{images/fcc_unit.png}
+            \caption{Schematic of the number of particles contained in one FCC unit cell. The atoms on the edges are shared by 8 cells and the ones 
+                on the faces by 2 cells\cite{unitcell}}
+            \label{fig:fcccut}
+        \end{subfigure} 
+        \
+        %\hspace{60pt}
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.3]{images/unit_cell.pdf}
+            \caption{Setup for successively building a FCC lattice}
+            \label{fig:unitcell}
+        \end{subfigure}
+    \end{center}
+\end{figure}
+%\begin{figure}
+    %\begin{center}
+        %\includegraphics[scale=0.3]{images/fcc_unit.png}
+        %\caption{Schematic of the number of particles contained in one FCC unit cell. The atoms on the edges are shared by 8 cells and the ones on the
+            %faces by 2 cells. Image taken from
+            %{https://upload.wikimedia.org/wikipedia/commons/2/27/Elementarzelle\_einer\_kubisch\_raumzentrierten\_Elementarzelle.png}}
+    %\end{center}
+%\end{figure}
+% do i need to credit the uni buffalo course? 
+% http://www.physics.buffalo.edu/phy411-506/
+There are several ways to achieve this initial configuration and the one used in this thesis \cite{buffalo} was to create a kind of unit cell 
+consisting of four atoms, as shown in fig. \ref{fig:unitcell}, which can be described by a set of points
+\begin{eqnarray*}
+    p_1 &=& \{0,0,0\}\\
+    p_2 &=& \{0.5,0.5,0\}\\
+    p_3 &=& \{0.5,0,0.5\}\\
+    p_4 &=& \{0,0.5,0.5\}
+\end{eqnarray*}
+From the particle number $N$ and the number of FCC unit cells per edge $M$ the lattice constant $a$ can be calculated
+\begin{equation}
+    a = \frac{L}{M}
+\end{equation}
+where $L$ is the side length of the cube that is the whole system and it is calculated via the density of the system
+\begin{equation}
+    L = \sqrt[3]{\frac{N}{\rho}}
+\end{equation}
+With the lattice constant and the 4 points of the FCC cell, all the particles can be put into place.
 
-
-
+\subsection{The Velocity-Verlet Algorithm}
+When we look at the system from a thermodynamical standpoint, we see that it follows some kind of path in the phase space as time progresses. Every
+point in this space corresponds to a set of positions and momenta and the connection between two points corresponds to the evolution of the system
+from one state to another. As mentioned above, this evolution (the dynamics of the system) is a crucial element to Molecular Dynamics. Since the
+equations of motion cannot be solved analytically in general, we need to approximate the solution.\\
+The method used here is called finite difference approach. The trajectory of the system in the phase space is cut into finite pieces of length $\Delta
+t$ and the equations of motion are solved for every segment separately (see fig. \ref{fig:finitedifference}).
+\begin{figure}
+    \begin{center}
+        \includegraphics[scale=0.5]{images/finite_approach.pdf}
+        \caption{Simplified graphical schematic of the finite difference approach. The evolution of the system from a point $(r^N(t),p^N(t))$ in the
+            phase space is approximated by slicing it up into pieces of length $\Delta t$. On every stop after the starting point ($t+\Delta t$, 
+            $t+2\Delta t$, $t+3\Delta t$,$\ldots$) the equations of motion can be solved numerically.}
+        \label{fig:finitedifference} 
+    \end{center}
+\end{figure}
 
 %\subsection{The Glass Nanoparticle}
 %The glass particle from the experiment will be represented by a system of 864 particles, aligned regularly on a FCC (face centered cubic) lattice.

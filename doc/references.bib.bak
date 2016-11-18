@@ -10,7 +10,6 @@
 
   Address                  = {New York, NY, USA},
 
-  __markedentry            = {[motz:]},
   ISBN                     = {0-19-855645-4},
   Owner                    = {motz},
   Timestamp                = {2016.08.08}
@@ -26,7 +25,6 @@
   Pages                    = {2721--2726},
   Volume                   = {60},
 
-  __markedentry            = {[motz:6]},
   Doi                      = {10.1103/PhysRevE.60.2721},
   Issue                    = {3},
   Numpages                 = {0},
@@ -69,6 +67,44 @@
   Url                      = {http://dx.doi.org/10.1038/nnano.2014.40}
 }
 
+@Article{Kroy2014,
+  Title                    = {Levitating nanoparticles: Non-equilibrium nano-thermometry},
+  Author                   = {Kroy, Klaus},
+  Journal                  = {Nat Nano},
+  Year                     = {2014},
+
+  Month                    = jun,
+  Number                   = {6},
+  Pages                    = {415--417},
+  Volume                   = {9},
+
+  __markedentry            = {[motz:6]},
+  ISSN                     = {1748-3387},
+  Owner                    = {motz},
+  Publisher                = {Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.},
+  Timestamp                = {2016.10.17},
+  Url                      = {http://dx.doi.org/10.1038/nnano.2014.109}
+}
+
+@Article{MillenJ.2014,
+  Title                    = {Nanoscale temperature measurements using non-equilibrium Brownian dynamics of a levitated nanosphere},
+  Author                   = {MillenJ. and DeesuwanT. and BarkerP. and AndersJ.},
+  Journal                  = {Nat Nano},
+  Year                     = {2014},
+
+  Month                    = jun,
+  Number                   = {6},
+  Pages                    = {425--429},
+  Volume                   = {9},
+
+  __markedentry            = {[motz:]},
+  ISSN                     = {1748-3387},
+  Owner                    = {motz},
+  Publisher                = {Nature Publishing Group},
+  Timestamp                = {2016.10.17},
+  Url                      = {http://dx.doi.org/10.1038/nnano.2014.82}
+}
+
 @Article{Verlet1967,
   Title                    = {Computer "Experiments" on Classical Fluids. I. Thermodynamical Properties of Lennard-Jones Molecules},
   Author                   = {Verlet, Loup},
@@ -86,5 +122,19 @@
   Publisher                = {American Physical Society},
   Timestamp                = {2016.08.08},
   Url                      = {http://link.aps.org/doi/10.1103/PhysRev.159.98}
+}
+
+@Article{buffalo,
+  Note                     = {Idea taken from the Molecular Dynamics part of this lecture: \url{http://www.physics.buffalo.edu/phy411-506/}},
+
+  Owner                    = {motz},
+  Timestamp                = {2016.11.16}
+}
+
+@Article{unitcell,
+  Note                     = {Image taken from \url{https://upload.wikimedia.org/wikipedia/commons/2/27/Elementarzelle_einer_kubisch_raumzentrierten_Elementarzelle.png}},
+
+  Owner                    = {motz},
+  Timestamp                = {2016.11.16}
 }
 

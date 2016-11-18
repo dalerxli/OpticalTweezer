@@ -3,44 +3,55 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: draft1.aux
 The style file: plain.bst
 Database file #1: references.bib
-You've used 3 entries,
+Warning--to sort, need author or key in unitcell
+Warning--to sort, need author or key in buffalo
+Warning--empty author in unitcell
+Warning--empty title in unitcell
+Warning--empty journal in unitcell
+Warning--empty year in unitcell
+Warning--empty author in buffalo
+Warning--empty title in buffalo
+Warning--empty journal in buffalo
+Warning--empty year in buffalo
+You've used 5 entries,
             2118 wiz_defined-function locations,
-            524 strings with 4577 characters,
-and the built_in function-call counts, 992 in all, are:
-= -- 99
-> -- 43
+            528 strings with 4839 characters,
+and the built_in function-call counts, 1318 in all, are:
+= -- 125
+> -- 45
 < -- 0
-+ -- 17
++ -- 19
 - -- 14
-* -- 75
-:= -- 174
-add.period$ -- 10
-call.type$ -- 3
-change.case$ -- 15
+* -- 109
+:= -- 208
+add.period$ -- 12
+call.type$ -- 5
+change.case$ -- 19
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 34
-empty$ -- 78
+cite$ -- 15
+duplicate$ -- 54
+empty$ -- 114
 format.name$ -- 14
-if$ -- 200
+if$ -- 266
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 4
-newline$ -- 18
+int.to.str$ -- 5
+missing$ -- 6
+newline$ -- 24
 num.names$ -- 6
-pop$ -- 14
+pop$ -- 32
 preamble$ -- 1
-purify$ -- 13
+purify$ -- 17
 quote$ -- 0
-skip$ -- 21
+skip$ -- 35
 stack$ -- 0
-substring$ -- 71
+substring$ -- 81
 swap$ -- 3
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 10
-warning$ -- 0
+type$ -- 18
+warning$ -- 10
 while$ -- 10
-width$ -- 4
-write$ -- 35
+width$ -- 6
+write$ -- 45
+(There were 10 warnings)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.3)  15 NOV 2016 13:41
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.3)  18 NOV 2016 13:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -690,6 +690,11 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count119
+\c@subtable=\count120
+)
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip53
 \f@ncyO@elh=\skip54
@@ -702,23 +707,23 @@ Package caption Info: hyperref package is loaded.
 \f@ncyO@orf=\skip61
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count119
+\lst@mode=\count121
 \lst@gtempboxa=\box30
 \lst@token=\toks27
-\lst@length=\count120
+\lst@length=\count122
 \lst@currlwidth=\dimen146
-\lst@column=\count121
-\lst@pos=\count122
+\lst@column=\count123
+\lst@pos=\count124
 \lst@lostspace=\dimen147
 \lst@width=\dimen148
-\lst@newlines=\count123
-\lst@lineno=\count124
+\lst@newlines=\count125
+\lst@lineno=\count126
 \lst@maxwidth=\dimen149
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
-\c@lstnumber=\count125
-\lst@skipnumbers=\count126
+\c@lstnumber=\count127
+\lst@skipnumbers=\count128
 \lst@framebox=\box31
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
@@ -771,7 +776,7 @@ Package: l3names 2012/12/07 v4346 L3 Namespace for primitives
 )
 (/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
-\et@xins=\count127
+\et@xins=\count129
 )
 Package: expl3 2013/10/13 v4597 L3 Experimental code bundle wrapper
 
@@ -789,18 +794,18 @@ Package: l3seq 2013/07/28 v4581 L3 Sequences and stacks
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3int.sty
 Package: l3int 2013/08/02 v4583 L3 Integers
-\c_max_int=\count128
-\l_tmpa_int=\count129
-\l_tmpb_int=\count130
-\g_tmpa_int=\count131
-\g_tmpb_int=\count132
+\c_max_int=\count130
+\l_tmpa_int=\count131
+\l_tmpb_int=\count132
+\g_tmpa_int=\count133
+\g_tmpb_int=\count134
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3quark.sty
 Package: l3quark 2013/07/21 v4564 L3 Quarks
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3prg.sty
 Package: l3prg 2013/08/25 v4587 L3 Control structures
-\g__prg_map_int=\count133
+\g__prg_map_int=\count135
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3clist.sty
 Package: l3clist 2013/07/28 v4581 L3 Comma separated lists
@@ -816,11 +821,11 @@ Package: l3msg 2013/07/28 v4581 L3 Messages
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3file.sty
 Package: l3file 2013/10/13 v4596 L3 File and I/O operations
-\l_iow_line_count_int=\count134
-\l__iow_target_count_int=\count135
-\l__iow_current_line_int=\count136
-\l__iow_current_word_int=\count137
-\l__iow_current_indentation_int=\count138
+\l_iow_line_count_int=\count136
+\l__iow_target_count_int=\count137
+\l__iow_current_line_int=\count138
+\l__iow_current_word_int=\count139
+\l__iow_current_indentation_int=\count140
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3skip.sty
 Package: l3skip 2013/07/28 v4581 L3 Dimensions and skips
@@ -845,20 +850,20 @@ Package: l3skip 2013/07/28 v4581 L3 Dimensions and skips
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3keys.sty
 Package: l3keys 2013/07/28 v4581 L3 Experimental key-value interfaces
-\g__keyval_level_int=\count139
-\l_keys_choice_int=\count140
+\g__keyval_level_int=\count141
+\l_keys_choice_int=\count142
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3fp.sty
 Package: l3fp 2013/07/09 v4521 L3 Floating points
-\c__fp_leading_shift_int=\count141
-\c__fp_middle_shift_int=\count142
-\c__fp_trailing_shift_int=\count143
-\c__fp_big_leading_shift_int=\count144
-\c__fp_big_middle_shift_int=\count145
-\c__fp_big_trailing_shift_int=\count146
-\c__fp_Bigg_leading_shift_int=\count147
-\c__fp_Bigg_middle_shift_int=\count148
-\c__fp_Bigg_trailing_shift_int=\count149
+\c__fp_leading_shift_int=\count143
+\c__fp_middle_shift_int=\count144
+\c__fp_trailing_shift_int=\count145
+\c__fp_big_leading_shift_int=\count146
+\c__fp_big_middle_shift_int=\count147
+\c__fp_big_trailing_shift_int=\count148
+\c__fp_Bigg_leading_shift_int=\count149
+\c__fp_Bigg_middle_shift_int=\count150
+\c__fp_Bigg_trailing_shift_int=\count151
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3box.sty
 Package: l3box 2013/07/28 v4581 L3 Experimental boxes
@@ -895,8 +900,8 @@ Package: l3color 2012/08/29 v4156 L3 Experimental color support
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3luatex.sty
 Package: l3luatex 2013/07/28 v4581 L3 Experimental LuaTeX-specific functions
-\g__cctab_allocate_int=\count150
-\g__cctab_stack_int=\count151
+\g__cctab_allocate_int=\count152
+\g__cctab_stack_int=\count153
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3candidates.sty
 Package: l3candidates 2013/07/24 v4576 L3 Experimental additions to l3kernel
@@ -921,17 +926,17 @@ Package: l3keys2e 2013/10/13 v4597 LaTeX2e option processing using LaTeX3 keys
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2013/10/13 v4597 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count152
-\l__xparse_m_args_int=\count153
-\l__xparse_mandatory_args_int=\count154
-\l__xparse_processor_int=\count155
-\l__xparse_v_nesting_int=\count156
+\l__xparse_current_arg_int=\count154
+\l__xparse_m_args_int=\count155
+\l__xparse_mandatory_args_int=\count156
+\l__xparse_processor_int=\count157
+\l__xparse_v_nesting_int=\count158
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
 Package: xtemplate 2013/10/13 v4597 L3 Experimental prototype document function
 s
 \l__xtemplate_tmp_dim=\dimen186
-\l__xtemplate_tmp_int=\count157
+\l__xtemplate_tmp_int=\count159
 \l__xtemplate_tmp_muskip=\muskip18
 \l__xtemplate_tmp_skip=\skip68
 Variant \prop_get:NoNTF already defined; not changing it on line 106
@@ -967,7 +972,7 @@ Language: english 2012/08/20 v3.3p English support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2013/10/10 3.9g Babel common definitions
-\babel@savecnt=\count158
+\babel@savecnt=\count160
 \U@D=\dimen192
 )
 \l@canadian = a dialect from \language\l@american 
@@ -979,15 +984,15 @@ Package: mathtools 2013/02/12 v1.13 mathematical typesetting tools
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count159
-\calc@Bcount=\count160
+\calc@Acount=\count161
+\calc@Bcount=\count162
 \calc@Adimen=\dimen193
 \calc@Bdimen=\dimen194
 \calc@Askip=\skip69
 \calc@Bskip=\skip70
 LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
-\calc@Ccount=\count161
+\calc@Ccount=\count163
 \calc@Cskip=\skip71
 )
 (/usr/share/texlive/texmf-dist/tex/latex/mh/mhsetup.sty
@@ -995,7 +1000,7 @@ Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count162
+\g_MT_multlinerow_int=\count164
 \l_MT_multwidth_dim=\dimen195
 \origjot=\skip72
 \l_MT_shortvdotswithinadjustabove_dim=\dimen196
@@ -1077,7 +1082,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count163
+\c@section@level=\count165
 )
 LaTeX Info: Redefining \ref on input line 92.
 LaTeX Info: Redefining \pageref on input line 92.
@@ -1090,23 +1095,23 @@ LaTeX Info: Redefining \nameref on input line 92.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count164
+\scratchcounter=\count166
 Normal \dimen register pool exhausted, switching to extended pool.
 \scratchdimen=\dimen256
 \scratchbox=\box50
-\nofMPsegments=\count165
-\nofMParguments=\count166
+\nofMPsegments=\count167
+\nofMParguments=\count168
 \everyMPshowfont=\toks29
-\MPscratchCnt=\count167
+\MPscratchCnt=\count169
 \MPscratchDim=\dimen257
-\MPnumerator=\count168
-\makeMPintoPDFobject=\count169
+\MPnumerator=\count170
+\makeMPintoPDFobject=\count171
 \everyMPtoPDFconversion=\toks30
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count170
+\c@lstlisting=\count172
  (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -1134,7 +1139,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<images/experimental_setup.jpg, id=55, 949.5475pt x 602.25pt>
+<images/experimental_setup.jpg, id=59, 949.5475pt x 602.25pt>
 File: images/experimental_setup.jpg Graphic file (type jpg)
 
 <use images/experimental_setup.jpg>
@@ -1145,7 +1150,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 142--151
 
  []
 
-[4] <images/LJ-2.pdf, id=79, 1123.19624pt x 745.47209pt>
+[4] <images/LJ-2.pdf, id=83, 1123.19624pt x 745.47209pt>
 File: images/LJ-2.pdf Graphic file (type pdf)
  <use images/LJ-2.pdf>
 Package pdftex.def Info: images/LJ-2.pdf used on input line 183.
@@ -1155,45 +1160,94 @@ Package pdftex.def Info: images/LJ-2.pdf used on input line 183.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 216--218
 
+LaTeX Warning: Reference `fig:wiki' on page 6 undefined on input line 220.
+
+<images/fcc-2.pdf, id=95, 334.89616pt x 293.94318pt>
+File: images/fcc-2.pdf Graphic file (type pdf)
+ <use images/fcc-2.pdf>
+Package pdftex.def Info: images/fcc-2.pdf used on input line 227.
+(pdftex.def)             Requested size: 100.46962pt x 88.18362pt.
+
+<images/fcc_unit.png, id=96, 712.6625pt x 745.78625pt>
+File: images/fcc_unit.png Graphic file (type png)
+
+<use images/fcc_unit.png>
+Package pdftex.def Info: images/fcc_unit.png used on input line 233.
+(pdftex.def)             Requested size: 106.89476pt x 111.86311pt.
+
+Underfull \hbox (badness 1019) in paragraph at lines 235--235
+\OT1/cmr/m/n/10.95 ones on the faces by 2
  []
 
-[6 <./images/LJ-2.pdf>] [7] [8] [9] (./draft1.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 293.
- [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 293.
+<images/unit_cell.pdf, id=99, 322.51157pt x 281.75334pt>
+File: images/unit_cell.pdf Graphic file (type pdf)
+
+<use images/unit_cell.pdf>
+Package pdftex.def Info: images/unit_cell.pdf used on input line 241.
+(pdftex.def)             Requested size: 96.75421pt x 84.52664pt.
+ [6 <./images/LJ-2.pdf>] [7 <./images/fcc-2.pdf> <./images/fcc_unit.png> <./ima
+ges/unit_cell.pdf
+
+pdfTeX warning: pdflatex (file ./images/unit_cell.pdf): PDF inclusion: multiple
+ pdfs with page group included in a single page
+>] <images/finite_approach.pdf, id=146, 449.5701pt x 408.30705pt>
+File: images/finite_approach.pdf Graphic file (type pdf)
+
+<use images/finite_approach.pdf>
+Package pdftex.def Info: images/finite_approach.pdf used on input line 284.
+(pdftex.def)             Requested size: 224.7845pt x 204.15302pt.
+ [8] [9 <./images/finite_approach.pdf>]
+[10] (./draft1.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 4--6
+\OT1/cmtt/m/n/12 27 / Elementarzelle _ einer _ kubisch _ raumzentrierten _ Elem
+entarzelle .
+ []
+
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 363.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 363.
  (./draft1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 293.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 293.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 363.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 363.
 Package rerunfilecheck Info: File `draft1.out' has not changed.
-(rerunfilecheck)             Checksum: EF4C4A9D6F930914EDB62473911A2E88;474.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 293.
+(rerunfilecheck)             Checksum: 8527F60077CB9E31B43A6EB40FFB3CA3;553.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 363.
  ) 
 Here is how much of TeX's memory you used:
- 16704 strings out of 494678
- 273993 string characters out of 6172559
- 386114 words of memory out of 5000000
- 19768 multiletter control sequences out of 15000+600000
- 13734 words of font info for 53 fonts, out of 8000000 for 9000
+ 16802 strings out of 494678
+ 275643 string characters out of 6172559
+ 389039 words of memory out of 5000000
+ 19849 multiletter control sequences out of 15000+600000
+ 14818 words of font info for 57 fonts, out of 8000000 for 9000
  102 hyphenation exceptions out of 8191
- 44i,12n,49p,765b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,12n,49p,765b,560s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share
-/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on draft1.pdf (10 pages, 481193 bytes).
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sfrm1200.pfb>
+Output written on draft1.pdf (11 pages, 678903 bytes).
 PDF statistics:
- 186 PDF objects out of 1000 (max. 8388607)
- 153 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
- 83 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 258 PDF objects out of 1000 (max. 8388607)
+ 208 compressed objects within 3 object streams
+ 39 named destinations out of 1000 (max. 500000)
+ 111 words of extra memory for PDF output out of 10000 (max. 10000000)
 
