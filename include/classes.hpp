@@ -24,9 +24,9 @@ class Particle
      std::string name;
      bool surface;
 
-     std::vector<std::pair<std::string,double> >  kineticEnergy;
-     std::vector<std::pair<std::string,double> >  potentialEnergy;
-     std::vector<std::pair<std::string,double> >  totalEnergy;
+     //std::vector<std::pair<std::string,double> >  kineticEnergy;
+     //std::vector<std::pair<std::string,double> >  potentialEnergy;
+     //std::vector<std::pair<std::string,double> >  totalEnergy;
 
      Particle();
      Particle(std::string name);

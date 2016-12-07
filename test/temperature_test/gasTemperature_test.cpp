@@ -42,8 +42,8 @@ int main(int argc, char** argv)
     {
             if(run%500==0)
                 printf("(INIT) Zeitschritt %d\n",run);
-            fprintf(positions,"%d\nTest\n",N+gas.size());
-            VelocityVerlet(cube,1,positions);
+            //fprintf(positions,"%d\nTest\n",N+gas.size());
+            VelocityVerlet(cube,0,positions);
             if(run%100 == 0 && run < 20000)
                 rescaleVelocities(cube);
             //energies = calculateEnergies(cube,gas); 
@@ -61,22 +61,29 @@ int main(int argc, char** argv)
     //ComputeSoftSphere(gas,cube);
     //BarostatNew(cube,gas);
     for(int k=0;k<20;k++)
-        InitBarostatFullNew(gas);
+        InitBarostatFull(gas);
     ComputeSoftSphere(gas,cube);
+    double gasSize = gas.size();
+    double gasSizeNew = 0;
     for(run=0;run<40000;run++)
     {
         if(run%500==0)
             printf("(MEASURE) Zeitschritt %d\n",run);
 
         fprintf(positions,"%d\nTest\n",N+gas.size());
-        VelocityVerlet(cube,1,positions);
+        VelocityVerlet(cube,0,positions);
         BarostatTest(cube,gas);
         //energies = calculateEnergies(cube,gas); 
         energy = calculateEnergies(cube,gas); 
         //fprintf(eData,"%lf\t%lf\t%lf\n",energies[0],energies[1],energies[2]);
         fprintf(eData,"%lf\n",energy);
-        if(run%100==0)
-            GenerateOutput(cube,gas,run);
+        GenerateOutput(cube,gas,run);
+        gasSizeNew = gas.size();
+        if(gasSizeNew < gasSize)
+        {
+            std::cout << run << std::endl;
+            gasSize = gasSizeNew;
+        }
     }
 
 

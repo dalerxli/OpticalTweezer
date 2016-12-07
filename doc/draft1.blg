@@ -1,10 +1,8 @@
 This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: draft1.aux
-The style file: plain.bst
+The style file: unsrt.bst
 Database file #1: references.bib
-Warning--to sort, need author or key in unitcell
-Warning--to sort, need author or key in buffalo
 Warning--empty author in unitcell
 Warning--empty title in unitcell
 Warning--empty journal in unitcell
@@ -13,45 +11,46 @@ Warning--empty author in buffalo
 Warning--empty title in buffalo
 Warning--empty journal in buffalo
 Warning--empty year in buffalo
-You've used 5 entries,
-            2118 wiz_defined-function locations,
-            528 strings with 4839 characters,
-and the built_in function-call counts, 1318 in all, are:
-= -- 125
-> -- 45
-< -- 0
-+ -- 19
-- -- 14
-* -- 109
-:= -- 208
-add.period$ -- 12
-call.type$ -- 5
-change.case$ -- 19
+Warning--can't use both author and editor fields in Huenenberger2005
+You've used 14 entries,
+            1791 wiz_defined-function locations,
+            546 strings with 6010 characters,
+and the built_in function-call counts, 3059 in all, are:
+= -- 276
+> -- 105
+< -- 1
++ -- 42
+- -- 28
+* -- 233
+:= -- 468
+add.period$ -- 39
+call.type$ -- 14
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 54
-empty$ -- 114
-format.name$ -- 14
-if$ -- 266
+cite$ -- 23
+duplicate$ -- 136
+empty$ -- 312
+format.name$ -- 28
+if$ -- 676
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 6
-newline$ -- 24
-num.names$ -- 6
-pop$ -- 32
+int.to.str$ -- 14
+missing$ -- 17
+newline$ -- 69
+num.names$ -- 12
+pop$ -- 39
 preamble$ -- 1
-purify$ -- 17
+purify$ -- 0
 quote$ -- 0
-skip$ -- 35
+skip$ -- 60
 stack$ -- 0
-substring$ -- 81
-swap$ -- 3
-text.length$ -- 0
+substring$ -- 237
+swap$ -- 22
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 18
-warning$ -- 10
-while$ -- 10
-width$ -- 6
-write$ -- 45
-(There were 10 warnings)
+type$ -- 0
+warning$ -- 9
+while$ -- 27
+width$ -- 16
+write$ -- 145
+(There were 9 warnings)

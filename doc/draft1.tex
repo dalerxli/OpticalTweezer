@@ -33,8 +33,8 @@
 \newcommand{\ddnach}[2]{\frac{\partial{#1}}{\partial{#2}}}
 \newcommand{\dddnach}[3]{\frac{\partial^2{#1}}{\partial{#2} \partial{#3}}}
 \newcommand{\dznach}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
-\newcommand{\vnabla}{\vec{\nabla}}
-\newcommand{\evec}[1]{\mathbf{\hat{#1}}}
+\newcommand{\vnabla}{\mathbf{\nabla}}
+\newcommand{\emathbf}[1]{\mathbf{\hat{#1}}}
 \newcommand{\bra}[1]{\langle{#1}|}
 \newcommand{\ket}[1]{|{#1}\rangle}
 \newcommand{\bracket}[2]{\langle{#1}|{#2}\rangle}
@@ -46,6 +46,7 @@
 \newcommand{\downdown}{\downarrow\downarrow}
 \newcommand{\sandwich}[2]{\bra{#1} #2 \ket{#1}}
 \newcommand{\fsqrt}[2]{\sqrt{\frac{#1}{#2}}}
+\newcommand{\GammaK}{{\Gamma_k}}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -278,7 +279,7 @@ point in this space corresponds to a set of positions and momenta and the connec
 from one state to another. As mentioned above, this evolution (the dynamics of the system) is a crucial element to Molecular Dynamics. Since the
 equations of motion cannot be solved analytically in general, we need to approximate the solution.\\
 The method used here is called finite difference approach. The trajectory of the system in the phase space is cut into finite pieces of length $\Delta
-t$ and the equations of motion are solved for every segment separately (see fig. \ref{fig:finitedifference}).
+t$ and the equations of motion are solved for every segment separately (see fig. \ref{fig:finitedifference}).\\
 \begin{figure}
     \begin{center}
         \includegraphics[scale=0.5]{images/finite_approach.pdf}
@@ -288,6 +289,201 @@ t$ and the equations of motion are solved for every segment separately (see fig.
         \label{fig:finitedifference} 
     \end{center}
 \end{figure}
+There are several ways to solve this kind of problem, but since we are interested in implementing it into a computer program the ideal solution
+should have some basic properties \cite{Allen1989}:
+\begin{itemize}
+    \item It should be fast and require little memory
+    \item It should permit the use of a large time step $\Delta t$
+    \item It should duplicate the classical trajectory as closely as possible
+    \item It should satisfy known conservation laws
+    \item It should be simple and easy to program
+\end{itemize}
+One algorithm that has all of the above mentioned features is the one proposed by Verlet \cite{Verlet1967}. In his paper, Verlet starts by Taylor
+expanding the coordinate mathbftor $\mathbf{r}_i$ for one particle after one time step $\Delta t$:
+\begin{equation}
+    \label{eq:verlet}
+    \mathbf{r}_i(t+\Delta t) = \mathbf{r}_i(t) + \dot{\mathbf{r}}_i \Delta t + \frac12 \ddot{\mathbf{r}}_i \Delta t^2 + \frac1{3!} \dddot{\mathbf{r}}_i \Delta t^3 +
+    \mathcal{O}(\Delta t^4)
+\end{equation}
+Since the first derivative of the coordinate mathbftor is the velocity, $\dot{\mathbf{r}}_i(t) = \mathbf{v}_i(t)$, and the second derivative of the coordinate 
+mathbftor is the acceleration, $\ddot{\mathbf{r}}_i(t) = \mathbf{a}_i(t)$, using Newton's law $\mathbf{F}_i(t) = m_i \mathbf{a}_i(t)$ equation \eqref{eq:verlet} 
+can be written as:
+\begin{equation}
+    \label{eq:verletnew}
+    \mathbf{r}_i(t+\Delta t) = \mathbf{r}_i(t) + {\mathbf{v}}_i(t) \Delta t + \frac1{2m} {\mathbf{F}}_i(t) \Delta t^2 + \frac1{3!} \dddot{\mathbf{r}}_i(t)
+    \Delta t^3+\mathcal{O}(\Delta t^4)
+\end{equation}
+The same calculation can be carried out for one time step before $t$:
+\begin{equation}
+    \label{eq:verletnewminus}
+    \mathbf{r}_i(t-\Delta t) = \mathbf{r}_i(t) - {\mathbf{v}}_i(t) \Delta t + \frac1{2m} {\mathbf{F}}_i(t) \Delta t^2 - \frac1{3!} \dddot{\mathbf{r}}_i(t) \Delta t^3+
+    \mathcal{O}(\Delta t^4)
+\end{equation}
+The sum of those two equations yields
+\begin{equation}
+    \mathbf{r}_i(t+\Delta t) + \mathbf{r}_i(t-\Delta t) = 2\mathbf{r}_i(t) + \frac1{2} {\mathbf{F}}_i(t) \Delta t^2 + \mathcal{O}(\Delta t^4)
+\end{equation}
+and from this we get the final form for the new coordinates:
+\begin{equation}
+    \label{eq:verletfinal}
+    \mathbf{r}_i(t+\Delta t) = 2\mathbf{r}_i(t)+ \mathbf{r}_i(t-\Delta t)+ \frac1{2} {\mathbf{F}}_i(t) \Delta t^2
+\end{equation}
+This means that the new coordinates can be calculated using the current coordinates, the current forces and the coordinates from the past time step.\\
+From equation \eqref{eq:verletfinal} one thing becomes clear: the velocities are not necessary to calculate the new positions and they are not
+computed in the process, but for the calculation of i.e. the kinetic energy the velocities are needed. Thus, the velocities have to be calculated with
+a combination of the Taylor expansions of the coordinate mathbftors at $t+\Delta t$ and $t-\Delta t$:
+\begin{equation}
+    \mathbf{r}_i(t+\Delta t) - \mathbf{r}_i(t-\Delta t) = 2\mathbf{v}_i(t)\Delta t + \mathcal{O}(\Delta t^3)
+\end{equation}
+which can be rewritten as
+\begin{equation}
+    \label{eq:velocities}
+    \mathbf{v}_i(t) = \frac{\mathbf{r}_i(t+\Delta t) - \mathbf{r}_i(t-\Delta t)}{2\Delta t} + \mathcal{O}(\Delta t^2)
+\end{equation}
+This approach has the advantage that it is fast, requires little memory and is reliable in the sense that there is no energy drift occuring during the
+simulation, which means that the energy is conserved. When we compare this to the list of desired properties this seems like a good algorithm.\\
+This algorithm however has two significant disatvantages. The first one is the calculation of the velocities. As can be seen in equation
+\eqref{eq:velocities}, the accuracy of the calculation is only $\mathcal{O}(\Delta t^2)$ while the positions can be calculated with an error of order
+$\Delta t^4$. The other big disatvantage is the first step of the algorithm. Since the calculation of the new positions requires the current positions
+and the ones from one time step before, which technically do not exist.\\
+The solutions to this problem is to include the stepwise calculation of the velocities \cite{swope1982}. For this we start again with the Taylor
+expansion of the coordinates mathbftor \eqref{eq:verletnew} and instead of Taylor expanding $\mathbf{r}_i(t-\Delta t)$, we write it as 
+\begin{equation}
+    \mathbf{r}_i(t) = \mathbf{r}_i(t+\Delta t) - \mathbf{v}_i(t+\Delta t) \Delta t + \frac1{2m} \mathbf{F}_i(t+\Delta t) \Delta t^2
+\end{equation}
+Using \eqref{eq:verletnew} in the abvove equation we get
+\begin{equation}
+    \begin{aligned}
+        \mathbf{r}_i(t) &= \mathbf{r}_i(t) + \mathbf{v}_i(t) \Delta t + \frac1{2m}\mathbf{F}_i(t)\Delta t^2 \\
+                     &- \mathbf{v}_i(t+\Delta t) \Delta t + \frac1{2m} \mathbf{F}_i(t+\Delta t) \Delta t^2
+    \end{aligned}
+\end{equation}
+and thus
+\begin{equation}
+    \label{eq:vvelocities}
+    \mathbf{v}_i(t+\Delta t) = \mathbf{v}_i(t) + \frac1{2m} \left(\mathbf{F}_i(t) + \mathbf{F}_i(t+\Delta t)\right) \Delta t
+\end{equation}
+With the addition of this equation this algorithm is called the Velocity-Verlet algorithm, which is summarized in the following two equations:
+\begin{equation}
+    \label{eq:velocityverlet}
+    \begin{aligned}
+        \mathbf{r}_i(t+\Delta t) = \mathbf{r}_i(t) + {\mathbf{v}}_i(t) \Delta t + \frac1{2m} {\mathbf{F}}_i(t) \Delta t^2\\
+        \mathbf{v}_i(t+\Delta t) = \mathbf{v}_i(t) + \frac1{2m} \left(\mathbf{F}_i(t) + \mathbf{F}_i(t+\Delta t)\right) \Delta t
+    \end{aligned}
+\end{equation}
+This algorithm is self starting, uses a small amount of memory, conserves the energy and gives a very good approximation to the originial trajectory
+in the phase space. To program this algorithm the following steps are needed: 
+\begin{enumerate}
+    \item Calculate all the forces between the particles (for the first run only)
+    \item Calculate the new positions with current velocity and forces
+    \item Calculate first half of the new velocities with current forces
+    \item Calculate all the forces for the new position
+    \item Use new forces to calculate second half of new velocities
+\end{enumerate}
+The first point only has to be carried out for the first run, because the forces have not been calculated at this point. As the forces are calculated
+for the new positions in step 4, they can be used for the next time step. For the first time step the velocities have to be chosen randomly and are 
+calculated with this algorithm from that point forward.
+
+\subsection{The Laser Beam - Energy influx}
+The glass sphere is trapped in the laser beam. While the motion of the center of mass is suppressed, which acts as a cooling mechanism, the
+individual atoms that make up the glass sphere absorb the energy from the laser which increases their velocity.\\
+To simulate this kind behaviour, thermostat algorithms \cite{Huenenberger2005} such as the Nos\'e-Hoover \cite{Nose1984,Hoover1985} or the Berendsen
+\cite{Berendsen1984} algorithms.\\
+The problem with these kind of algorithms is, that a target temperature has to be fixed which will be reached at some point. In order to simulate the
+influx of energy from the laser it would be better to have an algorithm that supplies the system with a certain amount of energy continuously.
+Fortunately, such an algorithm exists.\\
+The algorithm is called Heat Exchange Algorithm (HEX) \cite{Hafskjold1993}. Its intended purpose is the use in non-equilibrium molecular dynamics
+(NEMD) to study transport phenomena and determine transport coefficients. The algorithm works by introducing two regions in the system, one serving as
+a heat source and the other as a heat sink. A specific amount of heat is then exchanged between those two reservoirs. As it turns out however, this
+algorithm introduces an energy shift for longer simulation times. This led Wirnsberger et al \cite{Wirnsberger2015} to revisit the algorithm and 
+identify the cause of this energy drift, to create a more suitable algorithm, which they called eHEX.\\
+As in the HEX algorithm, regions are introduced to the system which act either as heat sinks or heat sources. These are labelled with $\Gamma_k$,
+where $k > 0$, and have corresponding amount of exchanged heat $\Delta Q_{\Gamma_k}$. If $\Delta Q_{\Gamma_k}$ is negative, heat is subtracted from
+the system and vice versa. Regions that neither act as heat source or heat sink are labelled with $\Gamma_0$, which are also called
+Hamiltonian regions (see fig. \ref{fig:ehex}). 
+\begin{figure}
+    \begin{center}
+        \includegraphics[scale=0.3]{images/ehex_system.png}
+        \caption{Setup for the use of the HEX and eHEX algorithms. The simulationbox $\Omega$, which is moving with a velocity of $v_\Omega$,
+        contains a heat source (red), $\Gamma_1$, which is moving with velocity $v_{\Gamma_1}$ and a heat sink (blue), $\Gamma_2$, which is moving 
+        with velocity $v_{\Gamma_2}$. The regions that are neither heat sources or heat sinks are denoted by $\Gamma_0$.}
+        \label{fig:ehex} 
+    \end{center}
+\end{figure}
+The simulation box, denoted by $\Omega$, and the regions $\Gamma_k$ are assumed to be moving with velocities $v_\Omega$ and $v_{\Gamma_k}$
+respectively.\\
+The change of the energy in a region $\Gamma_k$ is achieved by rescaling the velocities by a factor $\xi_k$ and shifted by the velocity of the
+corresponding region:
+\begin{equation}
+    \mathbf{v}_i \rightarrow \mathbf{\bar{v}}_i = \xi_k \mathbf{v}_i + (1-\xi_k)\mathbf{v}_{\Gamma_k}
+\end{equation}
+The bar over a quantity denotes the value after the exchange of heat.\\
+The factor $\xi_k$ is given by
+\begin{equation}
+    \xi_k = \sqrt{1+\frac{\Delta Q_{\Gamma_k}}{\mathcal{K}_{\Gamma_k}}}
+\end{equation}
+where $\Delta Q_{\Gamma_k}$ is the exchanged heat in the region $\Gamma_k$ and $\mathcal{K}_{\Gamma_k}$ is the non-translational kinetic energy of the
+region $\Gamma_k$ and is given by
+\begin{equation}
+    \mathcal{K}_{\Gamma_k} = \sum_{i \in \gamma_k} \frac{m_i v_i^2}{2} - \frac{m_{\Gamma_k}v_{\Gamma_k}^2}{2}
+\end{equation}
+The sum is taken over all indices in $\gamma_k$ which is the set of indices of particles in the region $\Gamma_k$.\\
+For the final version of the eHEX algorithm there are three more quantities needed. The first one is the heat flux per time step, denoted by 
+$\mathcal{F}_\GammaK$:
+\begin{equation}
+    \mathcal{F}_\GammaK = \frac{\Delta Q_\GammaK}{\Delta t}
+\end{equation}
+The second one is the thermostatting force $\mathbf{\eta}_i$, which is defined as
+\begin{equation}
+    \mathbf{\eta}_i = 
+    \begin{cases}
+        m_i \ \dfrac{{\mathcal{F}_{\Gamma_{k(\mathbf{r}_i)}}}}{{2\mathcal{K}_{\Gamma_{k(\mathbf{r}_i)}}}} \
+        \left(\mathbf{v}_i - \mathbf{v}_{\Gamma_{k(\mathbf{r}_i)}}\right)
+        & \quad \text{if } k(\mathbf{r}_i) > 0 \\
+        0 & \quad \text{otherwise}
+    \end{cases}
+    %\begin{cases}
+        %m_i \ \frac{\displaystyle{\mathcal{F}_{\Gamma_{k(\mathbf{r}_i)}}}}{\displaystyle{2\mathcal{K}_{\Gamma_{k(\mathbf{r}_i)}}}} \
+        %\left(\mathbf{v}_i - \mathbf{v}_{\Gamma_{k(\mathbf{r}_i)}}\right)
+        %& \quad \text{if } k(\mathbf{r}_i) > 0 \\
+        %0 & \quad \text{otherwise}
+    %\end{cases}
+\end{equation}
+where $k(\mathbf{r}_i)$ is the index of the region in which particle $i$ located, i.e. $k(\mathbf{r}_i) = 0$ means that the particle is in a Hamiltonian
+region and $k(\mathbf{r}_i) > 0$ denotes the heat sinks and sources.\\
+The last quantity is the one that corrects the long term energy drift of the HEX algorithm, denoted by $\mathcal{E}{r}_{i,\alpha}$.
+The analysis and derivation of this term is given in \cite{Wirnsberger2015}.
+\begin{equation}
+    \label{eq:bigeps}
+    \begin{aligned}
+        \mathcal{E}{r}_{i,\alpha} &= \dfrac{\eta_{i,\alpha}}{m_i\mathcal{K}_{\Gamma_{k(\mathbf{r}_i)}}} \left[
+        \frac{\mathcal{F}_{\Gamma_{k(\mathbf{r}_i)}}}{48} + \frac{1}{6} \sum_{j\in\gamma_{k(\mathbf{r}_i)}} \mathbf{f}_j \cdot \left(\mathbf{v}_j - 
+            \mathbf{v}_{\Gamma_{k(\mathbf{r}_i)}}\right)\right] \\
+            &- \frac{\mathcal{F}_{\Gamma_{k(\mathbf{r}_i)}}}{12\mathcal{K}_{\Gamma_{k(\mathbf{r}_i)}}} \left[
+            \frac{f_{i,\alpha}}{m_i} - \frac{1}{m_{\Gamma_{k(\mathbf{r}_i)}}} \sum_{j\in\gamma_{k(\mathbf{r}_i)}}f_{j,\alpha}\right]
+    \end{aligned}
+\end{equation}
+The $\mathbf{f}$ in the above equation denotes the force corresponding to the chosen intermolecular potential $U(\mathbf{r})$, 
+\begin{equation}
+    \mathbf{f} = -\nabla_{\mathbf{r}_i} U(\mathbf{r}_i)
+\end{equation}
+With all the necessary quantities established, the updating sequence of the eHEX algorithm can be written down:
+\begin{subequations}
+\begin{eqnarray}
+    \bar{\mathbf{v}}^n_i &=& \xi^n_{k(\mathbf{r}_i)} \mathbf{v}^n_i + \left(1-\xi^n_{k(\mathbf{r}_i)}\right) \mathbf{v}^n_{\Gamma_{k(\mathbf{r}_i)}} \\
+    \bar{\mathbf{v}}^{n+\frac12}_i &=& \bar{\mathbf{v}}^n_i + \frac{\Delta t}{2m_i} \mathbf{f}^n_i\\
+    \bar{\mathbf{r}}^{n+1}_i &=& \mathbf{r}^n_i + \Delta t \bar{\mathbf{v}}^{n+\frac12}_i\\
+    \mathbf{f}^{n+1}_i &=& \left.-\nabla_{\mathbf{r}_i} U(\mathbf{r})\right|_{\mathbf{r} = \bar{\mathbf{r}}^{n+1}}\\
+    \bar{\mathbf{v}}^{n+1}_i &=& \bar{\mathbf{v}}^{n+\frac12}_i + \frac{\Delta t}{2m_i} \mathbf{f}^{n+1}_i\\
+    \mathbf{v}^{n+1}_i &=& \bar{\xi}^{n+1}_{k(\bar{\mathbf{r}}_i)} \bar{\mathbf{v}}^{n+1}_i + \left(1-\bar{\xi}^{n+1}_{k(\bar{\mathbf{r}}_i)}\right)
+    \bar{\mathbf{v}}^{n+1}_{\Gamma_{k(\bar{\mathbf{r}}_i)}} \\
+    \mathbf{r}^{n+1}_i &=& \bar{\mathbf{r}}^{n+1} - \Delta t^3 \mathcal{E}\bar{\mathbf{r}}^{n+1}_i
+\end{eqnarray}
+\end{subequations}
+%This is done by adding for instance two regions to the simulation, one providing an influx of heat
+%and the other acting as a heat sink. The algorithm is furthermore designed to incorporate the velocities of the center of mass of the system and the
+%velocities of the regions. 
+
 
 %\subsection{The Glass Nanoparticle}
 %The glass particle from the experiment will be represented by a system of 864 particles, aligned regularly on a FCC (face centered cubic) lattice.
@@ -358,6 +554,6 @@ t$ and the equations of motion are solved for every segment separately (see fig.
 
 \newpage
 \bibliography{references}
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 
 \end{document}

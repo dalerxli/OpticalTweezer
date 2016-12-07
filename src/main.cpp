@@ -51,7 +51,7 @@ int main(int argc,char** argv)
      *    q += 0.01;
      *}
      */
-    setValues(0.2,0.06,0.2,4,0.08);
+    setValues(0.1,0.05,0.2,1.1,0.1);
     mainLoop();
     return 0;
 }
@@ -116,9 +116,9 @@ void mainLoop() {
     int a;
     int run=0;
     gsl_rng_set(r,98);
-    gsl_histogram_set_ranges_uniform(gas_in,-1,5);
-    gsl_histogram_set_ranges_uniform(gas_out,-1,5);
-    gsl_histogram_set_ranges_uniform(gas_real_in,-1,5);
+    gsl_histogram_set_ranges_uniform(gas_in,-0.1,3);
+    gsl_histogram_set_ranges_uniform(gas_out,-0.1,3);
+    gsl_histogram_set_ranges_uniform(gas_real_in,-0.1,3);
     /*
      *FILE* output = fopen("output/box_test.xyz","w");
      *FILE* pressure = fopen("output/pressure.dat","w");

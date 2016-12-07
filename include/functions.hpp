@@ -45,6 +45,7 @@ void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube);
 void PrintAllData(Particle* cube, std::list<Particle*> gas,FILE* output);
 //void eHEX(Particle* cube,FILE* output);
 void eHEX(Particle* cube);
+void eHEXNew(Particle* cube);
 void calcPressure(Particle cube,FILE* output);
 void calcTemp(Particle* cube,FILE* output);
 void calcTemp(Particle* cube,FILE* output,int run);

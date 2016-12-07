@@ -1,12 +1,10 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{unitcell}
-Image taken from
-  \url{https://upload.wikimedia.org/wikipedia/commons/2/27/Elementarzelle_einer_kubisch_raumzentrierten_Elementarzelle.png}.
-
-\bibitem{buffalo}
-Idea taken from the Molecular Dynamics part of this lecture:
-  \url{http://www.physics.buffalo.edu/phy411-506/}.
+\bibitem{Gieseler2014}
+Jan Gieseler, Romain Quidant, Christoph Dellago, and Lukas Novotny.
+\newblock Dynamic relaxation of a levitated nanoparticle from a non-equilibrium
+  steady state.
+\newblock {\em Nat Nano}, 9(5):358--364, May 2014.
 
 \bibitem{Crooks1999}
 Gavin~E. Crooks.
@@ -20,10 +18,64 @@ D.~Frenkel and B.~Smit.
   Applications}.
 \newblock Computational science series. Elsevier Science, 2001.
 
-\bibitem{Gieseler2014}
-Jan Gieseler, Romain Quidant, Christoph Dellago, and Lukas Novotny.
-\newblock Dynamic relaxation of a levitated nanoparticle from a non-equilibrium
-  steady state.
-\newblock {\em Nat Nano}, 9(5):358--364, May 2014.
+\bibitem{unitcell}
+Image taken from
+  \url{https://upload.wikimedia.org/wikipedia/commons/2/27/Elementarzelle_einer_kubisch_raumzentrierten_Elementarzelle.png}.
+
+\bibitem{buffalo}
+Idea taken from the Molecular Dynamics part of this lecture:
+  \url{http://www.physics.buffalo.edu/phy411-506/}.
+
+\bibitem{Allen1989}
+M.~P. Allen and D.~J. Tildesley.
+\newblock {\em Computer Simulation of Liquids}.
+\newblock Clarendon Press, New York, NY, USA, 1989.
+
+\bibitem{Verlet1967}
+Loup Verlet.
+\newblock Computer "experiments" on classical fluids. i. thermodynamical
+  properties of lennard-jones molecules.
+\newblock {\em Phys. Rev.}, 159:98--103, Jul 1967.
+
+\bibitem{swope1982}
+William~C. Swope, Hans~C. Andersen, Peter~H. Berens, and Kent~R. Wilson.
+\newblock A computer simulation method for the calculation of equilibrium
+  constants for the formation of physical clusters of molecules: Application to
+  small water clusters.
+\newblock {\em The Journal of Chemical Physics}, 76(1):637--649, 1982.
+
+\bibitem{Huenenberger2005}
+Philippe~H. H{\"u}nenberger.
+\newblock {\em Thermostat Algorithms for Molecular Dynamics Simulations}, pages
+  105--149.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2005.
+
+\bibitem{Nose1984}
+Shuichi Nosé.
+\newblock A unified formulation of the constant temperature molecular dynamics
+  methods.
+\newblock {\em The Journal of Chemical Physics}, 81(1):511--519, 1984.
+
+\bibitem{Hoover1985}
+William~G. Hoover.
+\newblock Canonical dynamics: Equilibrium phase-space distributions.
+\newblock {\em Phys. Rev. A}, 31:1695--1697, Mar 1985.
+
+\bibitem{Berendsen1984}
+H.~J.~C. Berendsen, J.~P.~M. Postma, W.~F. van Gunsteren, A.~DiNola, and J.~R.
+  Haak.
+\newblock Molecular dynamics with coupling to an external bath.
+\newblock {\em The Journal of Chemical Physics}, 81(8):3684--3690, 1984.
+
+\bibitem{Hafskjold1993}
+B.~{Hafskjold}, T.~{Ikeshoji}, and S.~{Kjelstrup Ratkje}.
+\newblock {On the molecular mechanism of thermal diffusion in liquids}.
+\newblock {\em Molecular Physics}, 80:1389--1412, December 1993.
+
+\bibitem{Wirnsberger2015}
+P.~Wirnsberger, D.~Frenkel, and C.~Dellago.
+\newblock An enhanced version of the heat exchange algorithm with excellent
+  energy conservation properties.
+\newblock {\em The Journal of Chemical Physics}, 143(12), 2015.
 
 \end{thebibliography}

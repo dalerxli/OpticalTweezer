@@ -32,7 +32,7 @@ int main(int argc, char** argv)
                 printf("(INIT) Zeitschritt %d\n",run);
             VelocityVerlet(cube,0,NULL);
             //if(run%100 == 0 && run < 50000)
-            if(run%100)
+            if(run%100 == 0)
             {
                 if(run < 50000)
                     rescaleVelocities(cube);
@@ -40,7 +40,7 @@ int main(int argc, char** argv)
                 energy = calculateEnergies(cube,gas); 
                 fprintf(eData,"%d\t%lf\n",run,energy);
             }
-            if(run%1000)
+            if(run%1000 == 0)
                 GenerateOutput(cube,gas,run);
     }
     FILE* finalpos = fopen("final_position.xyz","w");
