@@ -38,8 +38,9 @@ unsigned int NumberOfParticles()
         //This is the calculated atmospheric pressure with LJ units
         //double P=4;
         double k=1.0;
+        double m = 0.1;
         //double T=0.9;
-        mu = dt*L*L*P*pow((1./(2*M_PI*k*AmbientTemp)),0.5);
+        mu = dt*L*L*P*pow((1./(2*m*M_PI*k*AmbientTemp)),0.5);
         //std::cout << mu << std::endl;
         return gsl_ran_poisson(r,mu);
 }
@@ -455,6 +456,8 @@ void InitBarostatFull(std::list<Particle*>& particles)
         unsigned int N;
         //double sigma=1.1;
         double sigma=AmbientTemp;
+        double lambda = 0;
+        double vel = 0;
 
         Particle *px0;
         Particle *pxL;
@@ -462,6 +465,17 @@ void InitBarostatFull(std::list<Particle*>& particles)
         Particle *pyL;
         Particle *pz0;
         Particle *pzL;
+
+    /*
+     *double vSum = 0;
+     *for(int i=0;i<N;i++)
+     *    for(int k=0;k<3;k++)
+     *        vSum += cube[i].v[k] * cube[i].v[k];
+     *double lambda = sqrt(3*(N-1)*Temp/vSum);
+     *for(int i=0;i<N;i++)
+     *    for(int k=0;k<3;k++)
+     *        cube[i].v[k] *= lambda;
+     */
 
         double kinE = 0.;
 
@@ -474,8 +488,16 @@ void InitBarostatFull(std::list<Particle*>& particles)
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             gsl_ran_rayleigh(r,sigma),
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,"GasIn");
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,"GasIn");
+            /*
+             *vel = px0->v[0]*px0->v[0]+px0->v[1]*px0->v[2]+px0->v[2]*px0->v[2];
+             *vel = vel/3.;
+             *lambda = sqrt(AmbientTemp/vel);
+             *px0->v[0] = px0->v[0]*lambda;  
+             *px0->v[1] = px0->v[1]*lambda;  
+             *px0->v[2] = px0->v[2]*lambda;  
+             */
             particles.push_back(px0);
             kinE = px0->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
             gsl_histogram_increment(gas_in,kinE);
@@ -489,8 +511,16 @@ void InitBarostatFull(std::list<Particle*>& particles)
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             gsl_ran_rayleigh(r,sigma)*(-1.),
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,"GasIn");
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,"GasIn");
+            /*
+             *vel = pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[2]+pxL->v[2]*pxL->v[2];
+             *vel = vel/3.;
+             *lambda = sqrt(AmbientTemp/vel);
+             *pxL->v[0] = pxL->v[0]*lambda;  
+             *pxL->v[1] = pxL->v[1]*lambda;  
+             *pxL->v[2] = pxL->v[2]*lambda;  
+             */
             particles.push_back(pxL);
             kinE = pxL->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
             gsl_histogram_increment(gas_in,kinE);
@@ -503,9 +533,17 @@ void InitBarostatFull(std::list<Particle*>& particles)
             py0 = new Particle(((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             -L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
                             gsl_ran_rayleigh(r,sigma),
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,"GasIn");
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,"GasIn");
+            /*
+             *vel = py0->v[0]*py0->v[0]+py0->v[1]*py0->v[2]+py0->v[2]*py0->v[2];
+             *vel = vel/3.;
+             *lambda = sqrt(AmbientTemp/vel);
+             *py0->v[0] = py0->v[0]*lambda;  
+             *py0->v[1] = py0->v[1]*lambda;  
+             *py0->v[2] = py0->v[2]*lambda;  
+             */
             particles.push_back(py0);
             kinE = py0->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
             gsl_histogram_increment(gas_in,kinE);
@@ -518,9 +556,17 @@ void InitBarostatFull(std::list<Particle*>& particles)
             pyL = new Particle(((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             2.*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
                             gsl_ran_rayleigh(r,sigma)*(-1.),
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,"GasIn");
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,"GasIn");
+            /*
+             *vel = pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[2]+pyL->v[2]*pyL->v[2];
+             *vel = vel/3.;
+             *lambda = sqrt(AmbientTemp/vel);
+             *pyL->v[0] = pyL->v[0]*lambda;  
+             *pyL->v[1] = pyL->v[1]*lambda;  
+             *pyL->v[2] = pyL->v[2]*lambda;  
+             */
             particles.push_back(pyL);
             kinE = pyL->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
             gsl_histogram_increment(gas_in,kinE);
@@ -534,9 +580,17 @@ void InitBarostatFull(std::list<Particle*>& particles)
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             -L,
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
                             gsl_ran_rayleigh(r,sigma),"GasIn");
+            /*
+             *vel = pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[2]+pz0->v[2]*pz0->v[2];
+             *vel = vel/3.;
+             *lambda = sqrt(AmbientTemp/vel);
+             *pz0->v[0] = pz0->v[0]*lambda;  
+             *pz0->v[1] = pz0->v[1]*lambda;  
+             *pz0->v[2] = pz0->v[2]*lambda;  
+             */
             particles.push_back(pz0);
             kinE = pz0->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
             gsl_histogram_increment(gas_in,kinE);
@@ -550,9 +604,17 @@ void InitBarostatFull(std::list<Particle*>& particles)
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             2.*L,
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,
-                            ((gsl_rng_uniform(r)-0.5)*2)*AmbientTemp,
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
+                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
                             gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn");
+            /*
+             *vel = pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[2]+pzL->v[2]*pzL->v[2];
+             *vel = vel/3.;
+             *lambda = sqrt(AmbientTemp/vel);
+             *pzL->v[0] = pzL->v[0]*lambda;  
+             *pzL->v[1] = pzL->v[1]*lambda;  
+             *pzL->v[2] = pzL->v[2]*lambda;  
+             */
             particles.push_back(pzL);
             kinE = pzL->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
             gsl_histogram_increment(gas_in,kinE);
@@ -2842,7 +2904,7 @@ void calculateGasTemperature(std::list<Particle*> gas,FILE* output)
     outTemp = outTemp/(3*outCount);
     //std::cout << "\tInTemp: " << inTemp << std::endl;
     //std::cout << "\tOutTemp: " << outTemp << std::endl;
-    fprintf(output,"%lf\t%lf\t%s\n",inTemp,outTemp,inTemp-outTemp,inTemp>outTemp ? "InTemp" : "OutTemp");
+    fprintf(output,"%lf\t%lf\t%lf\t%s\n",inTemp,outTemp,inTemp-outTemp,inTemp>outTemp ? "InTemp" : "OutTemp");
 }
 
 double calculateEnergies(Particle* cube, std::list<Particle*> gas)

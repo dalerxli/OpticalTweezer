@@ -78,4 +78,10 @@ P.~Wirnsberger, D.~Frenkel, and C.~Dellago.
   energy conservation properties.
 \newblock {\em The Journal of Chemical Physics}, 143(12), 2015.
 
+\bibitem{Gruenwald2006}
+M.~Grünwald and C.~Dellago.
+\newblock Ideal gas pressure bath: a method for applying hydrostatic pressure
+  in the computer simulation of nanoparticles.
+\newblock {\em Molecular Physics}, 104(22-24):3709--3715, 2006.
+
 \end{thebibliography}

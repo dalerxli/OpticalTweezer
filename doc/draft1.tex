@@ -425,6 +425,7 @@ The factor $\xi_k$ is given by
 where $\Delta Q_{\Gamma_k}$ is the exchanged heat in the region $\Gamma_k$ and $\mathcal{K}_{\Gamma_k}$ is the non-translational kinetic energy of the
 region $\Gamma_k$ and is given by
 \begin{equation}
+    \label{eq:kineticK}
     \mathcal{K}_{\Gamma_k} = \sum_{i \in \gamma_k} \frac{m_i v_i^2}{2} - \frac{m_{\Gamma_k}v_{\Gamma_k}^2}{2}
 \end{equation}
 The sum is taken over all indices in $\gamma_k$ which is the set of indices of particles in the region $\Gamma_k$.\\
@@ -433,9 +434,9 @@ $\mathcal{F}_\GammaK$:
 \begin{equation}
     \mathcal{F}_\GammaK = \frac{\Delta Q_\GammaK}{\Delta t}
 \end{equation}
-The second one is the thermostatting force $\mathbf{\eta}_i$, which is defined as
+The second one is the thermostatting force $\boldsymbol{\eta}_i$, which is defined as
 \begin{equation}
-    \mathbf{\eta}_i = 
+    \boldsymbol{\eta}_i = 
     \begin{cases}
         m_i \ \dfrac{{\mathcal{F}_{\Gamma_{k(\mathbf{r}_i)}}}}{{2\mathcal{K}_{\Gamma_{k(\mathbf{r}_i)}}}} \
         \left(\mathbf{v}_i - \mathbf{v}_{\Gamma_{k(\mathbf{r}_i)}}\right)
@@ -480,6 +481,62 @@ With all the necessary quantities established, the updating sequence of the eHEX
     \mathbf{r}^{n+1}_i &=& \bar{\mathbf{r}}^{n+1} - \Delta t^3 \mathcal{E}\bar{\mathbf{r}}^{n+1}_i
 \end{eqnarray}
 \end{subequations}
+This algorithm can be applied to the problem of the levitating nano sphere in the laser beam by adjusting the setup and some of the parameters.\\
+Firstly, the setup of the heat sinks and sources has to be changed. Since there is only energy pumped into the system from the outside, the region
+acting as a heat sink vanishes and the region acting as a heat source spans over the whole simulation box. This means that, using the 
+notation of fig. \ref{fig:ehex}, $\Omega = \Gamma_1$. Furthermore, neither the simulation box nor the heat source are moving, i.e. 
+$\mathbf{v}_\Omega = \mathbf{v}_{\Gamma_1} = 0$. This affects the non-translational kinetic energy term $\mathcal{K}_{\Gamma_1}$, the thermostatting
+force $\boldsymbol{\eta}$ and the correction term $\mathcal{E}\mathbf{r}$. Since there is only one region acting as a heat sink, the terms $\Delta Q$,
+$\mathcal{K}$ and $\mathcal{F}$ don't need an index. The summation index in \eqref{eq:kineticK} and \eqref{eq:bigeps} can be changed to the number of
+particles in the system, $N$, since all the particles are within the heat exchanging region. The masses are set to 1, i.e. $m_i = 1$ with the chosen
+reduced units and with this the total mass of the region (in the term $1/m_{\Gamma_{k(\mathbf{r}_i)}}$ in \eqref{eq:bigeps}) is equal to the number of
+particles in the system. With these changes, the quantities can be written down as:
+\begin{eqnarray}
+    \mathcal{K} &=& \sum_{N} \frac{v_i^2}{2}\\
+    \xi &=& \sqrt{1+\frac{\Delta Q}{\mathcal{K}}}\\
+    \mathcal{F} &=& \frac{\Delta Q}{\Delta t}\\
+    \boldsymbol{\eta}_i &=& 
+    \dfrac{\mathcal{F}}{{2\mathcal{K}}} \
+        \mathbf{v}_i\\
+        \mathcal{E}{r}_{i,\alpha} &=& \dfrac{\eta_{i,\alpha}}{\mathcal{K}} \left[
+        \frac{\mathcal{F}}{48} + \frac{1}{6} \sum_{N} \mathbf{f}_j \cdot \mathbf{v}_j
+            \right] \nonumber \\
+            &-& \frac{\mathcal{F}}{12\mathcal{K}} \left[
+            {f_{i,\alpha}} - \frac{1}{N} \sum_{N}f_{j,\alpha}\right]
+\end{eqnarray}
+This means that the laser is modeled to be pumping energy into the system, which increases the velocities of the velocities of the particles in the
+system over time, while the center of mass motion is not affected by this.\\
+
+
+\subsection{Surrounding Gas - Barostat}
+Without any equilibrating mechanism the setup described by now would lead to the system melting, which is not desirable. In the next step we will 
+introduce the surrounding gas of the gas chamber that will absorb some of the energy in the system, leading to the final state.\\
+Generally, pressure is introduced to the system by surrounding the object of interest (in this case the glass nano sphere) with a pressure medium.
+There are two main requirements for the choice of such a pressure medium: the exerted pressure must be hydrostatic and the computation of the
+interaction between the pressure medium and the object of interest must not take up a lot of resources.\\
+The model used in this thesis was developed by Gr\"unwald and Dellago \cite{Gruenwald2006} and uses an ideal gas of non-interacting particles as
+pressure medium. The particles of this pressure medium flow into the simulation from an outside box, whose geometry is based on the form of the object
+of interest. This barostat also acts as a thermostat and thus is suitable for the application in this thesis.\\
+The gas particles interact with the object via a soft-sphere potential of the form
+\begin{equation}
+    \label{eq:softsphere}
+    U(r) = \frac{1}{r^{12}}
+\end{equation}
+in reduced units. \\
+BLABLABLA\\
+The algorithm can be performed by following these steps:
+\begin{enumerate}
+    \item Randomly draw the number of particles that are created on a single side of the minimal volume of cells, $N_\text{fac}$, from the
+        distribution 
+        \begin{equation}
+            \langle N_\text{fac}\rangle = \Delta t L^2 P \left(\frac{1}{2\pi m k_B T}\right)^\frac12
+        \end{equation}
+        where $\Delta T$ is the time step of the simulation, $L$ is the side length of the cell in which the particle is created, $P$ is the desired
+        pressure, $m$ is the mass of the gas particle, $k_B$ is the Boltzmann constant (which will be set to 1 in reduced units) and $T$ is the
+        desired temperature. This chosen number of particles is then equally distributed over the face of the cell on which they are created.
+    \item wos
+\end{enumerate}
+
 %This is done by adding for instance two regions to the simulation, one providing an influx of heat
 %and the other acting as a heat sink. The algorithm is furthermore designed to incorporate the velocities of the center of mass of the system and the
 %velocities of the regions. 

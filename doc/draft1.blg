@@ -12,45 +12,45 @@ Warning--empty title in buffalo
 Warning--empty journal in buffalo
 Warning--empty year in buffalo
 Warning--can't use both author and editor fields in Huenenberger2005
-You've used 14 entries,
+You've used 15 entries,
             1791 wiz_defined-function locations,
-            546 strings with 6010 characters,
-and the built_in function-call counts, 3059 in all, are:
-= -- 276
-> -- 105
+            554 strings with 6195 characters,
+and the built_in function-call counts, 3307 in all, are:
+= -- 299
+> -- 113
 < -- 1
-+ -- 42
-- -- 28
-* -- 233
-:= -- 468
-add.period$ -- 39
-call.type$ -- 14
-change.case$ -- 9
++ -- 45
+- -- 30
+* -- 253
+:= -- 506
+add.period$ -- 42
+call.type$ -- 15
+change.case$ -- 10
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 136
-empty$ -- 312
-format.name$ -- 28
-if$ -- 676
+cite$ -- 24
+duplicate$ -- 145
+empty$ -- 338
+format.name$ -- 30
+if$ -- 732
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 17
-newline$ -- 69
-num.names$ -- 12
-pop$ -- 39
+int.to.str$ -- 15
+missing$ -- 18
+newline$ -- 74
+num.names$ -- 13
+pop$ -- 40
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 60
+skip$ -- 64
 stack$ -- 0
-substring$ -- 237
-swap$ -- 22
+substring$ -- 264
+swap$ -- 23
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 9
-while$ -- 27
-width$ -- 16
-write$ -- 145
+while$ -- 29
+width$ -- 17
+write$ -- 156
 (There were 9 warnings)

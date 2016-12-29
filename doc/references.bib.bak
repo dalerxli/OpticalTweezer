@@ -23,8 +23,6 @@
   Number                   = {8},
   Pages                    = {3684-3690},
   Volume                   = {81},
-
-  __markedentry            = {[motz:]},
   Doi                      = {http://dx.doi.org/10.1063/1.448118},
   Owner                    = {motz},
   Timestamp                = {2016.11.22},
@@ -101,6 +99,7 @@
   Year                     = {2005},
 
   Address                  = {Berlin, Heidelberg},
+
   Booktitle                = {Advanced Computer Simulation: Approaches for Soft Matter Sciences I},
   Doi                      = {10.1007/b99427},
   ISBN                     = {978-3-540-31558-2},
@@ -119,7 +118,7 @@
   Pages                    = {1389-1412},
   Volume                   = {80},
 
-  __markedentry            = {[motz:6]},
+  __markedentry            = {[motz:]},
   Adsnote                  = {Provided by the SAO/NASA Astrophysics Data System},
   Adsurl                   = {http://adsabs.harvard.edu/abs/1993MolPh..80.1389H},
   Doi                      = {10.1080/00268979300103101},
@@ -136,6 +135,7 @@
   Month                    = {Mar},
   Pages                    = {1695--1697},
   Volume                   = {31},
+
   Doi                      = {10.1103/PhysRevA.31.1695},
   Issue                    = {3},
   Numpages                 = {0},
@@ -155,6 +155,7 @@
   Number                   = {6},
   Pages                    = {415--417},
   Volume                   = {9},
+
   ISSN                     = {1748-3387},
   Owner                    = {motz},
   Publisher                = {Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.},
@@ -172,6 +173,7 @@
   Number                   = {6},
   Pages                    = {425--429},
   Volume                   = {9},
+
   ISSN                     = {1748-3387},
   Owner                    = {motz},
   Publisher                = {Nature Publishing Group},
@@ -187,6 +189,7 @@
   Number                   = {1},
   Pages                    = {511-519},
   Volume                   = {81},
+
   Doi                      = {http://dx.doi.org/10.1063/1.447334},
   Owner                    = {motz},
   Timestamp                = {2016.11.22},
@@ -201,6 +204,7 @@
   Number                   = {1},
   Pages                    = {637-649},
   Volume                   = {76},
+
   Doi                      = {http://dx.doi.org/10.1063/1.442716},
   Owner                    = {motz},
   Timestamp                = {2016.11.21},
@@ -224,6 +228,22 @@
   Publisher                = {American Physical Society},
   Timestamp                = {2016.08.08},
   Url                      = {http://link.aps.org/doi/10.1103/PhysRev.159.98}
+}
+
+@Article{Wirnsberger2015,
+  Title                    = {An enhanced version of the heat exchange algorithm with excellent energy conservation properties},
+  Author                   = {Wirnsberger, P. and Frenkel, D. and Dellago, C.},
+  Journal                  = {The Journal of Chemical Physics},
+  Year                     = {2015},
+  Number                   = {12},
+  Volume                   = {143},
+
+  __markedentry            = {[motz:6]},
+  Doi                      = {http://dx.doi.org/10.1063/1.4931597},
+  Eid                      = {124104},
+  Owner                    = {motz},
+  Timestamp                = {2016.11.28},
+  Url                      = {http://scitation.aip.org/content/aip/journal/jcp/143/12/10.1063/1.4931597}
 }
 
 @Article{buffalo,
