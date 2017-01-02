@@ -529,13 +529,39 @@ The algorithm can be performed by following these steps:
     \item Randomly draw the number of particles that are created on a single side of the minimal volume of cells, $N_\text{fac}$, from the
         distribution 
         \begin{equation}
-            \langle N_\text{fac}\rangle = \Delta t L^2 P \left(\frac{1}{2\pi m k_B T}\right)^\frac12
+            %\langle N_\text{fac}\rangle = \Delta t L^2 P \left(\frac{1}{2\pi m k_B T}\right)^\frac12
+            \langle N_\text{fac}\rangle = \Delta t L^2 P \sqrt{\frac{1}{2\pi m k_B T}}
         \end{equation}
-        where $\Delta T$ is the time step of the simulation, $L$ is the side length of the cell in which the particle is created, $P$ is the desired
+        where $\Delta t$ is the time step of the simulation, $L$ is the side length of the cell in which the particle is created, $P$ is the desired
         pressure, $m$ is the mass of the gas particle, $k_B$ is the Boltzmann constant (which will be set to 1 in reduced units) and $T$ is the
-        desired temperature. This chosen number of particles is then equally distributed over the face of the cell on which they are created.
-    \item wos
+        desired temperature. This chosen number of particles is then equally distributed over the face of the cell on which they are created. The
+        velocities of the created particles are drawn from two different random number distributions. The component of the particle perpendicular to
+        the surface is drawn from a Rayleigh distribution of the form 
+        \begin{equation}
+            p(v_i) = \frac{m}{k_B T}v_i \ e^{-\frac{mv_i^2}{2k_BT}}
+        \end{equation}
+        The other components of the particles' velocity are drawn from a Maxwell-Boltzmann distribution.
+    \item Perform the first step of the velocity Verlet algorithm to propagate the particle positions by one time step.
+    \item Check if any gas particles have left the minimal volume of cells and remove those which have.
+    \item Check if the geometry of the crystal and with it the minimal volume of cells has changed. If it has, remove all gas particles in the cells
+        that are no longer needed. Then insert new gas particles to the created cells with a number drawn from a Poisson distribution with mean value
+        \begin{equation}
+            \langle N_\text{ins}\rangle = \frac{PL^3}{k_BT}
+        \end{equation}
+        If the length of the cell $L$ is chosen to be equal to the cut-off radius $r_c$, this insertion should only be carried out with a probablity of
+        \begin{equation}
+            P_\text{ins} = e^{-\frac{U}{k_BT}} < 1
+        \end{equation}
+        (where U is the interaction energy between the gas particle and the crystal) because it is possible that the inserted particle is 
+        within the interaction range of the crystal. 
+    \item Compute all forces.
+    \item Perform the second step of the velocity Verlet and propagate the particle velocities by one time step. 
 \end{enumerate}
+This algorithm is formulated in a general fashion, so that a wide range of crystals and geometries can be used. The setup used in this thesis is a
+FCC lattice, which has a nice symmetry that is not influenced by the surrounding gas. The algorithm will therefore not be carried out using 
+cell-lists and a minimal volume of cells that is changing over the course of the simulation, but rather a fixed setup of the volume surrounding the 
+nano crystal.\\ 
+Since the crystal itself is a cube a straighforward approach is surrounding it by a bigger cube. 
 
 %This is done by adding for instance two regions to the simulation, one providing an influx of heat
 %and the other acting as a heat sink. The algorithm is furthermore designed to incorporate the velocities of the center of mass of the system and the
