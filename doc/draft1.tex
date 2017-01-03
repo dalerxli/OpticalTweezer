@@ -114,7 +114,7 @@ motion of a glass nanoparticle in a laser trap was used to investigate the fluct
 \subsection{Experimental setup}
 In the experiment, a silica nano particle with a radius of about 75 nm and mass of about $3 \times 10^{-18}$kg is trapped in a laser beam within a
 vacuum chamber. The trapping of the silica nano particle (which will be referred to as \textit{glass particle}) is achieved by a gradient force of the
-laser beam acting on the particle. The experimental setup is depicted in fig. \ref{fig:setup}.\\
+laser beam acting on the particle. The experimental setup is depicted in fig.~\ref{fig:setup}.\\
 The particle fluctuates within the trap in all three spatial directions. These fluctuations can be approximated
 such that they are decoupled, which means that they can be described by a 1-dimensional Langevin equation:
 \begin{equation}
@@ -561,7 +561,17 @@ This algorithm is formulated in a general fashion, so that a wide range of cryst
 FCC lattice, which has a nice symmetry that is not influenced by the surrounding gas. The algorithm will therefore not be carried out using 
 cell-lists and a minimal volume of cells that is changing over the course of the simulation, but rather a fixed setup of the volume surrounding the 
 nano crystal.\\ 
-Since the crystal itself is a cube a straighforward approach is surrounding it by a bigger cube. 
+Since the crystal itself is a cube a straighforward approach is surrounding it by a bigger cube. The distance between the cube face and the nano
+crystal is chosen to be the side length of the nano crystal, so the setup will properly scale for different numbers of particles. 
+The schematic setup for this is depicted in fig.\ref{fig:gascube}.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.8]{images/gas_volume.pdf}
+        \caption{Schematic setup for the barostat: The gas particles will be created on the face of the cube surrounding the crystal. The
+                    cube is chosen to be at a distance of one side length of the nano crystal.}
+        \label{fig:gascube}
+    \end{center}
+\end{figure}
 
 %This is done by adding for instance two regions to the simulation, one providing an influx of heat
 %and the other acting as a heat sink. The algorithm is furthermore designed to incorporate the velocities of the center of mass of the system and the
