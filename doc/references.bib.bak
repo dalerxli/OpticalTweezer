@@ -90,6 +90,26 @@
   Url                      = {http://dx.doi.org/10.1038/nnano.2014.40}
 }
 
+@Article{Gruenwald2006,
+  Title                    = {Ideal gas pressure bath: a method for applying hydrostatic pressure in the computer simulation of nanoparticles},
+  Author                   = {M. Grünwald and C. Dellago},
+  Journal                  = {Molecular Physics},
+  Year                     = {2006},
+  Number                   = {22-24},
+  Pages                    = {3709-3715},
+  Volume                   = {104},
+
+  __markedentry            = {[motz:6]},
+  Abstract                 = { We present a method for applying hydrostatic pressure in the computer simulation of nanoparticles, using an ideal gas as the pressure medium and thermostat. As the equation of state is known for the ideal gas, the exerted pressure can easily be tuned by adjusting the number of gas particles, while the temperature is controlled by their kinetic energy. Applying this method, we study the pressure-induced transformation from the four-coordinate wurtzite to the six-coordinate rocksalt structure in faceted CdSe nanocrystals. The transformation involves the consecutive sliding of parallel (100) planes and proceeds through a five-coordinate intermediate structure. },
+  Doi                      = {10.1080/00268970600968052},
+  Eprint                   = { http://dx.doi.org/10.1080/00268970600968052 
+},
+  Owner                    = {motz},
+  Timestamp                = {2016.12.12},
+  Url                      = { http://dx.doi.org/10.1080/00268970600968052 
+}
+}
+
 @InBook{Huenenberger2005,
   Title                    = {Thermostat Algorithms for Molecular Dynamics Simulations},
   Author                   = {H{\"u}nenberger, Philippe H.},
@@ -117,8 +137,6 @@
   Month                    = dec,
   Pages                    = {1389-1412},
   Volume                   = {80},
-
-  __markedentry            = {[motz:]},
   Adsnote                  = {Provided by the SAO/NASA Astrophysics Data System},
   Adsurl                   = {http://adsabs.harvard.edu/abs/1993MolPh..80.1389H},
   Doi                      = {10.1080/00268979300103101},
@@ -238,7 +256,7 @@
   Number                   = {12},
   Volume                   = {143},
 
-  __markedentry            = {[motz:6]},
+  __markedentry            = {[motz:]},
   Doi                      = {http://dx.doi.org/10.1063/1.4931597},
   Eid                      = {124104},
   Owner                    = {motz},

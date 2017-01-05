@@ -84,4 +84,16 @@ M.~Grünwald and C.~Dellago.
   in the computer simulation of nanoparticles.
 \newblock {\em Molecular Physics}, 104(22-24):3709--3715, 2006.
 
+\bibitem{Humphrey1996}
+William Humphrey, Andrew Dalke, and Klaus Schulten.
+\newblock {VMD} -- {V}isual {M}olecular {D}ynamics.
+\newblock {\em Journal of Molecular Graphics}, 14:33--38, 1996.
+
+\bibitem{Stukowski2010}
+Alexander Stukowski.
+\newblock Visualization and analysis of atomistic simulation data with
+  ovito–the open visualization tool.
+\newblock {\em Modelling and Simulation in Materials Science and Engineering},
+  18(1):015012, 2010.
+
 \end{thebibliography}

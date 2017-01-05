@@ -515,15 +515,20 @@ Generally, pressure is introduced to the system by surrounding the object of int
 There are two main requirements for the choice of such a pressure medium: the exerted pressure must be hydrostatic and the computation of the
 interaction between the pressure medium and the object of interest must not take up a lot of resources.\\
 The model used in this thesis was developed by Gr\"unwald and Dellago \cite{Gruenwald2006} and uses an ideal gas of non-interacting particles as
-pressure medium. The particles of this pressure medium flow into the simulation from an outside box, whose geometry is based on the form of the object
-of interest. This barostat also acts as a thermostat and thus is suitable for the application in this thesis.\\
+pressure medium. The particles of this pressure medium flow into the simulation from an outside volume, whose geometry is based on the form of the
+object of interest (this will be referred to as the minimal volume of cells). This barostat also acts as a thermostat and thus is suitable for the 
+application in this thesis.\\
 The gas particles interact with the object via a soft-sphere potential of the form
 \begin{equation}
     \label{eq:softsphere}
-    U(r) = \frac{1}{r^{12}}
+    U(r) = \varepsilon \left(\frac{\sigma}{r}\right)^{12}
 \end{equation}
-in reduced units. \\
-BLABLABLA\\
+where $\varepsilon$ is the interaction strength and $\sigma$ is the interaction range and $r$ is the distance between the gas particle and the
+interacting particle. The gas particles do not interact with one another in this model.\\
+In order to increase the efficiency of the computing process, $\sigma$ should be chosen carefully. For larger $\sigma$, the number of interaction
+partners increases, which increases the number of force calculations which are a very time consuming part. For smaller $\sigma$ the possibility for
+gas particles reaching the inside of the nano crystal increases, which is not desirable. So $\sigma$ should be chosen small enough to keep the force
+calculations at a minimum and large enough for the particle to stay on the outside of the crystal.\\ 
 The algorithm can be performed by following these steps:
 \begin{enumerate}
     \item Randomly draw the number of particles that are created on a single side of the minimal volume of cells, $N_\text{fac}$, from the
@@ -550,7 +555,7 @@ The algorithm can be performed by following these steps:
         \end{equation}
         If the length of the cell $L$ is chosen to be equal to the cut-off radius $r_c$, this insertion should only be carried out with a probablity of
         \begin{equation}
-            P_\text{ins} = e^{-\frac{U}{k_BT}} < 1
+            P_\text{ins} = e^{-\frac{U}{k_BT}}
         \end{equation}
         (where U is the interaction energy between the gas particle and the crystal) because it is possible that the inserted particle is 
         within the interaction range of the crystal. 
@@ -566,9 +571,10 @@ crystal is chosen to be the side length of the nano crystal, so the setup will p
 The schematic setup for this is depicted in fig.\ref{fig:gascube}.
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[scale=0.8]{images/gas_volume.pdf}
-        \caption{Schematic setup for the barostat: The gas particles will be created on the face of the cube surrounding the crystal. The
-                    cube is chosen to be at a distance of one side length of the nano crystal.}
+        \includegraphics[scale=0.5]{images/gas_volume_ver2.pdf}
+        \caption{Schematic setup for the barostat. The outer volume (blue) is one side length $L$ away from the nano crystal (black). 
+                    The gas particles are created along the blue lines of the outer volume. Since the geometry of the nano crystal does not change, 
+                    the geometry of the outer volume will be constant throughout the simulation.}
         \label{fig:gascube}
     \end{center}
 \end{figure}
@@ -631,6 +637,17 @@ The schematic setup for this is depicted in fig.\ref{fig:gascube}.
 \newpage
 \section{Results}
 % results with different parameters, graphs, etc.
+Since the simulation consists of various parts that have to work together, we first need to check if every part itself works.\\
+The first element of the simulation is the setup of the FCC lattice on which the particles are placed on. To check if this is done correctly, we can
+use a visualisation and rendering software such as VMD\cite{Humphrey1996} or OVITO\cite{Stukowski2010}. The rendered image of the nano crystal can be
+seen in fig.~\ref{fig:glass}.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.2]{images/initial_position_red.png}
+        \caption{}
+        \label{fig:gascube}
+    \end{center}
+\end{figure}
 
 
 

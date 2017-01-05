@@ -51,7 +51,7 @@ int main(int argc,char** argv)
      *    q += 0.01;
      *}
      */
-    setValues(0.1,0.04,0.2,0.9,0.06);
+    setValues(0.2,0.04,0.2,0.9,0.06);
     mainLoop();
     return 0;
 }
