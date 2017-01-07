@@ -51,7 +51,7 @@ int main(int argc,char** argv)
      *    q += 0.01;
      *}
      */
-    setValues(0.2,0.04,0.2,0.9,0.06);
+    setValues(0.2,0.04,0.2,0.8,0.06);
     mainLoop();
     return 0;
 }
@@ -164,7 +164,25 @@ void mainLoop() {
             {
                 rescaleVelocities(cube);
                 calcTemp(cube,tempout); 
-                calcCM(cube,rCMtemp,comData);
+                //calcCM(cube,rCMtemp,comData);
+                for(int k=0;k<3;k++)
+                {
+                    rCM[k] = 0;
+                    vCM[k] = 0;
+                }
+                for(unsigned int j=0;j<N;j++)
+                    for(int k=0;k<3;k++)
+                    {
+                        rCM[k] += cube[j].r[k];
+                        vCM[k] += cube[j].v[k];
+                    }
+                for(int k=0;k<3;k++)
+                {
+                    rCM[k] = rCM[k]/(N*1.0);
+                    vCM[k] = vCM[k]/(N*1.0);
+                }
+                fprintf(comData,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
+                fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
             }
             //if(run%400 == 0)
                 //GenerateOutput(cube,gas,run);
