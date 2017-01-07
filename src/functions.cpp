@@ -133,7 +133,7 @@ void VelocityVerlet(Particle* particle,int WRITE,FILE* output)
             particle[i].v[m] += 0.5 * particle[i].a[m] * dt;
 }
 
-void VelocityVerlet(Particle* particle,FILE* output)
+void VelocityVerlet(Particle* particle)
 {
     unsigned int i,m;
 
@@ -2983,5 +2983,33 @@ double calculateEnergies(Particle* cube, std::list<Particle*> gas)
      *energies[2] = eTot;
      */
     
-    return eTot;
+    //return eTot;
+}
+
+double calculateEnergies(Particle* cube)
+{
+    double* energies = new double[3];
+    double ePot = 0;
+    double eKin = 0;
+    double eTot = 0;
+    double rij[3] = {0,0,0};
+    double rSqd = 0;
+
+    for(int i=0;i<N-1;i++)
+    {
+        eKin += (cube[i].v[0]*cube[i].v[0]+cube[i].v[1]*cube[i].v[1]+cube[i].v[2]*cube[i].v[2])*0.5;
+        for(int j=i+1;j<N;j++)
+        {
+            for(int m=0;m<3;m++)
+                rij[m] = cube[i].r[m] - cube[j].r[m];
+            rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+            if(rSqd < 2.5*2.5)
+                ePot += 4*(pow(rSqd,-6)-pow(rSqd,-3));
+        }
+
+    }
+
+    return eKin+ePot;
+        
+    
 }

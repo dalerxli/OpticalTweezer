@@ -10,7 +10,7 @@ unsigned int NumberOfParticles();
 void ComputeAccelerations(Particle* particle);
 
 void VelocityVerlet(Particle* particle,int WRITE,FILE* output);
-void VelocityVerlet(Particle* particle,FILE* output);
+void VelocityVerlet(Particle* particle);
 
 void InitVelocities(Particle* particle);
 double Pressure(Particle* particle);
@@ -76,5 +76,6 @@ void writeHistory(std::list<Particle*>& gas, int run);
 void calculateGasTemperature(std::list<Particle*> gas,FILE* output);
 
 double calculateEnergies(Particle* cube, std::list<Particle*> gas);
+double calculateEnergies(Particle* cube);
 
 #endif
