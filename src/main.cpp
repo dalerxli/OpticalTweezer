@@ -32,27 +32,29 @@ int main(int argc,char** argv)
             Distances[i][j] = new double[3];
         }
 
-    /*
-     *double q = 0.01;
-     *double at = 0.5;
-     *while(q < 0.12)
-     *{
-     *    at = 0.5;
-     *    while(at < 1.3)
-     *    {
-     *        setValues(0.4,q,0.2,4,at);
-     *        std::cout << "==================================================" << std::endl;
-     *        std::cout << "q: " << q << std::endl;
-     *        std::cout << "Ambient Temperature: " << at << std::endl;
-     *        std::cout << "==================================================" << std::endl;
-     *        mainLoop();
-     *        at += 0.1;
-     *    }
-     *    q += 0.01;
-     *}
-     */
-    setValues(0.2,0.04,0.2,0.8,0.06);
-    mainLoop();
+    double t = 0.2;
+    double ambient = 0.06;
+    double press = 0.8;
+    double q = 0.04;
+    while(q < 0.1)
+    {
+        ambient = 0.06;
+        while(ambient < 0.1)
+        {
+            setValues(t,q,0.2,press,ambient);
+            std::cout << "==================================================" << std::endl;
+            std::cout << "t: " << t << std::endl;
+            std::cout << "p: " << press << std::endl;
+            std::cout << "q: " << q << std::endl;
+            std::cout << "at: " << ambient << std::endl;
+            std::cout << "==================================================" << std::endl;
+            mainLoop();
+            ambient += 0.1;
+        }
+        q += 0.01;
+    }
+    //setValues(0.2,0.04,0.2,0.8,0.06);
+    //mainLoop();
     return 0;
 }
 
@@ -232,9 +234,27 @@ void mainLoop() {
         if(run%100==0)
         {
             calcTemp(cube,tempout); 
-            calcCOMTemp(vCM,COMtempout);
+            //calcCOMTemp(vCM,COMtempout);
             //fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
             calculateGasTemperature(gas,gasTempData);
+            for(int k=0;k<3;k++)
+            {
+                rCM[k] = 0;
+                vCM[k] = 0;
+            }
+            for(unsigned int j=0;j<N;j++)
+                for(int k=0;k<3;k++)
+                {
+                    rCM[k] += cube[j].r[k];
+                    vCM[k] += cube[j].v[k];
+                }
+            for(int k=0;k<3;k++)
+            {
+                rCM[k] = rCM[k]/(N*1.0);
+                vCM[k] = vCM[k]/(N*1.0);
+            }
+            fprintf(comData,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
+            fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
         }
         //std::cout << "works!" << std::endl;
         //writeHistory(gas,run);

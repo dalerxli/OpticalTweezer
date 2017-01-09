@@ -638,16 +638,22 @@ The schematic setup for this is depicted in fig.\ref{fig:gascube}.
 \section{Results}
 % results with different parameters, graphs, etc.
 Since the simulation consists of various parts that have to work together, we first need to check if every part itself works.\\
+\subsection{The Crystal}
 The first element of the simulation is the setup of the FCC lattice on which the particles are placed on. To check if this is done correctly, we can
-use a visualisation and rendering software such as VMD\cite{Humphrey1996} or OVITO\cite{Stukowski2010}. The rendered image of the nano crystal can be
-seen in fig.~\ref{fig:glass}.
+use a visualisation and rendering software such as VMD\cite{Humphrey1996} or OVITO\cite{Stukowski2010}. The rendered image of the nano crystal 
+can be seen in fig.~\ref{fig:glass}. The chosen perspective shows the structure of the FCC lattice, where 3 layers are forming 
+where the atoms take the position on the gap between the atoms from the layer below.\\
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[scale=0.2]{images/initial_position_red.png}
-        \caption{}
-        \label{fig:gascube}
+        \includegraphics[scale=0.2]{images/fcc_rendering_new.png}
+        \caption{Rendering of the model of the nano crystal before starting the simulation. 
+                    The perspective shows the 3 layers of the FCC lattice. These layers consist of atoms
+                    taking the position above the gap between two of the atoms from the layer below and match the positions of the atoms 2 layers
+                below. The black box is the outline of the particles' positions and shows the geometry of the system.}
+        \label{fig:glass}
     \end{center}
 \end{figure}
+
 
 
 
