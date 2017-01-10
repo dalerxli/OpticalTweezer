@@ -49,6 +49,7 @@
 \citation{Allen1989}
 \citation{Verlet1967}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}The Velocity-Verlet Algorithm}{8}{subsection.4.3}}
+\newlabel{section:verlet}{{4.3}{8}{The Velocity-Verlet Algorithm}{subsection.4.3}{}}
 \newlabel{eq:verlet}{{8}{8}{The Velocity-Verlet Algorithm}{equation.4.8}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Simplified graphical schematic of the finite difference approach. The evolution of the system from a point $(r^N(t),p^N(t))$ in the phase space is approximated by slicing it up into pieces of length $\Delta t$. On every stop after the starting point ($t+\Delta t$, $t+2\Delta t$, $t+3\Delta t$,$\ldots  $) the equations of motion can be solved numerically.\relax }}{9}{figure.caption.4}}
 \newlabel{fig:finitedifference}{{4}{9}{Simplified graphical schematic of the finite difference approach. The evolution of the system from a point $(r^N(t),p^N(t))$ in the phase space is approximated by slicing it up into pieces of length $\Delta t$. On every stop after the starting point ($t+\Delta t$, $t+2\Delta t$, $t+3\Delta t$,$\ldots $) the equations of motion can be solved numerically.\relax }{figure.caption.4}{}}
@@ -71,18 +72,21 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Setup for the use of the HEX and eHEX algorithms. The simulationbox $\Omega $, which is moving with a velocity of $v_\Omega $, contains a heat source (red), $\Gamma _1$, which is moving with velocity $v_{\Gamma _1}$ and a heat sink (blue), $\Gamma _2$, which is moving with velocity $v_{\Gamma _2}$. The regions that are neither heat sources or heat sinks are denoted by $\Gamma _0$.\relax }}{13}{figure.caption.5}}
 \newlabel{fig:ehex}{{5}{13}{Setup for the use of the HEX and eHEX algorithms. The simulationbox $\Omega $, which is moving with a velocity of $v_\Omega $, contains a heat source (red), $\Gamma _1$, which is moving with velocity $v_{\Gamma _1}$ and a heat sink (blue), $\Gamma _2$, which is moving with velocity $v_{\Gamma _2}$. The regions that are neither heat sources or heat sinks are denoted by $\Gamma _0$.\relax }{figure.caption.5}{}}
 \newlabel{eq:bigeps}{{24}{13}{The Laser Beam - Energy influx}{equation.4.24}{}}
+\citation{Gieseler2014}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}The Laser Beam - Trapping}{14}{subsection.4.5}}
 \citation{Gruenwald2006}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Surrounding Gas - Barostat}{14}{subsection.4.5}}
-\newlabel{eq:softsphere}{{32}{15}{Surrounding Gas - Barostat}{equation.4.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Surrounding Gas - Barostat}{15}{subsection.4.6}}
+\newlabel{eq:softsphere}{{36}{16}{Surrounding Gas - Barostat}{equation.4.36}{}}
 \citation{Humphrey1996}
 \citation{Stukowski2010}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Schematic setup for the barostat. The outer volume (blue) is one side length $L$ away from the nano crystal (black). The gas particles are created along the blue lines of the outer volume. Since the geometry of the nano crystal does not change, the geometry of the outer volume will be constant throughout the simulation.\relax }}{17}{figure.caption.6}}
-\newlabel{fig:gascube}{{6}{17}{Schematic setup for the barostat. The outer volume (blue) is one side length $L$ away from the nano crystal (black). The gas particles are created along the blue lines of the outer volume. Since the geometry of the nano crystal does not change, the geometry of the outer volume will be constant throughout the simulation.\relax }{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{17}{section.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Crystal}{17}{subsection.5.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Rendering of the model of the nano crystal before starting the simulation. The perspective shows the 3 layers of the FCC lattice. These layers consist of atoms taking the position above the gap between two of the atoms from the layer below and match the positions of the atoms 2 layers below. The black box is the outline of the particles' positions and shows the geometry of the system.\relax }}{18}{figure.caption.7}}
-\newlabel{fig:glass}{{7}{18}{Rendering of the model of the nano crystal before starting the simulation. The perspective shows the 3 layers of the FCC lattice. These layers consist of atoms taking the position above the gap between two of the atoms from the layer below and match the positions of the atoms 2 layers below. The black box is the outline of the particles' positions and shows the geometry of the system.\relax }{figure.caption.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{18}{section.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Schematic setup for the barostat. The outer volume (blue) is one side length $L$ away from the nano crystal (black). The gas particles are created along the blue lines of the outer volume. Since the geometry of the nano crystal does not change, the geometry of the outer volume will be constant throughout the simulation.\relax }}{18}{figure.caption.6}}
+\newlabel{fig:gascube}{{6}{18}{Schematic setup for the barostat. The outer volume (blue) is one side length $L$ away from the nano crystal (black). The gas particles are created along the blue lines of the outer volume. Since the geometry of the nano crystal does not change, the geometry of the outer volume will be constant throughout the simulation.\relax }{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{18}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Crystal}{18}{subsection.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Velocity Verlet}{18}{subsection.5.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces A rendered image of the FCC crystal. The chosen color-coding along the (1,1,1) Miller-index highlights the layers for this perspective. The perspective is chosen to see the layering of the FCC crystal with its 3 layer structure. The black box acts as a reference point to outline the geometry of the system.\relax }}{19}{figure.caption.7}}
+\newlabel{fig:glass}{{7}{19}{A rendered image of the FCC crystal. The chosen color-coding along the (1,1,1) Miller-index highlights the layers for this perspective. The perspective is chosen to see the layering of the FCC crystal with its 3 layer structure. The black box acts as a reference point to outline the geometry of the system.\relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{21}{section.6}}
 \bibdata{references}
 \bibcite{Gieseler2014}{1}
 \bibcite{Crooks1999}{2}

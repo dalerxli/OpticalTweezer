@@ -274,6 +274,7 @@ where $L$ is the side length of the cube that is the whole system and it is calc
 With the lattice constant and the 4 points of the FCC cell, all the particles can be put into place.
 
 \subsection{The Velocity-Verlet Algorithm}
+\label{section:verlet}
 When we look at the system from a thermodynamical standpoint, we see that it follows some kind of path in the phase space as time progresses. Every
 point in this space corresponds to a set of positions and momenta and the connection between two points corresponds to the evolution of the system
 from one state to another. As mentioned above, this evolution (the dynamics of the system) is a crucial element to Molecular Dynamics. Since the
@@ -508,6 +509,27 @@ This means that the laser is modeled to be pumping energy into the system, which
 system over time, while the center of mass motion is not affected by this.\\
 
 
+\subsection{The Laser Beam - Trapping}
+As mentioned above, the glass particle is trapped in the laser beam and the motion of the particle is suppressed in every direction. This behaviour
+has to be modeled as well.\\
+The approximation of the original paper \cite{Gieseler2014}, where the movements in the three spatial directions are decoupled will be
+used in the model as well. As to the model of the trapping force itself, the most straightforward approach is to use a harmonic oscillator potential.
+The force and the corresponding potential can be written as
+\begin{eqnarray}
+    \mathbf{F} &=& -k x\\
+    U &=& \frac12 k x^2
+\end{eqnarray}
+The trap is implemented by using the velocity Verlet algorithm with the above force to propagate the glass particle. Since the trap is acting on the
+whole system, the force is acting on the center of mass position and velocity. To calculate the center of mass positions and velocities, the positions
+and velocities of all particles have to be summed up and divided by the particle number:
+\begin{eqnarray}
+    \mathbf{r}_\text{COM} &=& \sum_{i=1}^N \frac{\mathbf{r}_i}{N}\\
+    \mathbf{v}_\text{COM} &=& \sum_{i=1}^N \frac{\mathbf{v}_i}{N}
+\end{eqnarray}
+The position of the center of mass and the center of mass velocity are then propagated by using the same procedure as introduced in
+section~\ref{section:verlet}.
+
+
 \subsection{Surrounding Gas - Barostat}
 Without any equilibrating mechanism the setup described by now would lead to the system melting, which is not desirable. In the next step we will 
 introduce the surrounding gas of the gas chamber that will absorb some of the energy in the system, leading to the final state.\\
@@ -579,6 +601,7 @@ The schematic setup for this is depicted in fig.\ref{fig:gascube}.
     \end{center}
 \end{figure}
 
+
 %This is done by adding for instance two regions to the simulation, one providing an influx of heat
 %and the other acting as a heat sink. The algorithm is furthermore designed to incorporate the velocities of the center of mass of the system and the
 %velocities of the regions. 
@@ -645,17 +668,79 @@ can be seen in fig.~\ref{fig:glass}. The chosen perspective shows the structure 
 where the atoms take the position on the gap between the atoms from the layer below.\\
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[scale=0.2]{images/fcc_rendering_new.png}
-        \caption{Rendering of the model of the nano crystal before starting the simulation. 
-                    The perspective shows the 3 layers of the FCC lattice. These layers consist of atoms
-                    taking the position above the gap between two of the atoms from the layer below and match the positions of the atoms 2 layers
-                below. The black box is the outline of the particles' positions and shows the geometry of the system.}
+        \includegraphics[scale=0.2]{images/fcc_rendering_layer_newcoloring.png}
+        \caption{A rendered image of the FCC crystal. The chosen color-coding along the (1,1,1) Miller-index 
+                highlights the layers for this perspective. The perspective is
+                chosen to see the layering of the FCC crystal with its 3 layer structure. The black box acts as a reference point to outline the 
+                geometry of the system.}
+            %Rendering of the model of the nano crystal before starting the simulation. 
+            %The chosen perspective shows the 3 layers of the FCC crystal with a
+                    %These layers consist of atoms
+                    %taking the position above the gap between two of the atoms from the layer below and match the positions of the atoms 2 layers
+                %below. The black box is the outline of the particles' positions and shows the geometry of the system.}
         \label{fig:glass}
     \end{center}
 \end{figure}
 
+\subsection{Velocity Verlet}
+The simulation is taking place in a NVE ensemble from a thermodynamic point of view. This means that the particle number $N$, the volume $V$ and the
+total energy $E$ are constant. In contrast to the NVT ensemble used in Monte-Carlo simulations this means, that the velocities of the particle can not
+be chosen directly. The initial velocities have to be drawn from a random number generator. This means that the velocities have to be adjusted after 
+they have been drawn.\\
+The first adjustment that needs to be made is making sure that the system is staying in place and not floating away. To do this, the velocity vectors
+of all the atoms in the system have to be added to get the resulting velocity vector for the whole system that is thought to be acting on the center
+of mass. This resulting vector is then divided by the number of particles in the system and the resulting vector is then subtracted from every
+velcocity vector of every atom in the system. 
+\begin{eqnarray}
+    \mathbf{v}_\text{tot} &=& \sum_{i=1}^N \mathbf{v}_i\\
+    \mathbf{v}_\text{cut} &=& \frac{\mathbf{v}_\text{tot}}N\\
+    \mathbf{v}_i^\text{new} &=& \mathbf{v}_i - \mathbf{v}_\text{cut}
+\end{eqnarray}
+The next adjustment is a small one that makes a difference in the long run. When choosing random velocities, the system not only tends to have a
+resulting velocity vector that causes the whole system to float away, but also a resulting angular momentum that causes the system to rotate.
+The angular momentum can be defined via the moment of inertia $\mathbf{I}$
+\begin{eqnarray}
+    \mathbf{L} &=& \mathbf{I}\boldsymbol{\omega}\\
+    \boldsymbol{\omega} &=& \frac{\mathbf{r} \times \mathbf{v}}{r^2}
+\end{eqnarray}
+where $\boldsymbol{\omega}$ is the angular velocity of the system. 
+\\The velocities of the particle can roughly be chosen by adjusting the range of numbers the random number generator can choose from. However, the
+resulting velocities (and therefore the temperature of the system) are generally not precisely how they should be. If the system should have a
+specific starting temperature $T$, the velocities need to be scaled accordingly. This rescaling is done by summing the square of the velocities
+(this equals calculating the kinetic energy since the masses are set to 1) and rescale them by a factor $\lambda$:
+\begin{eqnarray}
+    E &=& \sum_{i=1}^N \mathbf{v}_i^2\\
+    \lambda &=& \sqrt{\frac{3(N-1)T}{E}}\\
+    \mathbf{v}_i^\text{new} &=& \lambda \mathbf{v}_i 
+\end{eqnarray}
+This process has to be done a couple of times, until the system equilibrates to the desired temperature. The problem with this procedure is the fact
+that it contradicts the constant energy property of the ensemble. If we look at the energy values in fig.~\ref{fig:energystart} we can see the
+irregularities before the system equilibrates to a constant value.
 
 
+%\begin{figure}[h]
+    %\begin{center}
+        %\begin{subfigure}[t]{0.3\textwidth}
+            %\includegraphics[scale=0.3]{images/fcc-2.pdf}
+            %\caption{Schematic figure of a face centered cubic (FCC) lattice}
+            %\label{fig:fcc}
+        %\end{subfigure} 
+        %\
+        %\begin{subfigure}[t]{0.3\textwidth}
+            %\includegraphics[scale=0.15]{images/fcc_unit.png}
+            %\caption{Schematic of the number of particles contained in one FCC unit cell. The atoms on the edges are shared by 8 cells and the ones 
+                %on the faces by 2 cells\cite{unitcell}}
+            %\label{fig:fcccut}
+        %\end{subfigure} 
+        %\
+        %%\hspace{60pt}
+        %\begin{subfigure}[t]{0.3\textwidth}
+            %\includegraphics[scale=0.3]{images/unit_cell.pdf}
+            %\caption{Setup for successively building a FCC lattice}
+            %\label{fig:unitcell}
+        %\end{subfigure}
+    %\end{center}
+%\end{figure}
 
 
 

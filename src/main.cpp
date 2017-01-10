@@ -34,7 +34,7 @@ int main(int argc,char** argv)
 
     double t = 0.2;
     double ambient = 0.06;
-    double press = 0.8;
+    double press = 0.5;
     double q = 0.04;
     while(q < 0.1)
     {
@@ -49,7 +49,7 @@ int main(int argc,char** argv)
             std::cout << "at: " << ambient << std::endl;
             std::cout << "==================================================" << std::endl;
             mainLoop();
-            ambient += 0.1;
+            ambient += 0.01;
         }
         q += 0.01;
     }
