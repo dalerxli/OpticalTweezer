@@ -225,6 +225,116 @@ void InitVelocities(Particle* particle)
 
 }
 
+void InitVelocitiesTest(Particle* particle)
+{
+    unsigned int n,i;
+    double vCM[3] = {0,0,0};
+    double l[3] = {0,0,0};
+    double rCM[3]={0,0,0};
+    double omega[3]={0,0,0}; // for calculating angular velocity
+    double** om = new double*[N];
+    for(n=0;n<N;n++)
+        om[n] = new double[3];
+    double dx[3]; // for calculating distance to rCM
+    double invinertia[3][3];
+    for(i=0;i<3;i++)
+    {
+        for(unsigned int j=0;j<3;j++)
+        {
+            if(i==j)
+                invinertia[i][j]=(6./(L*L*N));
+            else
+                invinertia[i][j]=0;
+        }
+    }
+
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            particle[n].v[i] = 2*(gsl_rng_uniform(r)-0.5); 
+    
+    
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            rCM[i]+=particle[n].r[i];
+    
+    for(i=0;i<3;i++)
+        rCM[i] /= N;
+        
+
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            vCM[i] += particle[n].v[i];
+
+
+    for(i=0;i<3;i++)
+        vCM[i] /= N;
+
+
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            particle[n].v[i] -= vCM[i];
+
+
+    for(n=0;n<N;n++)
+    {
+        for(i=0;i<3;i++)
+            dx[i]=rCM[i]-particle[n].r[i];
+        om[n][0]+= (dx[1]*particle[n].v[2]-dx[2]*particle[n].v[1]);
+        om[n][1]+= (dx[2]*particle[n].v[0]-dx[0]*particle[n].v[2]);
+        om[n][2]+= (dx[0]*particle[n].v[1]-dx[1]*particle[n].v[0]);
+        for(i=0;i<3;i++)
+            om[n][i] = om[n][i]/(dx[0]*dx[0]+dx[1]*dx[1]+dx[2]*dx[2]);
+    }
+
+
+/*
+ *    for(n=0;n<N;n++)
+ *    {
+ *        for(i=0;i<3;i++)
+ *            dx[i]=rCM[i]-particle[n].r[i];
+ *        l[0]+= (dx[1]*particle[n].v[2]-dx[2]*particle[n].v[1]);
+ *        l[1]+= (dx[2]*particle[n].v[0]-dx[0]*particle[n].v[2]);
+ *        l[2]+= (dx[0]*particle[n].v[1]-dx[1]*particle[n].v[0]);
+ *    }
+ *    //for(i=0;i<3;i++)
+ *        //l[i] = l[i]/(dx[0]*dx[0]+dx[1]*dx[1]+dx[2]*dx[2]);
+ *
+ *    for(i=0;i<3;i++)
+ *        for(unsigned int j=0;j<3;j++)
+ *            omega[i]+=invinertia[i][j]*l[j];
+ *    for(i=0;i<3;i++)
+ *        omega[i] = omega[i]/(N*1.0);
+ */
+
+    for(n=0;n<N;n++)
+    {
+        for(i=0;i<3;i++)
+            dx[i] = rCM[i] - particle[n].r[i];
+         particle[n].v[0] -= (om[n][1]*dx[2]-om[n][2]*dx[1]);
+         particle[n].v[1] -= (om[n][2]*dx[0]-om[n][0]*dx[2]);
+         particle[n].v[2] -= (om[n][0]*dx[1]-om[n][1]*dx[0]);
+    }
+
+    for(i=0;i<3;i++)
+        vCM[i] = 0;
+
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            vCM[i] += particle[n].v[i];
+
+
+    for(i=0;i<3;i++)
+        vCM[i] /= N;
+
+
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            particle[n].v[i] -= vCM[i];
+
+    rescaleVelocities(particle);
+
+}
+
 double Pressure(Particle* particle)
 {
         double sum1=0;

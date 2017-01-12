@@ -700,10 +700,42 @@ The next adjustment is a small one that makes a difference in the long run. When
 resulting velocity vector that causes the whole system to float away, but also a resulting angular momentum that causes the system to rotate.
 The angular momentum can be defined via the moment of inertia $\mathbf{I}$
 \begin{eqnarray}
-    \mathbf{L} &=& \mathbf{I}\boldsymbol{\omega}\\
+    \label{eq:angularmomentum}\mathbf{L} &=& \mathbf{I}\boldsymbol{\omega}\\
     \boldsymbol{\omega} &=& \frac{\mathbf{r} \times \mathbf{v}}{r^2}
 \end{eqnarray}
-where $\boldsymbol{\omega}$ is the angular velocity of the system. 
+where $\boldsymbol{\omega}$ is the angular velocity of the system. Another way to define the angular momentum is given by
+\begin{equation}
+    \label{eq:angularmomentum2}
+    \mathbf{L} = \mathbf{r} \times \mathbf{p}
+\end{equation}
+where $\mathbf{p}$ is the momentum of the particle, which in this case is equal to its velocity since the mass is set to 1.The moment of inertia 
+$\mathbf{I}$ for a filled cube is given by 
+\begin{equation}
+    \mathbf{I} = 
+    \begin{pmatrix}
+        \frac{mL^2}{6} & 0 & 0\\
+        0 & \frac{mL^2}{6} & 0\\
+        0 & 0 & \frac{mL^2}{6} 
+    \end{pmatrix}
+\end{equation}
+where $m$ will be later set to 1 and $L$ is the side length of the cube. To use this equations to suppress the rotation of the cube, we need to use
+equation~\eqref{eq:angularmomentum} and rewrite it as
+\begin{equation}
+    \label{eq:omega}
+    \boldsymbol{\omega} = \mathbf{I}^{-1}\mathbf{L}
+\end{equation}
+where $\mathbf{I}^{-1}$ is the inverse matrix of $\mathbf{I}$. The calculation of the inverse matrix is fairly straightforward, as it only contains
+values in the diagonal, which means that the inverse matrix can be calculated by simply inverting these values. The angular momentum for every
+particle $\mathbf{L}_i$ in the above equation be calculated using eq.~\eqref{eq:angularmomentum2}, where the position is taken to be the distance
+between the particle and the center of mass
+\begin{equation}
+    \Delta\mathbf{r}_i = \mathbf{r}_\text{COM} - \mathbf{r}_i
+\end{equation}
+The values of the angular momentum for each paricle are added up and multiplied by the inverse of the moment of inertia, as described in
+eq.~\eqref{eq:omega}. The final step is updating the velocities of the particles:
+\begin{equation}
+    \mathbf{v}_i^\text{new} = \mathbf{v}_i - \left(\boldsymbol{\omega} \times \Delta\mathbf{r}_i\right)
+\end{equation}
 \\The velocities of the particle can roughly be chosen by adjusting the range of numbers the random number generator can choose from. However, the
 resulting velocities (and therefore the temperature of the system) are generally not precisely how they should be. If the system should have a
 specific starting temperature $T$, the velocities need to be scaled accordingly. This rescaling is done by summing the square of the velocities

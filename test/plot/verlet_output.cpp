@@ -1,9 +1,19 @@
-#include "../include/globals.hpp"
-#include "../include/classes.hpp"
-#include "../include/functions.hpp"
+#include <iostream>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <fstream>
+#include <iomanip>
+#include <string>
+#include <cstring>
+#include "../../include/globals.hpp"
+#include "../../include/classes.hpp"
+#include "../../include/functions.hpp"
 
 int main()
 {
+
+    setValues(0.2,0.04,0.2,0.8,0.06);
     Particle *particles = new Particle[N];
     InitPositions(particles);
     FILE* tempout = fopen("verlet_temp_1.dat","w");
@@ -42,8 +52,9 @@ int main()
             fprintf(compos,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
             fprintf(comvel,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
         }
-        if(i%100 == 0 && i < 2000)
-            rescaleVelocities(particles);
+        if(i%1000 == 0)
+            if(i < 10000)
+                rescaleVelocities(particles);
         VelocityVerlet(particles);
         calcTemp(particles,tempout);
         energy = calculateEnergies(particles);

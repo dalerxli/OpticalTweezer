@@ -13,6 +13,7 @@ void VelocityVerlet(Particle* particle,int WRITE,FILE* output);
 void VelocityVerlet(Particle* particle);
 
 void InitVelocities(Particle* particle);
+void InitVelocitiesTest(Particle* particle);
 double Pressure(Particle* particle);
 double* Force(Particle *particle,int i,int j);
 double Distance(Particle* particle, int i, int j);
