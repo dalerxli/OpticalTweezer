@@ -13,13 +13,13 @@
 int main()
 {
 
-    setValues(0.2,0.01,0.2,0.8,0.06);
+    setValues(0.2,0.00,0.2,0.8,0.06);
     Particle *particles = new Particle[N];
     InitPositions(particles);
-    FILE* tempout = fopen("ehex_temp_001_1.dat","w");
-    FILE* enerout = fopen("ehex_energy_001_1.dat","w");
-    FILE* compos = fopen("ehex_compos001.dat","w");
-    FILE* comvel= fopen("ehex_comvel001.dat","w");
+    FILE* tempout = fopen("ehex_temp_000_new_1.dat","w");
+    FILE* enerout = fopen("ehex_energy_000_new_1.dat","w");
+    FILE* compos = fopen("ehex_compos000_new.dat","w");
+    FILE* comvel= fopen("ehex_comvel000_new.dat","w");
 
 
     InitVelocities(particles);
@@ -119,7 +119,7 @@ int main()
             fprintf(compos,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
             fprintf(comvel,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
         }
-        eHEX(particles);
+        eHEXNew(particles);
         calcTemp(particles,tempout);
         energy = calculateEnergies(particles);
         fprintf(enerout,"%lf\n",energy);
