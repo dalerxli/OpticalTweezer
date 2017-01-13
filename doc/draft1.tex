@@ -747,7 +747,22 @@ specific starting temperature $T$, the velocities need to be scaled accordingly.
 \end{eqnarray}
 This process has to be done a couple of times, until the system equilibrates to the desired temperature. The problem with this procedure is the fact
 that it contradicts the constant energy property of the ensemble. If we look at the energy values in fig.~\ref{fig:energystart} we can see the
-irregularities before the system equilibrates to a constant value.
+irregularities (jumps) before the system equilibrates to a constant value. This equilibration process divides the simulation in two phases: the equilibration
+phase and the measurement phase. In the equilibration phase, the system has time to reach a configuration that is (as the name suggests) in an 
+equilibrated state. During this phase, there are usually no measurements (such as energy) performed, since the values from this phase are distorting
+the mean value of the simulation. That is why the configurations from the equilibration phase are discarded and the measurement phase takes place, 
+where the values do get calculated and are used to determine the mean values.  
+
+\subsection{eHEX}
+The next checkpoint is the eHEX algorithm. Since it contains several steps and variables that have to be calculated, this algorithm is very prone
+to errors. Perhaps the most crucial of those variables in the algorithm is the amount of heat injected into the system, $\DeltaQ$. 
+The effect of the value of this variable on the system has therefore to be checked to make sure the system is not overheating.\\
+The investigation of the effects on the system can be done in two ways: comparing the temperature and the energy of the system during the 
+application of the algorithm (similar to the way it's been done with the velocity Verlet) and comparing the effect of different values of $\DeltaQ$.\\
+Like mentioned above, there is an equilibration phase, which takes place before the recording of the values for this comparison. The graph starts 
+with a velocity Verlet phase after which the eHEX algorithm starts, to emphasize the effect of the change in temperature and energy.\\
+
+
 
 
 %\begin{figure}[h]
