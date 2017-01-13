@@ -35,7 +35,7 @@ int main(int argc,char** argv)
     double t = 0.2;
     double ambient = 0.06;
     double press = 0.8;
-    double q = 0.04;
+    double q = 0.05;
     while(q < 0.1)
     {
         ambient = 0.06;
