@@ -13,13 +13,13 @@
 int main()
 {
 
-    setValues(0.2,0.09,0.2,0.8,0.06);
+    setValues(0.2,0.01,0.2,0.8,0.06);
     Particle *particles = new Particle[N];
     InitPositions(particles);
-    FILE* tempout = fopen("ehex_temp_009_1.dat","w");
-    FILE* enerout = fopen("ehex_energy_009_1.dat","w");
-    FILE* compos = fopen("ehex_compos009.dat","w");
-    FILE* comvel= fopen("ehex_comvel009.dat","w");
+    FILE* tempout = fopen("ehex_temp_001_1.dat","w");
+    FILE* enerout = fopen("ehex_energy_001_1.dat","w");
+    FILE* compos = fopen("ehex_compos001.dat","w");
+    FILE* comvel= fopen("ehex_comvel001.dat","w");
 
 
     InitVelocities(particles);
