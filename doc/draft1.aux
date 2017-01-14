@@ -89,16 +89,29 @@
 \newlabel{eq:angularmomentum}{{44}{20}{Velocity Verlet}{equation.5.44}{}}
 \newlabel{eq:angularmomentum2}{{46}{20}{Velocity Verlet}{equation.5.46}{}}
 \newlabel{eq:omega}{{48}{20}{Velocity Verlet}{equation.5.48}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{22}{section.6}}
+\newlabel{eq:rescale1}{{51}{21}{Velocity Verlet}{equation.5.51}{}}
+\newlabel{eq:rescale2}{{52}{21}{Velocity Verlet}{equation.5.51}{}}
+\newlabel{eq:rescale3}{{53}{21}{Velocity Verlet}{equation.5.51}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}eHEX}{21}{subsection.5.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Temperature and energy in the equilibration phase of the velocity Verlet algorithm. The velocity rescaling (see eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:rescale1}\unskip \@@italiccorr )}}-\textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:rescale3}\unskip \@@italiccorr )}}) is taking place every 1000th step until the 9000th, which can be seen in the energy curve whre the jumps are happening.\relax }}{22}{figure.caption.8}}
+\newlabel{fig:energystart}{{8}{22}{Temperature and energy in the equilibration phase of the velocity Verlet algorithm. The velocity rescaling (see eq. \eqref {eq:rescale1}-\eqref {eq:rescale3}) is taking place every 1000th step until the 9000th, which can be seen in the energy curve whre the jumps are happening.\relax }{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Barostat}{22}{subsection.5.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Comparison of temperature (red) and energy (blue) during the application of the eHEX algorithm with $\Delta Q=0.04$ (in reduced units). The first 20000 timesteps, the energy and temperature are constant during the application of the velocity Verlet algorithm and start to rise, once the eHEX algortithm takes over. The values for the temperature can be seen on the ordinate on the left hand side and the values for the energy on the right hand side. \relax }}{23}{figure.caption.9}}
+\newlabel{fig:ehex_te}{{9}{23}{Comparison of temperature (red) and energy (blue) during the application of the eHEX algorithm with $\Delta Q=0.04$ (in reduced units). The first 20000 timesteps, the energy and temperature are constant during the application of the velocity Verlet algorithm and start to rise, once the eHEX algortithm takes over. The values for the temperature can be seen on the ordinate on the left hand side and the values for the energy on the right hand side. \relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{23}{section.6}}
 \bibdata{references}
 \bibcite{Gieseler2014}{1}
 \bibcite{Crooks1999}{2}
 \bibcite{Frenkel2001}{3}
 \bibcite{unitcell}{4}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Comparison of different values for $\Delta Q$, ranging from 0 to 0.09. As the value $\Delta Q=0$ corresponds to no heat being injected into the system, it is not surprising that the temperature remains constant. The graph shows that an increase in $\Delta Q$ leads to an increase in the rate of warming up, which means that for bigger $\Delta Q$, the system is heating up more quickly.\relax }}{24}{figure.caption.10}}
+\newlabel{fig:ehex_dq}{{10}{24}{Comparison of different values for $\Delta Q$, ranging from 0 to 0.09. As the value $\Delta Q=0$ corresponds to no heat being injected into the system, it is not surprising that the temperature remains constant. The graph shows that an increase in $\Delta Q$ leads to an increase in the rate of warming up, which means that for bigger $\Delta Q$, the system is heating up more quickly.\relax }{figure.caption.10}{}}
 \bibcite{buffalo}{5}
 \bibcite{Allen1989}{6}
 \bibcite{Verlet1967}{7}
 \bibcite{swope1982}{8}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces \relax }}{25}{figure.caption.11}}
+\newlabel{fig:baro1}{{11}{25}{\relax }{figure.caption.11}{}}
 \bibcite{Huenenberger2005}{9}
 \bibcite{Nose1984}{10}
 \bibcite{Hoover1985}{11}

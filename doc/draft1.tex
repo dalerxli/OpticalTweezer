@@ -741,9 +741,9 @@ resulting velocities (and therefore the temperature of the system) are generally
 specific starting temperature $T$, the velocities need to be scaled accordingly. This rescaling is done by summing the square of the velocities
 (this equals calculating the kinetic energy since the masses are set to 1) and rescale them by a factor $\lambda$:
 \begin{eqnarray}
-    E &=& \sum_{i=1}^N \mathbf{v}_i^2\\
-    \lambda &=& \sqrt{\frac{3(N-1)T}{E}}\\
-    \mathbf{v}_i^\text{new} &=& \lambda \mathbf{v}_i 
+ \label{eq:rescale1}   E &=& \sum_{i=1}^N \mathbf{v}_i^2 \\
+ \label{eq:rescale2}   \lambda &=& \sqrt{\frac{3(N-1)T}{E}} \\
+ \label{eq:rescale3}   \mathbf{v}_i^\text{new} &=& \lambda \mathbf{v}_i  
 \end{eqnarray}
 This process has to be done a couple of times, until the system equilibrates to the desired temperature. The problem with this procedure is the fact
 that it contradicts the constant energy property of the ensemble. If we look at the energy values in fig.~\ref{fig:energystart} we can see the
@@ -752,15 +752,60 @@ phase and the measurement phase. In the equilibration phase, the system has time
 equilibrated state. During this phase, there are usually no measurements (such as energy) performed, since the values from this phase are distorting
 the mean value of the simulation. That is why the configurations from the equilibration phase are discarded and the measurement phase takes place, 
 where the values do get calculated and are used to determine the mean values.  
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.3]{images/verlet_output_te.pdf}
+        \caption{Temperature and energy in the equilibration phase of the velocity Verlet algorithm. The velocity rescaling (see eq. 
+        \eqref{eq:rescale1}-\eqref{eq:rescale3}) is taking place every 1000th step until the 9000th, which can be seen in the energy curve whre the
+    jumps are happening.}
+        \label{fig:energystart}
+    \end{center}
+\end{figure}
 
 \subsection{eHEX}
 The next checkpoint is the eHEX algorithm. Since it contains several steps and variables that have to be calculated, this algorithm is very prone
-to errors. Perhaps the most crucial of those variables in the algorithm is the amount of heat injected into the system, $\DeltaQ$. 
+to errors. Perhaps the most crucial of those variables in the algorithm is the amount of heat injected into the system, $\Delta Q$. 
 The effect of the value of this variable on the system has therefore to be checked to make sure the system is not overheating.\\
 The investigation of the effects on the system can be done in two ways: comparing the temperature and the energy of the system during the 
-application of the algorithm (similar to the way it's been done with the velocity Verlet) and comparing the effect of different values of $\DeltaQ$.\\
-Like mentioned above, there is an equilibration phase, which takes place before the recording of the values for this comparison. The graph starts 
-with a velocity Verlet phase after which the eHEX algorithm starts, to emphasize the effect of the change in temperature and energy.\\
+application of the algorithm (similar to the way it's been done with the velocity Verlet) and comparing the effect of different values of $\Delta Q$.\\
+%Like mentioned above, there is an equilibration phase, which takes place before the recording of the values for this comparison. The graph starts 
+%with a velocity Verlet phase after which the eHEX algorithm starts, to emphasize the effect of the change in temperature and energy.\\
+Since the eHEX algorithm injects heat into the system, one would expect the energy and the temperature to rise during the application of the
+algorithm. In fig.~\ref{fig:ehex_te} we can see that exactly this is happening. The graph shows a velocity Verlet phase (that follows an equilibration
+phase which is not recorded) of constant temperature and energy and an eHEX phase, where the temperature and the enrgy are constantly rising. 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.4]{images/ehex_te.pdf}
+        \caption{Comparison of temperature (red) and energy (blue) during the application of the eHEX algorithm with $\Delta Q=0.04$ (in reduced units).
+                The first 20000 timesteps, the energy and temperature are constant during the application of the velocity Verlet algorithm and start
+            to rise, once the eHEX algortithm takes over. The values for the temperature can be seen on the ordinate on the left hand side
+            and the values for the energy on the right hand side. }
+        \label{fig:ehex_te}
+    \end{center}
+\end{figure}
+The comparison of different values of $\Delta Q$ can be seen in fig.~\ref{fig:ehex_dq}. As the correlation between the temperature and the energy has
+been shown in fig.~\ref{fig:ehex_te}, the plotting of the temperature data should suffice. 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.4]{images/ehex_temp_dq.pdf}
+        \caption{Comparison of different values for $\Delta Q$, ranging from 0 to 0.09. As the value $\Delta Q=0$ corresponds to no heat being
+        injected into the system, it is not surprising that the temperature remains constant. The graph shows that an increase in $\Delta Q$ leads to
+    an increase in the rate of warming up, which means that for bigger $\Delta Q$, the system is heating up more quickly.}
+        \label{fig:ehex_dq}
+    \end{center}
+\end{figure}
+
+\subsection{Barostat}
+The barostat, as described in the previous section, keeps the system from overheating. The algorithm is applied at the same time as the eHEX algorithm
+which leads to the fact, that the system has time to heat up, until the particles reach the nano crystal. This can be seen in the temperature
+development in fig.~\ref{fig:baro1}.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.4]{images/ehex_te.pdf}
+        \caption{}
+        \label{fig:baro1}
+    \end{center}
+\end{figure}
 
 
 
