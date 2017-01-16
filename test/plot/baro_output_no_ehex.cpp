@@ -17,10 +17,10 @@ int main()
     Particle *particles = new Particle[N];
     InitPositions(particles);
     std::list<Particle*> gas;
-    FILE* tempout = fopen("baro_temp_004_nochamal_1.dat","w");
-    FILE* enerout = fopen("baro_energy_004_nochamal_1.dat","w");
-    FILE* compos = fopen("baro_compos004_nochamal.dat","w");
-    FILE* comvel= fopen("baro_comvel004_nochamal.dat","w");
+    FILE* tempout = fopen("baro_temp_NO_new_1.dat","w");
+    FILE* enerout = fopen("baro_energy_NO_new_1.dat","w");
+    FILE* compos = fopen("baro_composNO_new.dat","w");
+    FILE* comvel= fopen("baro_comvelNO_new.dat","w");
 
 
     InitVelocities(particles);
@@ -97,7 +97,7 @@ int main()
         fprintf(enerout,"%lf\n",energy);
     }
     
-    for(int i=0;i<60000;i++)
+    for(int i=0;i<20000;i++)
     {
         if(i%100 == 0)
         {
@@ -121,8 +121,8 @@ int main()
             fprintf(compos,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
             fprintf(comvel,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
         }
-        eHEX(particles);
-        //VelocityVerlet(particles);
+        //eHEX(particles);
+        VelocityVerlet(particles);
         BarostatNew(particles,gas);
         harmonicTrap(rCM,vCM,rCMStart,particles);
         calcTemp(particles,tempout);
