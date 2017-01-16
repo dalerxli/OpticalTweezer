@@ -796,9 +796,9 @@ been shown in fig.~\ref{fig:ehex_te}, the plotting of the temperature data shoul
 \end{figure}
 
 \subsection{Barostat}
-The barostat, as described in the previous section, keeps the system from overheating. The algorithm is applied at the same time as the eHEX algorithm
-which leads to the fact, that the system has time to heat up, until the particles reach the nano crystal. This can be seen in the temperature
-development in fig.~\ref{fig:baro1}.
+The barostat, as described previously, keeps the system from overheating. The barostat algorithm is applied at the same time as the eHEX algorithm,
+after the velocity Verlet has equilibrated the system. This means that the system is beginning to heat up, until the particles reach the crystal.
+Because of this, the temperature of the system rises, until it reaches a steady value again. This behaviour can be seen in fig.~\ref{fig:baro1}.
 \begin{figure}[h]
     \begin{center}
         \includegraphics[scale=0.4]{images/ehex_te.pdf}
