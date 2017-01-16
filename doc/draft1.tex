@@ -757,7 +757,7 @@ where the values do get calculated and are used to determine the mean values.
         \includegraphics[scale=0.3]{images/verlet_output_te.pdf}
         \caption{Temperature and energy in the equilibration phase of the velocity Verlet algorithm. The velocity rescaling (see eq. 
         \eqref{eq:rescale1}-\eqref{eq:rescale3}) is taking place every 1000th step until the 9000th, which can be seen in the energy curve whre the
-    jumps are happening.}
+    jumps are happening. The desired temperature in this case is $T^* = 0.2$, which is reached after about 7000 steps.}
         \label{fig:energystart}
     \end{center}
 \end{figure}
@@ -798,14 +798,40 @@ been shown in fig.~\ref{fig:ehex_te}, the plotting of the temperature data shoul
 \subsection{Barostat}
 The barostat, as described previously, keeps the system from overheating. The barostat algorithm is applied at the same time as the eHEX algorithm,
 after the velocity Verlet has equilibrated the system. This means that the system is beginning to heat up, until the particles reach the crystal.
-Because of this, the temperature of the system rises, until it reaches a steady value again. This behaviour can be seen in fig.~\ref{fig:baro1}.
+Because of this, the temperature of the system rises, until it reaches a steady value again. This behaviour can be seen in fig.~\ref{fig:baro1}.\\
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[scale=0.4]{images/ehex_te.pdf}
-        \caption{}
+        \includegraphics[scale=0.4]{images/baro_temp_start.pdf}
+        \caption{Temperature of the system during the application of the eHEX and the barostat algorithm. During the first 20000 steps the system is
+        in equilibrium while the velocity Verlet algorithm is applied. After that, the eHEX and the barostat algorithms are turned on. This leads to
+    an increase in temperature until the gas particles reach the nano crystal to slow down the heating of the system. After some time, a plateau is
+reached and the temperature seems to stay at this value.}
         \label{fig:baro1}
     \end{center}
 \end{figure}
+As we are interested in the temperatures of the particles before and after the interaction with the crystal, we need some way to differentiate those
+two states. This can be done when looking at the total energy of the gas particles.\\
+The gas particles are created on the surface of the simulation box, which is further away than the interaction range between the gas particles and the
+nano crystal. Since the gas particles do not interact with each other, the total energy of the gas particles does not change until they reach the
+interaction range of the nano crystal. There they undergo a change of energy due to the interaction with the nano crystal and then make their way away
+from the nano crystal. After the interaction, when they reach a point outside of the interaction range, the enrgy stays constant again until the
+particles reach the limits of the simulation box.\\
+Therefore, the life span of a single gas particle can be partioned into 3 stages: incoming, interacting, outgoing. In a typical scene of interaction
+all three of these stages are represented by different gas particles, as can be seen in fig.~\ref{fig:barointeraction}.\\
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.4]{images/baro_170105_new_medium.png}
+        \caption{Rendering of the application of the barostat algorithm. The red particles are incoming gas particles, that have not yet interacted, 
+            pink particles are currently interacting and green particles are leaving the simulation box and
+        moving away from the nano crystal (blue). To render this image, a cut has been made to make a view into the simulation box possible.}
+        \label{fig:barointeraction}
+    \end{center}
+\end{figure}
+Since the gas particles are interacting with the nano crystal, the temperatures and energies are values of interest. The energies are recorded using
+histograms and the temperature is calculated instantaneously every 100th timestep.\\
+The calculation of the energies of the incoming particles has to be done with care. The problem are particles that enter the simulation box, but fly
+by the nano crystal at a distance that is greater than the interaction range. Since the change of the energy is the interesting part, only the energy 
+particles of that \textit{do} interact with the nano crystal shall be calculated.
 
 
 
