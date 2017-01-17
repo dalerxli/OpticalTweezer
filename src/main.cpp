@@ -57,7 +57,7 @@ int main(int argc,char** argv)
      *    q += 0.01;
      *}
      */
-    setValues(0.2,0.04,0.2,0.8,0.08);
+    setValues(0.2,0.04,0.2,2,0.8);
     mainLoop();
     return 0;
 }
@@ -215,6 +215,56 @@ void mainLoop() {
     //readPositions(cube,"output/states/eHEXEquilibrium.dat");
         
     ComputeSoftSphere(gas,cube);
+    for(run = 0;run<10000;run++)
+    {
+        if(run%500==0)
+        {
+            printf("(MEASURE) Zeitschritt %d - Number of Gas particles: %d\n",run,gas.size());
+        }
+        //eHEX(cube);
+        VelocityVerlet(cube,0,NULL);
+        BarostatNew(cube,gas);
+        //BarostatNew(cube,gas,gasHistory);
+        //std::cout << "works!" << std::endl;
+        harmonicTrap(rCM,vCM,rCMStart,cube);
+        //std::cout << "works!" << std::endl;
+        /*
+         *if(run%400==0)
+         *{
+         *    //trackParticle(cube,gas,1400,particleTracker);
+         *    GenerateOutput(cube,gas,run+10000);
+         *    //std::cout << "works!" << std::endl;
+         *    calcCM(cube,rCMtemp,comData);
+         *}
+         */
+        if(run%100==0)
+        {
+            calcTemp(cube,tempout); 
+            //calcCOMTemp(vCM,COMtempout);
+            //fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
+            calculateGasTemperature(gas,gasTempData);
+            for(int k=0;k<3;k++)
+            {
+                rCM[k] = 0;
+                vCM[k] = 0;
+            }
+            for(unsigned int j=0;j<N;j++)
+                for(int k=0;k<3;k++)
+                {
+                    rCM[k] += cube[j].r[k];
+                    vCM[k] += cube[j].v[k];
+                }
+            for(int k=0;k<3;k++)
+            {
+                rCM[k] = rCM[k]/(N*1.0);
+                vCM[k] = vCM[k]/(N*1.0);
+            }
+            fprintf(comData,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
+            fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
+        }
+        //std::cout << "works!" << std::endl;
+        //writeHistory(gas,run);
+    }
 
     for(run = 0;run<80000;run++)
     {
