@@ -797,15 +797,39 @@ been shown in fig.~\ref{fig:ehex_te}, the plotting of the temperature data shoul
 
 \subsection{Barostat}
 The barostat, as described previously, keeps the system from overheating. The barostat algorithm is applied at the same time as the eHEX algorithm,
-after the velocity Verlet has equilibrated the system. This means that the system is beginning to heat up, until the particles reach the crystal.
-Because of this, the temperature of the system rises, until it reaches a steady value again. This behaviour can be seen in fig.~\ref{fig:baro1}.\\
+after the velocity Verlet has equilibrated the system.\\
+While the eHEX algorithm is pumping energy into the nano crystal while the surrounding gas particles absorb excessive energy. This leads to the
+development of a new, higher steady temperature of the nano crystal, which can be seen in fig.~\ref{fig:baro1}. The first simulations were performed
+with the eHEX and the barostat algorithm starting at the same point. This lead to the question: does the new steady temperature depend on the time it
+takes the gas particles to reach the system? The answer is: no. After applying the barostat algorithm first to fill the box with gas atoms and then
+applying the eHEX algorithm it can be seen that the resulting temperature is the same, which can be seen in fig.~\ref{fig:baro2}.
+%This means that the system is beginning to heat up, until the particles reach the crystal.
+%Because of this, the temperature of the system rises, until it reaches a steady value again. This behaviour can be seen in fig.~\ref{fig:baro1}.\\
 \begin{figure}[h]
     \begin{center}
         \includegraphics[scale=0.4]{images/baro_temp_start.pdf}
         \caption{Temperature of the system during the application of the eHEX and the barostat algorithm. During the first 20000 steps the system is
         in equilibrium while the velocity Verlet algorithm is applied. After that, the eHEX and the barostat algorithms are turned on. This leads to
-    an increase in temperature until the gas particles reach the nano crystal to slow down the heating of the system. After some time, a plateau is
-reached and the temperature seems to stay at this value.}
+    an increase in temperature until a new steady temperature is reached.}
+        %\caption{Temperature of the system during the application of the eHEX and the barostat algorithm. During the first 20000 steps the system is
+        %in equilibrium while the velocity Verlet algorithm is applied. After that, the eHEX and the barostat algorithms are turned on. This leads to
+    %an increase in temperature until the gas particles reach the nano crystal to slow down the heating of the system. After some time, a plateau is
+%reached and the temperature seems to stay at this value.}
+        \label{fig:baro1}
+    \end{center}
+\end{figure}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.4]{images/baro_temp_compare_other.pdf}
+        \caption{Two versions of the application of the eEHX and barostat algorithm. The shorter run (red, x-axis on the bottom) represents 
+            the simultaneous start of the eHEX and the barostat algorithm. In the longer run (blue, x-axis on the top) there are 20000 steps, where
+        the barostat algorithm is applied at the same time as the velocity Verlet to give the system time to equilibrate and only after the eHEX
+    algorithm is taking the place of the velocity Verlet. The mean value of the resulting temperature is the same, indicating that the final
+temperature is based on the values of the parameters, such as pressure and ambient temperature, rather than geometry.}
+        %\caption{Temperature of the system during the application of the eHEX and the barostat algorithm. During the first 20000 steps the system is
+        %in equilibrium while the velocity Verlet algorithm is applied. After that, the eHEX and the barostat algorithms are turned on. This leads to
+    %an increase in temperature until the gas particles reach the nano crystal to slow down the heating of the system. After some time, a plateau is
+%reached and the temperature seems to stay at this value.}
         \label{fig:baro1}
     \end{center}
 \end{figure}
@@ -831,7 +855,8 @@ Since the gas particles are interacting with the nano crystal, the temperatures 
 histograms and the temperature is calculated instantaneously every 100th timestep.\\
 The calculation of the energies of the incoming particles has to be done with care. The problem are particles that enter the simulation box, but fly
 by the nano crystal at a distance that is greater than the interaction range. Since the change of the energy is the interesting part, only the energy 
-particles of that \textit{do} interact with the nano crystal shall be calculated.
+particles of that \textit{do} interact with the nano crystal shall be calculated. This can be achieved by counting particles that enter the stage of
+\textit{interacing}
 
 
 
