@@ -35,10 +35,10 @@ int main(int argc,char** argv)
      */
 
     double t = 0.2;
-    double ambient = 0.01;
+    double ambient = 0.1;
     double press = 0.8;
     double q = 0.04;
-    while(ambient < 0.1)
+    while(ambient > 0.03)
     {
         setValues(t,q,0.2,press,ambient);
         std::cout << "==================================================" << std::endl;
@@ -48,7 +48,7 @@ int main(int argc,char** argv)
         std::cout << "at: " << ambient << std::endl;
         std::cout << "==================================================" << std::endl;
         mainLoop();
-        ambient += 0.01;
+        ambient -= 0.01;
     }
     //setValues(0.2,0.04,0.2,4,0.8);
     mainLoop();
@@ -115,9 +115,9 @@ void mainLoop() {
     int a;
     int run=0;
     gsl_rng_set(r,98);
-    gsl_histogram_set_ranges_uniform(gas_in,-0.1,3);
-    gsl_histogram_set_ranges_uniform(gas_out,-0.1,3);
-    gsl_histogram_set_ranges_uniform(gas_real_in,-0.1,3);
+    gsl_histogram_set_ranges_uniform(gas_in,-0.01,0.08);
+    gsl_histogram_set_ranges_uniform(gas_out,-0.01,0.08);
+    gsl_histogram_set_ranges_uniform(gas_real_in,-0.01,0.08);
     /*
      *FILE* output = fopen("output/box_test.xyz","w");
      *FILE* pressure = fopen("output/pressure.dat","w");

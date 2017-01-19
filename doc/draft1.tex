@@ -856,7 +856,17 @@ histograms and the temperature is calculated instantaneously every 100th timeste
 The calculation of the energies of the incoming particles has to be done with care. The problem are particles that enter the simulation box, but fly
 by the nano crystal at a distance that is greater than the interaction range. Since the change of the energy is the interesting part, only the energy 
 particles of that \textit{do} interact with the nano crystal shall be calculated. This can be achieved by counting particles that enter the stage of
-\textit{interacing}
+\textit{interacing}. One such histogram can be seen in fig.~\ref{fig:histogram}.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.4]{images/histogram.pdf}
+        \caption{Histogram of total energies for incoming (red) and outgoing (blue) particles. The parameters for this histogram are $\Delta Q^*=0.04$,
+        $T_\text{ambient}^*=0.08$, $P^*=0.8$. What can be seen here is that the outgoing particles have a higher count of particles with more total
+    energy.}
+        \label{fig:histogram}
+    \end{center}
+\end{figure}
+
 
 
 
