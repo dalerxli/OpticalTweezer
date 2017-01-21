@@ -7,6 +7,7 @@
 #include <gsl/gsl_rng.h>
 #include <gsl/gsl_randist.h>
 #include <gsl/gsl_histogram.h>
+#include <gsl/gsl_histogram2d.h>
 #include <list>
 #include <iterator>
 #include <vector>
@@ -29,6 +30,9 @@ extern const gsl_rng_type *T;
 extern gsl_histogram *gas_in;
 extern gsl_histogram *gas_out;
 extern gsl_histogram *gas_real_in;
+extern gsl_histogram2d *positionsxy;
+extern gsl_histogram2d *positionsxz;
+extern gsl_histogram2d *positionsyz;
 
 extern int g_ID;
 extern const unsigned int N;

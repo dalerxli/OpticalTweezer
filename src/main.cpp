@@ -34,11 +34,11 @@ int main(int argc,char** argv)
      *    }
      */
 
-    double t = 0.2;
-    double ambient = 0.1;
+    double t = 0.1;
+    double ambient = 0.05;
     double press = 0.8;
-    double q = 0.04;
-    while(ambient > 0.03)
+    double q = 0.01;
+    while(ambient > 0.01)
     {
         setValues(t,q,0.2,press,ambient);
         std::cout << "==================================================" << std::endl;
@@ -118,6 +118,9 @@ void mainLoop() {
     gsl_histogram_set_ranges_uniform(gas_in,-0.01,0.08);
     gsl_histogram_set_ranges_uniform(gas_out,-0.01,0.08);
     gsl_histogram_set_ranges_uniform(gas_real_in,-0.01,0.08);
+    gsl_histogram2d_set_ranges_uniform(positionsxy,-2.0*L,2.0*L,-2.0*L,2.0*L);
+    gsl_histogram2d_set_ranges_uniform(positionsxz,-2.0*L,2.0*L,-2.0*L,2.0*L);
+    gsl_histogram2d_set_ranges_uniform(positionsyz,-2.0*L,2.0*L,-2.0*L,2.0*L);
     /*
      *FILE* output = fopen("output/box_test.xyz","w");
      *FILE* pressure = fopen("output/pressure.dat","w");
@@ -148,10 +151,13 @@ void mainLoop() {
     double* rCM = new double[3];
     double* rCMtemp = new double[3];
     double* vCM = new double[3];
+    double* rCMharm = new double[3];
+    double* vCMharm = new double[3];
     double energy = 0;
     InitPositions(cube);
     calcCM(cube,rCMStart,vCM);
     calcCM(cube,rCM,vCM);
+    calcCM(cube,rCMharm,vCMharm);
     InitVelocities(cube);
     ComputeAccelerations(cube);
     for(run=0;run<10000;run++)
@@ -182,6 +188,9 @@ void mainLoop() {
                 }
                 fprintf(comData,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
                 fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
+                gsl_histogram2d_increment(positionsxy,rCM[0],rCM[1]);
+                gsl_histogram2d_increment(positionsxz,rCM[0],rCM[2]);
+                gsl_histogram2d_increment(positionsyz,rCM[1],rCM[2]);
             }
             //if(run%400 == 0)
                 //GenerateOutput(cube,gas,run);
@@ -208,56 +217,57 @@ void mainLoop() {
     //readPositions(cube,"output/states/eHEXEquilibrium.dat");
         
     ComputeSoftSphere(gas,cube);
-    for(run = 0;run<10000;run++)
-    {
-        if(run%500==0)
-        {
-            printf("(MEASURE) Zeitschritt %d - Number of Gas particles: %d\n",run,gas.size());
-        }
-        //eHEX(cube);
-        VelocityVerlet(cube,0,NULL);
-        BarostatNew(cube,gas);
-        //BarostatNew(cube,gas,gasHistory);
-        //std::cout << "works!" << std::endl;
-        harmonicTrap(rCM,vCM,rCMStart,cube);
-        //std::cout << "works!" << std::endl;
-        /*
-         *if(run%400==0)
-         *{
-         *    //trackParticle(cube,gas,1400,particleTracker);
-         *    GenerateOutput(cube,gas,run+10000);
-         *    //std::cout << "works!" << std::endl;
-         *    calcCM(cube,rCMtemp,comData);
-         *}
-         */
-        if(run%100==0)
-        {
-            calcTemp(cube,tempout); 
-            //calcCOMTemp(vCM,COMtempout);
-            //fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
-            calculateGasTemperature(gas,gasTempData);
-            for(int k=0;k<3;k++)
-            {
-                rCM[k] = 0;
-                vCM[k] = 0;
-            }
-            for(unsigned int j=0;j<N;j++)
-                for(int k=0;k<3;k++)
-                {
-                    rCM[k] += cube[j].r[k];
-                    vCM[k] += cube[j].v[k];
-                }
-            for(int k=0;k<3;k++)
-            {
-                rCM[k] = rCM[k]/(N*1.0);
-                vCM[k] = vCM[k]/(N*1.0);
-            }
-            fprintf(comData,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
-            fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
-        }
-        //std::cout << "works!" << std::endl;
-        //writeHistory(gas,run);
-    }
+    /*
+     *for(run = 0;run<10000;run++)
+     *{
+     *    if(run%500==0)
+     *    {
+     *        printf("(MEASURE) Zeitschritt %d - Number of Gas particles: %d\n",run,gas.size());
+     *    }
+     *    //eHEX(cube);
+     *    VelocityVerlet(cube,0,NULL);
+     *    BarostatNew(cube,gas);
+     *    //BarostatNew(cube,gas,gasHistory);
+     *    //std::cout << "works!" << std::endl;
+     *    harmonicTrap(rCM,vCM,rCMStart,cube);
+     *    //std::cout << "works!" << std::endl;
+     *    if(run%400==0)
+     *    {
+     *        //trackParticle(cube,gas,1400,particleTracker);
+     *        GenerateOutput(cube,gas,run+10000);
+     *        //std::cout << "works!" << std::endl;
+     *        calcCM(cube,rCMtemp,comData);
+     *    }
+     *    if(run%100==0)
+     *    {
+     *        calcTemp(cube,tempout); 
+     *        //calcCOMTemp(vCM,COMtempout);
+     *        //fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
+     *        calculateGasTemperature(gas,gasTempData);
+     *        for(int k=0;k<3;k++)
+     *        {
+     *            rCM[k] = 0;
+     *            vCM[k] = 0;
+     *        }
+     *        for(unsigned int j=0;j<N;j++)
+     *            for(int k=0;k<3;k++)
+     *            {
+     *                rCM[k] += cube[j].r[k];
+     *                vCM[k] += cube[j].v[k];
+     *            }
+     *        for(int k=0;k<3;k++)
+     *        {
+     *            rCM[k] = rCM[k]/(N*1.0);
+     *            vCM[k] = vCM[k]/(N*1.0);
+     *        }
+     *        fprintf(comData,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
+     *        fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
+     *    }
+     *    //std::cout << "works!" << std::endl;
+     *    //writeHistory(gas,run);
+     *}
+     */
+    calcCM(cube,rCMharm,vCMharm);
 
     for(run = 0;run<80000;run++)
     {
@@ -269,14 +279,14 @@ void mainLoop() {
         BarostatNew(cube,gas);
         //BarostatNew(cube,gas,gasHistory);
         //std::cout << "works!" << std::endl;
-        harmonicTrap(rCM,vCM,rCMStart,cube);
+        harmonicTrap(rCMharm,vCMharm,rCMStart,cube);
         //std::cout << "works!" << std::endl;
         if(run%400==0)
         {
             //trackParticle(cube,gas,1400,particleTracker);
             GenerateOutput(cube,gas,run+10000);
             //std::cout << "works!" << std::endl;
-            calcCM(cube,rCMtemp,comData);
+            //calcCM(cube,rCMtemp,comData);
         }
         if(run%100==0)
         {
@@ -302,6 +312,9 @@ void mainLoop() {
             }
             fprintf(comData,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
             fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
+            gsl_histogram2d_increment(positionsxy,rCM[0],rCM[1]);
+            gsl_histogram2d_increment(positionsxz,rCM[0],rCM[2]);
+            gsl_histogram2d_increment(positionsyz,rCM[1],rCM[2]);
         }
         //std::cout << "works!" << std::endl;
         //writeHistory(gas,run);
@@ -316,6 +329,16 @@ void mainLoop() {
     gsl_histogram_fprintf(gasInData,gas_in,"%f","%f");
     gsl_histogram_fprintf(gasOutData,gas_out,"%f","%f");
     gsl_histogram_fprintf(gasRealInData,gas_real_in,"%f","%f");
+
+    FILE* comhistxy = fopen("comhistxy.dat","w");
+    FILE* comhistxz = fopen("comhistxz.dat","w");
+    FILE* comhistyz = fopen("comhistyz.dat","w");
+    gsl_histogram2d_fprintf(comhistxy,positionsxy,"%lf","%lf");
+    gsl_histogram2d_fprintf(comhistxz,positionsxz,"%lf","%lf");
+    gsl_histogram2d_fprintf(comhistyz,positionsyz,"%lf","%lf");
+    fclose(comhistxy);
+    fclose(comhistxz);
+    fclose(comhistyz);
 /*
  *    FILE* id_test = fopen("id_test.dat","w");
  *    std::list<Particle*>::iterator p_iter = gasHistory.begin();
@@ -345,6 +368,14 @@ void mainLoop() {
         delete [] Forces[i];
         delete [] Distances[i];
     }
-    delete [] Forces;
-    delete [] Distances;
+    delete [] rCM;
+    delete [] vCM;
+    gsl_histogram_free(gas_in);
+    gsl_histogram_free(gas_out);
+    gsl_histogram_free(gas_real_in);
+    gsl_histogram2d_free(positionsxy);
+    gsl_histogram2d_free(positionsxz);
+    gsl_histogram2d_free(positionsyz);
+    //delete [] Forces;
+    //delete [] Distances;
 }

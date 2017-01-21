@@ -2175,6 +2175,73 @@ void CheckBoundariesNew(Particle* cube,std::list<Particle*> &particles)
 
 }
 
+void CheckBoundariesNoRemove(Particle* cube,std::list<Particle*> &particles)
+{
+    std::list<Particle*>::iterator temp;
+    //double lowerBound = -(L/2 + eps);
+    //double upperBound = L + L/2 + eps;
+    double lowerBound = -(L + eps);
+    double upperBound = 2.*L + eps;
+    double aTotOld = 0;
+    double aTotNew = 0;
+    //double dist[3] = {0,0,0};
+    //double distSqd = 0.;
+    //double vSqd = 0.;
+
+    for(temp=particles.begin();temp!=particles.end();)
+    {
+        double kinE = 0.;
+        double kinEOld = 0;
+        //if(!checkIfOnLine(temp))
+            //(*temp)->name = "GasOut";
+        /*
+         *vSqd = 0.;
+         *for(int m=0;m<3;m++)
+         *    vSqd += (*temp)->v[m];
+         *if(vSqd < 1e-4)
+         *    (*temp)->name = "GasOut";
+         */
+
+
+        /*
+         *for(int i=0;i<N;i++) // iterate over all particles
+         *{
+         *    if(cube[i].surface && std::strcmp(((*temp)->name).c_str(),"GasOut") != 0) // if particle is on the surface
+         *    {
+         *       for(int m=0;m<3;m++)
+         *          dist[m] = (*temp)->r[m] - cube[i].r[m];
+         *      distSqd = dist[0]*dist[0]+dist[1]*dist[1]+dist[2]*dist[2];
+         *      if(distSqd < 1.2)
+         *      {
+         *          (*temp)->name = "GasOut";
+         *          //std::cout << (*temp)->ID << std::endl;
+         *      }
+         *    }
+         *}
+         */
+        aTotOld = sqrt((*temp)->aOld[0]*(*temp)->aOld[0]+(*temp)->aOld[1]*(*temp)->aOld[1]+(*temp)->aOld[2]*(*temp)->aOld[2]);
+        aTotNew = sqrt((*temp)->a[0]*(*temp)->a[0]+(*temp)->a[1]*(*temp)->a[1]+(*temp)->a[2]*(*temp)->a[2]);
+
+        /*
+         *if(aTotOld > aTotNew)
+         *    (*temp)->name = "GasOut";
+         */
+        if(aTotNew > aTotOld && strcmp((*temp)->name.c_str(),"GasIn") == 0)
+        {
+            (*temp)->name = "GasChange";
+            kinEOld = (*temp)->m*((*temp)->vOld[0]*(*temp)->vOld[0]+(*temp)->vOld[1]*(*temp)->vOld[1]+(*temp)->vOld[2]*(*temp)->vOld[2])*0.5;
+            gsl_histogram_increment(gas_real_in,kinEOld);
+        }
+        if(std::abs(aTotNew-aTotOld) < 10e-9 && strcmp((*temp)->name.c_str(),"GasChange") == 0)
+        {
+            (*temp)->name = "GasOut";
+            kinE = (*temp)->m*((*temp)->v[0]*(*temp)->v[0]+(*temp)->v[1]*(*temp)->v[1]+(*temp)->v[2]*(*temp)->v[2])*0.5;
+            gsl_histogram_increment(gas_out,kinE);
+        }
+        temp++;
+    }
+
+}
 void printDistances(Particle* cube, std::list<Particle*> &particles,int Run)
 {
     std::list<Particle*>::iterator temp;
@@ -2304,6 +2371,27 @@ void BarostatNew(Particle* cube, std::list<Particle*>& gas)
     CheckBoundariesNew(cube,gas);
 }
 
+void BarostatNoBoundaries(Particle* cube, std::list<Particle*>& gas)
+{
+    std::list<Particle*>::iterator gasIter;
+    //InitBarostatNew(gas);
+    
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+    {
+        for(unsigned int m=0;m<3;m++)
+        {
+            (*gasIter)->r[m] += (*gasIter)->v[m]*dt + 0.5 * (*gasIter)->a[m] * dt * dt/(*gasIter)->m;
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt/(*gasIter)->m;
+        }
+    }
+
+    ComputeSoftSphereTest(gas,cube);
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+        for(unsigned int m=0;m<3;m++)
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt/(*gasIter)->m;
+    CheckBoundariesNoRemove(cube,gas);
+}
+
 void BarostatTest(Particle* cube, std::list<Particle*>& gas)
 {
     std::list<Particle*>::iterator gasIter;
@@ -2352,6 +2440,11 @@ void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube)
     double rij[3];
     double rSqd=0;
     double f;
+    /*
+     *for(unsigned int i=0;i<N;i++)
+     *    for(unsigned int m=0;m<3;m++)
+     *        cube[i].a[m] = 0;
+     */
     for (iter=gas.begin();iter!=gas.end();iter++)         // set all accelerations to zero
     {
         for(unsigned int i=0;i<3;i++)
@@ -2386,6 +2479,58 @@ void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube)
                 for(unsigned int m=0;m<3;m++)
                 {
                     (*iter) -> a[m] += rij[m]*f/(*iter)->m;
+                    cube[n].a[m] -= rij[m] *f;
+                }
+            }
+        }
+    }
+}
+
+void ComputeSoftSphereTest(std::list<Particle*>& gas, Particle* cube)
+{
+    std::list<Particle*>::iterator iter;
+    double rij[3];
+    double rSqd=0;
+    double f;
+    /*
+     *for(unsigned int i=0;i<N;i++)
+     *    for(unsigned int m=0;m<3;m++)
+     *        cube[i].a[m] = 0;
+     */
+    for (iter=gas.begin();iter!=gas.end();iter++)         // set all accelerations to zero
+    {
+        for(unsigned int i=0;i<3;i++)
+        {
+            (*iter)->aOld[i] = (*iter)->a[i];
+            (*iter)->vOld[i] = (*iter)->v[i];
+        }
+        for(unsigned int i=0;i<3;i++)
+        {
+            (*iter)->a[i]=0;
+            (*iter)->type = 3;
+        }
+    }
+
+    
+    for (iter=gas.begin();iter!=gas.end();iter++)
+    {
+        (*iter)->potE = 0.;
+        for(unsigned int n=0;n<N;n++)
+        {
+            rSqd=0;
+            for(unsigned int i=0;i<3;i++)
+            {
+                rij[i] = (*iter)->r[i] - cube[n].r[i]; 
+                rSqd += rij[i]*rij[i];
+            }
+            if(rSqd < 2.5*2.5)
+            {
+                (*iter)->potE += pow(rSqd,-6);
+                (*iter)->type = 4;
+                f = 12 * pow(rSqd,-6);
+                for(unsigned int m=0;m<3;m++)
+                {
+                    (*iter) -> a[m] += rij[m]*f;
                     cube[n].a[m] -= rij[m] *f;
                 }
             }
@@ -3095,6 +3240,85 @@ double calculateEnergies(Particle* cube, std::list<Particle*> gas)
     
     //return eTot;
 }
+double calculateEnergiesTest(Particle* cube, std::list<Particle*> gas)
+{
+    double* energies = new double[3];
+    double ePot = 0;
+    double eKin = 0;
+    double eTot = 0;
+    double rij[3] = {0,0,0};
+    double rSqd = 0;
+    std::list<Particle*>::iterator iter;
+
+    for(int i=0;i<N-1;i++)
+    {
+        eKin += (cube[i].v[0]*cube[i].v[0]+cube[i].v[1]*cube[i].v[1]+cube[i].v[2]*cube[i].v[2])*0.5;
+        for(int j=i+1;j<N;j++)
+        {
+            for(int m=0;m<3;m++)
+                rij[m] = cube[i].r[m] - cube[j].r[m];
+            rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+            if(rSqd < 2.5*2.5)
+                ePot += 4*(pow(rSqd,-6)-pow(rSqd,-3));
+        }
+
+    }
+    for(iter=gas.begin();iter!=gas.end();iter++)
+    {
+        eKin += ((*iter)->v[0]*(*iter)->v[0]+(*iter)->v[1]*(*iter)->v[1]+(*iter)->v[2]*(*iter)->v[2])*0.5;
+        for(int i=0;i<N;i++)
+        {
+            for(int m=0;m<3;m++)
+                rij[m] = cube[i].r[m] - (*iter)->r[m];
+            rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+            if(rSqd < 2.5*2.5)
+                ePot += pow(rSqd,-6);
+                //ePot += 4*(pow(rSqd,-6)-pow(rSqd,-3));
+        }
+    }
+    
+    return eKin+ePot;
+        
+    
+    /*
+     *for(int i=0;i<N-1;i++)
+     *{
+     *    eKin += (cube[i].v[0]*cube[i].v[0]+cube[i].v[1]*cube[i].v[1]+cube[i].v[2]*cube[i].v[2])*0.5;
+     *    for(int j=i+1;j<N;j++)
+     *    {
+     *        for(int m=0;m<3;m++)
+     *            rij[m] = cube[i].r[m] - cube[j].r[m];
+     *        rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+     *        if(rSqd < 2.5*2.5)
+     *            ePot += 4*(pow(rSqd,-6)-pow(rSqd,-3));
+     *    }
+     *}
+     *eKin += (cube[N].v[0]*cube[N].v[0]+cube[N].v[1]*cube[N].v[1]+cube[N].v[2]*cube[N].v[2])*0.5;
+     */
+
+    /*
+     *for(iter=gas.begin();iter!=gas.end();iter++)
+     *{
+     *    eKin += ((*iter)->v[0]*(*iter)->v[0]+(*iter)->v[1]*(*iter)->v[1]+(*iter)->v[2]*(*iter)->v[2])*0.5;
+     *    for(int i=0;i<N;i++)
+     *    {
+     *        for(int m=0;m<3;m++)
+     *            rij[m] = cube[i].r[m] - (*iter)->r[m];
+     *        rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+     *        if(rSqd < 2.5*2.5)
+     *            ePot += 4*(pow(rSqd,-6)-pow(rSqd,-3));
+     *    }
+     *}
+     */
+    /*
+     *eTot = eKin+ePot;
+     *energies[0] = eKin;
+     *energies[1] = ePot;
+     *energies[2] = eTot;
+     */
+    
+    //return eTot;
+}
 
 double calculateEnergies(Particle* cube)
 {
@@ -3122,4 +3346,24 @@ double calculateEnergies(Particle* cube)
     return eKin+ePot;
         
     
+}
+
+void gasStatus(std::list<Particle*> gas)
+{
+    unsigned int gIn = 0;
+    unsigned int gChng = 0;
+    unsigned int gOut = 0;
+    std::list<Particle*>::iterator gasIter;
+    for(gasIter = gas.begin();gasIter!=gas.end();gasIter++)
+    {
+        if(strcmp((*gasIter)->name.c_str(),"GasIn") == 0)
+            gIn++;
+        if(strcmp((*gasIter)->name.c_str(),"GasChange") == 0)
+            gChng++;
+        if(strcmp((*gasIter)->name.c_str(),"GasOut") == 0)
+            gOut++;
+    }
+
+    std::cout << "In: " << gIn << "\t" << "Change: " << gChng << "\t" << "Out: " << gOut << std::endl;
+
 }

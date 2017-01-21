@@ -17,5 +17,5 @@ set xtics offset 0,-1
 set xlabel offset 0,-3
 set ylabel offset -6,0
 set output "gas_temp.pdf"
-plot folder."gasTempData.dat" using 1 w l lt rgb "red" lw 5 title "Incoming Particles", "" using 2 w l lt rgb "blue" lw 5 title "Outgoing Particles"
+plot folder."gasTempData.dat" using 1 w l lt rgb "red" lw 6 title "Incoming Particles", "" using 2 w l lt rgb "blue" lw 6 title "Outgoing Particles"
 unset output

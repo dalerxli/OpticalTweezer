@@ -33,16 +33,19 @@ void CheckBoundaries(std::list<Particle*> &particles);
 void CheckBoundaries(Particle* cube,std::list<Particle*> &particles);
 void CheckBoundariesNew(Particle* cube,std::list<Particle*> &particles);
 void CheckBoundaries(std::vector<Particle*> &particles);
+void CheckBoundariesNoRemove(Particle* cube,std::list<Particle*> &particles);
 
 void Barostat(Particle* cube, std::list<Particle*>& gas);
 void Barostat(Particle* cube, std::list<Particle*>& gas,std::list<Particle*>& gasHistory);
 void BarostatNew(Particle* cube, std::list<Particle*>& gas);
 void BarostatNew(Particle* cube, std::list<Particle*>& gas,std::list<Particle*>& gasHistory);
+void BarostatNoBoundaries(Particle* cube, std::list<Particle*>& gas);
 
 //void BarostatTest(std::list<Particle*>& gas);
 void BarostatTest(Particle* cube, std::list<Particle*>& gas);
 
 void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube);
+void ComputeSoftSphereTest(std::list<Particle*>& gas, Particle* cube);
 void PrintAllData(Particle* cube, std::list<Particle*> gas,FILE* output);
 //void eHEX(Particle* cube,FILE* output);
 void eHEX(Particle* cube);
@@ -78,5 +81,7 @@ void calculateGasTemperature(std::list<Particle*> gas,FILE* output);
 
 double calculateEnergies(Particle* cube, std::list<Particle*> gas);
 double calculateEnergies(Particle* cube);
+double calculateEnergiesTest(Particle* cube, std::list<Particle*> gas);
+void gasStatus(std::list<Particle*> gas);
 
 #endif

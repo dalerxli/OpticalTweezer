@@ -8,12 +8,16 @@ gsl_rng *r1 = gsl_rng_alloc(T);
 gsl_histogram *gas_in = gsl_histogram_alloc(10000);
 gsl_histogram *gas_out = gsl_histogram_alloc(10000);
 gsl_histogram *gas_real_in = gsl_histogram_alloc(10000);
+gsl_histogram2d *positionsxy = gsl_histogram2d_alloc(100,100);
+gsl_histogram2d *positionsxz = gsl_histogram2d_alloc(100,100);
+gsl_histogram2d *positionsyz = gsl_histogram2d_alloc(100,100);
 
 int g_ID=1;
 //const unsigned int N = 864;
 //const unsigned int N = 500;
-//const unsigned int N = 108;
-const unsigned int N = 256;
+const unsigned int N = 108;
+//const unsigned int N = 256;
+//const unsigned int N = 32;
 
 double* rCMStart = new double[3];
 double rho = 0.9;
