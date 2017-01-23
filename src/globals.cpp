@@ -15,17 +15,21 @@ gsl_histogram2d *positionsyz = gsl_histogram2d_alloc(100,100);
 int g_ID=1;
 //const unsigned int N = 864;
 //const unsigned int N = 500;
-const unsigned int N = 108;
+//const unsigned int N = 108;
 //const unsigned int N = 256;
-//const unsigned int N = 32;
+const unsigned int N = 32;
 
 double* rCMStart = new double[3];
+double* center = new double[3];
 double rho = 0.9;
 double Temp = 0.2;
 double AmbientTemp = 0.9;
 double P= 4.0;
 double L = pow(N/rho,1.0/3);
 double rCutOff = 2.5;
+double rCut2 = rCutOff*rCutOff;
+
+
 double dt = 0.01;
 double eps = 0.5; //margin for boundary conditions
 double dQ=0.050;

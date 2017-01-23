@@ -35,7 +35,7 @@ int main(int argc,char** argv)
      */
 
     double t = 0.1;
-    double ambient = 0.05;
+    double ambient = 0.09;
     double press = 0.8;
     double q = 0.01;
     while(ambient > 0.01)
@@ -154,6 +154,9 @@ void mainLoop() {
     double* rCMharm = new double[3];
     double* vCMharm = new double[3];
     double energy = 0;
+    for(int i=0;i<3;i++)
+        center[i] = L/2.;
+
     InitPositions(cube);
     calcCM(cube,rCMStart,vCM);
     calcCM(cube,rCM,vCM);
@@ -216,7 +219,7 @@ void mainLoop() {
     //readPositions(cube,"../../states/LJequilibriumSur.dat");
     //readPositions(cube,"output/states/eHEXEquilibrium.dat");
         
-    ComputeSoftSphere(gas,cube);
+    //ComputeSoftSphere(gas,cube);
     /*
      *for(run = 0;run<10000;run++)
      *{
@@ -268,6 +271,7 @@ void mainLoop() {
      *}
      */
     calcCM(cube,rCMharm,vCMharm);
+    verletBaroAccelerations(cube,gas);
 
     for(run = 0;run<80000;run++)
     {
@@ -275,11 +279,12 @@ void mainLoop() {
         {
             printf("(MEASURE) Zeitschritt %d - Number of Gas particles: %d\n",run,gas.size());
         }
-        eHEX(cube);
-        BarostatNew(cube,gas);
+        eHEXBaro(cube,gas);
+        //eHEX(cube);
+        //BarostatNew(cube,gas);
         //BarostatNew(cube,gas,gasHistory);
         //std::cout << "works!" << std::endl;
-        harmonicTrap(rCMharm,vCMharm,rCMStart,cube);
+        //harmonicTrap(rCMharm,vCMharm,rCMStart,cube);
         //std::cout << "works!" << std::endl;
         if(run%400==0)
         {
@@ -370,12 +375,14 @@ void mainLoop() {
     }
     delete [] rCM;
     delete [] vCM;
-    gsl_histogram_free(gas_in);
-    gsl_histogram_free(gas_out);
-    gsl_histogram_free(gas_real_in);
-    gsl_histogram2d_free(positionsxy);
-    gsl_histogram2d_free(positionsxz);
-    gsl_histogram2d_free(positionsyz);
+    /*
+     *gsl_histogram_free(gas_in);
+     *gsl_histogram_free(gas_out);
+     *gsl_histogram_free(gas_real_in);
+     *gsl_histogram2d_free(positionsxy);
+     *gsl_histogram2d_free(positionsxz);
+     *gsl_histogram2d_free(positionsyz);
+     */
     //delete [] Forces;
     //delete [] Distances;
 }

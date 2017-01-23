@@ -21,7 +21,7 @@ int main()
     calcCM(particles,rCMStart,vCM);
     for(int i=0;i<100;i++)
     {
-        VelocityVerlet(particles,brainfart);
+        VelocityVerlet(particles,0,brainfart);
         fprintf(positions,"%d\nComTest\n",N);
         for(int i=0;i<N;i++)
         {
@@ -35,7 +35,7 @@ int main()
         particles[i].r[0] += 5.5;
     for(int i=0;i<100;i++)
     {
-        VelocityVerlet(particles,brainfart);
+        VelocityVerlet(particles,0,brainfart);
         fprintf(positions,"%d\nComTest\n",N);
         for(int i=0;i<N;i++)
         {

@@ -40,7 +40,7 @@ unsigned int NumberOfParticles()
         double k=1.0;
         double m = 0.1;
         //double T=0.9;
-        mu = dt*L*L*P*pow((1./(2*m*M_PI*k*AmbientTemp)),0.5);
+        mu = dt*3*L*3*L*P*pow((1./(2*m*M_PI*k*AmbientTemp)),0.5);
         //std::cout << mu << std::endl;
         return gsl_ran_poisson(r,mu);
 }
@@ -100,13 +100,15 @@ void ComputeAccelerations(Particle* particle)
         }
     }
 
-    for(unsigned int i=0;i<N-1;i++)
-        for(unsigned int j=i+i;j<N;j++)
-            for(unsigned int m=0;m<3;m++)
-            {
-                    //Forces[i][j][m] = particle[i].a[m];
-                    //Forces[j][i][m] = particle[j].a[m];
-            }
+    /*
+     *for(unsigned int i=0;i<N-1;i++)
+     *    for(unsigned int j=i+i;j<N;j++)
+     *        for(unsigned int m=0;m<3;m++)
+     *        {
+     *                //Forces[i][j][m] = particle[i].a[m];
+     *                //Forces[j][i][m] = particle[j].a[m];
+     *        }
+     */
 }
 
 void VelocityVerlet(Particle* particle,int WRITE,FILE* output)
@@ -563,7 +565,7 @@ void InitBarostat(std::list<Particle*>& particles)
 void InitBarostatFull(std::list<Particle*>& particles)
 {
         unsigned int i;
-        unsigned int N;
+        unsigned int Num;
         //double sigma=1.1;
         double sigma=AmbientTemp;
         double lambda = 0;
@@ -590,8 +592,8 @@ void InitBarostatFull(std::list<Particle*>& particles)
         double kinE = 0.;
 
         //side: x0
-        N = NumberOfParticles();
-        for(i=0;i<N;i++)
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
         {
             
             px0 = new Particle(-L,
@@ -610,12 +612,12 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(px0);
             kinE = px0->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
-            gsl_histogram_increment(gas_in,kinE);
+            //gsl_histogram_increment(gas_in,kinE);
         }
 
         //side xL
-        N = NumberOfParticles();
-        for(i=0;i<N;i++)
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
         {
             pxL = new Particle(2.*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
@@ -633,12 +635,12 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(pxL);
             kinE = pxL->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
-            gsl_histogram_increment(gas_in,kinE);
+            //gsl_histogram_increment(gas_in,kinE);
         }   
 
         //side y0
-        N = NumberOfParticles();
-        for(i=0;i<N;i++)
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
         {
             py0 = new Particle(((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             -L,
@@ -656,12 +658,12 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(py0);
             kinE = py0->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
-            gsl_histogram_increment(gas_in,kinE);
+            //gsl_histogram_increment(gas_in,kinE);
         }   
 
         //side yL
-        N = NumberOfParticles();
-        for(i=0;i<N;i++)
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
         {
             pyL = new Particle(((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             2.*L,
@@ -679,12 +681,12 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(pyL);
             kinE = pyL->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
-            gsl_histogram_increment(gas_in,kinE);
+            //gsl_histogram_increment(gas_in,kinE);
         }   
         
         //side z0
-        N = NumberOfParticles();
-        for(i=0;i<N;i++)
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
         {
             pz0 = new Particle(
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
@@ -703,12 +705,12 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(pz0);
             kinE = pz0->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
-            gsl_histogram_increment(gas_in,kinE);
+            //gsl_histogram_increment(gas_in,kinE);
         }   
 
         //side zL
-        N = NumberOfParticles();
-        for(i=0;i<N;i++)
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
         {
             pzL = new Particle(
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
@@ -727,7 +729,7 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(pzL);
             kinE = pzL->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
-            gsl_histogram_increment(gas_in,kinE);
+            //gsl_histogram_increment(gas_in,kinE);
         }   
 /*
  *
@@ -2039,6 +2041,30 @@ void CheckBoundaries(std::list<Particle*> &particles)
 
 }
 
+void CheckBoundariesNoCube(std::list<Particle*> &particles)
+{
+    std::list<Particle*>::iterator temp;
+    double lowerBound = -(L/2 + eps);
+    double upperBound = L + L/2 + eps;
+    //double lowerBound = -(L + eps);
+    //double upperBound = 2.*L + eps;
+
+    for(temp=particles.begin();temp!=particles.end();)
+    {
+        if((*temp)->r[0] < lowerBound || (*temp)->r[0] > upperBound || 
+                (*temp)->r[1] < lowerBound || (*temp)->r[1] > upperBound 
+                ||(*temp)->r[2] < lowerBound || (*temp)->r[2] > upperBound)
+        {
+            //std::cout << "Deleted [ID]: " << (*temp)->ID << std::endl;
+            temp=particles.erase(temp);
+            //(*temp)->name = "GasGone";
+        }
+        else
+            ++temp;
+    }
+
+}
+
 void CheckBoundaries(Particle* cube,std::list<Particle*> &particles)
 {
     std::list<Particle*>::iterator temp;
@@ -2371,6 +2397,27 @@ void BarostatNew(Particle* cube, std::list<Particle*>& gas)
     CheckBoundariesNew(cube,gas);
 }
 
+void BarostatNoCube(std::list<Particle*>& gas)
+{
+    std::list<Particle*>::iterator gasIter;
+    //InitBarostatNew(gas);
+    InitBarostatFull(gas);
+    
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+    {
+        for(unsigned int m=0;m<3;m++)
+        {
+            (*gasIter)->r[m] += (*gasIter)->v[m]*dt + 0.5 * (*gasIter)->a[m] * dt * dt;
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
+        }
+    }
+
+    ComputeSoftSphereNoCube(gas);
+    for(gasIter = gas.begin();gasIter != gas.end(); gasIter++)
+        for(unsigned int m=0;m<3;m++)
+            (*gasIter)->v[m] += 0.5 * (*gasIter)->a[m] * dt;
+    CheckBoundariesNoCube(gas);
+}
 void BarostatNoBoundaries(Particle* cube, std::list<Particle*>& gas)
 {
     std::list<Particle*>::iterator gasIter;
@@ -2482,6 +2529,32 @@ void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube)
                     cube[n].a[m] -= rij[m] *f;
                 }
             }
+        }
+    }
+}
+
+void ComputeSoftSphereNoCube(std::list<Particle*>& gas)
+{
+    std::list<Particle*>::iterator iter;
+    double rij[3];
+    double rSqd=0;
+    double f;
+    /*
+     *for(unsigned int i=0;i<N;i++)
+     *    for(unsigned int m=0;m<3;m++)
+     *        cube[i].a[m] = 0;
+     */
+    for (iter=gas.begin();iter!=gas.end();iter++)         // set all accelerations to zero
+    {
+        for(unsigned int i=0;i<3;i++)
+        {
+            (*iter)->aOld[i] = (*iter)->a[i];
+            (*iter)->vOld[i] = (*iter)->v[i];
+        }
+        for(unsigned int i=0;i<3;i++)
+        {
+            (*iter)->a[i]=0;
+            (*iter)->type = 3;
         }
     }
 }
@@ -3366,4 +3439,222 @@ void gasStatus(std::list<Particle*> gas)
 
     std::cout << "In: " << gIn << "\t" << "Change: " << gChng << "\t" << "Out: " << gOut << std::endl;
 
+}
+
+void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
+{
+    double fVerlet = 0;
+    double fBaro = 0;
+    double fHarm[3] = {0,0,0};
+    double rij[3] = {0,0,0};
+    double rSqd = 0;
+    double rCOM[3] = {0,0,0};
+    double dist[3] = {0,0,0};
+
+    // INITIALIZE ACCELERATIONS
+
+    std::list<Particle*>::iterator gasIter;
+    for(unsigned int i=0;i<N;i++)
+        for(unsigned int m=0;m<3;m++)
+        {
+            cube[i].aOld[m] = cube[i].a[m];
+            cube[i].a[m] = 0.;        
+        }
+    for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+       for(unsigned int m=0;m<3;m++)
+          (*gasIter)->a[m] = 0.; 
+
+    // LJ INTERACTION
+    for(unsigned int i=0;i<N-1;i++) 
+    {
+        for(unsigned int j=i+1;j<N;j++) // sum over all pairs
+        {
+            rSqd = 0;
+            for(int m=0;m<3;m++)
+              rij[m] = cube[i].r[m] - cube[j].r[m];
+            rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+            if(rSqd <= rCut2)
+            {
+                fVerlet = 48. * (pow(rSqd,-7.) - 0.5*pow(rSqd,-4.));
+                for(int m=0;m<3;m++)
+                {
+                    cube[i].a[m] += rij[m] * fVerlet;
+                    cube[j].a[m] -= rij[m] * fVerlet;
+                }
+            }
+        }
+    }
+
+    // SOFTSPHERE INTERACTION
+    for(unsigned int i=0;i<N;i++)
+    {
+        for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+        {
+            rSqd = 0;
+            for(int m=0;m<3;m++)
+              rij[m] = (*gasIter)->r[m] - cube[i].r[m];
+            rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
+            if(rSqd <= rCut2)
+            {
+                fBaro = 12. * pow(rSqd,-6.);
+                for(int m=0;m<3;m++)
+                {
+                    (*gasIter)->a[m] += rij[m] * fBaro;
+                    cube[i].a[m] -= rij[m] * fBaro;
+                }
+            }
+        }
+    }
+    // HARMONIC TRAP
+    for(unsigned int i=0;i<N;i++)
+        for(unsigned int k=0;k<3;k++)
+            rCOM[k] += cube[i].r[k]; 
+
+    for(unsigned int k=0;k<3;k++)
+        rCOM[k] /= N;
+
+    for(unsigned int k=0;k<3;k++)
+       dist[k] = center[k]-rCOM[k]; 
+
+    //for(unsigned int k=0;k<3;k++)
+       //fHarm[k] += k*dist[k]; 
+
+    for(unsigned int i=0;i<N;i++)
+        for(unsigned int k=0;k<3;k++)
+            cube[i].a[k] += k*dist[k];
+    
+
+}
+void verletBaro(Particle* cube, std::list<Particle*>& gas)
+{
+    InitBarostatFull(gas);
+    std::list<Particle*>::iterator gasIter;
+    for(unsigned int i=0;i<N;i++)
+    {
+        for(unsigned int k=0;k<3;k++)
+        {
+            cube[i].r[k] +=cube[i].v[k]*dt + 0.5 * cube[i].a[k] * dt * dt;
+            cube[i].v[k] += 0.5 * cube[i].a[k] * dt;
+        }         
+    }
+    for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+    {
+        for(unsigned int k=0;k<3;k++)
+        {
+            (*gasIter)->r[k] +=(*gasIter)->v[k]*dt + 0.5 * (*gasIter)->a[k] * dt * dt / (*gasIter)->m;
+            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
+        }         
+    }
+
+    CheckBoundariesNew(cube,gas);
+    verletBaroAccelerations(cube,gas);
+
+    for(unsigned int i=0;i<N;i++)
+        for(unsigned int k=0;k<3;k++)
+            cube[i].v[k] += 0.5 * cube[i].a[k] * dt;
+    
+    for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+        for(unsigned int k=0;k<3;k++)
+            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
+}
+
+void eHEXBaro(Particle* cube, std::list<Particle*>& gas)
+{
+	double eps[N][3];
+	double K=0;
+	double eta[N][3];
+	double xi=0;
+	double sumforces[3]={0,0,0};
+	double sumvel=0; 
+    unsigned int i,n;
+
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            K += (cube[n].v[i]*cube[n].v[i]);
+    K = K/2.;
+    xi = sqrt(1+dQ/K);
+    
+    InitBarostatFull(gas);
+    std::list<Particle*>::iterator gasIter;
+
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].vnew[i] = xi*cube[n].v[i]; //(19a)
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].vhalf[i] = cube[n].vnew[i]+dt*0.5*cube[n].a[i]; //(19b)
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].rnew[i] = cube[n].r[i]+dt*cube[n].vhalf[i]; //(19c)
+    for(n=0;n<N;n++)
+    {
+        for(i=0;i<3;i++)
+        {
+            cube[n].v[i] = cube[n].vhalf[i];
+            cube[n].r[i] = cube[n].rnew[i];
+        }
+    }
+    /*
+     *for(unsigned int i=0;i<N;i++)
+     *{
+     *    for(unsigned int k=0;k<3;k++)
+     *    {
+     *        cube[i].r[k] +=cube[i].v[k]*dt + 0.5 * cube[i].a[k] * dt * dt;
+     *        cube[i].v[k] += 0.5 * cube[i].a[k] * dt;
+     *    }         
+     *}
+     */
+    for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+    {
+        for(unsigned int k=0;k<3;k++)
+        {
+            (*gasIter)->r[k] +=(*gasIter)->v[k]*dt + 0.5 * (*gasIter)->a[k] * dt * dt / (*gasIter)->m;
+            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
+        }         
+    }
+
+    CheckBoundariesNew(cube,gas);
+    verletBaroAccelerations(cube,gas);
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].vnew[i] = cube[n].vhalf[i] + dt*0.5*cube[n].a[i]; //(19e)
+    K = 0; 
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            K += (cube[n].vnew[i]*cube[n].vnew[i]);
+    K = K/2.;
+    xi = sqrt(1+dQ/K); //\bar{xi} from (19f)
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].v[i] = xi*cube[n].vnew[i]; //(19f)
+
+	for(n=0;n<N;n++)
+		for(i=0;i<3;i++)
+			eta[n][i]=(FG/(2.*K))*cube[n].vnew[i];
+    sumvel=0;
+    for(i=0;i<3;i++)
+        sumforces[i]=0;
+	for(n=0;n<N;n++)
+		for(i=0;i<3;i++)
+		{
+			sumforces[i]+=cube[n].a[i];
+			sumvel+=cube[n].vnew[i]*cube[n].a[i];
+		}
+	for(n=0;n<N;n++)
+		for(i=0;i<3;i++)
+            eps[n][i]=(eta[n][i]/K)*((FG/48.)+(1./6.)*sumvel)-(FG/(12.*K))*
+            (cube[n].a[i]-(sumforces[i])); //(20)
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].r[i] = cube[n].rnew[i] - dt*dt*dt*eps[n][i]; //(19g)
+
+    /*
+     *for(unsigned int i=0;i<N;i++)
+     *    for(unsigned int k=0;k<3;k++)
+     *        cube[i].v[k] += 0.5 * cube[i].a[k] * dt;
+     */
+    
+    for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+        for(unsigned int k=0;k<3;k++)
+            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
 }

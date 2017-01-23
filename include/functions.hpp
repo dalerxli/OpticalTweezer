@@ -40,12 +40,14 @@ void Barostat(Particle* cube, std::list<Particle*>& gas,std::list<Particle*>& ga
 void BarostatNew(Particle* cube, std::list<Particle*>& gas);
 void BarostatNew(Particle* cube, std::list<Particle*>& gas,std::list<Particle*>& gasHistory);
 void BarostatNoBoundaries(Particle* cube, std::list<Particle*>& gas);
+void BarostatNoCube(std::list<Particle*>& gas);
 
 //void BarostatTest(std::list<Particle*>& gas);
 void BarostatTest(Particle* cube, std::list<Particle*>& gas);
 
 void ComputeSoftSphere(std::list<Particle*>& gas, Particle* cube);
 void ComputeSoftSphereTest(std::list<Particle*>& gas, Particle* cube);
+void ComputeSoftSphereNoCube(std::list<Particle*>& gas);
 void PrintAllData(Particle* cube, std::list<Particle*> gas,FILE* output);
 //void eHEX(Particle* cube,FILE* output);
 void eHEX(Particle* cube);
@@ -83,5 +85,9 @@ double calculateEnergies(Particle* cube, std::list<Particle*> gas);
 double calculateEnergies(Particle* cube);
 double calculateEnergiesTest(Particle* cube, std::list<Particle*> gas);
 void gasStatus(std::list<Particle*> gas);
+
+void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas);
+void verletBaro(Particle* cube, std::list<Particle*>& gas);
+void eHEXBaro(Particle* cube, std::list<Particle*>& gas);
 
 #endif

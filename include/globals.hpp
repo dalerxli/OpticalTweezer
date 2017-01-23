@@ -39,6 +39,7 @@ extern const unsigned int N;
 
 extern double FG;
 extern double* rCMStart;
+extern double* center;
 extern double eps;
 extern double dQ;
 extern double rho;
@@ -47,6 +48,7 @@ extern double AmbientTemp;
 extern double P;
 extern double L;
 extern double rCutOff;
+extern double rCut2;
 extern double dt;
 
 extern double*** Forces;
