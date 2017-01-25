@@ -612,7 +612,7 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(px0);
             kinE = px0->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
-            //gsl_histogram_increment(gas_in,kinE);
+            gsl_histogram_increment(gas_in,kinE);
         }
 
         //side xL
@@ -635,7 +635,7 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(pxL);
             kinE = pxL->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
-            //gsl_histogram_increment(gas_in,kinE);
+            gsl_histogram_increment(gas_in,kinE);
         }   
 
         //side y0
@@ -681,7 +681,7 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(pyL);
             kinE = pyL->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
-            //gsl_histogram_increment(gas_in,kinE);
+            gsl_histogram_increment(gas_in,kinE);
         }   
         
         //side z0
@@ -705,7 +705,7 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(pz0);
             kinE = pz0->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
-            //gsl_histogram_increment(gas_in,kinE);
+            gsl_histogram_increment(gas_in,kinE);
         }   
 
         //side zL
@@ -729,7 +729,7 @@ void InitBarostatFull(std::list<Particle*>& particles)
              */
             particles.push_back(pzL);
             kinE = pzL->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
-            //gsl_histogram_increment(gas_in,kinE);
+            gsl_histogram_increment(gas_in,kinE);
         }   
 /*
  *
@@ -3456,10 +3456,10 @@ void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
     std::list<Particle*>::iterator gasIter;
     for(unsigned int i=0;i<N;i++)
         for(unsigned int m=0;m<3;m++)
-        {
             cube[i].aOld[m] = cube[i].a[m];
+    for(unsigned int i=0;i<N;i++)
+        for(unsigned int m=0;m<3;m++)
             cube[i].a[m] = 0.;        
-        }
     for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
        for(unsigned int m=0;m<3;m++)
           (*gasIter)->a[m] = 0.; 

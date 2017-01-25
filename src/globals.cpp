@@ -16,8 +16,8 @@ int g_ID=1;
 //const unsigned int N = 864;
 //const unsigned int N = 500;
 //const unsigned int N = 108;
-//const unsigned int N = 256;
-const unsigned int N = 32;
+const unsigned int N = 256;
+//const unsigned int N = 32;
 
 double* rCMStart = new double[3];
 double* center = new double[3];
