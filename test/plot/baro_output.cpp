@@ -131,15 +131,16 @@ int main()
             fprintf(compos,"%lf\t%lf\t%lf\n",rCM[0],rCM[1],rCM[2]);
             fprintf(comvel,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
         }
-        eHEX(particles);
+        //eHEX(particles);
         //VelocityVerlet(particles);
-        BarostatNew(particles,gas);
-        harmonicTrap(rCM,vCM,rCMStart,particles);
+        //BarostatNew(particles,gas);
+        //harmonicTrap(rCM,vCM,rCMStart,particles);
+        eHEXBaro(particles,gas);
         calcTemp(particles,tempout);
         energy = calculateEnergies(particles);
         fprintf(enerout,"%lf\n",energy);
         for(int m=0;m<1000;m++)
-            trackParticle(particles,gas,m,trackdata[m]);
+            trackParticle(particles,gas,m+500,trackdata[m]);
 
     }
 

@@ -91,7 +91,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-\title{Temperature Measurements in Optical Tweezer Experiments}
+\title{Simulation of Nano Particles in a Laser Trap}
 \author{Mathias H\"old, BSc.}
 \date{2016}
 \maketitle
@@ -108,16 +108,16 @@
 \newpage
 \section{Motivation}
 %introduction of the experiment, the problem and the idea
-\section{The experiment}
 The starting point of this thesis is an experiment conducted by Gieseler et al \cite{Gieseler2014}. It is an optical tweezer experiment, where the
 motion of a glass nanoparticle in a laser trap was used to investigate the fluctuation theorem\cite{Crooks1999}.
 \subsection{Experimental setup}
 In the experiment, a silica nano particle with a radius of about 75 nm and mass of about $3 \times 10^{-18}$kg is trapped in a laser beam within a
 vacuum chamber. The trapping of the silica nano particle is achieved by a gradient force of the
-laser beam acting on the particle. The experimental setup is depicted in fig.~\ref{fig:setup}.\\
+laser beam acting on the particle. The experimental setup is depicted in Fig.~\ref{fig:setup}.\\
 The particle fluctuates within the trap in all three spatial directions. These fluctuations can be approximated
 such that they are decoupled, which means that they can be described by a one-dimensional Langevin equation:
 \begin{equation}
+    \label{eq:langevin}
     \ddot{x} + \Gamma_0 \dot{x} + \Omega^2_0x = \frac 1 m \left(F_\text{fluct} + F_\text{ext}\right)
 \end{equation}
 %The experiment is set up as follows: a glass sphere with radius $r \approx 75$ nm and mass $m \approx 3 \times 10^{-18}$ kg is trapped in a laser beam
@@ -151,9 +151,52 @@ due to the fluctuation-dissipation theorem, which links the damping rate to the 
 %used to suppress the motion along said axis. This causes a decrease in the particle fluctuations and thus acts as a cooling mechanism for the particle
 %in the trap. This process creates a non-equilibrium steady state $\rho_{ss}(u,\alpha)$, which is not known analytically. This state is the starting
 %point of this thesis.\\
+\subsection{Model of the Surrounding Gas}
+J. Millen et al.~\cite{MillenJ.2014} worked on a similar experimental setup (without the feedback mechanism) and investigated the heating of the
+particle in the trap as well as the gas surrounding the particle.\\
+They start from the premise that there are 4 different temperatures one has to consider in such an experiment: the temperature of the gas particles
+before interacting with the nano particle $T_\text{imp}$ (for \textit{impinging}), the temperature of the gas particles after 
+interaction $T_\text{em}$ (for emerging), the surface temperature of the nano particle $T_\text{sur}$ and the temperature of the 
+center of mass of the nano particle $T_\text{COM}$. The experimental setup
+and the different temperatures are depicted in Fig.~\ref{fig:levitation}.\\
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.2]{images/nnano_millen.jpg}
+        \caption{The experimental setup used by Millen et al. In \textbf{a} the experiment is schematically depicted and \textbf{b} shows a photograph
+            of the actual experimental setup. In \textbf{c} the 4 different temperatures that are present during the experiment are depicted and
+        \textbf{d} shows the position of the particle in the trap over time. The image was taken from~\cite{MillenJ.2014}}
+        \label{fig:levitation}
+    \end{center}
+\end{figure}
+Since the two temperatures of the gas, $T_\text{imp}$ and $T_\text{em}$, are not equal, the gas surrounding the nano particle is not in a thermal
+equilibrium, which is in contrast to the assumption in many optical tweezer experiments. Since the gas particles only interact with the nano particle
+in the trap and not wich each other, this situation creates two heat baths of different temperatures with the nano particle acting as a mediator
+between those two baths. This situation is depicted in
+Fig.~\ref{fig:heatbaths}.
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[scale=0.5]{images/nano_nonequilibrium_cropped.jpg}
+        \caption{Schematic picture of the two heat baths. The (hot) nano particle interacts with the (cold) incoming gas particles and they leave with
+        a higher temperature. The incoming and outgoing particles do not interact with each other and thus create two separate heat baths with
+    different temperatures. Image modified from \cite{Kroy2014}}
+        \label{fig:heatbaths}
+    \end{center}
+\end{figure}
+The one dimensional Langevin equation \eqref{eq:langevin} has to be modeled to include the different friction coefficients of the two heat baths. The
+model derived in \cite{MillenJ.2014} is described in the following equation:
+\begin{equation}
+    M\ddot{x}(t) + M\left(\Gamma^\text{imp}+\Gamma^\text{em}\right)\dot{x}(t) + M\omega^2x(t) =F^\text{imp}+F^\text{em}
+\end{equation}
+where $x$ is the position of the nano particle, $\dot{x}$ and $\ddot{x}$ are the velocity and the acceleration, respectively, $M$ is the mass,
+$\omega$ is the trap frequency, $\Gamma^\text{imp}$ and $\Gamma^\text{em}$ are the damping constants for the 
+impinging particles and the emerging particles, respectively and $F^\text{imp}$ and $F^\text{em}$ are the associated noise terms, 
+which satisfy $\langle F^\text{imp}\rangle= \langle F^\text{em} \rangle = 0$ individually.\\
+Miller et al. investigate the dependence of the emerging temperature $T_\text{em}$ on the intensity of the laser for different sized nano particles
+and different pressures.\\
 
-
-
+%These four temperatures introduced in the paper, together with the surrounding pressure and the intensity of the laser 
+%The existence of the two temperatures of the gas implies that, contrary to the assumption in many of the experiments, the gas is not in a thermal
+%equilibrium. The Langevin equation (like the one in \eqref{eq:langevin}) has to be modeled k
 
 
 
@@ -225,7 +268,7 @@ From the Lennard-Jones potential the corresponding force can be calculated by ta
     \label{eq:ljforce} &=& 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
 \end{eqnarray}
 The force in the y and z direction can be calculated analogously.\\
-The initial configuration of the particles is a face centered cubic (FCC) lattice. A schematic of the FCC lattice is depicted in fig. \ref{fig:fcc}.
+The initial configuration of the particles is a face centered cubic (FCC) lattice. A schematic of the FCC lattice is depicted in Fig. \ref{fig:fcc}.
 With the choice of FCC as initial configuration, there are optimal numbers for the numbers of the particles in the system. Since once FCC cell 
 shares its atoms with its next neighbours, the number of atom per unit cell is 4 -- 1/8 of a particle on eight corners and 1/2 of a particle on six faces.
 The whole system of atoms is then created by repeating this cell structure. One convenient way is to arrange the unit cells in a cubic system, 
@@ -258,7 +301,7 @@ there are ideal or so called \textit{magic numbers} for atoms for which this set
 % do i need to credit the uni buffalo course? 
 % http://www.physics.buffalo.edu/phy411-506/
 There are several ways to achieve this initial configuration and the one used in this thesis \cite{buffalo} was to create a kind of unit cell 
-consisting of four atoms, as shown in fig. \ref{fig:unitcell}, which can be described by a set of points
+consisting of four atoms, as shown in Fig. \ref{fig:unitcell}, which can be described by a set of points
 \begin{eqnarray*}
     p_1 &=& \{0,0,0\}\\
     p_2 &=& \{0.5*a,0.5*a,0\}\\
@@ -282,7 +325,7 @@ point in this space corresponds to a set of positions and momenta and the connec
 from one state to another. As mentioned above, this evolution (the dynamics of the system) is a crucial element to molecular dynamics. Since the
 equations of motion cannot be solved analytically in general, we need to approximate the solution.\\
 The method used here is called finite difference approach. The trajectory of the system in the phase space is cut into finite pieces of length $\Delta
-t$ and the equations of motion are solved for every segment separately (see fig. \ref{fig:finitedifference}).\\
+t$ and the equations of motion are solved for every segment separately (see Fig. \ref{fig:finitedifference}).\\
 \begin{figure}
     \begin{center}
         \includegraphics[scale=0.5]{images/finite_approach.pdf}
@@ -404,7 +447,7 @@ identify the cause of this energy drift, to create a more suitable algorithm, wh
 As in the HEX algorithm, regions are introduced to the system which act either as heat sinks or heat sources. These are labelled with $\Gamma_k$,
 where $k > 0$, and have corresponding amount of exchanged heat $\Delta Q_{\Gamma_k}$. If $\Delta Q_{\Gamma_k}$ is negative, heat is subtracted from
 the system and vice versa. Regions that neither act as heat source or heat sink are labelled with $\Gamma_0$, which are also called
-Hamiltonian regions (see fig. \ref{fig:ehex}). 
+Hamiltonian regions (see Fig. \ref{fig:ehex}). 
 \begin{figure}
     \begin{center}
         \includegraphics[scale=0.3]{images/ehex_system.png}
@@ -488,7 +531,7 @@ With all the necessary quantities established, the updating sequence of the eHEX
 This algorithm can be adapted for the problem of the levitating nano sphere in the laser beam by adjusting the setup and some of the parameters.\\
 Firstly, the setup of the heat sinks and sources has to be changed. Since there is only energy pumped into the system from the outside, the region
 acting as a heat sink vanishes and the region acting as a heat source spans over the whole simulation box. This means that, using the 
-notation of fig. \ref{fig:ehex}, $\Omega = \Gamma_1$. Furthermore, neither center of mass of the particles the simulation box nor 
+notation of Fig. \ref{fig:ehex}, $\Omega = \Gamma_1$. Furthermore, neither center of mass of the particles the simulation box nor 
 the heat source are moving, i.e. 
 $\mathbf{v}_\Omega = \mathbf{v}_{\Gamma_1} = 0$. This affects the non-translational kinetic energy term $\mathcal{K}_{\Gamma_1}$, the thermostatting
 force $\boldsymbol{\eta}$ and the correction term $\mathcal{E}\mathbf{r}$. Since there is only one region acting as a heat source, the terms $\Delta Q$,
@@ -676,7 +719,7 @@ Since the simulation consists of various parts that have to work together, we fi
 \subsection{The Crystal}
 The first element of the simulation is the setup of the FCC lattice on which the particles are placed on. To check if this is done correctly, we can
 use a visualisation and rendering software such as VMD\cite{Humphrey1996} or OVITO\cite{Stukowski2010}. The rendered image of the nano particle 
-can be seen in fig.~\ref{fig:glass}. The chosen perspective shows the structure of the FCC lattice, where 3 layers are forming 
+can be seen in Fig.~\ref{fig:glass}. The chosen perspective shows the structure of the FCC lattice, where 3 layers are forming 
 where the atoms take the position on the gap between the atoms from the layer below.\\
 \begin{figure}[h]
     \begin{center}
@@ -759,7 +802,7 @@ specific starting temperature $T$, the velocities need to be scaled accordingly.
  \label{eq:rescale3}   \mathbf{v}_i^\text{new} &=& \lambda \mathbf{v}_i  
 \end{eqnarray}
 This process has to be done a couple of times, until the system equilibrates to the desired temperature. The problem with this procedure is the fact
-that it contradicts the constant energy property of the ensemble. If we look at the energy values in fig.~\ref{fig:energystart} we can see the
+that it contradicts the constant energy property of the ensemble. If we look at the energy values in Fig.~\ref{fig:energystart} we can see the
 irregularities (jumps) before the system equilibrates to a constant value. This equilibration process divides the simulation in two phases: the equilibration
 phase and the measurement phase. In the equilibration phase, the system has time to reach a configuration that is (as the name suggests) in an 
 equilibrated state. During this phase, there are usually no measurements (such as energy) performed, since the values from this phase are distorting
@@ -784,7 +827,7 @@ application of the algorithm (similar to the way it's been done with the velocit
 %Like mentioned above, there is an equilibration phase, which takes place before the recording of the values for this comparison. The graph starts 
 %with a velocity Verlet phase after which the eHEX algorithm starts, to emphasize the effect of the change in temperature and energy.\\
 Since the eHEX algorithm injects heat into the system, one would expect the energy and the temperature to rise during the application of the
-algorithm. In fig.~\ref{fig:ehex_te} we can see that exactly this is happening. The graph shows a velocity Verlet phase (that follows an equilibration
+algorithm. In Fig.~\ref{fig:ehex_te} we can see that exactly this is happening. The graph shows a velocity Verlet phase (that follows an equilibration
 phase which is not recorded) of constant temperature and energy and an eHEX phase, where the temperature and the enrgy are constantly rising. 
 \begin{figure}[h]
     \begin{center}
@@ -796,8 +839,8 @@ phase which is not recorded) of constant temperature and energy and an eHEX phas
         \label{fig:ehex_te}
     \end{center}
 \end{figure}
-The comparison of different values of $\Delta Q$ can be seen in fig.~\ref{fig:ehex_dq}. As the correlation between the temperature and the energy has
-been shown in fig.~\ref{fig:ehex_te}, the plotting of the temperature data should suffice. 
+The comparison of different values of $\Delta Q$ can be seen in Fig.~\ref{fig:ehex_dq}. As the correlation between the temperature and the energy has
+been shown in Fig.~\ref{fig:ehex_te}, the plotting of the temperature data should suffice. 
 \begin{figure}[h]
     \begin{center}
         \includegraphics[scale=0.4]{images/ehex_temp_dq.pdf}
@@ -855,7 +898,7 @@ interaction range of the nano particle. There they undergo a change of energy du
 from the nano particle. After the interaction, when they reach a point outside of the interaction range, the enrgy stays constant again until the
 particles reach the limits of the simulation box.\\
 Therefore, the life span of a single gas particle can be partioned into 3 stages: incoming, interacting, outgoing. In a typical scene of interaction
-all three of these stages are represented by different gas particles, as can be seen in fig.~\ref{fig:barointeraction}.\\
+all three of these stages are represented by different gas particles, as can be seen in Fig.~\ref{fig:barointeraction}.\\
 \begin{figure}[h]
     \begin{center}
         \includegraphics[scale=0.4]{images/baro_170105_new_medium.png}

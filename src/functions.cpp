@@ -2983,7 +2983,7 @@ void trackParticle(Particle* cube, std::list<Particle*> gas, int partID, FILE* o
      {
          if((*gasIter)->ID == partID)
          {
-             fprintf(output,"%d\ntest\n",N+1);
+             //fprintf(output,"%d\ntest\n",N+1);
              /*
               *fprintf(output,"%s\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",
               *        ((*gasIter)->name).c_str(),(*gasIter)->r[0],(*gasIter)->r[1],(*gasIter)->r[2],\
@@ -3019,10 +3019,12 @@ void trackParticle(Particle* cube, std::list<Particle*> gas, int partID, FILE* o
              fprintf(output,"\t%lf",(*gasIter)->potE);
              fprintf(output,"\t%lf",(*gasIter)->m*((*gasIter)->v[0]*(*gasIter)->v[0]+(*gasIter)->v[1]*(*gasIter)->v[1]+(*gasIter)->v[2]*(*gasIter)->v[2])/2.);
              fprintf(output,"\n");
-             for(unsigned int j=0;j<N;j++)
-             {
-                     fprintf(output,"%s\t\%lf\t\%lf\t%lf\n",(cube[j].name).c_str(),cube[j].r[0],cube[j].r[1],cube[j].r[2]);
-             }
+             /*
+              *for(unsigned int j=0;j<N;j++)
+              *{
+              *        fprintf(output,"%s\t\%lf\t\%lf\t%lf\n",(cube[j].name).c_str(),cube[j].r[0],cube[j].r[1],cube[j].r[2]);
+              *}
+              */
 
 
          }
