@@ -739,19 +739,23 @@ where the atoms take the position on the gap between the atoms from the layer be
 
 \subsection{Velocity Verlet}
 The velocity Verlet part of the simulation is taking place in a NVE ensemble from a thermodynamic point of view. 
-This means that the particle number $N$, the volume $V$ and the
-total energy $E$ are constant. In contrast to the NVT ensemble used in Monte-Carlo simulations this means, that the velocities of the particle can not
-be chosen directly. The initial velocities have to be drawn from a random number generator. This means that the velocities have to be adjusted after 
-they have been drawn.\\
+This means that the particle number $N$, the volume $V$ and the total energy $E$ are constant. 
+The initial velocities of the particles are chosen randomly from a Maxwell-Boltzmann distribution. To ensure that the system behaves the way it is
+intended to, small adjustments have to be made in the beginning of the simulation of the nano particle.\\
+%In contrast to the NVT ensemble used in Monte-Carlo simulations this means, that the velocities of the particle can not
+%be chosen directly. The initial velocities have to be drawn from a random number generator. This means that the velocities have to be adjusted after 
+%they have been drawn.\\
 The first adjustment that needs to be made is making sure that the system is staying in place and not floating away. To do this, the velocity vectors
-of all the atoms in the system have to be added to get the resulting velocity vector for the whole system that is thought to be acting on the center
-of mass. This resulting vector is then divided by the number of particles in the system and the resulting vector is then subtracted from every
+of all the atoms in the system have to be added to get the resulting velocity vector for the whole system. 
+This resulting vector is then divided by the number of particles in the system and the resulting vector is then subtracted from every
 velcocity vector of every atom in the system. 
 \begin{eqnarray}
     \mathbf{v}_\text{tot} &=& \sum_{i=1}^N \mathbf{v}_i\\
     \mathbf{v}_\text{cut} &=& \frac{\mathbf{v}_\text{tot}}N\\
     \mathbf{v}_i^\text{new} &=& \mathbf{v}_i - \mathbf{v}_\text{cut}
 \end{eqnarray}
+This adjustment only needs to be done just after randomly choosing the velocities, as there is no force present at this point that would cause the
+nano particle to move.
 %The next adjustment is a small one that makes a difference in the long run. When choosing random velocities, the system not only tends to have a
 %resulting velocity vector that causes the whole system to float away, but also a resulting angular momentum that causes the system to rotate.
 %The angular momentum can be defined via the moment of inertia $\mathbf{I}$
@@ -792,8 +796,11 @@ velcocity vector of every atom in the system.
 %\begin{equation}
     %\mathbf{v}_i^\text{new} = \mathbf{v}_i - \left(\boldsymbol{\omega} \times \Delta\mathbf{r}_i\right)
 %\end{equation}
-\\The velocities of the particle can roughly be chosen by adjusting the range of numbers the random number generator can choose from. However, the
-resulting velocities (and therefore the temperature of the system) are generally not precisely how they should be. If the system should have a
+%\\The velocities of the particle can roughly be chosen by adjusting the range of numbers the random number generator can choose from. However, the
+%resulting velocities (and therefore the temperature of the system) are generally not precisely how they should be. 
+\\As mentioned above, the velocities are chosen from a Maxwell-Boltzmann distribution, which means choosing each component from a Gaussian
+distribution. However, the positions on the FCC lattice are not very natural and so the atoms equilibrate to a different temperature than desired.
+If the system should have a
 specific starting temperature $T$, the velocities need to be scaled accordingly. This rescaling is done by summing the square of the velocities
 (this equals calculating the kinetic energy since the masses are set to 1) and rescale them by a factor $\lambda$:
 \begin{eqnarray}
@@ -801,8 +808,10 @@ specific starting temperature $T$, the velocities need to be scaled accordingly.
  \label{eq:rescale2}   \lambda &=& \sqrt{\frac{3(N-1)T}{2E}} \\
  \label{eq:rescale3}   \mathbf{v}_i^\text{new} &=& \lambda \mathbf{v}_i  
 \end{eqnarray}
-This process has to be done a couple of times, until the system equilibrates to the desired temperature. The problem with this procedure is the fact
-that it contradicts the constant energy property of the ensemble. If we look at the energy values in Fig.~\ref{fig:energystart} we can see the
+This process has to be done a couple of times, until the system equilibrates to the desired temperature. 
+%The problem with this procedure is the fact
+%that it is not compatible with the requirement of constant energy of the system. 
+If we look at the energy values in Fig.~\ref{fig:energystart} we can see the
 irregularities (jumps) before the system equilibrates to a constant value. This equilibration process divides the simulation in two phases: the equilibration
 phase and the measurement phase. In the equilibration phase, the system has time to reach a configuration that is (as the name suggests) in an 
 equilibrated state. During this phase, there are usually no measurements (such as energy) performed, since the values from this phase are distorting

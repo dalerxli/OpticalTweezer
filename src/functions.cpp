@@ -562,7 +562,7 @@ void InitBarostat(std::list<Particle*>& particles)
          */
 }
 
-void InitBarostatFull(std::list<Particle*>& particles)
+void InitBarostatFullNewTemp(std::list<Particle*>& particles)
 {
         unsigned int i;
         unsigned int Num;
@@ -841,6 +841,117 @@ void InitBarostatFull(std::list<Particle*>& particles)
         //delete pyL; NO segfault
         //delete pz0; segfault
         //delete pzL; NO segfault
+}
+void InitBarostatFull(std::list<Particle*>& particles)
+{
+        unsigned int i;
+        unsigned int Num;
+        //double sigma=1.1;
+        double sigma=AmbientTemp;
+        double lambda = 0;
+        double vel = 0;
+
+        Particle *px0;
+        Particle *pxL;
+        Particle *py0;
+        Particle *pyL;
+        Particle *pz0;
+        Particle *pzL;
+
+        double kinE = 0.;
+
+        //side: x0
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
+        {
+            
+            px0 = new Particle(-L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,"GasIn");
+            particles.push_back(px0);
+            kinE = px0->m*(px0->v[0]*px0->v[0]+px0->v[1]*px0->v[1]+px0->v[2]*px0->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }
+
+        //side xL
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
+        {
+            pxL = new Particle(2.*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,"GasIn");
+            particles.push_back(pxL);
+            kinE = pxL->m*(pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[1]+pxL->v[2]*pxL->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side y0
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
+        {
+            py0 = new Particle(((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            -L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,
+                            gsl_ran_rayleigh(r,sigma),
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,"GasIn");
+            particles.push_back(py0);
+            kinE = py0->m*(py0->v[0]*py0->v[0]+py0->v[1]*py0->v[1]+py0->v[2]*py0->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side yL
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
+        {
+            pyL = new Particle(((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            2.*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,
+                            gsl_ran_rayleigh(r,sigma)*(-1.),
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,"GasIn");
+            particles.push_back(pyL);
+            kinE = pyL->m*(pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[1]+pyL->v[2]*pyL->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+        
+        //side z0
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
+        {
+            pz0 = new Particle(
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            -L,
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,
+                            gsl_ran_rayleigh(r,sigma),"GasIn");
+            particles.push_back(pz0);
+            kinE = pz0->m*(pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[1]+pz0->v[2]*pz0->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
+
+        //side zL
+        Num = NumberOfParticles();
+        for(i=0;i<Num;i++)
+        {
+            pzL = new Particle(
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
+                            2.*L,
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,
+                            gsl_ran_gaussian(r,0.001)+AmbientTemp,
+                            gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn");
+            particles.push_back(pzL);
+            kinE = pzL->m*(pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[1]+pzL->v[2]*pzL->v[2])*0.5;
+            gsl_histogram_increment(gas_in,kinE);
+        }   
 }
 
 void InitBarostatFullNew(std::list<Particle*>& particles)
@@ -3234,7 +3345,7 @@ void calculateGasTemperature(std::list<Particle*> gas,FILE* output)
     outTemp = outTemp/(3*outCount);
     //std::cout << "\tInTemp: " << inTemp << std::endl;
     //std::cout << "\tOutTemp: " << outTemp << std::endl;
-    fprintf(output,"%lf\t%lf\t%lf\t%s\n",inTemp,outTemp,inTemp-outTemp,inTemp>outTemp ? "InTemp" : "OutTemp");
+    fprintf(output,"%lf\t%lf\t%lf\t%d\t%s\n",inTemp,outTemp,inTemp-outTemp,gas.size(),inTemp>outTemp ? "InTemp" : "OutTemp");
 }
 
 double calculateEnergies(Particle* cube, std::list<Particle*> gas)
