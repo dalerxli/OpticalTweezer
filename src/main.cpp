@@ -34,24 +34,31 @@ int main(int argc,char** argv)
      *    }
      */
 
-    double t = 0.1;
-    double ambient = 0.09;
-    double press = 0.8;
-    double q = 0.03;
-    while(ambient > 0.01)
-    {
-        setValues(t,q,0.2,press,ambient);
-        std::cout << "==================================================" << std::endl;
-        std::cout << "t: " << t << std::endl;
-        std::cout << "p: " << press << std::endl;
-        std::cout << "q: " << q << std::endl;
-        std::cout << "at: " << ambient << std::endl;
-        std::cout << "==================================================" << std::endl;
-        mainLoop();
-        ambient -= 0.01;
-    }
-    //setValues(0.2,0.09,0.2,0.8,0.08);
-    //mainLoop();
+/*
+ *    double t = 0.1;
+ *    double ambient = 0.05;
+ *    double press = 0.8;
+ *<<<<<<< HEAD
+ *    double q = 0.03;
+ *    while(ambient > 0.01)
+ *=======
+ *    double q = 0.01;
+ *    while(q < 0.1)
+ *>>>>>>> 994fb1709ec24f4f6e70c7b6849bd0458c3d4652
+ *    {
+ *        setValues(t,q,0.2,press,ambient);
+ *        std::cout << "==================================================" << std::endl;
+ *        std::cout << "t: " << t << std::endl;
+ *        std::cout << "p: " << press << std::endl;
+ *        std::cout << "q: " << q << std::endl;
+ *        std::cout << "at: " << ambient << std::endl;
+ *        std::cout << "==================================================" << std::endl;
+ *        mainLoop();
+ *        q += 0.01;
+ *    }
+ */
+    setValues(0.2,0.09,0.2,0.8,0.08);
+    mainLoop();
     return 0;
 }
 

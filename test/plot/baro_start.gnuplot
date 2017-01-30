@@ -13,7 +13,7 @@ set xlabel offset 0,-4
 set ylabel offset -10,0
 set key spacing 2
 set ylabel "T*"
-set xlabel "Timestep"
+set xlabel "Time"
 set output "baro_temp_start.pdf"
 plot "baro_temp_004_nochamal_1.dat" w l lt rgb "red" title "T*" 
 unset output

@@ -1,0 +1,161 @@
+\begin{thebibliography}{10}
+
+\bibitem{Allen1989}
+M.~P. Allen and D.~J. Tildesley.
+\newblock {\em Computer Simulation of Liquids}.
+\newblock Clarendon Press, New York, NY, USA, 1989.
+
+\bibitem{Andersen1980}
+Hans~C. Andersen.
+\newblock Molecular dynamics simulations at constant pressure and/or
+  temperature.
+\newblock {\em The Journal of Chemical Physics}, 72(4):2384--2393, 1980.
+
+\bibitem{Berendsen1984}
+H.~J.~C. Berendsen, J.~P.~M. Postma, W.~F. van Gunsteren, A.~DiNola, and J.~R.
+  Haak.
+\newblock Molecular dynamics with coupling to an external bath.
+\newblock {\em The Journal of Chemical Physics}, 81(8):3684--3690, 1984.
+
+\bibitem{Crooks1999}
+Gavin~E. Crooks.
+\newblock Entropy production fluctuation theorem and the nonequilibrium work
+  relation for free energy differences.
+\newblock {\em Phys. Rev. E}, 60:2721--2726, Sep 1999.
+
+\bibitem{Dellago2016}
+C.~Dellago.
+\newblock Lecture notes - computational physics ii: Simulation.
+\newblock 2016.
+
+\bibitem{Eargle2006}
+John Eargle, Dan Wright, and Zaida Luthey-Schulten.
+\newblock {Multiple Alignment of protein structures and sequences for VMD}.
+\newblock {\em Bioinformatics}, 22(4):504--506, Feb 2006.
+
+\bibitem{Frenkel2001}
+D.~Frenkel and B.~Smit.
+\newblock {\em Understanding Molecular Simulation: From Algorithms to
+  Applications}.
+\newblock Computational science series. Elsevier Science, 2001.
+
+\bibitem{Frishman1995}
+D.~Frishman and P.~Argos.
+\newblock Knowledge-based secondary structure assignment.
+\newblock {\em Proteins: structure, function and genetics}, 23:566--579, 1995.
+
+\bibitem{Gieseler2014}
+Jan Gieseler, Romain Quidant, Christoph Dellago, and Lukas Novotny.
+\newblock Dynamic relaxation of a levitated nanoparticle from a non-equilibrium
+  steady state.
+\newblock {\em Nat Nano}, 9(5):358--364, May 2014.
+
+\bibitem{Gruenwald2006}
+M.~Grünwald and C.~Dellago.
+\newblock Ideal gas pressure bath: a method for applying hydrostatic pressure
+  in the computer simulation of nanoparticles.
+\newblock {\em Molecular Physics}, 104(22-24):3709--3715, 2006.
+
+\bibitem{Huenenberger2005}
+Philippe~H. H{\"u}nenberger.
+\newblock {\em Thermostat Algorithms for Molecular Dynamics Simulations}, pages
+  105--149.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2005.
+
+\bibitem{Hafskjold1993}
+B.~{Hafskjold}, T.~{Ikeshoji}, and S.~{Kjelstrup Ratkje}.
+\newblock {On the molecular mechanism of thermal diffusion in liquids}.
+\newblock {\em Molecular Physics}, 80:1389--1412, December 1993.
+
+\bibitem{Hoover1985}
+William~G. Hoover.
+\newblock Canonical dynamics: Equilibrium phase-space distributions.
+\newblock {\em Phys. Rev. A}, 31:1695--1697, Mar 1985.
+
+\bibitem{Humphrey1996}
+William Humphrey, Andrew Dalke, and Klaus Schulten.
+\newblock {VMD} -- {V}isual {M}olecular {D}ynamics.
+\newblock {\em Journal of Molecular Graphics}, 14:33--38, 1996.
+
+\bibitem{MillenJ.2014}
+Millen J., Deesuwan T., Barker P., and Anders J.
+\newblock Nanoscale temperature measurements using non-equilibrium brownian
+  dynamics of a levitated nanosphere.
+\newblock {\em Nat Nano}, 9(6):425--429, June 2014.
+
+\bibitem{Kroy2014}
+Klaus Kroy.
+\newblock Levitating nanoparticles: Non-equilibrium nano-thermometry.
+\newblock {\em Nat Nano}, 9(6):415--417, June 2014.
+
+\bibitem{Nose1984}
+Shuichi Nosé.
+\newblock A unified formulation of the constant temperature molecular dynamics
+  methods.
+\newblock {\em The Journal of Chemical Physics}, 81(1):511--519, 1984.
+
+\bibitem{Sanner1995}
+Michel Sanner, Arthur Olsen, and Jean-Claude Spehner.
+\newblock Fast and robust computation of molecular surfaces.
+\newblock In {\em Proceedings of the 11th ACM Symposium on Computational
+  Geometry}, pages C6--C7, New York, 1995. ACM.
+
+\bibitem{Sharma2000}
+Rajeev Sharma, Michael Zeller, Vladimir~I. Pavlovic, Thomas~S. Huang, Zion Lo,
+  Stephen Chu, Yunxin Zhao, James~C. Phillips, and Klaus Schulten.
+\newblock Speech/gesture interface to a visual-computing environment.
+\newblock 20:29--37, 2000.
+
+\bibitem{Stone1998}
+John Stone.
+\newblock {\em An Efficient Library for Parallel Ray Tracing and Animation}.
+\newblock Master's thesis, Computer Science Department, University of
+  Missouri-Rolla, April 1998.
+
+\bibitem{Stone2001}
+John Stone, Justin Gullingsrud, Paul Grayson, and Klaus Schulten.
+\newblock A system for interactive molecular dynamics simulation.
+\newblock In John~F. Hughes and Carlo~H. S\'equin, editors, {\em 2001 ACM
+  Symposium on Interactive 3D Graphics}, pages 191--194, New York, 2001. ACM
+  SIGGRAPH.
+
+\bibitem{Stukowski2010}
+Alexander Stukowski.
+\newblock Visualization and analysis of atomistic simulation data with
+  ovito–the open visualization tool.
+\newblock {\em Modelling and Simulation in Materials Science and Engineering},
+  18(1):015012, 2010.
+
+\bibitem{Swope1982}
+William~C. Swope, Hans~C. Andersen, Peter~H. Berens, and Kent~R. Wilson.
+\newblock A computer simulation method for the calculation of equilibrium
+  constants for the formation of physical clusters of molecules: Application to
+  small water clusters.
+\newblock {\em The Journal of Chemical Physics}, 76(1):637--649, 1982.
+
+\bibitem{Varshney1994}
+A.~Varshney, F.~P. Brooks, and W.~V. Wright.
+\newblock Linearly scalable computation of smooth molecular surfaces.
+\newblock {\em IEEE Computer Graphics and Applications}, 14:19--25, 1994.
+
+\bibitem{Verlet1967}
+Loup Verlet.
+\newblock Computer "experiments" on classical fluids. i. thermodynamical
+  properties of lennard-jones molecules.
+\newblock {\em Phys. Rev.}, 159:98--103, Jul 1967.
+
+\bibitem{Wirnsberger2015}
+P.~Wirnsberger, D.~Frenkel, and C.~Dellago.
+\newblock An enhanced version of the heat exchange algorithm with excellent
+  energy conservation properties.
+\newblock {\em The Journal of Chemical Physics}, 143(12), 2015.
+
+\bibitem{buffalo}
+Idea taken from the Molecular Dynamics part of this lecture:
+  \url{http://www.physics.buffalo.edu/phy411-506/}.
+
+\bibitem{unitcell}
+Image taken from
+  \url{https://upload.wikimedia.org/wikipedia/commons/2/27/Elementarzelle_einer_kubisch_raumzentrierten_Elementarzelle.png}.
+
+\end{thebibliography}

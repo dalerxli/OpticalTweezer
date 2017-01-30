@@ -1,0 +1,60 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: expose.aux
+The style file: unsrt.bst
+Database file #1: references.bib
+Warning--string name "ieeecga" is undefined
+--line 291 of file references.bib
+Warning--empty journal in Dellago2016
+Warning--can't use both author and editor fields in Huenenberger2005
+Warning--empty journal in Sharma2000
+Warning--empty author in buffalo
+Warning--empty title in buffalo
+Warning--empty journal in buffalo
+Warning--empty year in buffalo
+Warning--empty author in unitcell
+Warning--empty title in unitcell
+Warning--empty journal in unitcell
+Warning--empty year in unitcell
+You've used 28 entries,
+            1791 wiz_defined-function locations,
+            648 strings with 8495 characters,
+and the built_in function-call counts, 6460 in all, are:
+= -- 583
+> -- 250
+< -- 3
++ -- 96
+- -- 68
+* -- 484
+:= -- 1010
+add.period$ -- 83
+call.type$ -- 28
+change.case$ -- 23
+chr.to.int$ -- 0
+cite$ -- 39
+duplicate$ -- 280
+empty$ -- 640
+format.name$ -- 68
+if$ -- 1438
+int.to.chr$ -- 0
+int.to.str$ -- 28
+missing$ -- 30
+newline$ -- 139
+num.names$ -- 28
+pop$ -- 68
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 123
+stack$ -- 0
+substring$ -- 498
+swap$ -- 49
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 11
+while$ -- 59
+width$ -- 30
+write$ -- 300
+(There were 12 warnings)

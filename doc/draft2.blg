@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: draft2.aux
+The style file: unsrt.bst
+Database file #1: references.bib
+Warning--empty author in buffalo
+Warning--empty title in buffalo
+Warning--empty journal in buffalo
+Warning--empty year in buffalo
+Warning--can't use both author and editor fields in Huenenberger2005
+You've used 18 entries,
+            1791 wiz_defined-function locations,
+            582 strings with 6729 characters,
+and the built_in function-call counts, 4054 in all, are:
+= -- 376
+> -- 132
+< -- 1
++ -- 53
+- -- 35
+* -- 308
+:= -- 631
+add.period$ -- 53
+call.type$ -- 18
+change.case$ -- 14
+chr.to.int$ -- 0
+cite$ -- 23
+duplicate$ -- 173
+empty$ -- 416
+format.name$ -- 35
+if$ -- 897
+int.to.chr$ -- 0
+int.to.str$ -- 18
+missing$ -- 21
+newline$ -- 91
+num.names$ -- 17
+pop$ -- 37
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 70
+stack$ -- 0
+substring$ -- 347
+swap$ -- 27
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 5
+while$ -- 39
+width$ -- 20
+write$ -- 195
+(There were 5 warnings)

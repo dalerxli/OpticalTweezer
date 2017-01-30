@@ -25,6 +25,7 @@ void InitBarostat(std::vector<Particle*>& particles);
 void InitBarostatNew(std::list<Particle*>& particles);
 void InitBarostatFull(std::list<Particle*>& particles);
 void InitBarostatFullNew(std::list<Particle*>& particles);
+void InitBarostatFullNewTemp(std::list<Particle*>& particles);
 
 void GenerateOutput(Particle *cube, std::list<Particle*> gas,FILE *combinedOut);
 void GenerateOutput(Particle *cube, std::vector<Particle*> gas,FILE *combinedOut);
