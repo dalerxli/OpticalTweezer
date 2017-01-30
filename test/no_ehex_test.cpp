@@ -35,7 +35,7 @@ int main(int argc,char** argv)
      */
 
     double t = 0.1;
-    double ambient = 0.09;
+    double ambient = 0.08;
     double press = 0.8;
     double q = 0.03;
     while(ambient > 0.01)
@@ -50,7 +50,7 @@ int main(int argc,char** argv)
         mainLoop();
         ambient -= 0.01;
     }
-    //setValues(0.2,0.09,0.2,0.8,0.08);
+    //setValues(0.2,0.04,0.2,4,0.8);
     //mainLoop();
     return 0;
 }
@@ -279,7 +279,8 @@ void mainLoop() {
         {
             printf("(MEASURE) Zeitschritt %d - Number of Gas particles: %d\n",run,gas.size());
         }
-        eHEXBaro(cube,gas);
+        //eHEXBaro(cube,gas);
+        verletBaro(cube,gas);
         //eHEX(cube);
         //BarostatNew(cube,gas);
         //BarostatNew(cube,gas,gasHistory);

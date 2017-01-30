@@ -164,21 +164,27 @@ void InitVelocities(Particle* particle)
     double omega[3]={0,0,0}; // for calculating angular velocity
     double dx[3]; // for calculating distance to rCM
     double invinertia[3][3];
-    for(i=0;i<3;i++)
-    {
-        for(unsigned int j=0;j<3;j++)
-        {
-            if(i==j)
-                invinertia[i][j]=(6./(L*L*N));
-            else
-                invinertia[i][j]=0;
-        }
-    }
+    /*
+     *for(i=0;i<3;i++)
+     *{
+     *    for(unsigned int j=0;j<3;j++)
+     *    {
+     *        if(i==j)
+     *            invinertia[i][j]=(6./(L*L*N));
+     *        else
+     *            invinertia[i][j]=0;
+     *    }
+     *}
+     */
 
+    /*
+     *for(n=0;n<N;n++)
+     *    for(i=0;i<3;i++)
+     *        particle[n].v[i] = 2*(gsl_rng_uniform(r)-0.5); 
+     */
     for(n=0;n<N;n++)
         for(i=0;i<3;i++)
-            particle[n].v[i] = 2*(gsl_rng_uniform(r)-0.5); 
-    
+           particle[n].v[i] = gsl_ran_gaussian(r,0.01)+Temp;
     
     for(n=0;n<N;n++)
         for(i=0;i<3;i++)
@@ -201,29 +207,33 @@ void InitVelocities(Particle* particle)
         for(i=0;i<3;i++)
             particle[n].v[i] -= vCM[i];
 
-    for(n=0;n<N;n++)
-    {
-        for(i=0;i<3;i++)
-            dx[i]=rCM[i]-particle[n].r[i];
-        l[0]+= (dx[1]*particle[n].v[2]-dx[2]*particle[n].v[1]);
-        l[1]+= (dx[2]*particle[n].v[0]-dx[0]*particle[n].v[2]);
-        l[2]+= (dx[0]*particle[n].v[1]-dx[1]*particle[n].v[0]);
-    }
+    /*
+     *for(n=0;n<N;n++)
+     *{
+     *    for(i=0;i<3;i++)
+     *        dx[i]=rCM[i]-particle[n].r[i];
+     *    l[0]+= (dx[1]*particle[n].v[2]-dx[2]*particle[n].v[1]);
+     *    l[1]+= (dx[2]*particle[n].v[0]-dx[0]*particle[n].v[2]);
+     *    l[2]+= (dx[0]*particle[n].v[1]-dx[1]*particle[n].v[0]);
+     *}
+     */
 
-    for(i=0;i<3;i++)
-        for(unsigned int j=0;j<3;j++)
-            omega[i]+=invinertia[i][j]*l[j];
+/*
+ *    for(i=0;i<3;i++)
+ *        for(unsigned int j=0;j<3;j++)
+ *            omega[i]+=invinertia[i][j]*l[j];
+ *
+ *    for(n=0;n<N;n++)
+ *    {
+ *        for(i=0;i<3;i++)
+ *            dx[i] = rCM[i] - particle[n].r[i];
+ *     particle[n].v[0] -= (omega[1]*dx[2]-omega[2]*dx[1]);
+ *     particle[n].v[1] -= (omega[2]*dx[0]-omega[0]*dx[2]);
+ *     particle[n].v[2] -= (omega[0]*dx[1]-omega[1]*dx[0]);
+ *    }
+ */
 
-    for(n=0;n<N;n++)
-    {
-        for(i=0;i<3;i++)
-            dx[i] = rCM[i] - particle[n].r[i];
-     particle[n].v[0] -= (omega[1]*dx[2]-omega[2]*dx[1]);
-     particle[n].v[1] -= (omega[2]*dx[0]-omega[0]*dx[2]);
-     particle[n].v[2] -= (omega[0]*dx[1]-omega[1]*dx[0]);
-    }
-
-    rescaleVelocities(particle);
+    //rescaleVelocities(particle);
 
 }
 
@@ -2896,6 +2906,32 @@ void writePositions(Particle* particles, std::string filename)
             fwrite(&(particles[i].a[j]),sizeof(double),1,writeFile);
         fwrite(&(particles[i].surface),sizeof(bool),1,writeFile);
     }
+    fclose(writeFile);
+}
+
+void writePositions(Particle* particles, std::list<Particle*>gas, std::string filename)
+{
+    FILE* writeFile = fopen(filename.c_str(),"wb");
+    std::list<Particle*>::iterator gasIter;
+    for(unsigned int i=0;i<N;i++)
+    {
+        for(unsigned int j=0;j<3;j++)
+            fwrite(&(particles[i].r[j]),sizeof(double),1,writeFile);
+        for(unsigned int j=0;j<3;j++)
+            fwrite(&(particles[i].v[j]),sizeof(double),1,writeFile);
+        for(unsigned int j=0;j<3;j++)
+            fwrite(&(particles[i].a[j]),sizeof(double),1,writeFile);
+        fwrite(&(particles[i].surface),sizeof(bool),1,writeFile);
+    }
+    for(gasIter=gas.begin();gasIter!=gas.end();gasIter++)
+    {
+        for(unsigned int j=0;j<3;j++)
+            fwrite(&((*gasIter)->r[j]),sizeof(double),1,writeFile);
+        for(unsigned int j=0;j<3;j++)
+            fwrite(&((*gasIter)->v[j]),sizeof(double),1,writeFile);
+        for(unsigned int j=0;j<3;j++)
+            fwrite(&((*gasIter)->a[j]),sizeof(double),1,writeFile);
+    } 
     fclose(writeFile);
 }
 

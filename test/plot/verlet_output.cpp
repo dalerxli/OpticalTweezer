@@ -12,14 +12,14 @@
 
 int main()
 {
-
+    dt = 0.02;
     setValues(0.2,0.04,0.2,0.8,0.06);
     Particle *particles = new Particle[N];
     InitPositions(particles);
-    FILE* tempout = fopen("verlet_temp_1.dat","w");
-    FILE* enerout = fopen("verlet_energy_1.dat","w");
-    FILE* compos = fopen("verlet_compos.dat","w");
-    FILE* comvel= fopen("verlet_comvel.dat","w");
+    FILE* tempout = fopen("verlet_new_005_temp_1.dat","w");
+    FILE* enerout = fopen("verlet_new_005_energy_1.dat","w");
+    FILE* compos = fopen("verlet_new_005_compos.dat","w");
+    FILE* comvel= fopen("verlet_new_005_comvel.dat","w");
 
 
     InitVelocities(particles);
@@ -53,8 +53,7 @@ int main()
             fprintf(comvel,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
         }
         if(i%1000 == 0)
-            if(i < 10000)
-                rescaleVelocities(particles);
+            rescaleVelocities(particles);
         VelocityVerlet(particles);
         calcTemp(particles,tempout);
         energy = calculateEnergies(particles);

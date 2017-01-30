@@ -63,6 +63,7 @@ void calcCM(Particle* particles,double *rCM, FILE* output);
 bool fileExist(const std::string& filename);
 double totErg(Particle* particles);
 void writePositions(Particle* particles, std::string filename);
+void writePositions(Particle* particles, std::list<Particle*>gas, std::string filename);
 void readPositions(Particle* particles, std::string filename);
 void harmonicTrap(double* rCM, double* vCM, double* pos, Particle* particles);
 void GenerateOutput(Particle *cube, std::list<Particle*> gas,int Run);
