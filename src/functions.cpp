@@ -577,7 +577,7 @@ void InitBarostatFullNewTemp(std::list<Particle*>& particles)
         unsigned int i;
         unsigned int Num;
         //double sigma=1.1;
-        double sigma=AmbientTemp;
+        double sigma=sqrt(AmbientTemp/0.1);
         double lambda = 0;
         double vel = 0;
 
@@ -610,8 +610,8 @@ void InitBarostatFullNewTemp(std::list<Particle*>& particles)
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             gsl_ran_rayleigh(r,sigma),
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,"GasIn");
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
             /*
              *vel = px0->v[0]*px0->v[0]+px0->v[1]*px0->v[2]+px0->v[2]*px0->v[2];
              *vel = vel/3.;
@@ -633,8 +633,8 @@ void InitBarostatFullNewTemp(std::list<Particle*>& particles)
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             gsl_ran_rayleigh(r,sigma)*(-1.),
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,"GasIn");
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),"GasIn");
             /*
              *vel = pxL->v[0]*pxL->v[0]+pxL->v[1]*pxL->v[2]+pxL->v[2]*pxL->v[2];
              *vel = vel/3.;
@@ -655,9 +655,9 @@ void InitBarostatFullNewTemp(std::list<Particle*>& particles)
             py0 = new Particle(((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             -L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
+                            gsl_ran_gaussian(r,sigma),
                             gsl_ran_rayleigh(r,sigma),
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,"GasIn");
+                            gsl_ran_gaussian(r,sigma),"GasIn");
             /*
              *vel = py0->v[0]*py0->v[0]+py0->v[1]*py0->v[2]+py0->v[2]*py0->v[2];
              *vel = vel/3.;
@@ -678,9 +678,9 @@ void InitBarostatFullNewTemp(std::list<Particle*>& particles)
             pyL = new Particle(((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             2.*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
+                            gsl_ran_gaussian(r,sigma),
                             gsl_ran_rayleigh(r,sigma)*(-1.),
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,"GasIn");
+                            gsl_ran_gaussian(r,sigma),"GasIn");
             /*
              *vel = pyL->v[0]*pyL->v[0]+pyL->v[1]*pyL->v[2]+pyL->v[2]*pyL->v[2];
              *vel = vel/3.;
@@ -702,8 +702,8 @@ void InitBarostatFullNewTemp(std::list<Particle*>& particles)
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             -L,
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
                             gsl_ran_rayleigh(r,sigma),"GasIn");
             /*
              *vel = pz0->v[0]*pz0->v[0]+pz0->v[1]*pz0->v[2]+pz0->v[2]*pz0->v[2];
@@ -726,8 +726,8 @@ void InitBarostatFullNewTemp(std::list<Particle*>& particles)
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             ((gsl_rng_uniform(r)-0.5)*3*L)+0.5*L,
                             2.*L,
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
-                            ((gsl_rng_uniform(r)-0.5)*4)*AmbientTemp,
+                            gsl_ran_gaussian(r,sigma),
+                            gsl_ran_gaussian(r,sigma),
                             gsl_ran_rayleigh(r,sigma)*(-1.),"GasIn");
             /*
              *vel = pzL->v[0]*pzL->v[0]+pzL->v[1]*pzL->v[2]+pzL->v[2]*pzL->v[2];
@@ -2913,6 +2913,7 @@ void calcTemp(Particle* cube,FILE* output)
         for(unsigned int k=0;k<3;k++)
             T+=cube[i].v[k]*cube[i].v[k];
     T = T/(3*N);
+    std::cout << "T: " << T << std::endl;
     fprintf(output,"%lf\n",T);
 }
 
@@ -3377,11 +3378,11 @@ void calculateGasTemperature(std::list<Particle*> gas,FILE* output)
         }
     }
 
-    inTemp = inTemp/(3*inCount);
-    outTemp = outTemp/(3*outCount);
-    //std::cout << "\tInTemp: " << inTemp << std::endl;
-    //std::cout << "\tOutTemp: " << outTemp << std::endl;
-    fprintf(output,"%lf\t%lf\t%lf\t%d\t%s\n",inTemp,outTemp,inTemp-outTemp,gas.size(),inTemp>outTemp ? "InTemp" : "OutTemp");
+    inTemp = 0.1*inTemp/(3*inCount);
+    outTemp = 0.1*outTemp/(3*outCount);
+    std::cout << "\tInTemp: " << inTemp << std::endl;
+    std::cout << "\tOutTemp: " << outTemp << std::endl;
+    fprintf(output,"%lf\t%lf\t%lf\t%lu\t%s\n",inTemp,outTemp,inTemp-outTemp,gas.size(),inTemp>outTemp ? "InTemp" : "OutTemp");
 }
 
 double calculateEnergies(Particle* cube, std::list<Particle*> gas)
@@ -3599,6 +3600,7 @@ void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
     double rSqd = 0;
     double rCOM[3] = {0,0,0};
     double dist[3] = {0,0,0};
+    double spring = 15.;
 
     // INITIALIZE ACCELERATIONS
 
@@ -3670,7 +3672,7 @@ void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
 
     for(unsigned int i=0;i<N;i++)
         for(unsigned int k=0;k<3;k++)
-            cube[i].a[k] += k*dist[k];
+            cube[i].a[k] += spring*dist[k];
     
 
 }
@@ -3707,6 +3709,106 @@ void verletBaro(Particle* cube, std::list<Particle*>& gas)
             (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
 }
 
+void eHEXBaroNewTemp(Particle* cube, std::list<Particle*>& gas)
+{
+	double eps[N][3];
+	double K=0;
+	double eta[N][3];
+	double xi=0;
+	double sumforces[3]={0,0,0};
+	double sumvel=0; 
+    unsigned int i,n;
+
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            K += (cube[n].v[i]*cube[n].v[i]);
+    K = K/2.;
+    xi = sqrt(1+dQ/K);
+    
+    InitBarostatFullNewTemp(gas);
+    std::list<Particle*>::iterator gasIter;
+
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].vnew[i] = xi*cube[n].v[i]; //(19a)
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].vhalf[i] = cube[n].vnew[i]+dt*0.5*cube[n].a[i]; //(19b)
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].rnew[i] = cube[n].r[i]+dt*cube[n].vhalf[i]; //(19c)
+    for(n=0;n<N;n++)
+    {
+        for(i=0;i<3;i++)
+        {
+            cube[n].v[i] = cube[n].vhalf[i];
+            cube[n].r[i] = cube[n].rnew[i];
+        }
+    }
+    /*
+     *for(unsigned int i=0;i<N;i++)
+     *{
+     *    for(unsigned int k=0;k<3;k++)
+     *    {
+     *        cube[i].r[k] +=cube[i].v[k]*dt + 0.5 * cube[i].a[k] * dt * dt;
+     *        cube[i].v[k] += 0.5 * cube[i].a[k] * dt;
+     *    }         
+     *}
+     */
+    for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+    {
+        for(unsigned int k=0;k<3;k++)
+        {
+            (*gasIter)->r[k] +=(*gasIter)->v[k]*dt + 0.5 * (*gasIter)->a[k] * dt * dt / (*gasIter)->m;
+            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
+        }         
+    }
+
+    CheckBoundariesNew(cube,gas);
+    verletBaroAccelerations(cube,gas);
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].vnew[i] = cube[n].vhalf[i] + dt*0.5*cube[n].a[i]; //(19e)
+    K = 0; 
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            K += (cube[n].vnew[i]*cube[n].vnew[i]);
+    K = K/2.;
+    xi = sqrt(1+dQ/K); //\bar{xi} from (19f)
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].v[i] = xi*cube[n].vnew[i]; //(19f)
+
+	for(n=0;n<N;n++)
+		for(i=0;i<3;i++)
+			eta[n][i]=(FG/(2.*K))*cube[n].vnew[i];
+    sumvel=0;
+    for(i=0;i<3;i++)
+        sumforces[i]=0;
+	for(n=0;n<N;n++)
+		for(i=0;i<3;i++)
+		{
+			sumforces[i]+=cube[n].a[i];
+			sumvel+=cube[n].vnew[i]*cube[n].a[i];
+		}
+	for(n=0;n<N;n++)
+		for(i=0;i<3;i++)
+            eps[n][i]=(eta[n][i]/K)*((FG/48.)+(1./6.)*sumvel)-(FG/(12.*K))*
+            (cube[n].a[i]-(sumforces[i])); //(20)
+    for(n=0;n<N;n++)
+        for(i=0;i<3;i++)
+            cube[n].r[i] = cube[n].rnew[i] - dt*dt*dt*eps[n][i]; //(19g)
+
+    /*
+     *for(unsigned int i=0;i<N;i++)
+     *    for(unsigned int k=0;k<3;k++)
+     *        cube[i].v[k] += 0.5 * cube[i].a[k] * dt;
+     */
+    
+    for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+        for(unsigned int k=0;k<3;k++)
+            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
+}
 void eHEXBaro(Particle* cube, std::list<Particle*>& gas)
 {
 	double eps[N][3];

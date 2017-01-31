@@ -34,24 +34,26 @@ int main(int argc,char** argv)
      *    }
      */
 
-    double t = 0.1;
-    double ambient = 0.08;
-    double press = 0.8;
-    double q = 0.03;
-    while(ambient > 0.01)
-    {
-        setValues(t,q,0.2,press,ambient);
-        std::cout << "==================================================" << std::endl;
-        std::cout << "t: " << t << std::endl;
-        std::cout << "p: " << press << std::endl;
-        std::cout << "q: " << q << std::endl;
-        std::cout << "at: " << ambient << std::endl;
-        std::cout << "==================================================" << std::endl;
-        mainLoop();
-        ambient -= 0.01;
-    }
-    //setValues(0.2,0.04,0.2,4,0.8);
-    //mainLoop();
+    /*
+     *double t = 0.1;
+     *double ambient = 0.08;
+     *double press = 0.8;
+     *double q = 0.03;
+     *while(ambient > 0.01)
+     *{
+     *    setValues(t,q,0.2,press,ambient);
+     *    std::cout << "==================================================" << std::endl;
+     *    std::cout << "t: " << t << std::endl;
+     *    std::cout << "p: " << press << std::endl;
+     *    std::cout << "q: " << q << std::endl;
+     *    std::cout << "at: " << ambient << std::endl;
+     *    std::cout << "==================================================" << std::endl;
+     *    mainLoop();
+     *    ambient -= 0.01;
+     *}
+     */
+    setValues(0.2,0.04,0.2,0.8,0.2);
+    mainLoop();
     return 0;
 }
 
@@ -277,10 +279,10 @@ void mainLoop() {
     {
         if(run%500==0)
         {
-            printf("(MEASURE) Zeitschritt %d - Number of Gas particles: %d\n",run,gas.size());
+            printf("(MEASURE) Zeitschritt %d - Number of Gas particles: %lu\n",run,gas.size());
         }
-        //eHEXBaro(cube,gas);
-        verletBaro(cube,gas);
+        eHEXBaroNewTemp(cube,gas);
+        //verletBaro(cube,gas);
         //eHEX(cube);
         //BarostatNew(cube,gas);
         //BarostatNew(cube,gas,gasHistory);
