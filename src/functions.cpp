@@ -3363,6 +3363,7 @@ void calculateGasTemperature(std::list<Particle*> gas,FILE* output)
     double outTemp = 0;
     int inCount = 0;
     int outCount = 0;
+    int elseCount = 0;
 
     for(temp = gas.begin();temp != gas.end(); temp++)
     {
@@ -3376,12 +3377,16 @@ void calculateGasTemperature(std::list<Particle*> gas,FILE* output)
             outCount++;
             outTemp += (*temp)->v[0]*(*temp)->v[0]+(*temp)->v[1]*(*temp)->v[1]+(*temp)->v[2]*(*temp)->v[2];
         }
+        else
+            elseCount++;
     }
 
     inTemp = 0.1*inTemp/(3*inCount);
     outTemp = 0.1*outTemp/(3*outCount);
     std::cout << "\tInTemp: " << inTemp << "(" << inCount << ")" << std::endl;
     std::cout << "\tOutTemp: " << outTemp << "(" << outCount << ")"<< std::endl;
+    if(inCount+outCount+elseCount != gas.size())
+        std::cout << "Lost particles" << std::endl;
     fprintf(output,"%lf\t%lf\t%lf\t%lu\t%s\n",inTemp,outTemp,inTemp-outTemp,gas.size(),inTemp>outTemp ? "InTemp" : "OutTemp");
 }
 
