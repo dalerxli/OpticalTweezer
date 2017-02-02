@@ -3380,8 +3380,8 @@ void calculateGasTemperature(std::list<Particle*> gas,FILE* output)
 
     inTemp = 0.1*inTemp/(3*inCount);
     outTemp = 0.1*outTemp/(3*outCount);
-    std::cout << "\tInTemp: " << inTemp << std::endl;
-    std::cout << "\tOutTemp: " << outTemp << std::endl;
+    std::cout << "\tInTemp: " << inTemp << "(" << inCount << ")" << std::endl;
+    std::cout << "\tOutTemp: " << outTemp << "(" << outCount << ")"<< std::endl;
     fprintf(output,"%lf\t%lf\t%lf\t%lu\t%s\n",inTemp,outTemp,inTemp-outTemp,gas.size(),inTemp>outTemp ? "InTemp" : "OutTemp");
 }
 
@@ -3600,7 +3600,7 @@ void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
     double rSqd = 0;
     double rCOM[3] = {0,0,0};
     double dist[3] = {0,0,0};
-    double spring = 15.;
+    double spring = 1.5;
 
     // INITIALIZE ACCELERATIONS
 
@@ -3608,6 +3608,9 @@ void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
     for(unsigned int i=0;i<N;i++)
         for(unsigned int m=0;m<3;m++)
             cube[i].aOld[m] = cube[i].a[m];
+    for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+       for(unsigned int m=0;m<3;m++)
+          (*gasIter)->aOld[m] = (*gasIter)->a[m]; 
     for(unsigned int i=0;i<N;i++)
         for(unsigned int m=0;m<3;m++)
             cube[i].a[m] = 0.;        
@@ -3645,9 +3648,10 @@ void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
             for(int m=0;m<3;m++)
               rij[m] = (*gasIter)->r[m] - cube[i].r[m];
             rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
-            if(rSqd <= rCut2)
+            if(rSqd < 2.5)
             {
-                fBaro = 12. * pow(rSqd,-6.);
+                //fBaro = 12. * pow(rSqd,-6.);
+                fBaro = 12.*pow(0.8,12.)*pow(rSqd,-7.);
                 for(int m=0;m<3;m++)
                 {
                     (*gasIter)->a[m] += rij[m] * fBaro;
@@ -3760,8 +3764,8 @@ void eHEXBaroNewTemp(Particle* cube, std::list<Particle*>& gas)
     {
         for(unsigned int k=0;k<3;k++)
         {
-            (*gasIter)->r[k] +=(*gasIter)->v[k]*dt + 0.5 * (*gasIter)->a[k] * dt * dt / (*gasIter)->m;
-            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
+            (*gasIter)->r[k] +=(*gasIter)->v[k]*dt + 0.5 * (*gasIter)->a[k] * dt * dt /0.1;
+            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt/0.1;
         }         
     }
 
@@ -3808,7 +3812,7 @@ void eHEXBaroNewTemp(Particle* cube, std::list<Particle*>& gas)
     
     for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
         for(unsigned int k=0;k<3;k++)
-            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
+            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt/0.1;
 }
 
 void eHEXBaro(Particle* cube, std::list<Particle*>& gas)
