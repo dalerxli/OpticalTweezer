@@ -31,8 +31,8 @@ inTemp = np.mean(gasTempDataIn)
 outTemp = np.mean(gasTempDataOut)
 
 statistics = open(datetime+"statistics.dat","w")
-statistics.write("GasIn: " + str(inTemp*0.5)+"\n")
-statistics.write("GasOut: " + str(outTemp*0.5)+"\n")
+statistics.write("GasIn: " + str(inTemp)+"\n")
+statistics.write("GasOut: " + str(outTemp)+"\n")
 statistics.write("T_COM: " + str(2./3. * vSqdMean)+"\n")
 
 statistics.write("Mu_x " + str(np.mean(vCOMData_x))+"\n")

@@ -3676,6 +3676,7 @@ void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
     
 
 }
+
 void verletBaro(Particle* cube, std::list<Particle*>& gas)
 {
     InitBarostatFull(gas);
@@ -3809,6 +3810,7 @@ void eHEXBaroNewTemp(Particle* cube, std::list<Particle*>& gas)
         for(unsigned int k=0;k<3;k++)
             (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
 }
+
 void eHEXBaro(Particle* cube, std::list<Particle*>& gas)
 {
 	double eps[N][3];
