@@ -34,25 +34,27 @@ int main(int argc,char** argv)
      *    }
      */
 
-    double t = 0.2;
-    double ambient = 0.05;
-    double press = 0.9;
-    double q = 0.0;
-    while(q < 0.5)
-    {
-        setValues(t,q,0.2,press,ambient);
-        std::cout << "==================================================" << std::endl;
-        std::cout << "t: " << t << std::endl;
-        std::cout << "p: " << press << std::endl;
-        std::cout << "q: " << q << std::endl;
-        std::cout << "at: " << ambient << std::endl;
-        std::cout << "==================================================" << std::endl;
-        mainLoop();
-        q += 0.05;
-        //ambient -= 0.01;
-    }
-    //setValues(0.2,0.1,0.2,0.8,0.1);
-    //mainLoop();
+    /*
+     *double t = 0.2;
+     *double ambient = 0.08;
+     *double press = 0.8;
+     *double q = 0.05;
+     *while(q < 0.6)
+     *{
+     *    setValues(t,q,0.2,press,ambient);
+     *    std::cout << "==================================================" << std::endl;
+     *    std::cout << "t: " << t << std::endl;
+     *    std::cout << "p: " << press << std::endl;
+     *    std::cout << "q: " << q << std::endl;
+     *    std::cout << "at: " << ambient << std::endl;
+     *    std::cout << "==================================================" << std::endl;
+     *    mainLoop();
+     *    q += 0.05;
+     *    //ambient -= 0.01;
+     *}
+     */
+    setValues(0.2,0.1,0.2,0.8,0.1);
+    mainLoop();
     return 0;
 }
 
@@ -69,11 +71,7 @@ void mainLoop() {
      *system(makedir.c_str());
      *system("rm output/combined/ *");
      */
-    std::string folderName = "output/runs/p";
-    folderName += numberToString(P);
-    folderName += "_at";
-    folderName += numberToString(AmbientTemp);
-    folderName += "_";
+    std::string folderName = "output/runs/";
     folderName += DateToString();
     int dir = mkdir(folderName.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     int i=1;
@@ -276,7 +274,8 @@ void mainLoop() {
      *}
      */
     calcCM(cube,rCMharm,vCMharm);
-    verletBaroAccelerations(cube,gas);
+    //verletBaroAccelerations(cube,gas);
+    ComputeAccelerations(cube);
 
     for(run = 0;run<80000;run++)
     {
@@ -284,9 +283,9 @@ void mainLoop() {
         {
             printf("(MEASURE) Zeitschritt %d - Number of Gas particles: %lu\n",run,gas.size());
         }
-        eHEXBaroNewTemp(cube,gas);
+        //eHEXBaroNewTemp(cube,gas);
         //verletBaroNewTemp(cube,gas);
-        //eHEX(cube);
+        eHEX(cube);
         //BarostatNew(cube,gas);
         //BarostatNew(cube,gas,gasHistory);
         //std::cout << "works!" << std::endl;

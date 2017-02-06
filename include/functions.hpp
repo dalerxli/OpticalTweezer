@@ -90,6 +90,7 @@ void gasStatus(std::list<Particle*> gas);
 
 void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas);
 void verletBaro(Particle* cube, std::list<Particle*>& gas);
+void verletBaroNewTemp(Particle* cube, std::list<Particle*>& gas);
 void eHEXBaro(Particle* cube, std::list<Particle*>& gas);
 void eHEXBaroNewTemp(Particle* cube, std::list<Particle*>& gas);
 

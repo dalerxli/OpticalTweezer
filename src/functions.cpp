@@ -3686,6 +3686,38 @@ void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
 
 }
 
+void verletBaroNewTemp(Particle* cube, std::list<Particle*>& gas)
+{
+    InitBarostatFullNewTemp(gas);
+    std::list<Particle*>::iterator gasIter;
+    for(unsigned int i=0;i<N;i++)
+    {
+        for(unsigned int k=0;k<3;k++)
+        {
+            cube[i].r[k] +=cube[i].v[k]*dt + 0.5 * cube[i].a[k] * dt * dt;
+            cube[i].v[k] += 0.5 * cube[i].a[k] * dt;
+        }         
+    }
+    for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+    {
+        for(unsigned int k=0;k<3;k++)
+        {
+            (*gasIter)->r[k] +=(*gasIter)->v[k]*dt + 0.5 * (*gasIter)->a[k] * dt * dt / (*gasIter)->m;
+            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
+        }         
+    }
+
+    CheckBoundariesNew(cube,gas);
+    verletBaroAccelerations(cube,gas);
+
+    for(unsigned int i=0;i<N;i++)
+        for(unsigned int k=0;k<3;k++)
+            cube[i].v[k] += 0.5 * cube[i].a[k] * dt;
+    
+    for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
+        for(unsigned int k=0;k<3;k++)
+            (*gasIter)->v[k] += 0.5 * (*gasIter)->a[k] * dt / (*gasIter)->m;
+}
 void verletBaro(Particle* cube, std::list<Particle*>& gas)
 {
     InitBarostatFull(gas);
