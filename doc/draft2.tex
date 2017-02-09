@@ -613,6 +613,7 @@ The algorithm can be performed by following these steps:
         distribution 
         \begin{equation}
             %\langle N_\text{fac}\rangle = \Delta t L^2 P \left(\frac{1}{2\pi m k_B T}\right)^\frac12
+            \label{eq:numberofparticles}
             \langle N_\text{fac}\rangle = \Delta t L^2 P \sqrt{\frac{1}{2\pi m k_B T}}
         \end{equation}
         where $\Delta t$ is the time step of the simulation, $L$ is the side length of the cell in which the particle is created, $P$ is the desired
@@ -903,39 +904,39 @@ development of a new, higher steady temperature of the nano particle, which can 
         %\label{fig:baro1}
     %\end{center}
 %\end{figure}
-As we are interested in the temperatures of the particles before and after the interaction with the nano particle, we need some way to differentiate those
-two states. This can be done when looking at the total energy of the gas particles.\\
-The gas particles are created on the surface of the simulation box, which is further away than the interaction range between the gas particles and the
-nano particle. Since the gas particles do not interact with each other, the total energy of the gas particles does not change until they reach the
-interaction range of the nano particle. There they undergo a change of energy due to the interaction with the nano particle and then make their way away
-from the nano particle. After the interaction, when they reach a point outside of the interaction range, the enrgy stays constant again until the
-particles reach the limits of the simulation box.\\
-Therefore, the life span of a single gas particle can be partioned into 3 stages: incoming, interacting, outgoing. In a typical scene of interaction
-all three of these stages are represented by different gas particles, as can be seen in Fig.~\ref{fig:barointeraction}.\\
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[scale=0.4]{images/baro_170105_new_medium.png}
-        \caption{Rendering of the application of the barostat algorithm. The red particles are incoming gas particles, that have not yet interacted, 
-            pink particles are currently interacting and green particles are leaving the simulation box and
-        moving away from the nano particle (blue). To render this image, a cut has been made to make a view into the simulation box possible.}
-        \label{fig:barointeraction}
-    \end{center}
-\end{figure}
-Since the gas particles are interacting with the nano particle, the temperatures and energies are values of interest. The energies are recorded using
-histograms and the temperature is calculated instantaneously every 100th timestep.\\
-The calculation of the energies of the incoming particles has to be done with care. The problem are particles that enter the simulation box, but fly
-by the nano particle at a distance that is greater than the interaction range. Since the change of the energy is the interesting part, only the energy 
-particles of that \textit{do} interact with the nano particle shall be calculated. This can be achieved by counting particles that enter the stage of
-\textit{interacing}. One such histogram can be seen in Fig.~\ref{fig:histogram}.
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[scale=0.4]{images/histogram_2.pdf}
-        \caption{Histogram of total energies for incoming (red) and outgoing (blue) particles. The parameters for this histogram are $\Delta Q^*=0.04$,
-        $T_\text{ambient}^*=0.08$, $P^*=0.8$. What can be seen here is that the outgoing particles have a higher count of particles with more total
-    energy.}
-        \label{fig:histogram}
-    \end{center}
-\end{figure}
+%As we are interested in the temperatures of the particles before and after the interaction with the nano particle, we need some way to differentiate those
+%two states. This can be done when looking at the total energy of the gas particles.\\
+%The gas particles are created on the surface of the simulation box, which is further away than the interaction range between the gas particles and the
+%nano particle. Since the gas particles do not interact with each other, the total energy of the gas particles does not change until they reach the
+%interaction range of the nano particle. There they undergo a change of energy due to the interaction with the nano particle and then make their way away
+%from the nano particle. After the interaction, when they reach a point outside of the interaction range, the enrgy stays constant again until the
+%particles reach the limits of the simulation box.\\
+%Therefore, the life span of a single gas particle can be partioned into 3 stages: incoming, interacting, outgoing. In a typical scene of interaction
+%all three of these stages are represented by different gas particles, as can be seen in Fig.~\ref{fig:barointeraction}.\\
+%\begin{figure}[h]
+    %\begin{center}
+        %\includegraphics[scale=0.4]{images/baro_170105_new_medium.png}
+        %\caption{Rendering of the application of the barostat algorithm. The red particles are incoming gas particles, that have not yet interacted, 
+            %pink particles are currently interacting and green particles are leaving the simulation box and
+        %moving away from the nano particle (blue). To render this image, a cut has been made to make a view into the simulation box possible.}
+        %\label{fig:barointeraction}
+    %\end{center}
+%\end{figure}
+%Since the gas particles are interacting with the nano particle, the temperatures and energies are values of interest. The energies are recorded using
+%histograms and the temperature is calculated instantaneously every 100th timestep.\\
+%The calculation of the energies of the incoming particles has to be done with care. The problem are particles that enter the simulation box, but fly
+%by the nano particle at a distance that is greater than the interaction range. Since the change of the energy is the interesting part, only the energy 
+%particles of that \textit{do} interact with the nano particle shall be calculated. This can be achieved by counting particles that enter the stage of
+%\textit{interacing}. One such histogram can be seen in Fig.~\ref{fig:histogram}.
+%\begin{figure}[h]
+    %\begin{center}
+        %\includegraphics[scale=0.4]{images/histogram_2.pdf}
+        %\caption{Histogram of total energies for incoming (red) and outgoing (blue) particles. The parameters for this histogram are $\Delta Q^*=0.04$,
+        %$T_\text{ambient}^*=0.08$, $P^*=0.8$. What can be seen here is that the outgoing particles have a higher count of particles with more total
+    %energy.}
+        %\label{fig:histogram}
+    %\end{center}
+%\end{figure}
 
 \subsection{Measurement}
 Now that the functionality of every individual part has been established, the main question can be tackled: how does the laser intensity influence the
@@ -947,13 +948,83 @@ To check the integrity of the algortihm, a simple case needs to be tested. Such 
 system. The expected outcome of this case is a thermal equilibration between the incoming gas particles, the outgoing gas particles and the center of
 mass motion of the nano particle with the incoming gas temperature being the reference value. 
 The measurement yields this result and backs up the claim. Furthermore, the internal temperature of the nano particle also equilibrates to the 
-temperature of the surrounding gas. This was checked on a system with pressure $P=0.8$, temperature of the incoming particles $T_\text{imp} = 0.05$ 
-and internal temperature of the nano particle (set with the velocity verlet) $T_\text{intern} = 0.2$. The resulting temperatures are:
+temperature of the surrounding gas. This was checked on a system with pressure $P=0.8$, temperature of the incoming particles $T_\text{imp} = 0.05$, 
+internal temperature of the nano particle (set with the velocity verlet) $T_\text{intern} = 0.2$ and a system size of $N=32$ atoms in the nano
+particle. The resulting temperatures are:
 \begin{eqnarray*}
     T_\text{em} = 0.0494 \pm 0.0009\\
     T_\text{COM} = 0.051 \pm 0.108\\
     T_\text{int} = 0.048 \pm 0.007\\
 \end{eqnarray*}
+The calculation of the temperature is done by using the following equations:
+\begin{eqnarray}
+    \label{eq:ekin}E_\text{Kin} &=& \frac{m}{2 M} \sum_i \vec{v}_i^{\, 2} \\
+    \label{eq:temp}E &=& \frac{f}{2} k_B T
+\end{eqnarray}
+In the first line, $m$ denotes the mass, which is $m=0.1$ for the gas particles, $m=1$ for the atoms in the nano particle and $m=32$ for the center
+of mass. $M$ denotes the number of particles that are being summed over, which is $M=1$ for the center of mass, $M=32$ for the internal temperature
+and fluctuates for the outgoing gas particles. The number of the outgoing particles is not constant and depends heavily on the pressure and the
+temperature of the impinging gas particles, as can be seen in \eqref{eq:numberofparticles}. In the second line, $f$ denotes the number of degrees of
+freedom of the system, which is $f=3$ for all three systems. Putting these two equations together, we get an equation for the temperature:
+\begin{equation}
+    T = \frac{m}{3 M} \sum_i \vec{v}_i^{\, 2} \\
+\end{equation}
+Since this describes an instantaneous value, the mean value of the velocities over the course of the simulation has to be used to get the mean value
+of the temperature of each subsystem. The simulation results compared with the mean values can be seen in
+Figs.~\ref{fig:outgoingequib},~\ref{fig:vcomsqdequib} and \ref{fig:internalequib}.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.4]{images/gastemp.pdf}
+        \caption{Instantaneous and mean temperature of the outgoing gas particles of the surrounding gas}
+        \label{fig:outgoingequib}
+    \end{center}
+\end{figure}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.4]{images/vcomsqd.pdf}
+        \caption{Instantaneous and mean temperature of the center of mass of the nano particle in the laser trap}
+        \label{fig:vcomsqdequib}
+    \end{center}
+\end{figure}
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.4]{images/t_int.pdf}
+        \caption{Instantaneous and mean internal temperature of the nano particle in the laser trap}
+        \label{fig:internalequib}
+    \end{center}
+\end{figure}
+\\With the calculated mean temperature of the center of mass, we can take a look at the distribution of the components of the center of mass velocity.
+The expected distribution is a gaussian with $\sigma=\sqrt{\frac{k_B T}{m}}$, i.e.
+\begin{equation}
+    \label{eq:gaussianvel}
+    p(v_i) = \frac{m}{2\pi k_B T} e^{-\frac{x^2 m}{2 k_B T}}
+\end{equation}
+where $i$ denotes the chosen component of the center of mass velocity vector. A histogram of the x-component of the center of mass velocity  
+with a curve representing \eqref{eq:gaussianvel} can be seen in Fig.~\ref{fig:comvel}. Since the y and z axis yield very similar histograms, the
+x-component has been chosen to represent the velocity components. The graph in Fig.~\ref{fig:comvel} clearly shows, that the velocities indeed follow
+the gaussian distribution.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.4]{images/vcomtemp.pdf}
+        \caption{A histogram of the x-component of the center of mass velocities with the expected gaussian distribution}
+        \label{fig:comvel}
+    \end{center}
+\end{figure}
+\\The case of $\Delta Q=0$ is a good way to start and to check the integrity of the algorithms, but the more interesting cases are the ones where
+$\Delta Q > 0$. Besides $\Delta Q$, there are two values that determine the dynamics of the system: the pressure $P$ and the temperature of the
+impinging gas particles $T_\text{imp}$.\\
+Since the surrounding gas acts as a thermostat, the pressure of the impinging gas at a given gas temperature determines the maximum amount of heat that
+can be pumped into the system without particles of the nano particle leaving the simulation box -- the higher the pressure, the more energy can be
+pumped into the system. The algorithm is applied at two surrounding gas temperatures of $T_\text{imp} = 0.05$ and $T_\text{imp} = 0.1$, 
+which are one quarter and one half the temperature of the nano particle before applying the eEHX and the thermostat algorithm. The pressure varied
+from $P=0.1$ to $P=1.2$ in steps of $\Delta P=0.1$ and the heat is generally varied from $\Delta Q=0$ to $\Delta Q=0.5$ in steps of 0.05. The term
+''generally'' is used because there are cases where the stepsize has to be decreased or one value for $\Delta Q$ is skipped over. The stepsize has to
+be decresed for low pressures, such as $P=0.1$ or $P=0.2$ because there would otherwise not be enough data points. Some values of $\Delta Q$ need to
+be skipped because it can happen that atoms of the nano particle leave the system due to statistical fluctuations of velocities, which leads to
+unusable results.\\
+
+
+
 
 
 

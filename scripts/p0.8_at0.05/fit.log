@@ -90,3 +90,49 @@ correlation matrix of the fit parameters:
                a      b      
 a               1.000 
 b              -0.845  1.000 
+
+
+*******************************************************************************
+Thu Feb  9 18:53:24 2017
+
+
+FIT:    data read from "plotfile_clean.dat" using 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 11.0115           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 0.737394
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.00647283
+rel. change during last iteration : -1.0035e-11
+
+degrees of freedom    (FIT_NDF)                        : 9
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.026818
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000719203
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = 0.924904         +/- 0.05114      (5.529%)
+b               = 0.0186152        +/- 0.01513      (81.26%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      
+a               1.000 
+b              -0.845  1.000 
