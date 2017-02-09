@@ -55,6 +55,7 @@ void eHEX(Particle* cube);
 void eHEXNew(Particle* cube);
 void calcPressure(Particle cube,FILE* output);
 void calcTemp(Particle* cube,FILE* output);
+bool calcTempNew(Particle* cube,FILE* output);
 void calcTemp(Particle* cube,FILE* output,int run);
 void calcCOMTemp(double* vCOM,FILE* output);
 

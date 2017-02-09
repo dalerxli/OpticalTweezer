@@ -2917,6 +2917,23 @@ void calcTemp(Particle* cube,FILE* output)
     fprintf(output,"%lf\n",T);
 }
 
+bool calcTempNew(Particle* cube,FILE* output)
+{
+    double T=0;
+    for(unsigned int i=0;i<N;i++)
+        for(unsigned int k=0;k<3;k++)
+            T+=cube[i].v[k]*cube[i].v[k];
+    T = T/(3*N);
+    if(T > 100)
+        return false;
+    else
+    {
+        std::cout << "T: " << T << std::endl;
+        fprintf(output,"%lf\n",T);
+        return true;
+    }
+}
+
 void calcTemp(Particle* cube,FILE* output,int run)
 {
     double T=0;
@@ -3612,10 +3629,16 @@ void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
     std::list<Particle*>::iterator gasIter;
     for(unsigned int i=0;i<N;i++)
         for(unsigned int m=0;m<3;m++)
+        {
             cube[i].aOld[m] = cube[i].a[m];
+            cube[i].vOld[m] = cube[i].v[m];
+        }
     for(gasIter=gas.begin();gasIter != gas.end();gasIter++)
        for(unsigned int m=0;m<3;m++)
-          (*gasIter)->aOld[m] = (*gasIter)->a[m]; 
+       {
+           (*gasIter)->aOld[m] = (*gasIter)->a[m]; 
+           (*gasIter)->vOld[m] = (*gasIter)->v[m]; 
+       }
     for(unsigned int i=0;i<N;i++)
         for(unsigned int m=0;m<3;m++)
             cube[i].a[m] = 0.;        

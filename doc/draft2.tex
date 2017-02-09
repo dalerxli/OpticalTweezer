@@ -937,6 +937,26 @@ particles of that \textit{do} interact with the nano particle shall be calculate
     \end{center}
 \end{figure}
 
+\subsection{Measurement}
+Now that the functionality of every individual part has been established, the main question can be tackled: how does the laser intensity influence the
+center of mass motion of the nano particle? And which influence does the surrounding gas exert?\\
+In order to investigate the origin of the motion of the center of mass, we first need to check whether the eHEX algorithm itself has any influence on
+the center of mass motion. This is done by applying the algorithm without the thermostat and calculating the center of mass velocity. This turns out
+to be the case, i.e. the center of mass motion stands still.\\
+To check the integrity of the algortihm, a simple case needs to be tested. Such a simple case is $\Delta Q = 0$, i.e. no energy begin pumped into the
+system. The expected outcome of this case is a thermal equilibration between the incoming gas particles, the outgoing gas particles and the center of
+mass motion of the nano particle with the incoming gas temperature being the reference value. 
+The measurement yields this result and backs up the claim. Furthermore, the internal temperature of the nano particle also equilibrates to the 
+temperature of the surrounding gas. This was checked on a system with pressure $P=0.8$, temperature of the incoming particles $T_\text{imp} = 0.05$ 
+and internal temperature of the nano particle (set with the velocity verlet) $T_\text{intern} = 0.2$. The resulting temperatures are:
+\begin{eqnarray*}
+    T_\text{em} = 0.0494 \pm 0.0009\\
+    T_\text{COM} = 0.051 \pm 0.108\\
+    T_\text{int} = 0.048 \pm 0.007\\
+\end{eqnarray*}
+
+
+
 
 
 
