@@ -1,5 +1,6 @@
 #!/bin/bash
-folders="$(ls -d p*)"
+#folders="$(ls -d p*)"
+folders="$(ls -d *at0.1*)"
 
 for i in $folders
 do

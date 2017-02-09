@@ -87,6 +87,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}The Laser Beam - Trapping}{16}{subsection.3.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Surrounding Gas - Thermostat}{17}{subsection.3.6}}
 \newlabel{eq:softsphere}{{36}{17}{Surrounding Gas - Thermostat}{equation.3.36}{}}
+\newlabel{eq:numberofparticles}{{37}{18}{Surrounding Gas - Thermostat}{equation.3.37}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Schematic setup for the barostat. The outer volume (blue) is one side length $s$ away from the nano particle (black) which means that the side length of the face of the surrounding box is $L=3s$. The gas particles are created along the blue lines of the outer volume. Since the overall geometry of the nano particle does not change, the geometry of the outer volume will be constant throughout the simulation.\relax }}{19}{figure.caption.8}}
 \newlabel{fig:gascube}{{8}{19}{Schematic setup for the barostat. The outer volume (blue) is one side length $s$ away from the nano particle (black) which means that the side length of the face of the surrounding box is $L=3s$. The gas particles are created along the blue lines of the outer volume. Since the overall geometry of the nano particle does not change, the geometry of the outer volume will be constant throughout the simulation.\relax }{figure.caption.8}{}}
 \citation{Humphrey1996}
@@ -109,12 +110,24 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Thermostat}{24}{subsection.4.4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Temperature of the system during the application of the eHEX and the barostat algorithm. During the first 20000 steps the system is in equilibrium while the velocity Verlet algorithm is applied. After that, the eHEX and the barostat algorithms are turned on. This leads to an increase in temperature until a new steady temperature is reached.\relax }}{25}{figure.caption.13}}
 \newlabel{fig:baro1}{{13}{25}{Temperature of the system during the application of the eHEX and the barostat algorithm. During the first 20000 steps the system is in equilibrium while the velocity Verlet algorithm is applied. After that, the eHEX and the barostat algorithms are turned on. This leads to an increase in temperature until a new steady temperature is reached.\relax }{figure.caption.13}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{27}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Measurement}{25}{subsection.4.5}}
+\newlabel{eq:ekin}{{47}{26}{Measurement}{equation.4.47}{}}
+\newlabel{eq:temp}{{48}{26}{Measurement}{equation.4.47}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Instantaneous and mean temperature of the outgoing gas particles of the surrounding gas\relax }}{27}{figure.caption.14}}
+\newlabel{fig:outgoingequib}{{14}{27}{Instantaneous and mean temperature of the outgoing gas particles of the surrounding gas\relax }{figure.caption.14}{}}
+\newlabel{eq:gaussianvel}{{50}{27}{Measurement}{equation.4.50}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Instantaneous and mean temperature of the center of mass of the nano particle in the laser trap\relax }}{28}{figure.caption.15}}
+\newlabel{fig:vcomsqdequib}{{15}{28}{Instantaneous and mean temperature of the center of mass of the nano particle in the laser trap\relax }{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Instantaneous and mean internal temperature of the nano particle in the laser trap\relax }}{29}{figure.caption.16}}
+\newlabel{fig:internalequib}{{16}{29}{Instantaneous and mean internal temperature of the nano particle in the laser trap\relax }{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{29}{section.5}}
 \bibdata{references}
 \bibcite{Gieseler2014}{1}
 \bibcite{Crooks1999}{2}
 \bibcite{MillenJ.2014}{3}
 \bibcite{Kroy2014}{4}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces A histogram of the x-component of the center of mass velocities with the expected gaussian distribution\relax }}{30}{figure.caption.17}}
+\newlabel{fig:comvel}{{17}{30}{A histogram of the x-component of the center of mass velocities with the expected gaussian distribution\relax }{figure.caption.17}{}}
 \bibcite{Frenkel2001}{5}
 \bibcite{buffalo}{6}
 \bibcite{Allen1989}{7}
@@ -130,7 +143,3 @@
 \bibcite{Humphrey1996}{17}
 \bibcite{Stukowski2010}{18}
 \bibstyle{unsrt}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Rendering of the application of the barostat algorithm. The red particles are incoming gas particles, that have not yet interacted, pink particles are currently interacting and green particles are leaving the simulation box and moving away from the nano particle (blue). To render this image, a cut has been made to make a view into the simulation box possible.\relax }}{30}{figure.caption.14}}
-\newlabel{fig:barointeraction}{{14}{30}{Rendering of the application of the barostat algorithm. The red particles are incoming gas particles, that have not yet interacted, pink particles are currently interacting and green particles are leaving the simulation box and moving away from the nano particle (blue). To render this image, a cut has been made to make a view into the simulation box possible.\relax }{figure.caption.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Histogram of total energies for incoming (red) and outgoing (blue) particles. The parameters for this histogram are $\Delta Q^*=0.04$, $T_\text  {ambient}^*=0.08$, $P^*=0.8$. What can be seen here is that the outgoing particles have a higher count of particles with more total energy.\relax }}{31}{figure.caption.15}}
-\newlabel{fig:histogram}{{15}{31}{Histogram of total energies for incoming (red) and outgoing (blue) particles. The parameters for this histogram are $\Delta Q^*=0.04$, $T_\text {ambient}^*=0.08$, $P^*=0.8$. What can be seen here is that the outgoing particles have a higher count of particles with more total energy.\relax }{figure.caption.15}{}}

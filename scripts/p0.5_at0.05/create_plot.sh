@@ -3,6 +3,10 @@ if [ -e "plotfile.dat" ]
 then 
     rm plotfile.dat
 fi
+if [ -e "plotfile_clean.dat" ]
+then 
+    rm plotfile_clean.dat
+fi
 datetimes="$(ls * | grep -P -o "p[0-9].?[0-9]{0,2}_at[0-9].[0-9]{1,2}_[0-9]{6}_[0-9]{4}" | sort -u)"
 
 for i in $datetimes
@@ -14,3 +18,5 @@ do
     gout="$(cat "$i"_statistics_mass.dat | grep "Out" | cut -f2 -d " ")"
     echo -e $q"\t"$tcom"\t"$ti"\t"$gin"\t"$gout >> plotfile.dat
 done
+
+cp plotfile.dat plotfile_clean.dat

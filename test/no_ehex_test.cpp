@@ -36,16 +36,9 @@ int main(int argc,char** argv)
 
     double t = 0.2;
     double ambient = 0.1;
-/*
- *<<<<<<< HEAD
- *    double press = 0.8;
- *    double q = 0.35;
- *=======
- */
-    double press = 1.2;
-    double q = 0.25;
-//>>>>>>> b7d9cec475ccb18611036948bb96a97b0f152155
-    while(q <= 0.5)
+    double press = 0.3;
+    double q = 0.01;
+    while(q < 0.05)
     {
         setValues(t,q,0.2,press,ambient);
         std::cout << "==================================================" << std::endl;
@@ -55,7 +48,7 @@ int main(int argc,char** argv)
         std::cout << "at: " << ambient << std::endl;
         std::cout << "==================================================" << std::endl;
         mainLoop();
-        q += 0.05;
+        q += 0.01;
         //ambient -= 0.01;
     }
     //setValues(0.2,0.1,0.2,0.8,0.1);
@@ -127,9 +120,9 @@ void mainLoop() {
     int a;
     int run=0;
     gsl_rng_set(r,98);
-    gsl_histogram_set_ranges_uniform(gas_in,0,1);
-    gsl_histogram_set_ranges_uniform(gas_out,0,1);
-    gsl_histogram_set_ranges_uniform(gas_real_in,-0.01,0.08);
+    gsl_histogram_set_ranges_uniform(gas_in,0,2);
+    gsl_histogram_set_ranges_uniform(gas_out,0,2);
+    gsl_histogram_set_ranges_uniform(gas_real_in,0,2);
     gsl_histogram2d_set_ranges_uniform(positionsxy,-2.0*L,2.0*L,-2.0*L,2.0*L);
     gsl_histogram2d_set_ranges_uniform(positionsxz,-2.0*L,2.0*L,-2.0*L,2.0*L);
     gsl_histogram2d_set_ranges_uniform(positionsyz,-2.0*L,2.0*L,-2.0*L,2.0*L);

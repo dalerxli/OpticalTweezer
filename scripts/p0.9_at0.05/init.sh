@@ -1,5 +1,7 @@
 #!/bin/bash
-target=$1
+dir="$(pwd)"
+target="$(basename $dir)"
+#target=$1
 folders="$(ls -d ../../test/output/runs/$target*)"
 
 for i in $folders
