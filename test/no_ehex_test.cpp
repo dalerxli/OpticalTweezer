@@ -36,15 +36,8 @@ int main(int argc,char** argv)
 
     double t = 0.2;
     double ambient = 0.1;
-/*
- *<<<<<<< HEAD
- *    double press = 0.8;
- *    double q = 0.35;
- *=======
- */
-    double press = 1.2;
-    double q = 0.25;
-//>>>>>>> b7d9cec475ccb18611036948bb96a97b0f152155
+    double press = 1.0;
+    double q = 0.0;
     while(q <= 0.5)
     {
         setValues(t,q,0.2,press,ambient);
