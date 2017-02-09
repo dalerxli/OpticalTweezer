@@ -35,10 +35,10 @@ int main(int argc,char** argv)
      */
 
     double t = 0.2;
-    double ambient = 0.05;
-    double press = 0.9;
-    double q = 0.0;
-    while(q < 0.5)
+    double ambient = 0.1;
+    double press = 1.2;
+    double q = 0.25;
+    while(q <= 0.5)
     {
         setValues(t,q,0.2,press,ambient);
         std::cout << "==================================================" << std::endl;
@@ -120,8 +120,8 @@ void mainLoop() {
     int a;
     int run=0;
     gsl_rng_set(r,98);
-    gsl_histogram_set_ranges_uniform(gas_in,-0.01,0.08);
-    gsl_histogram_set_ranges_uniform(gas_out,-0.01,0.08);
+    gsl_histogram_set_ranges_uniform(gas_in,0,1);
+    gsl_histogram_set_ranges_uniform(gas_out,0,1);
     gsl_histogram_set_ranges_uniform(gas_real_in,-0.01,0.08);
     gsl_histogram2d_set_ranges_uniform(positionsxy,-2.0*L,2.0*L,-2.0*L,2.0*L);
     gsl_histogram2d_set_ranges_uniform(positionsxz,-2.0*L,2.0*L,-2.0*L,2.0*L);
@@ -161,6 +161,7 @@ void mainLoop() {
     double energy = 0;
     for(int i=0;i<3;i++)
         center[i] = L/2.;
+    bool temp = true;
 
     InitPositions(cube);
     calcCM(cube,rCMStart,vCM);
@@ -301,7 +302,9 @@ void mainLoop() {
         }
         if(run%100==0)
         {
-            calcTemp(cube,tempout); 
+            temp = calcTempNew(cube,tempout); 
+            if(!temp)
+                break;
             //calcCOMTemp(vCM,COMtempout);
             //fprintf(vCOMData,"%lf\t%lf\t%lf\n",vCM[0],vCM[1],vCM[2]);
             calculateGasTemperature(gas,gasTempData);

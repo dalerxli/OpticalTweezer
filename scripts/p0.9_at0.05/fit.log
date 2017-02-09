@@ -1,0 +1,124 @@
+
+
+*******************************************************************************
+Wed Feb  8 16:00:47 2017
+
+
+FIT:    data read from "plotfile_clean.dat" using 1:2
+        format = x:z
+        #datapoints = 7
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 6.96437           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 0.728869
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.000905282
+rel. change during last iteration : -3.25519e-13
+
+degrees of freedom    (FIT_NDF)                        : 5
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0134557
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000181056
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = 0.815901         +/- 0.03197      (3.918%)
+b               = 0.0385478        +/- 0.007993     (20.73%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      
+a               1.000 
+b              -0.771  1.000 
+
+
+*******************************************************************************
+Wed Feb  8 16:01:52 2017
+
+
+FIT:    data read from "plotfile_clean.dat" using 1:2
+        format = x:z
+        #datapoints = 7
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+fitted parameters and initial values from file: a.dat
+
+BREAK:          could not read parameter-file "a.dat"
+
+
+
+*******************************************************************************
+Wed Feb  8 16:02:12 2017
+
+
+FIT:    data read from "plotfile_clean.dat" using 1:2
+        format = x:z
+        #datapoints = 7
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+fitted parameters and initial values from file: a.dat
+
+BREAK:          syntax error in parameter file
+
+
+
+*******************************************************************************
+Wed Feb  8 16:03:13 2017
+
+
+FIT:    data read from "plotfile_clean.dat" using 1:2
+        format = x:z
+        #datapoints = 7
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 6.96437           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 0.728869
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 0.000905282
+rel. change during last iteration : -3.25519e-13
+
+degrees of freedom    (FIT_NDF)                        : 5
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0134557
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000181056
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = 0.815901         +/- 0.03197      (3.918%)
+b               = 0.0385478        +/- 0.007993     (20.73%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      
+a               1.000 
+b              -0.771  1.000 
