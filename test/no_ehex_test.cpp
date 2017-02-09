@@ -35,10 +35,10 @@ int main(int argc,char** argv)
      */
 
     double t = 0.2;
-    double ambient = 0.05;
-    double press = 0.9;
-    double q = 0.0;
-    while(q < 0.5)
+    double ambient = 0.1;
+    double press = 0.8;
+    double q = 0.35;
+    while(q <= 0.5)
     {
         setValues(t,q,0.2,press,ambient);
         std::cout << "==================================================" << std::endl;

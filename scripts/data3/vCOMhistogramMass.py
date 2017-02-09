@@ -19,7 +19,7 @@ N = 32
 
 vSqd = []
 for i in range(0,len(vCOMData_x)):
-    vSqd.append(32*(vCOMData_x[i]*vCOMData_x[i]+vCOMData_x[i]*vCOMData_x[i]+vCOMData_x[i]*vCOMData_x[i])*0.5)
+    vSqd.append(32*(vCOMData_x[i]*vCOMData_x[i]+vCOMData_y[i]*vCOMData_y[i]+vCOMData_z[i]*vCOMData_z[i])*0.5)
 
 vSqdMean = np.mean(vSqd)
 
