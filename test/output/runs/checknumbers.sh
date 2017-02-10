@@ -4,9 +4,12 @@ folders="$(ls -d *at0.1*)"
 
 for i in $folders
 do
-    a="$(cat $i'/temperature_internal.dat' | wc -l)"
-    if [ "$a" -ne 900 ] 
-    then
-        echo -e $i" (" $a ")"  
+    if [ -e $i"/temperature_internal.dat" ]
+    then 
+        a="$(cat $i'/temperature_internal.dat' | wc -l)"
+        if [ "$a" -ne 900 ] 
+        then
+            echo -e $i" (" $a ")"  
+        fi
     fi
 done
