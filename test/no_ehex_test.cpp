@@ -34,25 +34,27 @@ int main(int argc,char** argv)
      *    }
      */
 
-    double t = 0.2;
-    double ambient = 0.1;
-    double press = 0.3;
-    double q = 0.01;
-    while(q < 0.05)
-    {
-        setValues(t,q,0.2,press,ambient);
-        std::cout << "==================================================" << std::endl;
-        std::cout << "t: " << t << std::endl;
-        std::cout << "p: " << press << std::endl;
-        std::cout << "q: " << q << std::endl;
-        std::cout << "at: " << ambient << std::endl;
-        std::cout << "==================================================" << std::endl;
-        mainLoop();
-        q += 0.01;
-        //ambient -= 0.01;
-    }
-    //setValues(0.2,0.1,0.2,0.8,0.1);
-    //mainLoop();
+    /*
+     *double t = 0.2;
+     *double ambient = 0.05;
+     *double press = 0.5;
+     *double q = 0.005;
+     *while(q < 0.5)
+     *{
+     *    setValues(t,q,0.2,press,ambient);
+     *    std::cout << "==================================================" << std::endl;
+     *    std::cout << "t: " << t << std::endl;
+     *    std::cout << "p: " << press << std::endl;
+     *    std::cout << "q: " << q << std::endl;
+     *    std::cout << "at: " << ambient << std::endl;
+     *    std::cout << "==================================================" << std::endl;
+     *    mainLoop();
+     *    q += 0.05;
+     *    //ambient -= 0.01;
+     *}
+     */
+    setValues(0.2,0.1,0.2,0.5,0.1);
+    mainLoop();
     return 0;
 }
 

@@ -15,7 +15,10 @@ gasTempDataOut = np.genfromtxt(datetime+"gasTempData.dat",usecols=1,skip_header=
 vCOMData_x = np.genfromtxt(datetime+"vCOMData.dat",usecols=0,skip_header=100)
 vCOMData_y = np.genfromtxt(datetime+"vCOMData.dat",usecols=1,skip_header=100)
 vCOMData_z = np.genfromtxt(datetime+"vCOMData.dat",usecols=2,skip_header=100)
+internalTempData = np.genfromtxt(datetime+"temperature_internal.dat",skip_header=200)
 N = 32
+
+internalTemp = np.mean(internalTempData)
 
 vSqd = []
 for i in range(0,len(vCOMData_x)):
@@ -34,9 +37,10 @@ inTemp = np.mean(gasTempDataIn)
 outTemp = np.mean(gasTempDataOut)
 
 statistics = open(datetime+"statistics_mass.dat","w")
-statistics.write("GasIn: " + str(inTemp)+"\n")
-statistics.write("GasOut: " + str(outTemp)+"\n")
-statistics.write("T_COM: " + str(2./3. * vSqdMean)+"\n")
+statistics.write("GasIn: " + str(inTemp)+" +- " + str(np.std(gasTempDataIn)) + "\n")
+statistics.write("GasOut: " + str(outTemp)+str(np.std(gasTempDataOut)) + "\n")
+statistics.write("T_COM: " + str(2./3. * vSqdMean)+str(np.std(vSqd)) + "\n")
+statistics.write("T_INT: " + str(internalTemp)+str(np.std(internalTempData)) + "\n")
 
 statistics.write("Mu_x " + str(np.mean(vCOMData_x))+"\n")
 statistics.write("Sigma_x: " + str(np.std(vCOMData_x))+"\n")

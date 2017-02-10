@@ -17,10 +17,10 @@ int main()
     Particle *particles = new Particle[N];
     InitPositions(particles);
     std::list<Particle*> gas;
-    FILE* tempout = fopen("baro_temp_004_trackdata_1.dat","w");
-    FILE* enerout = fopen("baro_energy_004_trackdata_1.dat","w");
-    FILE* compos = fopen("baro_compos004_trackdata.dat","w");
-    FILE* comvel= fopen("baro_comvel004_trackdata.dat","w");
+    FILE* tempout = fopen("baro_temp_004_trackdata_1_new.dat","w");
+    FILE* enerout = fopen("baro_energy_004_trackdata_1_new.dat","w");
+    FILE* compos = fopen("baro_compos004_trackdata_new.dat","w");
+    FILE* comvel= fopen("baro_comvel004_trackdata_new.dat","w");
 
     FILE* trackdata[1000];
     for(int i=0;i<1000;i++)
