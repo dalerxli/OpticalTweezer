@@ -53,7 +53,7 @@ int main(int argc,char** argv)
      *    //ambient -= 0.01;
      *}
      */
-    setValues(0.2,0.1,0.2,0.5,0.1);
+    setValues(0.2,0.02,0.2,0.5,0.05);
     mainLoop();
     return 0;
 }
