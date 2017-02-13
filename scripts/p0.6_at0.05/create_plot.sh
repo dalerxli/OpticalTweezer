@@ -13,10 +13,14 @@ for i in $datetimes
 do
     q="$(cat "$i"_parameters.txt | grep "dQ" | cut -f3 -d " ")"
     tcom="$(cat "$i"_statistics_mass.dat | grep "COM" | cut -f2 -d " ")"
+    terr="$(cat "$i"_statistics_mass.dat | grep "COM" | cut -f4 -d " ")"
     ti="$(cat "$i"_statistics_mass.dat | grep "INT" | cut -f2 -d " ")"
+    interr="$(cat "$i"_statistics_mass.dat | grep "INT" | cut -f4 -d " ")"
     gin="$(cat "$i"_statistics_mass.dat | grep "In" | cut -f2 -d " ")"
+    ginerr="$(cat "$i"_statistics_mass.dat | grep "In" | cut -f4 -d " ")"
     gout="$(cat "$i"_statistics_mass.dat | grep "Out" | cut -f2 -d " ")"
-    echo -e $q"\t"$tcom"\t"$ti"\t"$gin"\t"$gout >> plotfile.dat
+    gouterr="$(cat "$i"_statistics_mass.dat | grep "Out" | cut -f4 -d " ")"
+    echo -e $q"\t\t"$tcom"\t\t"$terr"\t\t"$ti"\t\t"$interr"\t\t"$gin"\t\t"$ginerr"\t\t"$gout"\t\t"$gouterr>> plotfile.dat
 done
 
 cp plotfile.dat plotfile_clean.dat

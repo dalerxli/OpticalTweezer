@@ -14,7 +14,7 @@
 \usepackage{float}
 \usepackage[font=scriptsize,labelfont=bf]{caption}
 %\usepackage[font=footnotesize,labelfont=bf]{caption}
-\usepackage{subcaption}
+\usepackage[font=scriptsize]{subcaption}
 \usepackage{fancyhdr}
 \setlength{\headheight}{15.2pt}
 \pagestyle{fancy}
@@ -97,10 +97,44 @@
 \maketitle
 \thispagestyle{empty}
 \newpage
+\tableofcontents
+\newpage
 \section{Introduction}
 %something about computer science in general, optical tweezers and the need to study the
 %systems on computers yada yada
+In the year 1953, Metropolis et al.~\cite{Metropolis1953} used the MANIAC (Mathematical Analyzer Numerical Integrator And Computer) 
+at the Los Alamos National Laboratories in the United States to
+simulate particles in a liquid state to calculate the equation of state. This was the first publication in which scientists used a computer to
+calculate numerical results based on a physical theory in a process that is to this day called \textit{Metropolis Monte Carlo}. To say that a lot has
+changed in the field of computer simulation (or computers in general) would be a vast understatement.\\
+Not only the processing power of computers has incresed exponentially (Moore's law), which allows the simulation of a greater number of particles for
+a longer period of time, but also new techniques have been developed, such as molecular dynamics. These techniques are not only used by physicists,
+but also find applications in the fields of chemistry, biology, etc., making it possible to apply them to virtually anything. This thesis is an
+attempt to apply methods of simulation to a field with a lot of recent research happening in it: optical trapping.
+Optical trapping is a technique that has been used and developed for over 40 years~\cite{Marago2013}. The idea for this goes back to the beginning of
+the 20th century, where Lebedev~\cite{Lebedew1901}, Nichols and Hull~\cite{Nichols1901} demonstrated the existence of a force that light exerts on 
+matter. Due to the technical limitations at that time, the idea was discarded until 1970, where Ashkin~\cite{Ashkin2000} used lasers to manipulate the
+motion of neutral atoms and micrometer sized objects and thus brought the idea of optical trapping back to life.\\
+With this advancement it was possible to develop methods for trapping and manipulating objects of different sizes ranging from the micrometer scale
+down to the subnano scale. At first, this technique was used to either trap objects in the micrometer range (like cells) or in the subnano scale,
+where lasers were used for the cooling of atoms. The range between those two, with objects at the scale of one to a hundred nanometer, was not
+explored as much because neither downscaling the methods for micrometer sized objects nor upscaling the methods for atoms seemed feasible. In recent
+years however, new developments in the field opened the possibilities to work with a variety of objects in the desired nanometer scale, such as metal
+nanoparticles, nano tubes, quantum dots and much more. This non-invasive method of trapping objects allows very precise measurements of various
+properties and also allows the cooling of nanoparticles towards their quantum mechanical ground state.\\
+The small size of the objects used in the optical tweezer experiments make them ideal candidates for computer simulations. In this thesis, I will
+model an optical tweezer setup, based on a real experiment, to investigate different temperatures in a non-equilibrium state.\\
+The first chapter will be the introduction of the experiment and the introduction of the problem statement. The second chapter contains basic
+information on the techniques used to model the experiment and simulate the dynamic properties. In the third chapter, I will present my findings which
+are followed by the conclusions and further remarks.
 
+
+%Due to the properties of light it was possible
+%to create methods of trapping and manipulating objects of different sizes from the micrometer to the subnanometer-scale. 
+
+%At first, the micrometer
+%ranges (objects like cells) and subnanometer-ranges (lasercooling of atoms) were explored, but the methods used in these ranges were not fit to be
+%applied to objects in the range of one to a hundred nanometers.  
 
 
 
@@ -1024,7 +1058,46 @@ be skipped because it can happen that atoms of the nano particle leave the syste
 unusable results.\\
 To see the comparison between the different temperatures of the impinging gas temperatures, three values for the pressure are chosen: $P=0.1$, $P=0.5$
 and $P=1.0$. The simulation results for the center of mass temperature, the internal temperature and the temperature of the outgoing gas particles are
-plotted for each of the pressure values and both temperatures. 
+plotted for each of the pressure values and both temperatures.
+\begin{figure}[h]
+    \begin{center}
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.13]{images/p01_com.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.13]{images/p05_com.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.13]{images/p1_com.pdf}
+        \end{subfigure} 
+        \\
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.13]{images/p01_int.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.13]{images/p05_int.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.13]{images/p1_int.pdf}
+        \end{subfigure} 
+        \\
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.13]{images/p01_out.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.13]{images/p05_out.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.13]{images/p1_out.pdf}
+        \end{subfigure} 
+    \end{center}
+\end{figure}
 
 
 

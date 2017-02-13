@@ -3,7 +3,10 @@ dir="$(pwd)"
 target="$(basename $dir)"
 #target=$1
 folders="$(ls -d ../../test/output/runs/$target*)"
-
+if [ -e folderlist.txt ]
+then 
+    rm folderlist.txt
+fi
 for i in $folders
 do
     basename $i >> folderlist.txt

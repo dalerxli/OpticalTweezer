@@ -20,7 +20,7 @@ do
     ginerr="$(cat "$i"_statistics_mass.dat | grep "In" | cut -f4 -d " ")"
     gout="$(cat "$i"_statistics_mass.dat | grep "Out" | cut -f2 -d " ")"
     gouterr="$(cat "$i"_statistics_mass.dat | grep "Out" | cut -f4 -d " ")"
-    echo -e $q"\t"$tcom"\t"$terr"\t"$ti"\t"$interr"\t"$gin"\t"$ginerr"\t"$gout"\t"$gouterr>> plotfile.dat
+    echo -e $q"\t\t"$tcom"\t\t"$terr"\t\t"$ti"\t\t"$interr"\t\t"$gin"\t\t"$ginerr"\t\t"$gout"\t\t"$gouterr>> plotfile.dat
 done
 
 cp plotfile.dat plotfile_clean.dat

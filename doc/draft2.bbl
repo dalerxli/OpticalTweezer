@@ -1,5 +1,35 @@
 \begin{thebibliography}{10}
 
+\bibitem{Metropolis1953}
+Nicholas Metropolis, Arianna~W. Rosenbluth, Marshall~N. Rosenbluth, Augusta~H.
+  Teller, and Edward Teller.
+\newblock Equation of state calculations by fast computing machines.
+\newblock {\em The Journal of Chemical Physics}, 21(6):1087--1092, 1953.
+
+\bibitem{Marago2013}
+Onofrio~M Maragò, Philip~H Jones, Pietro~G Gucciardi, Giovanni Volpe, and
+  Andrea~C Ferrari.
+\newblock Optical trapping and manipulation of nanostructures.
+\newblock {\em Nature nanotechnology}, 8(11):807--819, 2013.
+
+\bibitem{Lebedew1901}
+Peter Lebedew.
+\newblock Untersuchungen über die druckkräfte des lichtes.
+\newblock {\em Annalen der Physik}, 311(11):433--458, 1901.
+
+\bibitem{Nichols1901}
+E.~F. Nichols and G.~F. Hull.
+\newblock A preliminary communication on the pressure of heat and light
+  radiation.
+\newblock {\em Phys. Rev. (Series I)}, 13:307--320, Nov 1901.
+
+\bibitem{Ashkin2000}
+A.~Ashkin.
+\newblock History of optical trapping and manipulation of small-neutral
+  particle, atoms, and molecules.
+\newblock {\em IEEE Journal of Selected Topics in Quantum Electronics},
+  6(6):841--856, Nov 2000.
+
 \bibitem{Gieseler2014}
 Jan Gieseler, Romain Quidant, Christoph Dellago, and Lukas Novotny.
 \newblock Dynamic relaxation of a levitated nanoparticle from a non-equilibrium

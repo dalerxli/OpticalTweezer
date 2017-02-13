@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.3)  9 FEB 2017 16:12
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.3)  12 FEB 2017 22:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1138,186 +1138,190 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 98.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<images/experimental_setup.jpg, id=91, 949.5475pt x 602.25pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./draft2.toc)
+\tf@toc=\write4
+\openout4 = `draft2.toc'.
+
+ [2] [3] [4]
+<images/experimental_setup.jpg, id=129, 949.5475pt x 602.25pt>
 File: images/experimental_setup.jpg Graphic file (type jpg)
 
 <use images/experimental_setup.jpg>
-Package pdftex.def Info: images/experimental_setup.jpg used on input line 129.
+Package pdftex.def Info: images/experimental_setup.jpg used on input line 163.
 (pdftex.def)             Requested size: 284.86644pt x 180.67639pt.
- [3 <./images/experimental_setup.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 145--154
+ [5 <./images/experimental_setup.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 179--188
 
  []
 
-<images/nnano_millen.jpg, id=110, 949.5475pt x 851.18pt>
+<images/nnano_millen.jpg, id=148, 949.5475pt x 851.18pt>
 File: images/nnano_millen.jpg Graphic file (type jpg)
 
 <use images/nnano_millen.jpg>
-Package pdftex.def Info: images/nnano_millen.jpg used on input line 164.
+Package pdftex.def Info: images/nnano_millen.jpg used on input line 198.
 (pdftex.def)             Requested size: 189.90613pt x 170.23297pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--170
+Underfull \hbox (badness 10000) in paragraph at lines 189--204
 
  []
 
-<images/nano_nonequilibrium_cropped.jpg, id=114, 289.08pt x 334.24875pt>
+<images/nano_nonequilibrium_cropped.jpg, id=152, 289.08pt x 334.24875pt>
 File: images/nano_nonequilibrium_cropped.jpg Graphic file (type jpg)
 
 <use images/nano_nonequilibrium_cropped.jpg>
 Package pdftex.def Info: images/nano_nonequilibrium_cropped.jpg used on input l
-ine 178.
+ine 212.
 (pdftex.def)             Requested size: 144.53964pt x 167.12396pt.
- [4 <./images/nnano_millen.jpg>]
-[5 <./images/nano_nonequilibrium_cropped.jpg>]
-<images/LJ-2.pdf, id=139, 1123.19624pt x 745.47209pt>
+ [6 <./images/nnano_millen.jpg>]
+[7 <./images/nano_nonequilibrium_cropped.jpg>]
+<images/LJ-2.pdf, id=178, 1123.19624pt x 745.47209pt>
 File: images/LJ-2.pdf Graphic file (type pdf)
  <use images/LJ-2.pdf>
-Package pdftex.def Info: images/LJ-2.pdf used on input line 240.
+Package pdftex.def Info: images/LJ-2.pdf used on input line 274.
 (pdftex.def)             Requested size: 224.63527pt x 149.09177pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6] [7 <./images/LJ-2.pdf>]
-<images/fcc-2.pdf, id=180, 334.89616pt x 293.94318pt>
+[8] [9 <./images/LJ-2.pdf>]
+<images/fcc-2.pdf, id=217, 334.89616pt x 293.94318pt>
 File: images/fcc-2.pdf Graphic file (type pdf)
  <use images/fcc-2.pdf>
-Package pdftex.def Info: images/fcc-2.pdf used on input line 284.
+Package pdftex.def Info: images/fcc-2.pdf used on input line 318.
 (pdftex.def)             Requested size: 100.46962pt x 88.18362pt.
 
-<images/unit_cell.pdf, id=181, 322.51157pt x 281.75334pt>
+<images/unit_cell.pdf, id=218, 322.51157pt x 281.75334pt>
 File: images/unit_cell.pdf Graphic file (type pdf)
 
 <use images/unit_cell.pdf>
-Package pdftex.def Info: images/unit_cell.pdf used on input line 291.
+Package pdftex.def Info: images/unit_cell.pdf used on input line 325.
 (pdftex.def)             Requested size: 96.75421pt x 84.52664pt.
- [8 <./images/fcc-2.pdf> <./images/unit_cell.pdf
+ [10 <./images/fcc-2.pdf> <./images/unit_cell.pdf
 
 pdfTeX warning: pdflatex (file ./images/unit_cell.pdf): PDF inclusion: multiple
  pdfs with page group included in a single page
->] <images/finite_approach.pdf, id=197, 449.5701pt x 408.30705pt>
+>] <images/finite_approach.pdf, id=232, 449.5701pt x 408.30705pt>
 File: images/finite_approach.pdf Graphic file (type pdf)
 
 <use images/finite_approach.pdf>
-Package pdftex.def Info: images/finite_approach.pdf used on input line 335.
+Package pdftex.def Info: images/finite_approach.pdf used on input line 369.
 (pdftex.def)             Requested size: 224.7845pt x 204.15302pt.
- [9] [10 <./images/finite_approach.pdf>]
-[11] <images/ehex_system.png, id=258, 702.625pt x 567.11874pt>
+ [11] [12 <./images/finite_approach.pdf>]
+[13] <images/ehex_system.png, id=294, 702.625pt x 567.11874pt>
 File: images/ehex_system.png Graphic file (type png)
 
 <use images/ehex_system.png>
-Package pdftex.def Info: images/ehex_system.png used on input line 457.
+Package pdftex.def Info: images/ehex_system.png used on input line 491.
 (pdftex.def)             Requested size: 210.78912pt x 170.13693pt.
- [12] [13] [14 <./images/ehex_system.png>] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 558--561
+ [14] [15] [16 <./images/ehex_system.png>] [17]
+Underfull \hbox (badness 10000) in paragraph at lines 592--595
 
  []
 
-[16] [17] <images/gas_volume_ver3.pdf, id=326, 515.57933pt x 468.41896pt>
+[18] [19] <images/gas_volume_ver3.pdf, id=362, 515.57933pt x 468.41896pt>
 File: images/gas_volume_ver3.pdf Graphic file (type pdf)
 
 <use images/gas_volume_ver3.pdf>
-Package pdftex.def Info: images/gas_volume_ver3.pdf used on input line 654.
+Package pdftex.def Info: images/gas_volume_ver3.pdf used on input line 688.
 (pdftex.def)             Requested size: 257.78903pt x 234.20891pt.
- [18] [19 <./images/gas_volume_ver3.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 723--724
+ [20] [21 <./images/gas_volume_ver3.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 757--758
 
  []
 
-<images/fcc_rendering_layer_newcoloring.png, id=357, 1204.5pt x 903.375pt>
+<images/fcc_rendering_layer_newcoloring.png, id=392, 1204.5pt x 903.375pt>
 File: images/fcc_rendering_layer_newcoloring.png Graphic file (type png)
 
 <use images/fcc_rendering_layer_newcoloring.png>
 Package pdftex.def Info: images/fcc_rendering_layer_newcoloring.png used on inp
-ut line 731.
+ut line 765.
 (pdftex.def)             Requested size: 240.89574pt x 180.6718pt.
- [20 <./images/fcc_rendering_layer_newcoloring.png>]
-<images/verlet_output_te.pdf, id=367, 1422.31375pt x 1137.24875pt>
+ [22 <./images/fcc_rendering_layer_newcoloring.png>]
+<images/verlet_output_te.pdf, id=402, 1422.31375pt x 1137.24875pt>
 File: images/verlet_output_te.pdf Graphic file (type pdf)
 
 <use images/verlet_output_te.pdf>
-Package pdftex.def Info: images/verlet_output_te.pdf used on input line 827.
+Package pdftex.def Info: images/verlet_output_te.pdf used on input line 861.
 (pdftex.def)             Requested size: 426.69742pt x 341.17726pt.
 
-Overfull \hbox (8.44374pt too wide) in paragraph at lines 827--830
+Overfull \hbox (8.44374pt too wide) in paragraph at lines 861--864
  [] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/ehex_te.pdf, id=373, 1137.24875pt x 853.1875pt>
+<images/ehex_te.pdf, id=408, 1137.24875pt x 853.1875pt>
 File: images/ehex_te.pdf Graphic file (type pdf)
 
 <use images/ehex_te.pdf>
-Package pdftex.def Info: images/ehex_te.pdf used on input line 848.
+Package pdftex.def Info: images/ehex_te.pdf used on input line 882.
 (pdftex.def)             Requested size: 454.89145pt x 341.26895pt.
 
-Overfull \hbox (36.63777pt too wide) in paragraph at lines 848--852
+Overfull \hbox (36.63777pt too wide) in paragraph at lines 882--886
  [] 
  []
 
-<images/ehex_temp_dq.pdf, id=376, 1137.24875pt x 853.1875pt>
+<images/ehex_temp_dq.pdf, id=411, 1137.24875pt x 853.1875pt>
 File: images/ehex_temp_dq.pdf Graphic file (type pdf)
 
 <use images/ehex_temp_dq.pdf>
-Package pdftex.def Info: images/ehex_temp_dq.pdf used on input line 860.
+Package pdftex.def Info: images/ehex_temp_dq.pdf used on input line 894.
 (pdftex.def)             Requested size: 454.89145pt x 341.26895pt.
 
-Overfull \hbox (36.63777pt too wide) in paragraph at lines 860--863
+Overfull \hbox (36.63777pt too wide) in paragraph at lines 894--897
  [] 
  []
 
-[21] [22 <./images/verlet_output_te.pdf>]
+[23] [24 <./images/verlet_output_te.pdf>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/baro_temp_start.pdf, id=422, 1137.24875pt x 853.1875pt>
+<images/baro_temp_start.pdf, id=458, 1137.24875pt x 853.1875pt>
 File: images/baro_temp_start.pdf Graphic file (type pdf)
 
 <use images/baro_temp_start.pdf>
-Package pdftex.def Info: images/baro_temp_start.pdf used on input line 881.
+Package pdftex.def Info: images/baro_temp_start.pdf used on input line 915.
 (pdftex.def)             Requested size: 454.89145pt x 341.26895pt.
 
-Overfull \hbox (36.63777pt too wide) in paragraph at lines 881--884
+Overfull \hbox (36.63777pt too wide) in paragraph at lines 915--918
  [] 
  []
 
-[23 <./images/ehex_te.pdf>]
+[25 <./images/ehex_te.pdf>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[24 <./images/ehex_temp_dq.pdf>] [25 <./images/baro_temp_start.pdf>]
-<images/gastemp.pdf, id=475, 1137.24875pt x 853.1875pt>
+[26 <./images/ehex_temp_dq.pdf>] [27 <./images/baro_temp_start.pdf>]
+<images/gastemp.pdf, id=510, 1137.24875pt x 853.1875pt>
 File: images/gastemp.pdf Graphic file (type pdf)
 
 <use images/gastemp.pdf>
-Package pdftex.def Info: images/gastemp.pdf used on input line 977.
+Package pdftex.def Info: images/gastemp.pdf used on input line 1011.
 (pdftex.def)             Requested size: 454.89145pt x 341.26895pt.
 
-Overfull \hbox (36.63777pt too wide) in paragraph at lines 977--978
+Overfull \hbox (36.63777pt too wide) in paragraph at lines 1011--1012
  [] 
  []
 
-<images/vcomsqd.pdf, id=476, 1137.24875pt x 853.1875pt>
+<images/vcomsqd.pdf, id=511, 1137.24875pt x 853.1875pt>
 File: images/vcomsqd.pdf Graphic file (type pdf)
 
 <use images/vcomsqd.pdf>
-Package pdftex.def Info: images/vcomsqd.pdf used on input line 984.
+Package pdftex.def Info: images/vcomsqd.pdf used on input line 1018.
 (pdftex.def)             Requested size: 454.89145pt x 341.26895pt.
 
-Overfull \hbox (36.63777pt too wide) in paragraph at lines 984--985
+Overfull \hbox (36.63777pt too wide) in paragraph at lines 1018--1019
  [] 
  []
 
-<images/t_int.pdf, id=477, 1137.24875pt x 853.1875pt>
+<images/t_int.pdf, id=512, 1137.24875pt x 853.1875pt>
 File: images/t_int.pdf Graphic file (type pdf)
  <use images/t_int.pdf>
-Package pdftex.def Info: images/t_int.pdf used on input line 991.
+Package pdftex.def Info: images/t_int.pdf used on input line 1025.
 (pdftex.def)             Requested size: 454.89145pt x 341.26895pt.
 
-Overfull \hbox (36.63777pt too wide) in paragraph at lines 991--992
+Overfull \hbox (36.63777pt too wide) in paragraph at lines 1025--1026
  [] 
  []
 
@@ -1330,66 +1334,197 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/vcomtemp.pdf, id=481, 1137.24875pt x 853.1875pt>
+<images/vcomtemp.pdf, id=516, 1137.24875pt x 853.1875pt>
 File: images/vcomtemp.pdf Graphic file (type pdf)
 
 <use images/vcomtemp.pdf>
-Package pdftex.def Info: images/vcomtemp.pdf used on input line 1008.
+Package pdftex.def Info: images/vcomtemp.pdf used on input line 1042.
 (pdftex.def)             Requested size: 454.89145pt x 341.26895pt.
 
-Overfull \hbox (36.63777pt too wide) in paragraph at lines 1008--1009
+Overfull \hbox (36.63777pt too wide) in paragraph at lines 1042--1043
  [] 
  []
 
-[26]
+<images/p01_com.pdf, id=517, 1137.24875pt x 853.1875pt>
+File: images/p01_com.pdf Graphic file (type pdf)
+
+<use images/p01_com.pdf>
+Package pdftex.def Info: images/p01_com.pdf used on input line 1065.
+(pdftex.def)             Requested size: 147.84752pt x 110.91826pt.
+
+Overfull \hbox (22.37015pt too wide) in paragraph at lines 1065--1066
+[][] 
+ []
+
+<images/p05_com.pdf, id=518, 1137.24875pt x 853.1875pt>
+File: images/p05_com.pdf Graphic file (type pdf)
+
+<use images/p05_com.pdf>
+Package pdftex.def Info: images/p05_com.pdf used on input line 1069.
+(pdftex.def)             Requested size: 147.84752pt x 110.91826pt.
+
+Overfull \hbox (22.37015pt too wide) in paragraph at lines 1069--1070
+[][] 
+ []
+
+<images/p1_com.pdf, id=519, 1137.24875pt x 853.1875pt>
+File: images/p1_com.pdf Graphic file (type pdf)
+ <use images/p1_com.pdf>
+Package pdftex.def Info: images/p1_com.pdf used on input line 1073.
+(pdftex.def)             Requested size: 147.84752pt x 110.91826pt.
+
+Overfull \hbox (22.37015pt too wide) in paragraph at lines 1073--1074
+[][] 
+ []
+
+<images/p01_int.pdf, id=520, 1137.24875pt x 853.1875pt>
+File: images/p01_int.pdf Graphic file (type pdf)
+
+<use images/p01_int.pdf>
+Package pdftex.def Info: images/p01_int.pdf used on input line 1077.
+(pdftex.def)             Requested size: 147.84752pt x 110.91826pt.
+
+Overfull \hbox (22.37015pt too wide) in paragraph at lines 1077--1078
+[][] 
+ []
+
+<images/p05_int.pdf, id=521, 1137.24875pt x 853.1875pt>
+File: images/p05_int.pdf Graphic file (type pdf)
+
+<use images/p05_int.pdf>
+Package pdftex.def Info: images/p05_int.pdf used on input line 1081.
+(pdftex.def)             Requested size: 147.84752pt x 110.91826pt.
+
+Overfull \hbox (22.37015pt too wide) in paragraph at lines 1081--1082
+[][] 
+ []
+
+<images/p1_int.pdf, id=522, 1137.24875pt x 853.1875pt>
+File: images/p1_int.pdf Graphic file (type pdf)
+ <use images/p1_int.pdf>
+Package pdftex.def Info: images/p1_int.pdf used on input line 1085.
+(pdftex.def)             Requested size: 147.84752pt x 110.91826pt.
+
+Overfull \hbox (22.37015pt too wide) in paragraph at lines 1085--1086
+[][] 
+ []
+
+<images/p01_out.pdf, id=523, 1137.24875pt x 853.1875pt>
+File: images/p01_out.pdf Graphic file (type pdf)
+
+<use images/p01_out.pdf>
+Package pdftex.def Info: images/p01_out.pdf used on input line 1089.
+(pdftex.def)             Requested size: 147.84752pt x 110.91826pt.
+
+Overfull \hbox (22.37015pt too wide) in paragraph at lines 1089--1090
+[][] 
+ []
+
+<images/p05_out.pdf, id=524, 1137.24875pt x 853.1875pt>
+File: images/p05_out.pdf Graphic file (type pdf)
+
+<use images/p05_out.pdf>
+Package pdftex.def Info: images/p05_out.pdf used on input line 1093.
+(pdftex.def)             Requested size: 147.84752pt x 110.91826pt.
+
+Overfull \hbox (22.37015pt too wide) in paragraph at lines 1093--1094
+[][] 
+ []
+
+<images/p1_out.pdf, id=525, 1137.24875pt x 853.1875pt>
+File: images/p1_out.pdf Graphic file (type pdf)
+ <use images/p1_out.pdf>
+Package pdftex.def Info: images/p1_out.pdf used on input line 1097.
+(pdftex.def)             Requested size: 147.84752pt x 110.91826pt.
+
+Overfull \hbox (22.37015pt too wide) in paragraph at lines 1097--1098
+[][] 
+ []
+
+[28]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[27 <./images/gastemp.pdf>] [28 <./images/vcomsqd.pdf>] [29 <./images/t_int.pdf
->] (./draft2.bbl [30 <./images/vcomtemp.pdf>] [31])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1066.
- [32]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1066.
+[29 <./images/gastemp.pdf>] [30 <./images/vcomsqd.pdf>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[31 <./images/t_int.pdf>] [32 <./images/vcomtemp.pdf>] (./draft2.bbl [33 <./ima
+ges/p01_com.pdf> <./images/p05_com.pdf
+
+pdfTeX warning: pdflatex (file ./images/p05_com.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+> <./images/p1_com.pdf
+
+pdfTeX warning: pdflatex (file ./images/p1_com.pdf): PDF inclusion: multiple pd
+fs with page group included in a single page
+> <./images/p01_int.pdf
+
+pdfTeX warning: pdflatex (file ./images/p01_int.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+> <./images/p05_int.pdf
+
+pdfTeX warning: pdflatex (file ./images/p05_int.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+> <./images/p1_int.pdf
+
+pdfTeX warning: pdflatex (file ./images/p1_int.pdf): PDF inclusion: multiple pd
+fs with page group included in a single page
+> <./images/p01_out.pdf
+
+pdfTeX warning: pdflatex (file ./images/p01_out.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+> <./images/p05_out.pdf
+
+pdfTeX warning: pdflatex (file ./images/p05_out.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+> <./images/p1_out.pdf
+
+pdfTeX warning: pdflatex (file ./images/p1_out.pdf): PDF inclusion: multiple pd
+fs with page group included in a single page
+>] [34])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1149.
+ [35]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1149.
  (./draft2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1066.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1066.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1149.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1149.
 
 Package rerunfilecheck Info: File `draft2.out' has not changed.
 (rerunfilecheck)             Checksum: EE6732F92DDB232D188B3B90B7E20EE5;1114.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1066.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1149.
  ) 
 Here is how much of TeX's memory you used:
- 17031 strings out of 494678
- 279402 string characters out of 6172559
- 392046 words of memory out of 5000000
- 19958 multiletter control sequences out of 15000+600000
- 17280 words of font info for 65 fonts, out of 8000000 for 9000
+ 17092 strings out of 494678
+ 280494 string characters out of 6172559
+ 395076 words of memory out of 5000000
+ 19998 multiletter control sequences out of 15000+600000
+ 16672 words of font info for 63 fonts, out of 8000000 for 9000
  102 hyphenation exceptions out of 8191
- 44i,12n,49p,806b,560s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,12n,49p,806b,519s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt
-12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on draft2.pdf (32 pages, 4098834 bytes).
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+
+Output written on draft2.pdf (35 pages, 4158622 bytes).
 PDF statistics:
- 654 PDF objects out of 1000 (max. 8388607)
- 532 compressed objects within 6 object streams
- 139 named destinations out of 1000 (max. 500000)
- 235 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 827 PDF objects out of 1000 (max. 8388607)
+ 658 compressed objects within 7 object streams
+ 149 named destinations out of 1000 (max. 500000)
+ 280 words of extra memory for PDF output out of 10000 (max. 10000000)
 
