@@ -3,5 +3,9 @@ Temp = 0.2
 dt = 0.01
 eps = 0.2
 P = 1
+<<<<<<< HEAD
 dQ = 0.5
+=======
+dQ = 0.12
+>>>>>>> 8ec6bbf94f3e86688ed64ab72740148bb3ebd6f0
 AmbientTemp = 0.1

@@ -3680,6 +3680,7 @@ void verletBaroAccelerations(Particle* cube, std::list<Particle*> gas)
             {
                 //fBaro = 12. * pow(rSqd,-6.);
                 fBaro = 12.*pow(0.8,12.)*pow(rSqd,-7.);
+                //fBaro = 12.*pow(rSqd,-7.);
                 for(int m=0;m<3;m++)
                 {
                     (*gasIter)->a[m] += rij[m] * fBaro;

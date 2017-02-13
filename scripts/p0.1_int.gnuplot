@@ -1,6 +1,3 @@
-f(x) = a*x+b 
-fit f(x) "p0.1_at0.05/plotfile_clean.dat" using 1:3 via a,b
-
 set term pdfcairo size 40cm,30cm
 set termopt enhanced
 set xlabel font ",30"
@@ -20,12 +17,15 @@ set title "P=0.1"
 set xlabel "{/Symbol D}Q"
 set ylabel "T_{INT}"
 
+set yrange [0:1.4]
+set xrange [0:0.5]
+
 set bmargin 10
 set lmargin 20
 set tmargin 10
 set rmargin 20
 
 set output "p01_int.pdf"
-plot "p0.1_at0.05/plotfile_clean.dat" using 1:3 smooth unique lw 4 lt rgb "red" title "T_{imp} = 0.05", \
-    "p0.1_at0.1/plotfile_clean.dat" using 1:3 smooth unique lw 4 lt rgb "blue" title "T_{imp} = 0.1"
+plot "p0.1_at0.05/plotfile_clean.dat" using 1:4 smooth unique lw 4 lt rgb "red" title "T_{imp} = 0.05", \
+    "p0.1_at0.1/plotfile_clean.dat" using 1:4 smooth unique lw 4 lt rgb "blue" title "T_{imp} = 0.1"
 unset output
