@@ -62,7 +62,8 @@ for i in range(0,len(histogram_x)):
 # plt.hist(vCOMData_x,bins=100)
 # plt.figure(2)
 # plt.hist(vCOMData_y,bins=100)
-# plt.figure(3)
+#(histogram)):
+outfile.write(str(bins[i]) + "\t" + histogram[i] + "\n")plt.figure(3)
 # plt.hist(vCOMData_z,bins=100)
 # plt.show()
 # plt.figure(1)

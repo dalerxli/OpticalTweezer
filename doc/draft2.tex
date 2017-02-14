@@ -306,6 +306,9 @@ From the Lennard-Jones potential the corresponding force can be calculated by ta
     \label{eq:ljforce} &=& 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
 \end{eqnarray}
 The force in the y and z direction can be calculated analogously.\\
+As can be seen in Fig.~\ref{fig:lj}, the potential is very close to 0 at about $r/\sigma=2.5$. This means that any contribution of the potential
+energy after this point is vanishingly small. To save computing time it is common practice to cut off the potential at a certain point and don't
+calculate the contribution for distances beyond that. The cut-off distance for this thesis was set to $r = 2.5\sigma$.\\
 The initial configuration of the particles is a face centered cubic (FCC) lattice. A schematic of the FCC lattice is depicted in Fig. \ref{fig:fcc}.
 With the choice of FCC as initial configuration, there are optimal numbers for the numbers of the particles in the system. Since once FCC cell 
 shares its atoms with its next neighbours, the number of atom per unit cell is 4 -- 1/8 of a particle on eight corners and 1/2 of a particle on six faces.
@@ -912,7 +915,7 @@ development of a new, higher steady temperature of the nano particle, which can 
 %Because of this, the temperature of the system rises, until it reaches a steady value again. This behaviour can be seen in fig.~\ref{fig:baro1}.\\
 \begin{figure}[h]
     \begin{center}
-        \includegraphics[scale=0.4]{images/baro_temp_start.pdf}
+        \includegraphics[scale=0.4]{images/baro_temp_long_new.pdf}
         \caption{Temperature of the system during the application of the eHEX and the barostat algorithm. During the first 20000 steps the system is
         in equilibrium while the velocity Verlet algorithm is applied. After that, the eHEX and the barostat algorithms are turned on. This leads to
     an increase in temperature until a new steady temperature is reached.}
@@ -1058,7 +1061,7 @@ be skipped because it can happen that atoms of the nano particle leave the syste
 unusable results.\\
 To see the comparison between the different temperatures of the impinging gas temperatures, three values for the pressure are chosen: $P=0.1$, $P=0.5$
 and $P=1.0$. The simulation results for the center of mass temperature, the internal temperature and the temperature of the outgoing gas particles are
-plotted for each of the pressure values and both temperatures.
+plotted for each of the pressure values and both temperatures, which can be seen in~\ref{fig:comintout}.
 \begin{figure}[h]
     \begin{center}
         \begin{subfigure}[t]{0.3\textwidth}
@@ -1096,9 +1099,33 @@ plotted for each of the pressure values and both temperatures.
         \begin{subfigure}[t]{0.3\textwidth}
             \includegraphics[scale=0.13]{images/p1_out.pdf}
         \end{subfigure} 
+        \caption{The temperature of the center of mass, the internal temperature and the outgoing temperature of the surrounding gas as functions of
+            heat being pumped into the system, for pressures
+        $P=0.1$, $P=0.5$ and $P=1$ at impinging gas temperatures of $T_\text{imp}=0.05$ (red) and $T_\text{imp}=0.1$. The three columns each show 
+        a fixed pressure value and the rows show fixed measured quantities. As the pressure relates to the maximum amount of heat that can be injected
+    into the system, the ranges on the abscissa in one row is different for every plot.}
+        \label{fig:comintout}
     \end{center}
 \end{figure}
-
+The three columns of the plot correspond to fixed pressure values and different measured quantities, whereas every row corresponds to a fixed measured
+quantity at different pressures. As previously mentioned, the amount of pressure relates to the number of surrounding particles and thus limits the
+amount of heat that can be pumped into the system. Therefore, the range of values in the abscissa differs for different pressures -- at $P=0.1$ the
+values of $\Delta Q$ range from $0$ to $0.02$ and at $P=1.0$ from $0$ to $0.5$.\\
+The first thing that is noticable, is the increase of the temperature of the center of mass, the internal temperature and the outgoing gas temperature
+with increasing $\Delta Q$. This makes sense, as the amount of heat that is put into the system is also transfered in the interaction between the nano
+particle and the surrounding gas.\\
+One observation that is not so obvious due to the different ranges of $\Delta Q$ values: all temperature values increase faster for low pressures and
+increase slower for higher pressures. Take the center of mass temperature for $P=0.1$ and $P=1$ at $T=0.05$ (red line) as an example: while it reaches
+a value of a $T_\text{com} = 0.1$ at about $\Delta Q = 0.015$ at $P=0.1$, it takes a $\Delta Q$ of a little under $0.1$ to achieve the same value.
+This can be observed for every one of the three quantities. This is to be expected, as the surrounding gas acts as a thermostat. \\
+The development of the different temperatures seem to be depending of the temperature of the surrounding gas as well. The blue curves (which
+correspont do a surrounding gas temperature of $T=0.1$) are growing slightly faster than the red curves ($T=0.05$).\\
+In their paper~\cite{MillenJ.2014} Millen et al. give a formula for the center of mass temperature:
+\begin{equation}
+    T_\text{COM} = \frac{T_\text{imp}^{3/2}+\tfrac\pi 8 \ T_\text{em}^{3/2}}{T_\text{imp}^{1/2}+\tfrac\pi8 T_\text{em}^{1/2}}
+\end{equation}
+This formula together with the measured values of $T_\text{imp}$ and $T_\text{em}$ can be used to compare the results. The comparison between the
+calculated and the measured value can be seen for a representative choice of parameters in Fig.~\ref{fig:measurevscalc}.
 
 
 
@@ -1134,10 +1161,22 @@ plotted for each of the pressure values and both temperatures.
 
 
 \newpage
-\section{Conclusion}
+\section{Conclusion and Further Remarks}
 % what does this all tell us? do we need to study more of this? 
-
-
+In this thesis I have modeled an optical tweezer experiment with methods from the field of computational physics. The experiment was broken down into
+different sections, that have been modeled separately. With the use of molecular dynamics I simulated the behaviour of a nano particle in a laser trap
+and investigated the effects of the laser power and temperature of the surrounding gas on the center of mass movement of the nano particle.\\
+The results show, that the center of mass temperature (and thus its movement) does indeed depend on the energy of the laser, as well as on the
+pressure and temperature of the surrounding gas.\\
+The development of the center of mass temperature shows a curve that seems to have a convex form, whereas the internal temperature shows a more
+concave behaviour. So while the internal temperature initially grows faster, it could be possible for the center of mass temperature to pass the
+internal temperature.\\
+There are several ways to explore this subject further. The first idea would be to decrease the pressure even more and investiate the case of very low
+energies, since this is not easily feasible in an experimental setup. Another idea would be to increase the number of atoms in the nano particle to
+see if the surface of the particle plays a role in the development of the temperatures. Furthermore, the interaction between the gas particles and the
+nano particle in the trap could be varied to include an attractive part in the potential. Generally, these simulations could be expanded by running
+them on faster computers to investigate long term behaviour of the systems and expand the ranges of the different values like pressure or laser
+energy. 
 
 
 

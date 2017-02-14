@@ -1,12 +1,12 @@
 set term pdfcairo size 40cm,30cm
 set termopt enhanced;
-set xlabel "Timestep";
+set xlabel "Time";
 set ylabel "T*";
 set y2label "E_{tot}";
 set ytics nomirror;
 set y2tics;
-set xrange [0:30000];
-set x2range [0:30000];
+set xrange [0:300];
+set x2range [0:300];
 set yrange [0:0.4];
 set tics font ",30";
 set xlabel font ",30";
@@ -29,7 +29,10 @@ set bmargin 15
 set tmargin 10
 set xlabel offset 0,-5
 set tics font ",30"
-set output "verlet_output_te.pdf";plot "verlet_temp_1.dat" w l axes x1y1 title "Temperature" lw 2 lt rgb "red", "verlet_energy_1.dat" w l axes x2y2 title "Total Energy" lt rgb "blue" lw 2;unset output;
+set output "verlet_output_te.pdf";
+plot "verlet_temp_1.dat" using ($0*0.01):1 w l axes x1y1 title "Temperature" lw 2 lt rgb "red", \
+    "verlet_energy_1.dat" using  ($0*0.01):1 w l axes x1y2 title "Total Energy" lt rgb "blue" lw 2;
+unset output;
 #plot "verlet_temp_1.dat" w l axes x1y1 title "Temperature" lw 2 lt rgb "red", "verlet_energy_1.dat" w l axes x2y2 title "Total Energy" lt rgb "blue" lw 2;
 
 ### commands for fine tuning:

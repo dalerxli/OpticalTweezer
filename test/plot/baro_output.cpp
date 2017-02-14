@@ -104,7 +104,7 @@ int main()
         //VelocityVerlet(particles);
         //BarostatNew(particles,gas);
         //harmonicTrap(rCM,vCM,rCMStart,particles);
-        eHEXBaro(particles,gas);
+        eHEXBaroNewTemp(particles,gas);
         calcTemp(particles,tempout);
         energy = calculateEnergies(particles);
         fprintf(enerout,"%lf\n",energy);

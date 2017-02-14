@@ -13,8 +13,8 @@ set xlabel offset 0,-4
 set ylabel offset -10,0
 set key spacing 2
 set ylabel "T*"
-set xlabel "Timestep"
-set output "baro_temp_long.pdf"
-plot "baro_temp_004_new_1.dat" w l lt rgb "red" title "T*" 
+set xlabel "Time"
+set output "baro_temp_long_new.pdf"
+plot "baro_temp_004_new_1.dat" using ($0*0.01):1 w l lt rgb "red" title "T*" 
 unset output
 

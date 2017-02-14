@@ -83,6 +83,7 @@ void rescaleVelocities(Particle* cube);
 void setValues(double temp, double dq, double Eps, double Pressure, double ambienttemp);
 void writeHistory(std::list<Particle*>& gas, int run);
 void calculateGasTemperature(std::list<Particle*> gas,FILE* output);
+void gasTempLog(std::list<Particle*> gas,int run);
 
 double calculateEnergies(Particle* cube, std::list<Particle*> gas);
 double calculateEnergies(Particle* cube);

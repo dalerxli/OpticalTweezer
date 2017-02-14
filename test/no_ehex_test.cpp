@@ -53,7 +53,7 @@ int main(int argc,char** argv)
      *    //ambient -= 0.01;
      *}
      */
-    setValues(0.2,0.02,0.2,0.5,0.05);
+    setValues(0.2,0.1,0.2,0.5,0.05);
     mainLoop();
     return 0;
 }
@@ -71,7 +71,7 @@ void mainLoop() {
      *system(makedir.c_str());
      *system("rm output/combined/ *");
      */
-    std::string folderName = "output/runs/p";
+    std::string folderName = "output/runs/test_p";
     folderName += numberToString(P);
     folderName += "_at";
     folderName += numberToString(AmbientTemp);
@@ -304,6 +304,7 @@ void mainLoop() {
         }
         if(run%100==0)
         {
+            gasTempLog(gas,run);
             temp = calcTempNew(cube,tempout); 
             if(!temp)
                 break;

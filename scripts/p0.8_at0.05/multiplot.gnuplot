@@ -20,10 +20,10 @@ set rmargin 20
 #set output "multiplot.pdf"
 #set multiplot layout 1,3 title "P=0.8    T_{imp}=0.05"
 set output "t_int.pdf"
-plot "p0.8_at0.05_170206_1132_temperature_internal.dat" using ($0*0.01):1 w l lw 3 title "T_{int}",0.048 lw 6 lt rgb "blue" title "<T_{int}>";
+plot "p0.8_at0.05_170206_1132_temperature_internal.dat" using ($0*0.01*100):1 w l lw 3 title "T_{int}",0.048 lw 6 lt rgb "blue" title "<T_{int}>";
 unset output
 set output "gastemp.pdf"
-plot "p0.8_at0.05_170206_1132_gasTempData.dat" using ($0*0.01):2 w l lw 3 title "T_{em}",0.0494 lw 6 lt rgb "blue" title "<T_{em}>";
+plot "p0.8_at0.05_170206_1132_gasTempData.dat" using ($0*0.01*100):2 w l lw 3 title "T_{em}",0.0494 lw 6 lt rgb "blue" title "<T_{em}>";
 unset output
 set output "vcomtemp.pdf"
 set xlabel "Velocity"
@@ -34,5 +34,5 @@ set output "vcomsqd.pdf"
 set xlabel "Time"
 set ylabel "Temperature"
 set ylabel offset -5,0
-plot "p0.8_at0.05_170206_1132_vCOMData.dat" using ($0*0.01):(($1*$1+$2*$2+$3*$3)*0.5*32) with lines lw 4 lt rgb "red" title "<T_{COM}>",0.051 lw 6 lt rgb "blue";
+plot "p0.8_at0.05_170206_1132_vCOMData.dat" using ($0*0.01*100):(($1*$1+$2*$2+$3*$3)*0.5*32) with lines lw 4 lt rgb "red" title "<T_{COM}>",0.051 lw 6 lt rgb "blue";
 unset output
