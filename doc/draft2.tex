@@ -1125,8 +1125,18 @@ In their paper~\cite{MillenJ.2014} Millen et al. give a formula for the center o
     T_\text{COM} = \frac{T_\text{imp}^{3/2}+\tfrac\pi 8 \ T_\text{em}^{3/2}}{T_\text{imp}^{1/2}+\tfrac\pi8 T_\text{em}^{1/2}}
 \end{equation}
 This formula together with the measured values of $T_\text{imp}$ and $T_\text{em}$ can be used to compare the results. The comparison between the
-calculated and the measured value can be seen for a representative choice of parameters in Fig.~\ref{fig:measurevscalc}.
-
+calculated and the measured value can be seen for a representative choice of parameters in Fig.~\ref{fig:measurevscalc}. There it becomes obvious,
+that the measured center of mass temperature rises quicker than the calculated value. This is also the case for different pressures and impinging gas
+temperatures. The reason for this may be in the difference of the accomodation factor $\alpha$. In the paper, Millen et al. use an accomodation factor
+for a sphere with a value of $\alpha = 0.777$, whereas the accomodation factor for the setup in the simulation for the chosen values is around
+$\alpha = 0.016$. This means that the real and the modeled interaction between the gas particles and the nano particle differ from one another.
+\begin{figure}
+    \begin{center}
+        \includegraphics[scale=0.3]{images/measurevscalc.pdf}
+        \caption{Comparison between the measured (red) and calculated (blue) center of mass temperature according to \cite{MillenJ.2014}.}
+        \label{fig:measurevscalc}
+    \end{center}
+\end{figure}
 
 
 
