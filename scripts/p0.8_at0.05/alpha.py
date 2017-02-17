@@ -3,9 +3,9 @@ import numpy as np
 
 data="plotfile_clean.dat"
 
-temdata = np.genfromtxt(data,usecols=7)
-timpdata = np.genfromtxt(data,usecols=5)
-tsurdata = np.genfromtxt(data,usecols=3)
+temdata = np.genfromtxt(data,usecols=7,skip_header=1)
+timpdata = np.genfromtxt(data,usecols=5,skip_header=1)
+tsurdata = np.genfromtxt(data,usecols=3,skip_header=1)
 
 alpha = []
 
