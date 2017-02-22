@@ -1,0 +1,19 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}Motivation}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Experimental setup}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Model of the Surrounding Gas}{6}{subsection.2.2}
+\contentsline {section}{\numberline {3}Simulation}{9}{section.3}
+\contentsline {subsection}{\numberline {3.1}Molecular Dynamics}{9}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}The Nano Particle}{9}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}The Velocity-Verlet Algorithm}{12}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}The Laser Beam - Energy Influx}{15}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}The Laser Beam - Trapping}{19}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Surrounding Gas - Thermostat}{20}{subsection.3.6}
+\contentsline {section}{\numberline {4}Results}{23}{section.4}
+\contentsline {subsection}{\numberline {4.1}The Crystal}{23}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Velocity Verlet}{23}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}eHEX}{25}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Thermostat}{26}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Measurement}{27}{subsection.4.5}
+\contentsline {section}{\numberline {5}Conclusion and Further Remarks}{36}{section.5}
