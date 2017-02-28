@@ -30,6 +30,22 @@ A.~Ashkin.
 \newblock {\em IEEE Journal of Selected Topics in Quantum Electronics},
   6(6):841--856, Nov 2000.
 
+\bibitem{Svoboda1994}
+Karel Svoboda and Steven~M. Block.
+\newblock Optical trapping of metallic rayleigh particles.
+\newblock {\em Opt. Lett.}, 19(13):930--932, Jul 1994.
+
+\bibitem{Tan2004}
+Shida Tan, Herman~A. Lopez, Colin~W. Cai, and Yuegang Zhang.
+\newblock Optical trapping of single-walled carbon nanotubes.
+\newblock {\em Nano Letters}, 4(8):1415--1419, 2004.
+
+\bibitem{Jauffred2008}
+Liselotte Jauffred, Andrew~C. Richardson, and Lene~B. Oddershede.
+\newblock Three-dimensional optical control of individual quantum dots.
+\newblock {\em Nano Letters}, 8(10):3376--3380, 2008.
+\newblock PMID: 18767883.
+
 \bibitem{Gieseler2014}
 Jan Gieseler, Romain Quidant, Christoph Dellago, and Lukas Novotny.
 \newblock Dynamic relaxation of a levitated nanoparticle from a non-equilibrium
@@ -41,6 +57,11 @@ Gavin~E. Crooks.
 \newblock Entropy production fluctuation theorem and the nonequilibrium work
   relation for free energy differences.
 \newblock {\em Phys. Rev. E}, 60:2721--2726, Sep 1999.
+
+\bibitem{Searles1999}
+Debra~J. Searles and Denis~J. Evans.
+\newblock Fluctuation theorem for stochastic systems.
+\newblock {\em Phys. Rev. E}, 60:159--164, Jul 1999.
 
 \bibitem{MillenJ.2014}
 Millen J., Deesuwan T., Barker P., and Anders J.
@@ -59,10 +80,6 @@ D.~Frenkel and B.~Smit.
   Applications}.
 \newblock Computational science series. Elsevier Science, 2001.
 
-\bibitem{buffalo}
-Idea taken from the Molecular Dynamics part of this lecture:
-  \url{http://www.physics.buffalo.edu/phy411-506/}.
-
 \bibitem{Allen1989}
 M.~P. Allen and D.~J. Tildesley.
 \newblock {\em Computer Simulation of Liquids}.
@@ -80,6 +97,10 @@ William~C. Swope, Hans~C. Andersen, Peter~H. Berens, and Kent~R. Wilson.
   constants for the formation of physical clusters of molecules: Application to
   small water clusters.
 \newblock {\em The Journal of Chemical Physics}, 76(1):637--649, 1982.
+
+\bibitem{buffalo}
+Idea taken from the Molecular Dynamics part of this lecture:
+  \url{http://www.physics.buffalo.edu/phy411-506/}.
 
 \bibitem{Huenenberger2005}
 Philippe~H. H{\"u}nenberger.

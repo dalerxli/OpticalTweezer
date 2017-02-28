@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2014)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: draft4.aux
 The style file: unsrt.bst
@@ -8,45 +8,45 @@ Warning--empty title in buffalo
 Warning--empty journal in buffalo
 Warning--empty year in buffalo
 Warning--can't use both author and editor fields in Huenenberger2005
-You've used 23 entries,
+You've used 27 entries,
             1791 wiz_defined-function locations,
-            623 strings with 7644 characters,
-and the built_in function-call counts, 5293 in all, are:
-= -- 490
-> -- 182
+            652 strings with 8221 characters,
+and the built_in function-call counts, 6316 in all, are:
+= -- 586
+> -- 223
 < -- 1
-+ -- 72
-- -- 49
-* -- 414
-:= -- 828
-add.period$ -- 68
-call.type$ -- 23
-change.case$ -- 19
++ -- 87
+- -- 60
+* -- 501
+:= -- 989
+add.period$ -- 81
+call.type$ -- 27
+change.case$ -- 23
 chr.to.int$ -- 0
-cite$ -- 28
-duplicate$ -- 218
-empty$ -- 537
-format.name$ -- 49
-if$ -- 1164
+cite$ -- 32
+duplicate$ -- 254
+empty$ -- 636
+format.name$ -- 60
+if$ -- 1387
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 26
-newline$ -- 116
-num.names$ -- 22
-pop$ -- 42
+int.to.str$ -- 27
+missing$ -- 30
+newline$ -- 137
+num.names$ -- 26
+pop$ -- 45
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 86
+skip$ -- 100
 stack$ -- 0
-substring$ -- 470
-swap$ -- 32
+substring$ -- 574
+swap$ -- 36
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 5
-while$ -- 52
-width$ -- 25
-write$ -- 250
+while$ -- 62
+width$ -- 29
+write$ -- 296
 (There were 5 warnings)

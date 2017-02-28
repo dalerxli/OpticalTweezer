@@ -97,6 +97,14 @@ void ComputeAccelerations(Particle* particle)
                     particle[j].a[m] -= rij[m] * f;
                 }
             }
+            /*
+             *f = 48 * ( pow(rSqd,-7) - 0.5*pow(rSqd,-4) );
+             *for(unsigned int m=0; m<3; m++)
+             *{
+             *    particle[i].a[m] += rij[m] * f;
+             *    particle[j].a[m] -= rij[m] * f;
+             *}
+             */
         }
     }
 
@@ -2913,7 +2921,7 @@ void calcTemp(Particle* cube,FILE* output)
         for(unsigned int k=0;k<3;k++)
             T+=cube[i].v[k]*cube[i].v[k];
     T = T/(3*N);
-    std::cout << "T: " << T << std::endl;
+    //std::cout << "T: " << T << std::endl;
     fprintf(output,"%lf\n",T);
 }
 
@@ -3624,11 +3632,13 @@ double calculateEnergies(Particle* cube)
             for(int m=0;m<3;m++)
                 rij[m] = cube[i].r[m] - cube[j].r[m];
             rSqd = rij[0]*rij[0]+rij[1]*rij[1]+rij[2]*rij[2];
-            if(rSqd < 2.5*2.5)
+            //if(rSqd < 2.5*2.5)
                 ePot += 4*(pow(rSqd,-6)-pow(rSqd,-3));
         }
 
     }
+    eKin += (cube[N-1].v[0]*cube[N-1].v[0]+cube[N-1].v[1]*cube[N-1].v[1]+cube[N-1].v[2]*cube[N-1].v[2])*0.5;
+
 
     return eKin+ePot;
         

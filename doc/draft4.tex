@@ -109,11 +109,17 @@ calculate numerical results based on a physical theory in a process that is to t
 To say that since then a lot has
 changed in the field of computer simulation (or computers in general) would be a vast understatement.\\
 Not only has the processing power of computers increased exponentially (Moore's law), which allows the simulation of a greater number of particles for
-a longer period of time, but also new techniques have been developed, such as molecular dynamics. These techniques are not only used by physicists,
-but also find applications in the fields of chemistry, biology, etc., making it possible to apply them to virtually anything. In thhis thesis we 
-apply methods of simulation to a field of active research: optical trapping.
+a longer period of time, but also new techniques have been developed, such as molecular dynamics, transition path sampling, finite element method etc. 
+These techniques are not only used by physicists,
+but also find applications in the fields of chemistry, biology, etc., making it possible to apply them to virtually anything. In this thesis we 
+apply methods of simulation to a field of active research: optical trapping. 
+Optical trapping refers to the experimental method of localising small objects with a laser beam. The laser is highly focused on one point, where 
+the object is trapped due to the gradient force of the laser. The size of the trapped objects ranges from a few micrometers down to the subatomic 
+scale.\\
+%Optical trapping refers to experiments where a focused laser beam is 
+%used to keep small objects with a size in the range of a few micrometers down to a subatomic scahe in place.\\
 Optical trapping is a technique that has been used and developed for over 40 years~\cite{Marago2013}. The idea for this goes back to the beginning of
-the 20th century, where Lebedev~\cite{Lebedew1901}, Nichols and Hull~\cite{Nichols1901} demonstrated the existence of a force that light exerts on 
+the 20th century, when Lebedev~\cite{Lebedew1901}, Nichols and Hull~\cite{Nichols1901} demonstrated the existence of a force that light exerts on 
 matter. Due to the technical limitations at that time, the idea was discarded until 1970, where Ashkin~\cite{Ashkin2000} used lasers to manipulate the
 motion of neutral atoms and micrometer sized objects and thus brought the idea of optical trapping back to life.\\
 With this advancement it was possible to develop methods for trapping and manipulating objects of different sizes ranging from the micrometer scale
@@ -121,12 +127,21 @@ down to the subnano scale. At first, this technique was used to either trap obje
 where lasers were used for the cooling of atoms. The range between those two, with objects at the scale of one to a hundred nanometer, was not
 explored as much because neither downscaling the methods for micrometer sized objects nor upscaling the methods for atoms seemed feasible. In recent
 years however, new developments in the field opened the possibilities to work with a variety of objects in the desired nanometer scale, such as metal
-nanoparticles, nano tubes, quantum dots and much more. This non-invasive method of trapping objects allows very precise measurements of various
+nanoparticles~\cite{Svoboda1994}, nano tubes~\cite{Tan2004}, quantum dots~\cite{Jauffred2008} and much more. 
+This non-invasive method of trapping objects allows very precise measurements of various
 properties and also allows the cooling of nanoparticles towards their quantum mechanical ground state.\\
 The small size of the objects used in the optical tweezer experiments make them amenable candidates for computer simulations. In this thesis, I will
-model an optical tweezer setup, based on a real experiment, to investigate different temperatures in a non-equilibrium state.\\
-The first chapter will be the introduction of the experiment and the introduction of the problem statement. The second chapter contains basic
-information on the techniques used to model the experiment and simulate the dynamic properties. In the third chapter, I will present my findings which
+model an optical tweezer setup, based on a real experiment, to investigate different temperatures in a non-equilibrium state. 
+The experiment features a silica nano sphere trapped in a laser beam within a vacuum chamber. To simulate this experiment, each of these individual parts 
+of the experiment need to be modeled. The silica nano sphere is approximated by a system of argon atoms that interact with each other via a 
+Lennard-Jones potential. These atoms are absorbing energy from the laser and are thus heated up using the enhanced heat exchange algorithm (eHEX) 
+and a harmonic trap is keeping them in place. The gas particles in the gas chamber are acting as a thermostat/barostat and are modeled by a ideal
+gas pressure bath.\\
+In the first chapter, I will introduce two optical tweezer experiments: one conducted by Gieseler et al. to investigate the relaxation of a nano particle
+from a non-equilibrium steady state and another conducted by Millen et al. to examine different temperature regimes in an optical tweezer experiment. 
+This is followed by the problem statement. The second chapter contains basic
+information on the techniques used to model the individual parts of the experiment and 
+simulate the dynamic properties. In the third chapter, I will present my findings which
 are followed by conclusions and further remarks.
 
 
@@ -170,8 +185,8 @@ motion of the particle towards an equilibrated state is observerd. Figure taken 
         \label{fig:setup}
     \end{center}
 \end{figure}
-On the left hand side we have the position $x$ (and its derivatives $\dot{x}$, the velocity and $\ddot{x}$, the acceleration), the friction 
-coefficient $\Gamma_0$ and the angular frequency $\Omega_0$ that describes the fluctuation along the chosen axis. On
+On the left hand side of this equation we have the position $x$ of the nano particle (and its derivatives $\dot{x}$, the velocity and $\ddot{x}$, 
+the acceleration), the friction coefficient $\Gamma_0$ and the angular frequency $\Omega_0$ that describes the fluctuation along the chosen axis. On
 the right hand side, there are two forces. The first one is $F_\text{fluct}$, which describes a stochastic force caused by interactions with the gas
 in the vacuum chamber. This force is given by
 \begin{equation}
@@ -182,6 +197,27 @@ where $T_0$ is the temperature of the heat bath (i.e., the surrounding gas in th
 white noise, which obeys the equations $\left\langle\xi(t)\right\rangle= 0$ and $\left\langle\xi(t)\xi(t')\right\rangle= \delta(t-t')$, which means
 that it is a random force. The term $\Gamma_0$ appears in the formula \eqref{eq:ffluct} 
 due to the fluctuation-dissipation theorem, which links the damping rate to the stochastic force.\\
+The other force, $F_\text{ext}$ is a time-dependent external force that is applied to the nano particle to create a non-equilibrium steady state. At
+time $t = t_\text{off}$ the force is deactivated and the particle relaxes to a thermally equilibrated state in the laser trap. The evolution of the nano 
+particle from the non equilibrium steady state to the equilibrated state is examined to investigate the fluctuation theorem, which can be written 
+down as 
+\begin{equation}
+    \label{eq:fluctuationtheorem}
+    \frac{p(-\Delta S)}{\Delta S} = e^{-\Delta S}
+\end{equation}
+where $\Delta S$ is the relative entropy change given by
+\begin{equation}
+    \Delta S = \beta_0 Q + \Delta \phi
+\end{equation}
+In the above equation, $Q$ is the heat absorbed by the bath, $\beta_0$ is the reciprocal temperature at which the heat is absorbed and 
+$\Delta \phi$ is the difference of the trajectory dependent entropy. The fluctuation theorem~\cite{Searles1999}, as expressed in 
+\eqref{eq:fluctuationtheorem}, states that there is a measurable probablity for a finite system to violate the second law of thermodynamics
+for finite times. This does not stand in contradiction to the second law of thermodynamics itself, as it applies only to short times and does not 
+happen for large systems or long time scales.\\
+The investigation of the fluctuation theorem is performed for two different external forces. The first one is a feedback force and the second 
+one is the feedback force combined with a parametric drive. The results show that the relaxation process for both initial non-equilibrium steady 
+states generated by the external forces demonstrates the validity of the fluctuation theorem.\\
+
 %The external force $F_\text{ext}$ is part of the experimental setup, where the frequency of the fluctuation along an axis, $\Omega_0$, is measured and
 %used to suppress the motion along said axis. This causes a decrease in the particle fluctuations and thus acts as a cooling mechanism for the particle
 %in the trap. This process creates a non-equilibrium steady state $\rho_{ss}(u,\alpha)$, which is not known analytically. This state is the starting
@@ -191,8 +227,8 @@ J. Millen et al.~\cite{MillenJ.2014} worked on a similar experimental setup (wit
 particle in the trap as well as the gas surrounding the particle.\\
 They start from the premise that there are 4 different temperatures one has to consider in such an experiment: the temperature of the gas particles
 before interacting with the nano particle $T_\text{imp}$ (for \textit{impinging}), the temperature of the gas particles after 
-interaction $T_\text{em}$ (for emerging), the surface temperature of the nano particle $T_\text{sur}$ and the temperature of the 
-center of mass of the nano particle $T_\text{COM}$. The experimental setup
+interaction $T_\text{em}$ (for \textit{emerging}), the \textit{surface} temperature of the nano particle $T_\text{sur}$ and the temperature of the 
+\textit{center of mass} of the nano particle $T_\text{COM}$. The experimental setup
 and the different temperatures are shown in Fig.~\ref{fig:levitation}.\\
 \begin{figure}[H]
     \begin{center}
@@ -203,8 +239,12 @@ and the different temperatures are shown in Fig.~\ref{fig:levitation}.\\
         \label{fig:levitation}
     \end{center}
 \end{figure}
-Since the two temperatures of the gas, $T_\text{imp}$ and $T_\text{em}$, are not equal, the gas surrounding the nano particle is not in a thermal
-equilibrium, which is in contrast to the assumptions made in many optical tweezer experiments. Since the gas particles only interact with the nano particle
+The nano particle in the trap is absorbing heat from the laser which causes the surface temperature of the nano particle to be higher than the 
+temperature of the surrounding gas. The impinging gas particles interact with the sphere, absorb some of the energy and emerge with a different
+temperature, which is in general not equal to the surface temperature. This means that
+the two temperatures of the gas, $T_\text{imp}$ and $T_\text{em}$, are not equal, the gas surrounding the nano particle is not in a thermal
+equilibrium, which is in contrast to the assumptions made in many optical tweezer experiments. 
+Since the gas particles only interact with the nano particle
 in the trap and not which each other, this situation creates two heat baths of different temperatures with the nano particle acting as a mediator
 between those two baths. This situation is depicted in
 Fig.~\ref{fig:heatbaths}.
@@ -249,8 +289,13 @@ that are widely used, one of which being molecular dynamics (MD) simulations.\\
 The goal is to simulate the experiment depicted in Fig.~\ref{fig:setup} as accurately as possible. To achieve this, the setup has to be broken down
 into individual pieces that can be modeled by using existing methods. The nano particle will be approximated by a cube of particles, located on the
 sites of a FCC
-(face-centered cubic) lattice that interact via a Lennard-Jones potential. The laser will be broken down into its two main purposes, 
-as it acts as a trapping device as well as a heat source for the nano particle. Surrounding the nano particle will be a gas chamber, 
+(face-centered cubic) lattice that interact via a Lennard-Jones potential. The laser serves two purposes: heating up and trapping the particle. The 
+nano particle will be heated up using the eHEX algorithm and trapped using a harmonic potential.
+%Since the laser serves a dual purpose -- heating and trapping --
+%both of these are modeled separately.
+%The laser will be broken down into its two main purposes, 
+%as it acts as a trapping device as well as a heat source for the nano particle. 
+Surrounding the nano particle will be a gas chamber, 
 that acts as a thermostat in the simulation, which will be modeled as a cubic box surrounding the nano particle. 
 This box is filled with gas particles that interact with the nano particle via a soft-sphere potential and do not interact with one another.\\
 The following section will give a brief overview of the concepts used to simulate every part of the experiment.
@@ -262,104 +307,6 @@ classical means, that the trajectories of the individual particles are calculate
 relatively big atoms/molecules this is a very good approximation, whereas for systems consisting of hydrogen or helium the effects of quantum
 mechanics cannot be neglected and other methods have to be used.\\
 The dynamics of the system are obtained by solving Newton's equations of motion for every particle. 
-
-\subsection{The Nano Particle}
-The glass particle from the experiment will be modeled as a system of particles interacting via a Lennard-Jones pair potential, 
-\begin{equation}
-    \label{eq:lj}
-    U(r) = 4\varepsilon\left[\left(\frac\sigma r\right)^{12} - \left(\frac\sigma r\right)^6\right]
-\end{equation}
-where $\varepsilon$ is the depth of the potential well (and thus its unit is energy) and $\sigma$ is the distance at which the potential is zero. 
-The form of the potential and the relation to the parameters is depicted in Fig. \ref{fig:lj}.
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[scale=0.2]{images/LJ-2.pdf}
-        \caption{The Lennard-Jones 12-6 potential from \eqref{eq:lj}. The x-axis is the particle distance divided by $\sigma$ and  the y-axis is the
-        potential divided by the depth of the potential well.}
-        \label{fig:lj}
-    \end{center}
-\end{figure}
-Since $\varepsilon$ and $\sigma$ are crucial parameters for the simulation and do not change over time, it is practical to use them to
-define the dimensions of the system. This means that the unit of distance is $\sigma$, the unit of energy is $\varepsilon$ and the unit of mass is 
-the mass of the simulated particle. The so called \textit{reduced units} can be constructed from these three parameters and put into relation to the
-original units. Here are some examples:
-\begin{itemize}
-    \item {distance:} $r^* = r/\sigma$
-    \item {potential energy:} $U^* = U/\varepsilon$
-    \item {temperature:} $T^* = k_B T/\varepsilon$
-    \item {time:} $t^* = t\sqrt{\varepsilon/(m\sigma^2)}$
-    \item {pressure:} $P^* = P\sigma^3/\varepsilon$
-    \item {density:} $\rho^* = \rho \sigma^3$
-\end{itemize}
-One very popular choice for the simulated atoms is Argon because it is an inert gas and the atoms behave 
-approximately like hard spheres which attract each other with weak van der Waals forces, which justifies the use of the Lennard-Jones potential. 
-Argon has a mass of $m$ = $6.69 \times 10^{-26}$ kg, $\sigma = 3.4 \times 10^{-10}$ m and $\varepsilon = 1.65 \times 10^{-21}$ J.\\
-With the above introduced reduced units, the Lennard-Jones potential can be written as
-\begin{equation}
-    U(r^*) = 4\left[{r^*}^{-12} - {r^*}^{-6}\right].
-\end{equation}
-Since the reduced units will be used throughout the rest of this thesis, I will drop the asterisk henceforth.\\
-From the Lennard-Jones potential the corresponding force can be calculated by taking the derivative with respect to the direction of interest:
-\begin{eqnarray}
-    F_{x} &=& -\frac{\partial}{\partial x} U(r) \nonumber\\
-                &=& -\frac{\partial}{\partial x} 4\left[{r}^{-12} - {r}^{-6}\right] \nonumber\\
-                &=& -4 \left[(-12){r}^{-13} - (-6){r}^{-7}\right] \frac{\partial r}{\partial x} \nonumber\\
-                &=& 48 \left[r^{-13} - 0.5 \ r^{-7}\right] \frac{x}{r} \nonumber\\
-    \label{eq:ljforce} &=& 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
-\end{eqnarray}
-The force in the $y$ and $z$ direction can be calculated analogously.\\
-As can be seen in Fig.~\ref{fig:lj}, the potential is very close to 0 at about $r/\sigma=2.5$. This means that any contribution of the potential
-energy after this point is vanishingly small. To save computing time it is common practice to cut off the potential at a certain point and not to
-calculate the contribution for distances beyond that. The cut-off distance for this thesis was set to $r = 2.5\sigma$.\\
-The initial configuration of the particles is a face centered cubic (FCC) lattice. A schematic of the FCC lattice is depicted in Fig. \ref{fig:fcc}.
-With the choice of FCC as initial configuration, there are optimal numbers for the numbers of the particles in the system. Since one FCC cell 
-shares its atoms with its next neighbours, the number of atom per unit cell is 4 -- 1/8 of a particle on eight corners and 1/2 of a particle on six faces.
-The whole system of atoms is then created by repeating this cell structure. One convenient way is to arrange the unit cells in a cubic system, 
-so if there are $M$ FCC unit cells on one edge, the whole system consists of $M^3$ cells. Since there are 4 particles per cell, 
-there are ideal or so called \textit{magic numbers} for atoms for which this setup works perfectly: $N = 4M^3 = 4,32,108,256,500,864,\ldots$.\\
-\begin{figure}[h]
-    \begin{center}
-        \begin{subfigure}[t]{0.4\textwidth}
-            \includegraphics[scale=0.3]{images/fcc-2.pdf}
-            \caption{Schematic figure of a face-centered cubic (FCC) lattice.}
-            \label{fig:fcc}
-        \end{subfigure} 
-        \
-        %\hspace{60pt}
-        \begin{subfigure}[t]{0.4\textwidth}
-            \includegraphics[scale=0.3]{images/unit_cell.pdf}
-            \caption{Setup for successively building a FCC lattice.}
-            \label{fig:unitcell}
-        \end{subfigure}
-    \end{center}
-\end{figure}
-%\begin{figure}
-    %\begin{center}
-        %\includegraphics[scale=0.3]{images/fcc_unit.png}
-        %\caption{Schematic of the number of particles contained in one FCC unit cell. The atoms on the edges are shared by 8 cells and the ones on the
-            %faces by 2 cells. Image taken from
-            %{https://upload.wikimedia.org/wikipedia/commons/2/27/Elementarzelle\_einer\_kubisch\_raumzentrierten\_Elementarzelle.png}}
-    %\end{center}
-%\end{figure}
-% do i need to credit the uni buffalo course? 
-% http://www.physics.buffalo.edu/phy411-506/
-There are several ways to achieve this initial configuration and the one used in this thesis \cite{buffalo} was to create a kind of unit cell 
-consisting of four atoms, as shown in Fig. \ref{fig:unitcell}, which can be described by a set of points
-\begin{eqnarray*}
-    p_1 &=& \{0,0,0\}\\
-    p_2 &=& \{0.5 \ a,0.5 \ a,0\}\\
-    p_3 &=& \{0.5 \ a,0,0.5 \ a\}\\
-    p_4 &=& \{0,0.5 \ a,0.5 \ a\}
-\end{eqnarray*}
-From the particle number $N$ and the number of FCC unit cells per edge $M$ the \textit{lattice constant} $a$ can be calculated
-\begin{equation}
-    a = \frac{L}{M}
-\end{equation}
-where $L$ is the side length of the cube that represents the nano particle and it is calculated via the density of the system
-\begin{equation}
-    L = \sqrt[3]{\frac{N}{\rho}}
-\end{equation}
-With the lattice constant and the 4 points of the FCC cell, all the particles can be put into place.
 
 \subsection{The Velocity-Verlet Algorithm}
 \label{section:verlet}
@@ -473,6 +420,104 @@ in the phase space. To program this algorithm the following steps are needed:
 The first point only has to be carried out for the first step, because the forces have not been calculated at this point. As the forces are calculated
 for the new positions in step 4, they can be used for the next time step. For the first time step the velocities have to be chosen randomly and are 
 calculated with this algorithm from that point forward.
+\subsection{The Nano Particle}
+The glass particle from the experiment will be modeled as a system of particles interacting via a Lennard-Jones pair potential, 
+\begin{equation}
+    \label{eq:lj}
+    U(r) = 4\varepsilon\left[\left(\frac\sigma r\right)^{12} - \left(\frac\sigma r\right)^6\right]
+\end{equation}
+where $\varepsilon$ is the depth of the potential well (and thus its unit is energy) and $\sigma$ is the distance at which the potential is zero. 
+The form of the potential and the relation to the parameters is depicted in Fig. \ref{fig:lj}.
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[scale=0.2]{images/LJ-2.pdf}
+        \caption{The Lennard-Jones 12-6 potential from \eqref{eq:lj}. The x-axis is the particle distance divided by $\sigma$ and  the y-axis is the
+        potential divided by the depth of the potential well.}
+        \label{fig:lj}
+    \end{center}
+\end{figure}
+Since $\varepsilon$ and $\sigma$ are crucial parameters for the simulation and do not change over time, it is practical to use them to
+define the dimensions of the system. This means that the unit of distance is $\sigma$, the unit of energy is $\varepsilon$ and the unit of mass is 
+the mass of the simulated particle. The so called \textit{reduced units} can be constructed from these three parameters and put into relation to the
+original units. Here are some examples:
+\begin{itemize}
+    \item {distance:} $r^* = r/\sigma$
+    \item {potential energy:} $U^* = U/\varepsilon$
+    \item {temperature:} $T^* = k_B T/\varepsilon$
+    \item {time:} $t^* = t\sqrt{\varepsilon/(m\sigma^2)}$
+    \item {pressure:} $P^* = P\sigma^3/\varepsilon$
+    \item {density:} $\rho^* = \rho \sigma^3$
+\end{itemize}
+One very popular choice for the simulated atoms is Argon because it is an inert gas and the atoms behave 
+approximately like hard spheres which attract each other with weak van der Waals forces, which justifies the use of the Lennard-Jones potential. 
+Argon has a mass of $m$ = $6.69 \times 10^{-26}$ kg, $\sigma = 3.4 \times 10^{-10}$ m and $\varepsilon = 1.65 \times 10^{-21}$ J.\\
+With the above introduced reduced units, the Lennard-Jones potential can be written as
+\begin{equation}
+    U(r^*) = 4\left[{r^*}^{-12} - {r^*}^{-6}\right].
+\end{equation}
+Since the reduced units will be used throughout the rest of this thesis, I will drop the asterisk henceforth.\\
+From the Lennard-Jones potential the corresponding force can be calculated by taking the derivative with respect to the direction of interest:
+\begin{eqnarray}
+    F_{x} &=& -\frac{\partial}{\partial x} U(r) \nonumber\\
+                &=& -\frac{\partial}{\partial x} 4\left[{r}^{-12} - {r}^{-6}\right] \nonumber\\
+                &=& -4 \left[(-12){r}^{-13} - (-6){r}^{-7}\right] \frac{\partial r}{\partial x} \nonumber\\
+                &=& 48 \left[r^{-13} - 0.5 \ r^{-7}\right] \frac{x}{r} \nonumber\\
+    \label{eq:ljforce} &=& 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
+\end{eqnarray}
+The force in the $y$ and $z$ direction can be calculated analogously.\\
+As can be seen in Fig.~\ref{fig:lj}, the potential is very close to 0 at about $r/\sigma=2.5$. This means that any contribution of the potential
+energy after this point is vanishingly small. To save computing time it is common practice to cut off the potential at a certain point and not to
+calculate the contribution for distances beyond that. The cut-off distance for this thesis was set to $r = 2.5\sigma$.\\
+The initial configuration of the particles is a face centered cubic (FCC) lattice. A schematic of the FCC lattice is depicted in Fig. \ref{fig:fcc}.
+With the choice of FCC as initial configuration, there are optimal numbers for the numbers of the particles in the system. Since one FCC cell 
+shares its atoms with its next neighbours, the number of atom per unit cell is 4 -- 1/8 of a particle on eight corners and 1/2 of a particle on six faces.
+The whole system of atoms is then created by repeating this cell structure. One convenient way is to arrange the unit cells in a cubic system, 
+so if there are $M$ FCC unit cells on one edge, the whole system consists of $M^3$ cells. Since there are 4 particles per cell, 
+there are ideal or so called \textit{magic numbers} for atoms for which this setup works perfectly: $N = 4M^3 = 4,32,108,256,500,864,\ldots$.\\
+\begin{figure}[h]
+    \begin{center}
+        \begin{subfigure}[t]{0.4\textwidth}
+            \includegraphics[scale=0.3]{images/fcc-2.pdf}
+            \caption{Schematic figure of a face-centered cubic (FCC) lattice.}
+            \label{fig:fcc}
+        \end{subfigure} 
+        \
+        %\hspace{60pt}
+        \begin{subfigure}[t]{0.4\textwidth}
+            \includegraphics[scale=0.3]{images/unit_cell.pdf}
+            \caption{Setup for successively building a FCC lattice.}
+            \label{fig:unitcell}
+        \end{subfigure}
+    \end{center}
+\end{figure}
+%\begin{figure}
+    %\begin{center}
+        %\includegraphics[scale=0.3]{images/fcc_unit.png}
+        %\caption{Schematic of the number of particles contained in one FCC unit cell. The atoms on the edges are shared by 8 cells and the ones on the
+            %faces by 2 cells. Image taken from
+            %{https://upload.wikimedia.org/wikipedia/commons/2/27/Elementarzelle\_einer\_kubisch\_raumzentrierten\_Elementarzelle.png}}
+    %\end{center}
+%\end{figure}
+% do i need to credit the uni buffalo course? 
+% http://www.physics.buffalo.edu/phy411-506/
+There are several ways to achieve this initial configuration and the one used in this thesis \cite{buffalo} was to create a kind of unit cell 
+consisting of four atoms, as shown in Fig. \ref{fig:unitcell}, which can be described by a set of points
+\begin{eqnarray*}
+    p_1 &=& \{0,0,0\}\\
+    p_2 &=& \{0.5 \ a,0.5 \ a,0\}\\
+    p_3 &=& \{0.5 \ a,0,0.5 \ a\}\\
+    p_4 &=& \{0,0.5 \ a,0.5 \ a\}
+\end{eqnarray*}
+From the particle number $N$ and the number of FCC unit cells per edge $M$ the \textit{lattice constant} $a$ can be calculated
+\begin{equation}
+    a = \frac{L}{M}
+\end{equation}
+where $L$ is the side length of the cube that represents the nano particle and it is calculated via the density of the system
+\begin{equation}
+    L = \sqrt[3]{\frac{N}{\rho}}
+\end{equation}
+With the lattice constant and the 4 points of the FCC cell, all the particles can be put into place.
+
 
 \subsection{The Laser Beam - Energy Influx}
 The nano particle is trapped in the laser beam. While the motion of the center of mass is localized, the
@@ -606,17 +651,19 @@ The approximation of the original paper \cite{Gieseler2014}, where the movements
 used in the model as well. As to the model of the trapping force itself, the most straightforward approach is to use a harmonic oscillator potential.
 The force and the corresponding potential can be written as
 \begin{eqnarray}
-    \mathbf{F} &=& -k \Big[\mathbf{x}-\mathbf{x}_0\Big]\\
-    U &=& \frac12 k \Big[\mathbf{x}-\mathbf{x}_0\Big]^2
+    \mathbf{F} &=& -k \Big[\mathbf{r}_\text{COM}-\mathbf{x}_0\Big]\\
+    U &=& \frac12 k \Big[\mathbf{r}_\text{COM}-\mathbf{x}_0\Big]^2
 \end{eqnarray}
-where $\mathbf{x}_0$ is the position of minimal potential energy. 
-Since the trap is acting on the whole system, the force is acting on the center of mass. 
+where $\mathbf{x}_0$ is the position of minimal potential energy, $\mathbf{r}_\text{COM}$ 
+is the position of the center of mass and $k$ is the spring constant.
+%Since the trap is acting on the whole system, the force is acting on the center of mass. 
 To calculate the center of mass positions and velocities, the positions and velocities of all particles have to be summed up and 
 divided by the particle number:
 \begin{equation}
     \mathbf{r}_\text{COM} = \frac1N\sum_{i=1}^N \mathbf{r}_i
 \end{equation}
-
+To use this in the simulation, the distance of the center of mass to the desired point of minimal potential energy and then the corresponding 
+force is calculated and added to the interaction force of each atom.
 
 \subsection{Surrounding Gas - Thermostat}
 Without any equilibrating mechanism the setup described by now would lead to the system heating up indefinitely, which is not desirable. Furthermore,
@@ -630,8 +677,19 @@ interaction between the pressure medium and the object of interest must not take
 The model used in this thesis was developed by Gr\"unwald and Dellago \cite{Gruenwald2006} and uses an ideal gas of non-interacting particles as
 thermostatting pressure medium. The particles of this pressure medium flow into the simulation from an outside volume, whose geometry is based on the form of the
 object of interest (this will be referred to as the minimal volume of cells) and leave the simulation box if their position reaches the boundary of
-this minimal volume of cells. This behaviour is very close to the real experiment which makes this thermostat an ideal candidate for the simulation of
-the experiment. 
+this minimal volume of cells. The minimal volume of cells is based on cell lists used in the simulation. Cell lists are a method of saving 
+computing time by dividing the simulation box in cells with a side length equal to or greater than the cutoff radius $r_C$. The particles are then
+sorted into these cells and the interaction between the particles is only calculated for other particles within the same and neighbouring cells. 
+For the minimum volume of cells used in the thermostat algorithm all cells filled with particles and one additional cell for the interaction partners
+is used.\\
+This algorithm is a very good approximation of the situation in the experiment.  There the gas particles only interact with the nano 
+particle in the laser trap and not with eatch other. After this interaction the
+gas particles emerge with a slightly higher temperature and leave the vicinity of the nano particle. Moreover, the algorithm uses an ideal gas
+as a pressure medium, which allows us to simulate the dynamics of the interaction that is happening in the experiment.\\
+
+%This behaviour is very close to the real experiment which makes this thermostat an ideal candidate for the simulation of
+%the experiment. There the gas particles only interact with the nano particle in the laser trap and not with eatch other. After this interaction the
+%gas particles emerge with a slightly higher temperature and leave the vicinity of the nano particle. 
 %This barostat also acts as a thermostat and thus is suitable for the 
 %application in this thesis.\\
 The gas particles interact with the object via a soft-sphere potential of the form
@@ -763,8 +821,12 @@ Since the simulation consists of various parts that have to work together, we fi
 \subsection{The Crystal}
 The first element of the simulation is the setup of the FCC lattice on which the particles are placed on. To check if this is done correctly, we can
 use a visualisation and rendering software such as VMD\cite{Humphrey1996} or OVITO\cite{Stukowski2010}. The rendered image of the nano particle 
-can be seen in Fig.~\ref{fig:glass}. The chosen perspective shows the structure of the FCC lattice, where 3 layers are forming 
-where the atoms take the position on the gap between the atoms from the layer below.\\
+can be seen in Fig.~\ref{fig:glass}. To see that the particles form a FCC lattice a perspective is chosen, where the three layers of the FCC lattice
+are visible. \\
+These layers are generated by stacking the atoms onto the gap between two atoms. In a FCC lattice there are three distinct layers, which means that
+the atoms of the fourth layer are on the same position as the atoms in the first layer.
+%The chosen perspective shows the structure of the FCC lattice, where 3 layers are forming 
+%where the atoms take the position on the gap between the atoms from the layer below.\\
 \begin{figure}[h]
     \begin{center}
         \includegraphics[scale=0.2]{images/fcc_rendering_layer_newcoloring.png}
@@ -782,7 +844,7 @@ where the atoms take the position on the gap between the atoms from the layer be
 \end{figure}
 
 \subsection{Velocity Verlet}
-The velocity Verlet part of the simulation is taking place in a NVE ensemble from a thermodynamic point of view. 
+The simulation of the nano particle without the gas is taking place in a NVE ensemble from a thermodynamic point of view. 
 This means that the particle number $N$, the volume $V$ and the total energy $E$ are constant. 
 The initial velocities of the particles are chosen randomly from a Maxwell-Boltzmann distribution. To ensure that the system behaves the way it is
 intended to, small adjustments have to be made in the beginning of the simulation of the nano particle.\\
