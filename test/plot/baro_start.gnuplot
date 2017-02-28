@@ -12,9 +12,9 @@ set xtics offset 0,-1
 set xlabel offset 0,-4
 set ylabel offset -10,0
 set key spacing 2
-set ylabel "T*"
+set ylabel "T"
 set xlabel "Time"
 set output "baro_temp_start_new.pdf"
-plot "baro_temp_004_trackdata_1_new_new.dat" w l lt rgb "red" title "T*" 
+plot "baro_temp_004_trackdata_1_new_new.dat" w l lt rgb "red" notitle
 unset output
 

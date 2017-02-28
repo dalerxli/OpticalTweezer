@@ -34,5 +34,5 @@ set output "vcomsqd.pdf"
 set xlabel "Time"
 set ylabel "Temperature"
 set ylabel offset -5,0
-plot "p0.8_at0.05_170206_1132_vCOMData.dat" using ($0*0.01*100):(($1*$1+$2*$2+$3*$3)*0.5*32) with lines lw 4 lt rgb "red" title "<T_{COM}>",0.051 lw 6 lt rgb "blue";
+plot "p0.8_at0.05_170206_1132_vCOMData.dat" using ($0*0.01*100):(($1*$1+$2*$2+$3*$3)*0.5*32) with lines lw 4 lt rgb "red" title "T_{COM}",0.051 lw 6 lt rgb "blue" title "<T_{COM}>";
 unset output

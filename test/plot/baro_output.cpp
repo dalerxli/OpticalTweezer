@@ -70,8 +70,8 @@ int main()
                 rescaleVelocities(particles);
         VelocityVerlet(particles);
         calcTemp(particles,tempout);
-        //energy = calculateEnergies(particles);
-        //fprintf(enerout,"%lf\n",energy);
+        energy = calculateEnergies(particles);
+        fprintf(enerout,"%lf\n",energy);
     }
     
     
