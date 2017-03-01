@@ -15,6 +15,6 @@ set key spacing 2
 set ylabel "T"
 set xlabel "Time"
 set output "baro_temp_long_new.pdf"
-plot "baro_temp_004_new_1.dat" using ($0*0.01):1 w l lt rgb "red" title "T*" 
+plot "baro_temp_004_new_1.dat" using ($0*0.01):1 w l lt rgb "red" notitle
 unset output
 

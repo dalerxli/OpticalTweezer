@@ -1,0 +1,608 @@
+% This file was created with JabRef 2.10b2.
+% Encoding: UTF-8
+
+
+@Book{Allen1989,
+  Title                    = {Computer Simulation of Liquids},
+  Author                   = {Allen, M. P. and Tildesley, D. J.},
+  Publisher                = {Clarendon Press},
+  Year                     = {1989},
+
+  Address                  = {New York, NY, USA},
+
+  ISBN                     = {0-19-855645-4},
+  Owner                    = {motz},
+  Timestamp                = {2016.08.08}
+}
+
+@Article{Andersen1980,
+  Title                    = {Molecular dynamics simulations at constant pressure and/or temperature},
+  Author                   = {Hans C. Andersen},
+  Journal                  = {The Journal of Chemical Physics},
+  Year                     = {1980},
+  Number                   = {4},
+  Pages                    = {2384-2393},
+  Volume                   = {72},
+
+  Doi                      = {10.1063/1.439486},
+  Eprint                   = { http://dx.doi.org/10.1063/1.439486 
+},
+  Owner                    = {motz},
+  Timestamp                = {2017.01.24},
+  Url                      = { http://dx.doi.org/10.1063/1.439486 
+}
+}
+
+@Article{Ashkin2000,
+  Title                    = {History of optical trapping and manipulation of small-neutral particle, atoms, and molecules},
+  Author                   = {A. Ashkin},
+  Journal                  = {IEEE Journal of Selected Topics in Quantum Electronics},
+  Year                     = {2000},
+
+  Month                    = {Nov},
+  Number                   = {6},
+  Pages                    = {841-856},
+  Volume                   = {6},
+
+  Doi                      = {10.1109/2944.902132},
+  ISSN                     = {1077-260X},
+  Keywords                 = {atom-photon collisions;bio-optics;history;molecule-photon collisions;particle optics;quantum optics;radiation pressure;reviews;atoms;biology;biology subfields;chemistry;chemistry subfields;history;molecules;optical manipulation;optical trapping;physics;physics subfields;reviews;small particles;small-neutral particles;unique characteristics;Atom optics;Atomic beams;Atomic measurements;Biomedical optical imaging;Charge carrier processes;History;Laser theory;Nonlinear optics;Optical scattering;Physics},
+  Owner                    = {motz},
+  Timestamp                = {2017.02.12}
+}
+
+@Article{Berendsen1984,
+  Title                    = {Molecular dynamics with coupling to an external bath},
+  Author                   = {Berendsen, H. J. C. and Postma, J. P. M. and van Gunsteren, W. F. and DiNola, A. and Haak, J. R.},
+  Journal                  = {The Journal of Chemical Physics},
+  Year                     = {1984},
+  Number                   = {8},
+  Pages                    = {3684-3690},
+  Volume                   = {81},
+
+  Doi                      = {http://dx.doi.org/10.1063/1.448118},
+  Owner                    = {motz},
+  Timestamp                = {2016.11.22},
+  Url                      = {http://scitation.aip.org/content/aip/journal/jcp/81/8/10.1063/1.448118}
+}
+
+@Article{Crooks1999,
+  Title                    = {Entropy production fluctuation theorem and the nonequilibrium work relation for free energy differences},
+  Author                   = {Crooks, Gavin E.},
+  Journal                  = {Phys. Rev. E},
+  Year                     = {1999},
+
+  Month                    = {Sep},
+  Pages                    = {2721--2726},
+  Volume                   = {60},
+
+  Doi                      = {10.1103/PhysRevE.60.2721},
+  Issue                    = {3},
+  Numpages                 = {0},
+  Owner                    = {motz},
+  Publisher                = {American Physical Society},
+  Timestamp                = {2016.10.04},
+  Url                      = {http://link.aps.org/doi/10.1103/PhysRevE.60.2721}
+}
+
+@Article{Dellago2016,
+  Title                    = {Lecture notes - Computational Physics II: Simulation},
+  Author                   = {Dellago, C.},
+  Year                     = {2016},
+
+  Owner                    = {motz},
+  Timestamp                = {2016.11.21}
+}
+
+@Article{Eargle2006,
+  Title                    = {{Multiple Alignment of protein structures and sequences for VMD}},
+  Author                   = {Eargle, John and Wright, Dan and Luthey-Schulten, Zaida},
+  Journal                  = {Bioinformatics},
+  Year                     = {2006},
+
+  Month                    = {Feb},
+  Number                   = {4},
+  Pages                    = {504--506},
+  Volume                   = {22},
+
+  Owner                    = {motz},
+  Timestamp                = {2017.01.05}
+}
+
+@Book{Frenkel2001,
+  Title                    = {Understanding Molecular Simulation: From Algorithms to Applications},
+  Author                   = {Frenkel, D. and Smit, B.},
+  Publisher                = {Elsevier Science},
+  Year                     = {2001},
+  Series                   = {Computational science series},
+
+  ISBN                     = {9780080519982},
+  Lccn                     = {2001091477},
+  Owner                    = {motz},
+  Timestamp                = {2016.06.20},
+  Url                      = {https://books.google.at/books?id=5qTzldS9ROIC}
+}
+
+@Article{Frishman1995,
+  Title                    = {Knowledge-based secondary structure assignment},
+  Author                   = {D. Frishman and P. Argos},
+  Journal                  = {Proteins: structure, function and genetics},
+  Year                     = {1995},
+  Pages                    = {566-579},
+  Volume                   = {23},
+
+  Owner                    = {motz},
+  Timestamp                = {2017.01.05}
+}
+
+@Article{Gieseler2014,
+  Title                    = {Dynamic relaxation of a levitated nanoparticle from a non-equilibrium steady state},
+  Author                   = {Gieseler, Jan and Quidant, Romain and Dellago, Christoph and Novotny, Lukas},
+  Journal                  = {Nat Nano},
+  Year                     = {2014},
+
+  Month                    = may,
+  Number                   = {5},
+  Pages                    = {358--364},
+  Volume                   = {9},
+
+  Abstract                 = {Fluctuation theorems are a generalization of thermodynamics on small scales and provide the tools to characterize the fluctuations of thermodynamic quantities in non-equilibrium nanoscale systems. They are particularly important for understanding irreversibility and the second law in fundamental chemical and biological processes that are actively driven, thus operating far from thermal equilibrium. Here, we apply the framework of fluctuation theorems to investigate the important case of a system relaxing from a non-equilibrium state towards equilibrium. Using a vacuum-trapped nanoparticle, we demonstrate experimentally the validity of a fluctuation theorem for the relative entropy change occurring during relaxation from a non-equilibrium steady state. The platform established here allows non-equilibrium fluctuation theorems to be studied experimentally for arbitrary steady states and can be extended to investigate quantum fluctuation theorems as well as systems that do not obey detailed balance.},
+  ISSN                     = {1748-3387},
+  Owner                    = {motz},
+  Publisher                = {Nature Publishing Group},
+  Timestamp                = {2016.06.20},
+  Url                      = {http://dx.doi.org/10.1038/nnano.2014.40}
+}
+
+@Article{Goodman1980,
+  Title                    = {Thermal accommodation coefficients},
+  Author                   = {Goodman, Frank O},
+  Journal                  = {The Journal of Physical Chemistry},
+  Year                     = {1980},
+  Number                   = {12},
+  Pages                    = {1431--1445},
+  Volume                   = {84},
+
+  __markedentry            = {[motz:6]},
+  Owner                    = {motz},
+  Publisher                = {ACS Publications},
+  Timestamp                = {2017.03.01}
+}
+
+@Article{Gruenwald2006,
+  Title                    = {Ideal gas pressure bath: a method for applying hydrostatic pressure in the computer simulation of nanoparticles},
+  Author                   = {M. Grünwald and C. Dellago},
+  Journal                  = {Molecular Physics},
+  Year                     = {2006},
+  Number                   = {22-24},
+  Pages                    = {3709-3715},
+  Volume                   = {104},
+
+  Abstract                 = { We present a method for applying hydrostatic pressure in the computer simulation of nanoparticles, using an ideal gas as the pressure medium and thermostat. As the equation of state is known for the ideal gas, the exerted pressure can easily be tuned by adjusting the number of gas particles, while the temperature is controlled by their kinetic energy. Applying this method, we study the pressure-induced transformation from the four-coordinate wurtzite to the six-coordinate rocksalt structure in faceted CdSe nanocrystals. The transformation involves the consecutive sliding of parallel (100) planes and proceeds through a five-coordinate intermediate structure. },
+  Doi                      = {10.1080/00268970600968052},
+  Eprint                   = { http://dx.doi.org/10.1080/00268970600968052 
+},
+  Owner                    = {motz},
+  Timestamp                = {2016.12.12},
+  Url                      = { http://dx.doi.org/10.1080/00268970600968052 
+}
+}
+
+@InBook{Huenenberger2005,
+  Title                    = {Thermostat Algorithms for Molecular Dynamics Simulations},
+  Author                   = {H{\"u}nenberger, Philippe H.},
+  Editor                   = {Dr. Holm, Christian and Prof. Dr. Kremer, Kurt},
+  Pages                    = {105--149},
+  Publisher                = {Springer Berlin Heidelberg},
+  Year                     = {2005},
+
+  Address                  = {Berlin, Heidelberg},
+
+  Booktitle                = {Advanced Computer Simulation: Approaches for Soft Matter Sciences I},
+  Doi                      = {10.1007/b99427},
+  ISBN                     = {978-3-540-31558-2},
+  Owner                    = {motz},
+  Timestamp                = {2016.11.22},
+  Url                      = {http://dx.doi.org/10.1007/b99427}
+}
+
+@Article{Hafskjold1993,
+  Title                    = {{On the molecular mechanism of thermal diffusion in liquids}},
+  Author                   = {{Hafskjold}, B. and {Ikeshoji}, T. and {Kjelstrup Ratkje}, S.},
+  Journal                  = {Molecular Physics},
+  Year                     = {1993},
+
+  Month                    = dec,
+  Pages                    = {1389-1412},
+  Volume                   = {80},
+
+  Adsnote                  = {Provided by the SAO/NASA Astrophysics Data System},
+  Adsurl                   = {http://adsabs.harvard.edu/abs/1993MolPh..80.1389H},
+  Doi                      = {10.1080/00268979300103101},
+  Owner                    = {motz},
+  Timestamp                = {2016.11.22}
+}
+
+@Article{Hoover1985,
+  Title                    = {Canonical dynamics: Equilibrium phase-space distributions},
+  Author                   = {Hoover, William G.},
+  Journal                  = {Phys. Rev. A},
+  Year                     = {1985},
+
+  Month                    = {Mar},
+  Pages                    = {1695--1697},
+  Volume                   = {31},
+
+  Doi                      = {10.1103/PhysRevA.31.1695},
+  Issue                    = {3},
+  Numpages                 = {0},
+  Owner                    = {motz},
+  Publisher                = {American Physical Society},
+  Timestamp                = {2016.11.22},
+  Url                      = {http://link.aps.org/doi/10.1103/PhysRevA.31.1695}
+}
+
+@Article{Humphrey1996,
+  Title                    = {{VMD} -- {V}isual {M}olecular {D}ynamics},
+  Author                   = {William Humphrey and Andrew Dalke and Klaus Schulten},
+  Journal                  = {Journal of Molecular Graphics},
+  Year                     = {1996},
+  Pages                    = {33-38},
+  Volume                   = {14},
+
+  Owner                    = {motz},
+  Tbreference              = {222},
+  Tbstatus                 = {Published.},
+  Timestamp                = {2017.01.05}
+}
+
+@Article{MillenJ.2014,
+  Title                    = {Nanoscale temperature measurements using non-equilibrium Brownian dynamics of a levitated nanosphere},
+  Author                   = {Millen J. and Deesuwan T. and Barker P. and Anders J.},
+  Journal                  = {Nat Nano},
+  Year                     = {2014},
+
+  Month                    = jun,
+  Number                   = {6},
+  Pages                    = {425--429},
+  Volume                   = {9},
+
+  ISSN                     = {1748-3387},
+  Owner                    = {motz},
+  Publisher                = {Nature Publishing Group},
+  Timestamp                = {2016.10.17},
+  Url                      = {http://dx.doi.org/10.1038/nnano.2014.82}
+}
+
+@Article{Jauffred2008,
+  Title                    = {Three-Dimensional Optical Control of Individual Quantum Dots},
+  Author                   = {Jauffred, Liselotte and Richardson, Andrew C. and Oddershede, Lene B.},
+  Journal                  = {Nano Letters},
+  Year                     = {2008},
+  Note                     = {PMID: 18767883},
+  Number                   = {10},
+  Pages                    = {3376-3380},
+  Volume                   = {8},
+  Doi                      = {10.1021/nl801962f},
+  Eprint                   = {http://dx.doi.org/10.1021/nl801962f},
+  Url                      = { http://dx.doi.org/10.1021/nl801962f 
+}
+}
+
+@Article{Kroy2014,
+  Title                    = {Levitating nanoparticles: Non-equilibrium nano-thermometry},
+  Author                   = {Kroy, Klaus},
+  Journal                  = {Nat Nano},
+  Year                     = {2014},
+
+  Month                    = jun,
+  Number                   = {6},
+  Pages                    = {415--417},
+  Volume                   = {9},
+
+  ISSN                     = {1748-3387},
+  Owner                    = {motz},
+  Publisher                = {Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.},
+  Timestamp                = {2016.10.17},
+  Url                      = {http://dx.doi.org/10.1038/nnano.2014.109}
+}
+
+@Article{Lebedew1901,
+  Title                    = {Untersuchungen über die Druckkräfte des Lichtes},
+  Author                   = {Lebedew, Peter},
+  Journal                  = {Annalen der Physik},
+  Year                     = {1901},
+  Number                   = {11},
+  Pages                    = {433--458},
+  Volume                   = {311},
+
+  Doi                      = {10.1002/andp.19013111102},
+  ISSN                     = {1521-3889},
+  Owner                    = {motz},
+  Publisher                = {WILEY-VCH Verlag},
+  Timestamp                = {2017.02.12},
+  Url                      = {http://dx.doi.org/10.1002/andp.19013111102}
+}
+
+@Article{Marago2013,
+  Title                    = {Optical trapping and manipulation of nanostructures},
+  Author                   = {Maragò, Onofrio M and Jones, Philip H and Gucciardi, Pietro G and Volpe, Giovanni and Ferrari, Andrea C},
+  Journal                  = {Nature nanotechnology},
+  Year                     = {2013},
+  Number                   = {11},
+  Pages                    = {807--819},
+  Volume                   = {8},
+
+  ISSN                     = {1748-3387},
+  Owner                    = {motz},
+  Publisher                = {Nature Research},
+  Timestamp                = {2017.02.12}
+}
+
+@Article{Metropolis1953,
+  Title                    = {Equation of State Calculations by Fast Computing Machines},
+  Author                   = {Nicholas Metropolis and Arianna W. Rosenbluth and Marshall N. Rosenbluth and Augusta H. Teller and Edward Teller},
+  Journal                  = {The Journal of Chemical Physics},
+  Year                     = {1953},
+  Number                   = {6},
+  Pages                    = {1087-1092},
+  Volume                   = {21},
+
+  Doi                      = {10.1063/1.1699114},
+  Eprint                   = {http://dx.doi.org/10.1063/1.1699114},
+  Owner                    = {motz},
+  Timestamp                = {2017.02.12},
+  Url                      = { http://dx.doi.org/10.1063/1.1699114 
+}
+}
+
+@Article{Nichols1901,
+  Title                    = {A Preliminary Communication on the Pressure of Heat and Light Radiation},
+  Author                   = {Nichols, E. F. and Hull, G. F.},
+  Journal                  = {Phys. Rev. (Series I)},
+  Year                     = {1901},
+
+  Month                    = {Nov},
+  Pages                    = {307--320},
+  Volume                   = {13},
+
+  Doi                      = {10.1103/PhysRevSeriesI.13.307},
+  Issue                    = {5},
+  Numpages                 = {0},
+  Owner                    = {motz},
+  Publisher                = {American Physical Society},
+  Timestamp                = {2017.02.12},
+  Url                      = {http://link.aps.org/doi/10.1103/PhysRevSeriesI.13.307}
+}
+
+@Article{Nose1984,
+  Title                    = {A unified formulation of the constant temperature molecular dynamics methods},
+  Author                   = {Nosé, Shuichi},
+  Journal                  = {The Journal of Chemical Physics},
+  Year                     = {1984},
+  Number                   = {1},
+  Pages                    = {511-519},
+  Volume                   = {81},
+
+  Doi                      = {http://dx.doi.org/10.1063/1.447334},
+  Owner                    = {motz},
+  Timestamp                = {2016.11.22},
+  Url                      = {http://scitation.aip.org/content/aip/journal/jcp/81/1/10.1063/1.447334}
+}
+
+@InProceedings{Sanner1995,
+  Title                    = {Fast and Robust Computation of Molecular Surfaces},
+  Author                   = {Michel Sanner and Arthur Olsen and Jean-Claude Spehner},
+  Booktitle                = {Proceedings of the 11th ACM Symposium on Computational Geometry},
+  Year                     = {1995},
+
+  Address                  = {New York},
+  Pages                    = {C6-C7},
+  Publisher                = {ACM},
+
+  Owner                    = {motz},
+  Timestamp                = {2017.01.05}
+}
+
+@Article{Searles1999,
+  Title                    = {Fluctuation theorem for stochastic systems},
+  Author                   = {Searles, Debra J. and Evans, Denis J.},
+  Journal                  = {Phys. Rev. E},
+  Year                     = {1999},
+
+  Month                    = {Jul},
+  Pages                    = {159--164},
+  Volume                   = {60},
+
+  __markedentry            = {[motz:]},
+  Doi                      = {10.1103/PhysRevE.60.159},
+  Issue                    = {1},
+  Numpages                 = {0},
+  Publisher                = {American Physical Society},
+  Url                      = {http://link.aps.org/doi/10.1103/PhysRevE.60.159}
+}
+
+@Article{Sharma2000,
+  Title                    = {Speech/Gesture Interface to a Visual-Computing Environment},
+  Author                   = {Rajeev Sharma and Michael Zeller and Vladimir I. Pavlovic and Thomas S. Huang and Zion Lo and Stephen Chu and Yunxin Zhao and James C. Phillips and Klaus Schulten},
+  Journal                  = IEEECGA,
+  Year                     = {2000},
+  Pages                    = {29-37},
+  Volume                   = {20},
+
+  Owner                    = {motz},
+  Tbreference              = {294},
+  Tbstatus                 = {Published.},
+  Timestamp                = {2017.01.05}
+}
+
+@MastersThesis{Stone1998,
+  Title                    = {{\em An Efficient Library for Parallel Ray Tracing and Animation}},
+  Author                   = {John Stone},
+  School                   = {Computer Science Department, University of Missouri-Rolla},
+  Year                     = {1998},
+  Month                    = {April},
+
+  Owner                    = {motz},
+  Timestamp                = {2017.01.05}
+}
+
+@InProceedings{Stone2001,
+  Title                    = {A System for Interactive Molecular Dynamics Simulation},
+  Author                   = {John Stone and Justin Gullingsrud and Paul Grayson and Klaus Schulten},
+  Booktitle                = {2001 ACM Symposium on Interactive 3D Graphics},
+  Year                     = {2001},
+
+  Address                  = {New York},
+  Editor                   = {John F. Hughes and Carlo H. S\'equin},
+  Pages                    = {191-194},
+  Publisher                = {ACM SIGGRAPH},
+
+  Annote                   = {This symposium took place between March 19-21, 2001. {ISBN} 1-58113-292-1.},
+  Owner                    = {motz},
+  Tbreference              = {304},
+  Tbstatus                 = {Published.},
+  Timestamp                = {2017.01.05}
+}
+
+@Article{Stukowski2010,
+  Title                    = {Visualization and analysis of atomistic simulation data with OVITO–the Open Visualization Tool},
+  Author                   = {Alexander Stukowski},
+  Journal                  = {Modelling and Simulation in Materials Science and Engineering},
+  Year                     = {2010},
+  Number                   = {1},
+  Pages                    = {015012},
+  Volume                   = {18},
+
+  Abstract                 = {The Open Visualization Tool (OVITO) is a new 3D visualization software designed for post-processing atomistic data obtained from molecular dynamics or Monte Carlo simulations. Unique analysis, editing and animations functions are integrated into its easy-to-use graphical user interface. The software is written in object-oriented C++, controllable via Python scripts and easily extendable through a plug-in interface. It is distributed as open-source software and can be downloaded from the website http://ovito.sourceforge.net/ [http://ovito.sourceforge.net/] .},
+  Owner                    = {motz},
+  Timestamp                = {2017.01.05},
+  Url                      = {http://stacks.iop.org/0965-0393/18/i=1/a=015012}
+}
+
+@Article{Svoboda1994,
+  Title                    = {Optical trapping of metallic Rayleigh particles},
+  Author                   = {Karel Svoboda and Steven M. Block},
+  Journal                  = {Opt. Lett.},
+  Year                     = {1994},
+
+  Month                    = {Jul},
+  Number                   = {13},
+  Pages                    = {930--932},
+  Volume                   = {19},
+
+  Abstract                 = {Metallic objects reflect light and have generally been considered poor candidates for optical traps, particularly with optical tweezers, which rely on a gradient force to provide trapping. We demonstrate that stable trapping can occur with optical tweezers when they are used with small metallic Rayleigh particles. In this size regime, the scattering pictures for metals and dielectrics are similar, and the larger polarizability of metals implies that trapping forces are greater. The latter fact makes the use of metal particles attractive for certain biological applications. Comparison of trapping forces for latex and gold spheres demonstrates that the gradient force is the major determinant of trapping strength and that competing effects, such as scattering or radiometric forces, are relatively minor.},
+  Doi                      = {10.1364/OL.19.000930},
+  Publisher                = {OSA},
+  Url                      = {http://ol.osa.org/abstract.cfm?URI=ol-19-13-930}
+}
+
+@Article{Swope1982,
+  Title                    = {A computer simulation method for the calculation of equilibrium constants for the formation of physical clusters of molecules: Application to small water clusters},
+  Author                   = {Swope, William C. and Andersen, Hans C. and Berens, Peter H. and Wilson, Kent R.},
+  Journal                  = {The Journal of Chemical Physics},
+  Year                     = {1982},
+  Number                   = {1},
+  Pages                    = {637-649},
+  Volume                   = {76},
+
+  Doi                      = {http://dx.doi.org/10.1063/1.442716},
+  Owner                    = {motz},
+  Timestamp                = {2016.11.21},
+  Url                      = {http://scitation.aip.org/content/aip/journal/jcp/76/1/10.1063/1.442716}
+}
+
+@Article{Tan2004,
+  Title                    = {Optical Trapping of Single-Walled Carbon Nanotubes},
+  Author                   = {Tan, Shida and Lopez, Herman A. and Cai, Colin W. and Zhang, Yuegang},
+  Journal                  = {Nano Letters},
+  Year                     = {2004},
+  Number                   = {8},
+  Pages                    = {1415-1419},
+  Volume                   = {4},
+
+  Doi                      = {10.1021/nl049347g},
+  Eprint                   = {http://dx.doi.org/10.1021/nl049347g},
+  Url                      = { http://dx.doi.org/10.1021/nl049347g 
+}
+}
+
+@Article{Urban2014,
+  Title                    = {Optical trapping and manipulation of plasmonic nanoparticles: fundamentals{,} applications{,} and perspectives},
+  Author                   = {Urban, Alexander S. and Carretero-Palacios, Sol and Lutich, Andrey A. and Lohmuller, Theobald and Feldmann, Jochen and Jackel, Frank},
+  Journal                  = {Nanoscale},
+  Year                     = {2014},
+  Pages                    = {4458-4474},
+  Volume                   = {6},
+
+  Abstract                 = {This feature article discusses the optical trapping and manipulation of plasmonic nanoparticles{,} an area of current interest with potential applications in nanofabrication{,} sensing{,} analytics{,} biology and medicine. We give an overview over the basic theoretical concepts relating to optical forces{,} plasmon resonances and plasmonic heating. We discuss fundamental studies of plasmonic particles in optical traps and the temperature profiles around them. We place a particular emphasis on our own work employing optically trapped plasmonic nanoparticles towards nanofabrication{,} manipulation of biomimetic objects and sensing.},
+  Doi                      = {10.1039/C3NR06617G},
+  Issue                    = {9},
+  Owner                    = {motz},
+  Publisher                = {The Royal Society of Chemistry},
+  Timestamp                = {2017.02.12},
+  Url                      = {http://dx.doi.org/10.1039/C3NR06617G}
+}
+
+@Article{Varshney1994,
+  Title                    = {Linearly Scalable Computation of Smooth Molecular Surfaces},
+  Author                   = {A. Varshney and F. P. Brooks and W. V. Wright},
+  Journal                  = {IEEE Computer Graphics and Applications},
+  Year                     = {1994},
+  Pages                    = {19-25},
+  Volume                   = {14},
+
+  Owner                    = {motz},
+  Timestamp                = {2017.01.05}
+}
+
+@Article{Verlet1967,
+  Title                    = {Computer "Experiments" on Classical Fluids. I. Thermodynamical Properties of Lennard-Jones Molecules},
+  Author                   = {Verlet, Loup},
+  Journal                  = {Phys. Rev.},
+  Year                     = {1967},
+
+  Month                    = {Jul},
+  Pages                    = {98--103},
+  Volume                   = {159},
+
+  Doi                      = {10.1103/PhysRev.159.98},
+  Issue                    = {1},
+  Numpages                 = {0},
+  Owner                    = {motz},
+  Publisher                = {American Physical Society},
+  Timestamp                = {2016.08.08},
+  Url                      = {http://link.aps.org/doi/10.1103/PhysRev.159.98}
+}
+
+@Article{Wirnsberger2015,
+  Title                    = {An enhanced version of the heat exchange algorithm with excellent energy conservation properties},
+  Author                   = {Wirnsberger, P. and Frenkel, D. and Dellago, C.},
+  Journal                  = {The Journal of Chemical Physics},
+  Year                     = {2015},
+  Number                   = {12},
+  Volume                   = {143},
+
+  Doi                      = {http://dx.doi.org/10.1063/1.4931597},
+  Eid                      = {124104},
+  Owner                    = {motz},
+  Timestamp                = {2016.11.28},
+  Url                      = {http://scitation.aip.org/content/aip/journal/jcp/143/12/10.1063/1.4931597}
+}
+
+@Article{buffalo,
+  Note                     = {Idea taken from the Molecular Dynamics part of this lecture: \url{http://www.physics.buffalo.edu/phy411-506/}},
+
+  Owner                    = {motz},
+  Timestamp                = {2016.11.16}
+}
+
+@Article{unitcell,
+  Note                     = {Image taken from \url{https://upload.wikimedia.org/wikipedia/commons/2/27/Elementarzelle_einer_kubisch_raumzentrierten_Elementarzelle.png}},
+
+  Owner                    = {motz},
+  Timestamp                = {2016.11.16}
+}
+
+@comment{jabref-meta: databaseType:bibtex;}
+

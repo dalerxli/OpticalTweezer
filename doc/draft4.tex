@@ -266,10 +266,21 @@ where $x$ is the position of the nano particle, $\dot{x}$ and $\ddot{x}$ are the
 $\omega$ is the trap frequency, $\Gamma^\text{imp}$ and $\Gamma^\text{em}$ are the damping constants for the 
 impinging particles and the emerging particles, respectively and $F^\text{imp}$ and $F^\text{em}$ are the associated noise terms, 
 which satisfy $\langle F^\text{imp}\rangle= \langle F^\text{em} \rangle = 0$ individually.\\
-Miller et al. investigate the dependence of the emerging temperature $T_\text{em}$ on the intensity of the laser for different sized nano particles
-and different pressures.\\
-With these four temperatures introduced, some questions arise about the relationship between these temperatures. For this theses, I want to focus on
-the question: how does the laser intensity influence the motion of the nano particle in the laser trap and its center of mass velocity?\\
+As described above, the impining and emerging gas particles form two independent heat baths with two different temperatures 
+with $T_\text{em} > T_\text{imp}$ in general. This leads to two different friction coefficients and noise terms that have to be included in the 
+Langevin equation.\\
+Millen et al. investigate the dependence of the emerging temperature $T_\text{em}$ on the intensity of the laser for different sized nano particles
+and different pressures. They show that the emerging gas temperature increases with increasing laser power and depends on the size of the nano
+particle, as the emerging gas temperature increases slower for bigger particles.\\
+Where the experiment conducted by Gieseler et al. uses only the temperature of the heat bath for their model, Millen et al. establish four different
+temperatures that are present in the experiment: the temperature of the impinging and emerging gas particles, the
+surface temperature and the center of mass temperature of the nano particle in the trap. Since the center of mass motion of the nano particles
+is the main objective in the experiment of Gieseler et al., the dependence of the center of mass temperature on 
+laser intensity and the temperature of the impinging gas should be investigated, which will be done in this thesis. The questions I would like to
+answer are: How does the laser intensity influence the motion of the nano particle in the laser trap and its center of mass velocity? What impact
+does the impinging gas temperature have on the temperature of the center of mass?\\
+%With these four temperatures introduced, some questions arise about the relationship between these temperatures. For this theses, I want to focus on
+%the question: how does the laser intensity influence the motion of the nano particle in the laser trap and its center of mass velocity?\\
 In the next section I will introduce the methods that will be used to simulate the system, followed by the results of the simulations and the
 conclusion of this thesis.
 
@@ -905,7 +916,9 @@ nano particle to move.
 %\\The velocities of the particle can roughly be chosen by adjusting the range of numbers the random number generator can choose from. However, the
 %resulting velocities (and therefore the temperature of the system) are generally not precisely how they should be. 
 \\As mentioned above, the velocities are chosen from a Maxwell-Boltzmann distribution, which means choosing each component from a Gaussian
-distribution. However, the positions on the FCC lattice are not very natural and so the atoms equilibrate to a different temperature than desired.
+distribution. As it is very unlikely for the atoms to be sitting exactly on a FCC lattice, the first few time steps are needed for the equilibriation
+of the system. Due to this process the temperature of the system can change slightly and vary from the desired temperature. 
+%However, the positions on the FCC lattice are not very natural and so the atoms equilibrate to a different temperature than desired.
 If the system should have a
 specific starting temperature $T$, the velocities need to be scaled accordingly. This rescaling is done by summing the square of the velocities
 (this equals calculating the kinetic energy since the masses are set to 1) and rescale them by a factor $\lambda$:
@@ -918,7 +931,7 @@ This process has to be done a couple of times, until the system equilibrates to 
 %The problem with this procedure is the fact
 %that it is not compatible with the requirement of constant energy of the system. 
 If we look at the energy values in Fig.~\ref{fig:energystart} we can see the
-irregularities (jumps) before the system equilibrates to a constant value. This equilibration process divides the simulation in two phases: the equilibration
+jumps before the system equilibrates to a constant value. This equilibration process divides the simulation in two phases: the equilibration
 phase and the measurement phase. In the equilibration phase, the system has time to reach a configuration that is (as the name suggests) in an 
 equilibrated state. During this phase, there are usually no measurements (such as energy) performed, since the values from this phase are distorting
 the mean value of the simulation. That is why the configurations from the equilibration phase are discarded and the measurement phase takes place, 
@@ -926,9 +939,11 @@ where the values do get calculated and are used to determine the mean values.
 \begin{figure}[h]
     \begin{center}
         \includegraphics[scale=0.3]{images/verlet_output_te.pdf}
-        \caption{Temperature and energy in the equilibration phase of the velocity Verlet algorithm. The velocity rescaling (see eq. 
+        \caption{Temperature and energy in the equilibration phase of the nano particle without the gas with a time step of
+            $\Delta t = 0.02$. The velocity rescaling (see eq. 
         \eqref{eq:rescale1}-\eqref{eq:rescale3}) is taking place every 1000th step until the 9000th, which can be seen in the energy curve whre the
-    jumps are happening. The desired temperature in this case is $T^* = 0.2$, which is reached after about 7000 steps.}
+    jumps are happening. The desired temperature in this case is $T^* = 0.2$, which is reached after about 7000 steps. The fluctuation of the energy
+    is due to the introduction of the cutoff radius $r_C$ which is set at $r_C = 2.5$.}
         \label{fig:energystart}
     \end{center}
 \end{figure}
@@ -937,7 +952,8 @@ where the values do get calculated and are used to determine the mean values.
 The next checkpoint is the eHEX algorithm. Since it contains several steps and variables that have to be calculated, this algorithm is very prone
 to errors. Perhaps the most crucial of those variables in the algorithm is the amount of heat injected into the system, $\Delta Q$. 
 The effect of the value of this variable on the system has therefore to be checked to make sure the system is not overheating.\\
-The investigation of the effects on the system can be done in two ways: comparing the temperature and the energy of the system during the 
+The investigation of the effects on the system can be done in two ways: examining the development of the temperature and the energy of the system 
+during the 
 application of the algorithm (similar to the way it's been done with the velocity Verlet) and comparing the effect of different values of $\Delta Q$.\\
 %Like mentioned above, there is an equilibration phase, which takes place before the recording of the values for this comparison. The graph starts 
 %with a velocity Verlet phase after which the eHEX algorithm starts, to emphasize the effect of the change in temperature and energy.\\
@@ -959,7 +975,9 @@ been shown in Fig.~\ref{fig:ehex_te}, the plotting of the temperature data shoul
 \begin{figure}[h]
     \begin{center}
         \includegraphics[scale=0.4]{images/ehex_temp_dq.pdf}
-        \caption{Comparison of different values for $\Delta Q$, ranging from 0 to 0.09. As the value $\Delta Q=0$ corresponds to no heat being
+        \caption{Comparison of different values for $\Delta Q$, ranging from 0 to 0.09. Up to time $t = 200$ only the velocity Verlet algorithm is
+            applied which is followed by the application of the eHEX algorithm at different values for $\Delta Q$.
+            As the value $\Delta Q=0$ corresponds to no heat being
         injected into the system, it is not surprising that the temperature remains constant. The graph shows that an increase in $\Delta Q$ leads to
     an increase in the rate of warming up, which means that for bigger $\Delta Q$, the system is heating up more quickly.}
         \label{fig:ehex_dq}
@@ -1040,7 +1058,7 @@ development of a new, higher steady temperature of the nano particle, which can 
     %\end{center}
 %\end{figure}
 
-\subsection{Measurement}
+\subsection{Simulation of the Experiment}
 Now that the functionality of every individual part has been established, the main question can be tackled: how does the laser intensity influence the
 center of mass motion of the nano particle? And which influence does the surrounding gas exert?\\
 In order to investigate the origin of the motion of the center of mass, we first need to check whether the eHEX algorithm itself has any influence on
@@ -1051,7 +1069,7 @@ system. The expected outcome of this case is a thermal equilibration between the
 mass motion of the nano particle with the incoming gas temperature being the reference value. 
 The measurement yields this result and backs up the claim. Furthermore, the internal temperature of the nano particle also equilibrates to the 
 temperature of the surrounding gas. This was checked on a system with pressure $P=0.8$, temperature of the incoming particles $T_\text{imp} = 0.05$, 
-internal temperature of the nano particle (set with the velocity verlet) $T_\text{intern} = 0.2$ and a system size of $N=32$ atoms in the nano
+internal temperature of the nano particle $T_\text{intern} = 0.2$ and a system size of $N=32$ atoms in the nano
 particle. The resulting temperatures are:
 \begin{eqnarray*}
     T_\text{em} &=& 0.0494 \pm 0.0009\\
@@ -1188,14 +1206,23 @@ The development of the different temperatures seem to be depending of the temper
 correspond to a surrounding gas temperature of $T=0.1$) are growing slightly faster than the red curves ($T=0.05$).\\
 In their paper~\cite{MillenJ.2014} Millen et al. give a formula for the center of mass temperature:
 \begin{equation}
+    \label{eq:compaper}
     T_\text{COM} = \frac{T_\text{imp}^{3/2}+\tfrac\pi 8 \ T_\text{em}^{3/2}}{T_\text{imp}^{1/2}+\tfrac\pi8 T_\text{em}^{1/2}}
 \end{equation}
 This formula together with the measured values of $T_\text{imp}$ and $T_\text{em}$ can be used to compare the results. The comparison between the
 calculated and the measured value can be seen for a representative choice of parameters in Fig.~\ref{fig:measurevscalc}. There it becomes obvious,
 that the measured center of mass temperature rises quicker than the calculated value. This is also the case for different pressures and impinging gas
-temperatures. The reason for this may be in the difference of the accomodation factor $\alpha$. In the paper, Millen et al. use an accomodation factor
+temperatures. The reason for this may be in the difference of the accomodation factor $\alpha$, which is given by~\cite{Goodman1980}
+\begin{equation}
+    \alpha = \frac{T_\text{em} - T_\text{imp}}{T_\text{sur} - T_\text{imp}}
+\end{equation}
+In the paper, Millen et al. use an accomodation factor
 for a sphere with a value of $\alpha = 0.777$, whereas the accomodation factor for the setup in the simulation for the chosen values is around
 $\alpha = 0.016$. This means that the real and the modeled interaction between the gas particles and the nano particle differ from one another.
+The thermal accomodation factor quantifies the behaviour of the interaction between the gas particles and the nano particle. Although Eq.
+\eqref{eq:compaper} does not contain an explicit dependence on the thermal accomodation factor, the difference between the value in the experiment and
+in the simulation suggests a difference in the energy transfer during interaction between the gas and the nano particle.
+
 \begin{figure}
     \begin{center}
         \includegraphics[scale=0.3]{images/measurevscalc.pdf}
@@ -1251,8 +1278,8 @@ There are several ways to explore this subject further. The first idea would be 
 energies, since this is not easily feasible in an experimental setup. Another idea would be to increase the number of atoms in the nano particle to
 see if the surface of the particle plays a role in the development of the temperatures. Furthermore, the interaction between the gas particles and the
 nano particle in the trap could be varied to include an attractive part in the potential. Generally, these simulations could be expanded by running
-them on faster computers to investigate long term behaviour of the systems and expand the ranges of the different values like pressure or laser
-energy. 
+them on faster computers to investigate larger systems and expand the ranges of the involved values like pressure, laser
+energy, and internal temperature.
 
 
 

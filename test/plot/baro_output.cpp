@@ -13,7 +13,7 @@
 int main()
 {
 
-    setValues(0.2,0.1,0.2,0.8,0.06);
+    setValues(0.2,0.05,0.2,0.8,0.06);
     Particle *particles = new Particle[N];
     InitPositions(particles);
     std::list<Particle*> gas;

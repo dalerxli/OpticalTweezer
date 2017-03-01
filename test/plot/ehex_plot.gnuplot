@@ -6,7 +6,7 @@ set key nobox
 set xlabel font ",30"
 set ylabel font ",30"
 set xlabel "Time"
-set ylabel "T*"
+set ylabel "T"
 set xlabel offset 0,-7
 set ylabel offset -7,0
 set bmargin 15

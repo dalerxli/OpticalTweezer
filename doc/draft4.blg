@@ -3,6 +3,7 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: draft4.aux
 The style file: unsrt.bst
 Database file #1: references.bib
+Warning--I didn't find a database entry for "Goodman1980"
 Warning--empty author in buffalo
 Warning--empty title in buffalo
 Warning--empty journal in buffalo
@@ -10,7 +11,7 @@ Warning--empty year in buffalo
 Warning--can't use both author and editor fields in Huenenberger2005
 You've used 27 entries,
             1791 wiz_defined-function locations,
-            652 strings with 8221 characters,
+            654 strings with 8243 characters,
 and the built_in function-call counts, 6316 in all, are:
 = -- 586
 > -- 223
@@ -49,4 +50,4 @@ warning$ -- 5
 while$ -- 62
 width$ -- 29
 write$ -- 296
-(There were 5 warnings)
+(There were 6 warnings)
