@@ -530,17 +530,16 @@
 }
 
 @Article{Tan2004,
-  author        = {Tan, Shida and Lopez, Herman A. and Cai, Colin W. and Zhang, Yuegang},
-  title         = {Optical Trapping of Single-Walled Carbon Nanotubes},
-  journal       = {Nano Letters},
-  year          = {2004},
-  volume        = {4},
-  number        = {8},
-  pages         = {1415-1419},
-  __markedentry = {[motz:]},
-  doi           = {10.1021/nl049347g},
-  eprint        = {http://dx.doi.org/10.1021/nl049347g},
-  url           = { 
+  author  = {Tan, Shida and Lopez, Herman A. and Cai, Colin W. and Zhang, Yuegang},
+  title   = {Optical Trapping of Single-Walled Carbon Nanotubes},
+  journal = {Nano Letters},
+  year    = {2004},
+  volume  = {4},
+  number  = {8},
+  pages   = {1415-1419},
+  doi     = {10.1021/nl049347g},
+  eprint  = {http://dx.doi.org/10.1021/nl049347g},
+  url     = { 
         http://dx.doi.org/10.1021/nl049347g
     
 },
@@ -555,13 +554,29 @@
   number        = {10},
   pages         = {3376-3380},
   note          = {PMID: 18767883},
-  __markedentry = {[motz:6]},
+  __markedentry = {[motz:]},
   doi           = {10.1021/nl801962f},
   eprint        = {http://dx.doi.org/10.1021/nl801962f},
   url           = { 
         http://dx.doi.org/10.1021/nl801962f
     
 },
+}
+
+@Article{Searles1999,
+  author        = {Searles, Debra J. and Evans, Denis J.},
+  title         = {Fluctuation theorem for stochastic systems},
+  journal       = {Phys. Rev. E},
+  year          = {1999},
+  volume        = {60},
+  pages         = {159--164},
+  month         = {Jul},
+  __markedentry = {[motz:6]},
+  doi           = {10.1103/PhysRevE.60.159},
+  issue         = {1},
+  numpages      = {0},
+  publisher     = {American Physical Society},
+  url           = {http://link.aps.org/doi/10.1103/PhysRevE.60.159},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

@@ -3,51 +3,50 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: draft4.aux
 The style file: unsrt.bst
 Database file #1: references.bib
-Warning--I didn't find a database entry for "Goodman1980"
 Warning--empty author in buffalo
 Warning--empty title in buffalo
 Warning--empty journal in buffalo
 Warning--empty year in buffalo
 Warning--can't use both author and editor fields in Huenenberger2005
-You've used 27 entries,
+You've used 28 entries,
             1791 wiz_defined-function locations,
-            654 strings with 8243 characters,
-and the built_in function-call counts, 6316 in all, are:
-= -- 586
-> -- 223
+            660 strings with 8354 characters,
+and the built_in function-call counts, 6556 in all, are:
+= -- 611
+> -- 227
 < -- 1
-+ -- 87
-- -- 60
-* -- 501
-:= -- 989
-add.period$ -- 81
-call.type$ -- 27
-change.case$ -- 23
++ -- 89
+- -- 61
+* -- 520
+:= -- 1025
+add.period$ -- 84
+call.type$ -- 28
+change.case$ -- 24
 chr.to.int$ -- 0
-cite$ -- 32
-duplicate$ -- 254
-empty$ -- 636
-format.name$ -- 60
-if$ -- 1387
+cite$ -- 33
+duplicate$ -- 263
+empty$ -- 662
+format.name$ -- 61
+if$ -- 1439
 int.to.chr$ -- 0
-int.to.str$ -- 27
-missing$ -- 30
-newline$ -- 137
-num.names$ -- 26
-pop$ -- 45
+int.to.str$ -- 28
+missing$ -- 31
+newline$ -- 142
+num.names$ -- 27
+pop$ -- 46
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 100
+skip$ -- 103
 stack$ -- 0
-substring$ -- 574
-swap$ -- 36
+substring$ -- 605
+swap$ -- 37
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 5
-while$ -- 62
-width$ -- 29
-write$ -- 296
-(There were 6 warnings)
+while$ -- 65
+width$ -- 30
+write$ -- 307
+(There were 5 warnings)
