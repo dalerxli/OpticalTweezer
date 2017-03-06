@@ -91,4 +91,26 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+Optical trapping bezeichnet eine experimentelle Methode, bei der Objekte mit einer Größe, die von einer subatomaren bis zur Mikrometer-Skala
+reicht, durch die Gradientenkraft eines Lasers lokalisiert werden. In dieser Arbeit benutzen wir Methoden aus dem Feld der Computational Physics, 
+um das Verhalten eines Nanoteilchens in so einer Laserfalle und seine Interaktionen mit dem Laser und dem umgebenden Gas zu simulieren.\\
+Gieseler et al. führten ein sogenanntes ,,Optical Tweezer''-Experiment durch, um das Fluktuationstheorem zu untersuchen. In diesem Experiment
+verwenden sie die Lagevin-Gleichung, um das Verhalten einer Nanokugel aus Siliciumdioxid in einer Laserfalle zu modellieren, wobei die 
+Temperatur des Umgebungsgases als Wärmereservoir in dem Modell verwendet wird, um die stochastische Kraft auf das Nanoteilchen zu beschreiben. 
+Millen et al. führen ein ähnliches Experiment durch und zeigten auf, dass zwischen vier Temperaturen unterschieden werden muss: die Temperatur 
+des eingehenden Gases, des ausgehenden Gases, der Schwerpunktsbewegung und der Oberfläche des Nanoteilchens. Mit Augenmerk auf diese verschiedenen
+Temperaturen wird das Experiment mit Molecular Dynamics Methoden simuliert, um den Einfluss der Stärke des Lasers und des Umgebungsgases auf 
+die Schwerpunktstemperatur des Nanoteilchens zu untersuchen.\\
+Um das Experiment zu simulieren, müssen die einzelnen Bestandteile modelliert werden. Das Nanoteilchen wird durch ein System aus Atomen 
+dargestellt, die über ein Lennard-Jones Potential miteinander wechselwirken. Die Gradientenkraft des Lasers, die das Nanoteilchen lokalisiert, 
+wird durch ein harmonisches Potential approximiert. Da die Energie des Lasers vom Nanoteilchen absorbiert wird, erhöht sich die interne 
+Temperatur des Nanoteilchens, was durch Anwendung des eHEX Algorithmus erreicht wird. Das umgebende Gas hat die Funktion eines Barostaten und die 
+eines Thermostaten und wird in der Simulation durch einen Algorithmus repräsentiert, der ein ideales Gas als Druckmedium verwendet.\\
+Die Simulation zeigt, dass die Schwerpunktstemperatur von der Lasertemperatur und der Temperatur des einströmenden Gases abhängt. 
+
+
+
+
+
+
 \end{document}

@@ -91,22 +91,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-Optical trapping is an experimental method, in which objects with a size ranging from a subatomic to micrometer  scale are 
-localised with a laser due to a gradient force. In this thesis, we use methods from the field of computational physics
-to simulate the behaviour of a nano particle in a laser trap and its interactions with the laser and the surrounding gas.\\
-Gieseler et al. performed such an optical tweezer experiment to investigate the fluctiation theorem. In their experiment
-they use a Langevin equation to model the dynamics of a silica nanosphere in a laser trap, where the temperature of the heat bath 
-is used to describe the stochastic force acting on the nano particle. Millen et al. conducted a similar experiment and raised
-the point, that there are four different temperatures present during this experiment: the temperature of the impinging gas particles, the 
-emerging gas particles, the center of mass and the surface of the nano particle. With these temperature regimes in mind, the experiment
-is simulated using molecular dynamics in order to determine the influence of the laser power and the temperature of the 
-surrounding gas on the center of mass temperature.\\
-To simulate the experiment, each part needs to be modeled appropriately. The nano sphere is represented by a set of atoms that interact
-with each other via a Lennard-Jones potential. The gradient force of the laser, which localizes the nano particle, is approximated by 
-a harmonic potential. Since the laser energy is absorbed by the nano particle, the internal temperature of the nano particle increses, which 
-is achieved by applying the eHEX algorithm to the nano particle. The surrounding gas acts as a barostat and a thermostat and will be represented
-by an algorithm that uses an ideal gas as pressure medium.\\
-The simulation shows that the center of mass temperature depends on the choice of laser power and temperature of the surrounding gas.
+An erster Stelle möchte ich mich bei meinem Betreuer Prof. Christoph Dellago bedanken, der es mir nicht nur ermöglicht hat
+meine Masterarbeit zu schreiben, sondern mir auch die Möglichkeit gegeben hat ein Teil der Gruppe für Copmputergestützte Physik
+zu sein. Durch das wöchtentliche Gruppenseminar und den Kontakt mit anderen Mitgliedern der Gruppe war es mir möglich neben meiner
+Masterarbeit auch Einblick in die aktuelle Forschung zu bekommen.\\
+Das bringt mich zu den nächsten Personen bei denen ich mich bedanken möchte: die Mitglieder der Gruppe für Computergestützte Physik. Sie sind mir
+bei vielen Problemen und Fragen mit Rat und Tat zur Seite gestanden und waren ausgezeichnete Gesprächspartner in den vielen Diskussionen, die 
+geführt wurden.\\
+Weiters möchte ich mich bei all meinen Studienkollegen und Freunden bedanken, die mich auf meinem Weg begleitet haben. Allen voran
+Manuel Reisenbauer, Stefanie Belohlavy, Michael Partener und Veronika Baumann, die ich seit meinem ersten Studienjahr zu meinen besten Freunden 
+zählen darf und ohne deren Hilfe nie so weit gekommen wäre.\\
+Zu guter Letzt möchte ich meinen allergrößten Dank an meine Eltern und Familie aussprechen. Meine Eltern haben mich nicht nur Unterstützt und
+ermutigt, sondern mir auch den Raum gegeben, den ich brauchte, um mich zu entfalten. Ohne sie wäre das alles nicht möglich gewesen und ich 
+bin ihnen dafür auf Ewig dankbar. 
+
 
 
 
