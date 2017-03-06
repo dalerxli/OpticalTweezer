@@ -92,11 +92,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-\includepdf[pages={1}]{deckblatt_besser.pdf}
+\includepdf[pages={1}]{deckblatt_besser_neu.pdf}
+\newpage\thispagestyle{empty}~\newpage\thispagestyle{empty} 
 \section*{Danksagung}
 \thispagestyle{empty}
-Danke
-
+An erster Stelle möchte ich mich bei meinem Betreuer Prof. Christoph Dellago bedanken, der es mir nicht nur ermöglicht hat
+meine Masterarbeit zu schreiben, sondern mir auch die Möglichkeit gegeben hat ein Teil der Gruppe für Copmputergestützte Physik
+zu sein. Durch das wöchtentliche Gruppenseminar und den Kontakt mit anderen Mitgliedern der Gruppe war es mir möglich neben meiner
+Masterarbeit auch Einblick in die aktuelle Forschung zu bekommen.\\
+Das bringt mich zu den nächsten Personen bei denen ich mich bedanken möchte: die Mitglieder der Gruppe für Computergestützte Physik. Sie sind mir
+bei vielen Problemen und Fragen mit Rat und Tat zur Seite gestanden und waren ausgezeichnete Gesprächspartner in den vielen Diskussionen, die 
+geführt wurden.\\
+Weiters möchte ich mich bei all meinen Studienkollegen und Freunden bedanken, die mich auf meinem Weg begleitet haben. Allen voran
+Manuel Reisenbauer, Stefanie Belohlavy, Michael Partener und Veronika Baumann, die ich seit meinem ersten Studienjahr zu meinen besten Freunden 
+zählen darf und ohne deren Hilfe ich nie so weit gekommen wäre.\\
+Zu guter Letzt möchte ich meinen allergrößten Dank an meine Eltern und Familie aussprechen. Meine Eltern haben mich nicht nur Unterstützt und
+ermutigt, sondern mir auch den Raum gegeben, den ich brauchte, um mich zu entfalten. Ohne sie wäre das alles nicht möglich gewesen und ich 
+bin ihnen dafür auf Ewig dankbar. 
+\newpage\thispagestyle{empty}~\newpage\thispagestyle{empty} 
 \newpage
 %\title{Simulation of Nano Particles in a Laser Trap}
 %\author{Mathias H\"old, BSc.}
@@ -560,7 +573,8 @@ Hamiltonian regions (see Fig. \ref{fig:ehex}).
         \includegraphics[scale=0.3]{images/ehex_system.png}
         \caption{Setup for the use of the HEX and eHEX algorithms. The simulationbox $\Omega$, which is moving with a velocity of $v_\Omega$,
         contains a heat source (red), $\Gamma_1$, which is moving with velocity $v_{\Gamma_1}$ and a heat sink (blue), $\Gamma_2$, which is moving 
-        with velocity $v_{\Gamma_2}$. The regions that are neither heat sources or heat sinks are denoted by $\Gamma_0$.}
+        with velocity $v_{\Gamma_2}$. The regions that are neither heat sources or heat sinks are denoted by $\Gamma_0$. Image tagen from 
+    \cite{Wirnsberger2015}.}
         \label{fig:ehex} 
     \end{center}
 \end{figure}
@@ -1152,7 +1166,7 @@ be skipped because it can happen that atoms of the nano particle leave the syste
 unusable results.\\
 To see the comparison between the different temperatures of the impinging gas temperatures, three values for the pressure are chosen: $P=0.1$, $P=0.5$
 and $P=1.0$. The simulation results for the center of mass temperature, the internal temperature and the temperature of the outgoing gas particles are
-plotted for each of the pressure values and both temperatures, which can be seen in~\ref{fig:comintout}.
+plotted for each of the pressure values and both temperatures, which can be seen in Fig.~\ref{fig:comintout}.
 \begin{figure}[h]
     \begin{center}
         \begin{subfigure}[t]{0.3\textwidth}
@@ -1296,5 +1310,46 @@ energy, and internal temperature.
 \newpage
 \bibliography{references}
 \bibliographystyle{unsrt}
+\newpage
+\section*{Abstract}
+\thispagestyle{empty}
+Optical trapping is an experimental method, in which objects with a size ranging from a subatomic to micrometer  scale are 
+localized with a laser due to a gradient force. In this thesis, we use methods from the field of computational physics
+to simulate the behaviour of a nano particle in a laser trap and its interactions with the laser and the surrounding gas.\\
+Gieseler et al. performed such an optical tweezer experiment to investigate the fluctiation theorem. In their experiment
+they use a Langevin equation to model the dynamics of a silica nanosphere in a laser trap, where the temperature of the heat bath 
+is used to describe the stochastic force acting on the nano particle. Millen et al. conducted a similar experiment and raised
+the point, that there are four different temperatures present during this experiment: the temperature of the impinging gas particles, the 
+emerging gas particles, the center of mass and the surface of the nano particle. With these temperature regimes in mind, the experiment
+is simulated using molecular dynamics in order to determine the influence of the laser power and the temperature of the 
+surrounding gas on the center of mass temperature.\\
+To simulate the experiment, each part needs to be modeled appropriately. The nano sphere is represented by a set of atoms that interact
+with each other via a Lennard-Jones potential. The gradient force of the laser, which localizes the nano particle, is approximated by 
+a harmonic potential. Since the laser energy is absorbed by the nano particle, the internal temperature of the nano particle increses, which 
+is achieved by applying the eHEX algorithm to the nano particle. The surrounding gas acts as a barostat and a thermostat and will be represented
+by an algorithm that uses an ideal gas as pressure medium.\\
+The simulation shows that the center of mass temperature depends on the choice of laser power and temperature of the surrounding gas.
+\newpage
+\section*{Zusammenfassung}
+\thispagestyle{empty}
+Optical trapping bezeichnet eine experimentelle Methode, bei der Objekte mit einer Größe, die von einer subatomaren bis zur Mikrometer-Skala
+reicht, durch die Gradientenkraft eines Lasers lokalisiert werden. In dieser Arbeit benutzen wir Methoden aus dem Feld der Computational Physics, 
+um das Verhalten eines Nanoteilchens in so einer Laserfalle und seine Interaktionen mit dem Laser und dem umgebenden Gas zu simulieren.\\
+Gieseler et al. führten ein sogenanntes ,,Optical Tweezer''-Experiment durch, um das Fluktuationstheorem zu untersuchen. In diesem Experiment
+verwenden sie die Lagevin-Gleichung, um das Verhalten einer Nanokugel aus Siliciumdioxid in einer Laserfalle zu modellieren, wobei die 
+Temperatur des Umgebungsgases als Wärmereservoir in dem Modell verwendet wird, um die stochastische Kraft auf das Nanoteilchen zu beschreiben. 
+Millen et al. führen ein ähnliches Experiment durch und zeigten auf, dass zwischen vier Temperaturen unterschieden werden muss: die Temperatur 
+des eingehenden Gases, des ausgehenden Gases, der Schwerpunktsbewegung und der Oberfläche des Nanoteilchens. Mit Augenmerk auf diese verschiedenen
+Temperaturen wird das Experiment mit Molecular Dynamics Methoden simuliert, um den Einfluss der Stärke des Lasers und des Umgebungsgases auf 
+die Schwerpunktstemperatur des Nanoteilchens zu untersuchen.\\
+Um das Experiment zu simulieren, müssen die einzelnen Bestandteile modelliert werden. Das Nanoteilchen wird durch ein System aus Atomen 
+dargestellt, die über ein Lennard-Jones Potential miteinander wechselwirken. Die Gradientenkraft des Lasers, die das Nanoteilchen lokalisiert, 
+wird durch ein harmonisches Potential approximiert. Da die Energie des Lasers vom Nanoteilchen absorbiert wird, erhöht sich die interne 
+Temperatur des Nanoteilchens, was durch Anwendung des eHEX Algorithmus erreicht wird. Das umgebende Gas hat die Funktion eines Barostaten und die 
+eines Thermostaten und wird in der Simulation durch einen Algorithmus repräsentiert, der ein ideales Gas als Druckmedium verwendet.\\
+Die Simulation zeigt, dass die Schwerpunktstemperatur von der Lasertemperatur und der Temperatur des einströmenden Gases abhängt. 
+\newpage\thispagestyle{empty}~\newpage\thispagestyle{empty} 
+
+
 
 \end{document}
