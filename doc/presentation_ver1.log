@@ -1,0 +1,109 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.3)  6 MAR 2017 18:31
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**presentation_ver1.tex
+(./presentation_ver1.tex
+LaTeX2e <2011/06/27>
+Babel <3.9g> and hyphenation patterns for 17 languages loaded.
+
+! LaTeX Error: File `beamer.cls' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: cls)
+
+Enter file name: beamer/base/beamer.cls
+(./beamer/base/beamer.cls
+Document Class: beamer 2017/01/23 v3.41 A class for typesetting presentations
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count79
+)
+\etb@tempcnta=\count80
+)
+
+! LaTeX Error: File `beamerbasemodes.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Undefined control sequence.
+l.22 \beamer@transferifnecessary
+                                
+? q
+OK, entering \batchmode...
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+\headheight=\dimen102
+\headdp=\dimen103
+\footheight=\dimen104
+\sidebarheight=\dimen105
+\beamer@tempdim=\dimen106
+\beamer@finalheight=\dimen107
+\beamer@animht=\dimen108
+\beamer@animdp=\dimen109
+\beamer@animwd=\dimen110
+\beamer@leftmargin=\dimen111
+\beamer@rightmargin=\dimen112
+\beamer@leftsidebar=\dimen113
+\beamer@rightsidebar=\dimen114
+\beamer@boxsize=\dimen115
+\beamer@vboxoffset=\dimen116
+\beamer@descdefault=\dimen117
+\beamer@descriptionwidth=\dimen118
+\beamer@lastskip=\skip41
+\beamer@areabox=\box26
+\beamer@animcurrent=\box27
+\beamer@animshowbox=\box28
+\beamer@sectionbox=\box29
+\beamer@logobox=\box30
+\beamer@linebox=\box31
+\beamer@sectioncount=\count81
+\beamer@subsubsectionmax=\count82
+\beamer@subsectionmax=\count83
+\beamer@sectionmax=\count84
+\beamer@totalheads=\count85
+\beamer@headcounter=\count86
+\beamer@partstartpage=\count87
+\beamer@sectionstartpage=\count88
+\beamer@subsectionstartpage=\count89
+\beamer@animationtempa=\count90
+\beamer@animationtempb=\count91
+\beamer@xpos=\count92
+\beamer@ypos=\count93
+\beamer@showpartnumber=\count94
+\beamer@currentsubsection=\count95
+\beamer@coveringdepth=\count96
+\beamer@sectionadjust=\count97
+\beamer@tocsectionnumber=\count98
+
+! LaTeX Error: File `beamerbaseoptions.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+ Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.96 ^^M
+        
+*** (cannot \read from terminal in nonstop modes)
+
+ 
+Here is how much of TeX's memory you used:
+ 469 strings out of 494678
+ 6378 string characters out of 6172559
+ 55951 words of memory out of 5000000
+ 3911 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 102 hyphenation exceptions out of 8191
+ 31i,0n,23p,804b,16s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!
