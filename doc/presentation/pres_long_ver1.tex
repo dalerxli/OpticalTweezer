@@ -1,0 +1,420 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref} % verlinkungen
+\usepackage{textcomp}
+\usepackage{flafter}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{paralist}
+\usepackage{dsfont} \usepackage{color}
+\usepackage{bbold}
+\usepackage{float}
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+%\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage[font=scriptsize]{subcaption}
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\usepackage{listings} 
+\usepackage{pict2e}
+\usepackage{xfrac}
+\usepackage[english]{babel}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+
+
+
+%%%%%%%%         EIGENEBEFEHLE  %%%%%%%%%
+\newcommand{\ddt}{\frac{\partial}{\partial{t}}}
+\newcommand{\dnach}[1]{\frac{\partial}{\partial{#1}}}
+\newcommand{\ddnach}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\dddnach}[3]{\frac{\partial^2{#1}}{\partial{#2} \partial{#3}}}
+\newcommand{\dznach}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+\newcommand{\vnabla}{\mathbf{\nabla}}
+\newcommand{\emathbf}[1]{\mathbf{\hat{#1}}}
+\newcommand{\bra}[1]{\langle{#1}|}
+\newcommand{\ket}[1]{|{#1}\rangle}
+\newcommand{\bracket}[2]{\langle{#1}|{#2}\rangle}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\updown}{\uparrow\downarrow}
+\newcommand{\downup}{\downarrow\uparrow}
+\newcommand{\upup}{\uparrow\uparrow}
+\newcommand{\downdown}{\downarrow\downarrow}
+\newcommand{\sandwich}[2]{\bra{#1} #2 \ket{#1}}
+\newcommand{\fsqrt}[2]{\sqrt{\frac{#1}{#2}}}
+\newcommand{\GammaK}{{\Gamma_k}}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{%
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  %deletekeywords={...},            % if you want to delete keywords from the given language
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=C,                 % the language of the code
+  %morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  %title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\lhead[\ ]{\leftmark }
+\chead[\ ]{\ }
+\rhead[\ ]{\rightmark }
+
+\lfoot[\ ]{\ }
+\cfoot[\ ]{\thepage }
+\rfoot[\ ]{\ }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\section{Einleitung}
+In meiner Masterarbeit beschäftigte ich mich mit der Simulation eines Nano Teilchens in einer Laserfalle. Diese Arbeit verbindet damit 
+zwei Teilbereiche der Physik miteinander: Computational Physics und Optische Fallen, die ich beide kurz vorstellen möchte.\\
+Die Computational Physics (oder auch Computergestützte Physik) verwendet numerische Methoden, um physikalische Prozesse auf dem Computer
+zu simulieren. Ein Meilenstein, der genannt werden sollte, ist die Arbeit von Metropolis et al., die im Jahre 1953 mit Hilfe des Computers
+MANIAC (Mathematical Analyzer Numerical Integrator And Computer) in Los Alamos die Zustandsgleichung eines Fluids berechneten. Die dort 
+benutzte Methode, der Metropolis Monte Carlo Algorithmus, ist bis heute ein sehr wichtiger Bestandteil der Compuational Physics. Seit
+1953 hat sich nicht nur die Rechenleistung von Computern enorm verbessert, sondern es wurden auch Zahlreiche neue Methoden zur Simulation 
+von physikalischen Prozessen entwickelt, wie zum Beispiel Transition Path Sampling, Finite-Elemente-Methode und Molekulardynamik-Simulation. 
+Letztere wurde in dieser Arbeit verwendet und wird später etwas detaillierter beschrieben.\\
+Laserfallen, auch Optische Pinzette (englisch \textit{optical tweezers} genannt) ist eine experimentelle Methode, bei der Objekte durch die 
+Gradientenkraft eines fokussierten Laserstrahls lokalisiert werden. Die Größe der Objekte reicht von der subatomaren (Kühlung einzelner Atome) bis zur
+Mikrometer-Skala (Zellen). Die Idee für diese Methode entstand schon zu Beginn des 20. Jahrhunderts, als Lebedev und Nichols und Hull die 
+Existenz von Strahlungsdruck experimentell nachweisen konnten. Da die Technik zu der Zeit noch nicht so ausgereift war, wurde die Idee erst 
+1970 wieder durch Ashkin aufgegriffen. Dieser verwendete Laser, um die Bewegung von Atomen und Mikrometergroßen Objekten zu beeinflussen.\\
+
+\section{Motivation}
+Die Motivation für diese Arbeit ist ein Optical Tweezer Experiment, das von Jan Gieseler, Romain Quidant, Christoph Dellago und Lukas Novotny
+durchgeführt wurde. Ziel des Experiments war der Nachweis des Fluktuationstheorems.\\
+Im Experiment befindet sich eine Nanokugel mit einem Durchmesser von etwa 75 Nanometer und einer Masse von $3 \times 10^{-18}$ kg in einer
+Laserfalle in einer Vakuumkammer. Die Kugel wird durch die Gradientenkraft des Lasers lokalisiert. In der Laserfalle fluktuiert die Position 
+der Kugel in alle 3 Raumrichtungen. Die Fluktuation in jede Richtung ist von den anderen Richtungen entkoppelt und kann daher in einer 
+eindimensionalen Bewegungsgleichung, der Langevin-Gleichung, beschrieben werden:
+\begin{equation}
+    \label{eq:langevin}
+    \ddot{x} + \Gamma_0 \dot{x} + \Omega^2_0x = \frac 1 m \left(F_\text{fluct} + F_\text{ext}\right)
+\end{equation}
+Auf der linken Seite: 
+$x$ bezeichnet den Ort des Teilchens, $\dot{x}$ und $\ddot{x}$ die Geschwindigkeit und Beschleunigung, $\Gamma_0$ ist der Reibungskoeffizient
+und $\Omega_0$ ist die Winkelfrequenz, die die Fluktuation entlang der gewählten Raumrichtung beschreibt. Auf der rechten Seite befinden sich 
+zwei Kräfte. Die erste, $F_\text{fluct}$ beschreibt die stochastische Kraft, die durch die Stöße mit dem umgebenden Gas verursacht wird. 
+Diese Kraft ist gegeben durch:
+\begin{equation}
+    \label{eq:ffluct}
+    F_\text{fluct} = \sqrt{2m\Gamma_0k_BT_0} \ \xi\left(t\right)
+\end{equation}
+Hier ist $T_0$ die Temperatur des Wärmereservoirs, also des umgebenden gases, $k_B$ ist die Boltzmann-Konstante und $\xi(t)$ ist weißes 
+Rauschen für das gilt $\left\langle\xi(t)\right\rangle= 0$ und $\left\langle\xi(t)\xi(t')\right\rangle= \delta(t-t')$, d.h. es handelt sich um 
+eine randomisierte Kraft. Der Term $\Gamma_0$ taucht in der Formel wegen des Fluktuations-Dissipations-Theorems auf, das die Dämpfungsrate
+und die stochastische Kraft verbindet. \\
+Die andere Kraft, $F_\text{ext}$ ist eine externe, zeitabhängige Kraft, die das Teilchen in einen stationären Nichtgleichgewichtszustand zu bringen. 
+Die Kraft wird zum Zeitpunkt $t = t_\text{off}$ deaktiviert und die Relaxation des Teilchens wird gemessen. Diese Messung wird 
+durchgeführt, um das Fluktuationstheorem zu untersuchen, das geschrieben werden kann als:
+\begin{equation}
+    \label{eq:fluctuationtheorem}
+    \frac{p(-\Delta S)}{\Delta S} = e^{-\Delta S}
+\end{equation}
+wobei $\Delta S$ die relative Entropieänderung ist, gegeben durch:
+\begin{equation}
+    \Delta S = \beta_0 Q + \Delta \phi
+\end{equation}
+$Q$ bezeichnet die vom Wärmereservoir absorbierte Wärme, $\beta$ ist die reziproke Temperatur bei der die Wärme absorbiert wird
+und $\Delta \phi$ ist die Differenz der trajektoriebasierten Entropie. Das Fluktuationstheorem beschreibt die 
+Wahrscheinlichkeit für Verletzung des 2. Hauptsatzes für finite (kleine) Zeitintervalle. Das ist ein statistischer Effekt und steht nicht
+im Widerspruch zum 2. Hauptsatz.\\
+Die Untersuchung des Fluktuationstheorems wird bei Relaxationsprozessen von zwei unterschiedlichen stationären Nichtgleichgewichtszuständen
+durchgeführt. Der erste wird durch einen Feedback-Mechanismus erzeugt und der zweite durch eine Kombination des Feedback-Mechanismus und einem
+zusätzlichen Feedback-Drives. Die Ergebnisse zeigen, dass beide Zustände beim Relaxationsprozess dem Fluktuationstheorem genügen, wodurch 
+das Theorem für diesen Fall experimentell bestätigt wird.\\
+J. Millen, T. Deesuwan, P. Barker und J. Anders führten ein ähnliches Experiment durch (ohne den Feedback Mechanismus), wo sie die Temperatur
+des umgebenden Gases untersuchten.\\
+Während in dem Modell von Gieseler et al. nur eine Temperatur $T_0$ verwendet wird, stellen Millen et al. ein Modell mit vier unterschiedlichen
+Temperaturen auf: die Temperatur des einströmenden und ausströmenden Gases, der Oberfläche und des Schwerpunkts des Teilchens.\\
+Das Nanoteilchen in der Falle absorbiert Wärme vom Laser, was zu einer erhöhten Oberflächentemperatur führt, die im Allgmeinen höher ist 
+als die Temperatur des einströmenden Gases. Die eiströmenden Gasteilchen wechselwirken mit dem Teilchen in der Falle, nehmen dabei Energie 
+auf und verlassen das Teilchen mit einer höheren Temperatur. Im Modell wird angenommen, dass die Gasteilchen nur mit dem Nanopartikel in der
+Falle und nicht untereinander interagieren, was zu der Entstehung von zwei Wärmereservoirs mit unterschiedlicher Temperatur führt.\\
+Diese Unterschiedlichen Temperaturen führen zu einer Modifikation der eindimensionalen Langevin-Gleichung:
+\begin{equation}
+    M\ddot{x}(t) + M\left(\Gamma^\text{imp}+\Gamma^\text{em}\right)\dot{x}(t) + M\omega^2x(t) =F^\text{imp}+F^\text{em}
+\end{equation}
+x, $\dot{x}$ und $\ddot{x}$ sind Position, Geschwindigkeit und Beschleunigung des Nanoteilchens, M ist die Masse des Nanopartikels, 
+$\omega$ ist die Frequenz der Falle, $\Gamma^\text{Imp}$ und $\Gamma^\text{Em}$ sind die Dämpfungsterme für das ein- und ausgehende Gas
+und $F^\text{Imp}$ und $F^\text{Em}$ sind die zugehörigen Noise-Terme.\\
+Im Experiment zeigen Millen et al., dass die Laserintensität und Teilchengröße einen Einfluss auf die Temperatur der ausgehenden Gastteilchen hat.\\
+Man sieht also, dass im Modell für die Bewegung des Teilchens in der Falle mehr Temperaturen als nur die Temperatur des umgebenden Gases
+berücksichtigt werden sollen. In dieser Masterarbeit beschäftigte ich mich daher mit der Frage: Welchen Einfluss haben Laserintensität
+und die Temperatur des eingehenden Gases auf die Bewegung des Nanoteilchens in der Falle?
+
+
+
+\section{Simulation}
+Um das Experiment zu simulieren, müssen die einzelnen Bestandteile des Experiments modelliert werden. Das Nanoteilchen in der Falle
+wird durch ein System aus Atomen in einem FCC Gitter approximiert, die Gradientenkraft des Lasers durch ein harmonisches Potential, 
+die Absorption der Laserenergie im Teilchen durch den eHEX Algorithmus und das umgebende Gas durch einen Thermostaten mit einem idealen Gas
+als Druckmedium. Die Dynamik des Systems wird mit Hilfe der Methode der Molekulardynamik-Simulation berechnet.\\
+\subsection{Molekulardynamik - Die Idee}
+Molekulardynamik Simulationen werden verwendet um die Dynamik klassischer atomarer oder molekularer Vielteilchensysteme zu berechnen. 
+Klassisch
+in diesem Sinne bedeutet, dass die Trajektorien mit Hilfe von Modellen der klassischen Physik und nicht der Quantenmechanik 
+berechnet werden. Für große Systeme liefert das sehr gute Ergebnisse. Für kleine Systeme wie Wasserstoff oder Helium sind quantenmechanische
+Effekte nicht mehr vernachlässigbar und daher sollten andere Methoden dafür verwendet werden.
+
+\subsection{Velocity-Verlet Algorithmus}
+Mikroskopisch gesehen beschreitet das System eine Trajektorie im Phasenraum, 
+wo jeder Punkt einem Set von Positionen und Impulsen entspricht. Die Verbindung zwischen
+zwei Punkten entspricht der Entwicklung von einem Zustand zum anderen. Diese Entwicklung gilt es zu simulieren. Dazu wird 
+die Methode der finiten Differenzen gewählt. Die Trajektorie im Phasenraum wird in Abschnitte mit Länge $\Delta t$ geteilt und die 
+Bewegungsgleichungen für jedes segment werden berechnet.\\
+Der Algorithmus, der hier verwendet wird und eine sehr zuverlässige Wahl ist, ist der Velocity Verlet Algorithmus. Er basiert auf der 
+Taylorreihenentwicklung der Koordinaten und Geschwindigkeiten. Der Algorithmus kann durch 2 simple Formeln dargestellt werden:
+\begin{equation}
+    \label{eq:velocityverlet}
+    \begin{aligned}
+        \mathbf{r}_i(t+\Delta t) = \mathbf{r}_i(t) + {\mathbf{v}}_i(t) \Delta t + \frac1{2m} {\mathbf{F}}_i(t) \Delta t^2\\
+        \mathbf{v}_i(t+\Delta t) = \mathbf{v}_i(t) + \frac1{2m} \Big[\mathbf{F}_i(t) + \mathbf{F}_i(t+\Delta t)\Big] \Delta t
+    \end{aligned}
+\end{equation}
+Wo $r_i$ die Position des Teilchens $i$ ist, $v_i$ ist seine Geschwindigkeit und $F_i$ ist die auf das Teilchen wirkende Kraft, 
+$\Delta t$ ist der benützte Zeitschritt. 
+Umgesetzt wird der Algorithmus durch folgende Schritte
+\begin{enumerate}
+    \item Berechne die Kräfte zwischen den Teilchen (nur erster Schritt)
+    \item Berechne neue Positionen
+    \item Berechne neue Geschwindigkeiten 
+    \item Berechne Kräfte mit neuen Positionen 
+    \item Berechne neue Geschwindigkeit mit neuen Kräften -> benütze diese für Schritt 2 und setze dort fort
+\end{enumerate}
+
+\subsection{Das Nanoteilchen}
+Um das Nanoteilchen in der Falle zu modellieren wird ein System aus N Teilchen verwendet, die durch das Lennard-Jones Potential 
+wechselwirken:
+\begin{equation}
+    \label{eq:lj}
+    U(r) = 4\varepsilon\left[\left(\frac\sigma r\right)^{12} - \left(\frac\sigma r\right)^6\right]
+\end{equation}
+hier ist $\varepsilon$ die Potentialtiefe, $\sigma$ die Distanz bei der das Potential gleich Null ist und r ist der intermolekulare Abstand.\\
+Um Rechnungen zu vereinfachen werden so genannte reduzierte Einheiten verwendet: $\sigma$ als Einheit der Länge, $\varepsilon$ als Einheit 
+der Energie und die molekulare Masse $m$ als Masse. Üblicherweise werden reduzierte Variablen mit einem Stern versehen. Da aber hier reduzierte 
+Einheiten ständig verwendet werden, wird der Stern weggelassen.
+%Daraus können andere Einheiten abgeleitet werden. Zum Beispiel
+%\begin{itemize}
+    %\item {distance:} $r^* = r/\sigma$
+    %\item {potential energy:} $U^* = U/\varepsilon$
+    %\item {temperature:} $T^* = k_B T/\varepsilon$
+    %\item {time:} $t^* = t\sqrt{\varepsilon/(m\sigma^2)}$
+    %\item {pressure:} $P^* = P\sigma^3/\varepsilon$
+    %\item {density:} $\rho^* = \rho \sigma^3$
+%\end{itemize}
+Das Lennard Jones Potential kann damit geschrieben werden als:
+\begin{equation}
+    U(r^*) = 4\left[{r}^{-12} - {r}^{-6}\right].
+\end{equation}
+Die zugehörige Kraft, die für den Velocity Verlet Algorithmus gebraucht wird, wird durch den negativen Gradienten des
+Potentials berechnet. Als Beispiel die Kraft in x-Richtung:
+\begin{eqnarray}
+    F_{x} &=& -\frac{\partial}{\partial x} U(r) \nonumber\\
+                &=& -\frac{\partial}{\partial x} 4\left[{r}^{-12} - {r}^{-6}\right] \nonumber\\
+    \label{eq:ljforce} &=& 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
+\end{eqnarray}
+(y,z analog).\\
+Ein wichtiger Schritt in der Simulation ist die Initialisierung der Teilchen. Für diese Arbeit wurde als 
+Startkonfiguration ein kubisch flächenzentriertes Gitter (FCC, face centered cubic) gewählt. 
+Die Anzahl der Teilchen in einer 
+Elementarzelle eines FCC Gitters ist 4 (1/8 an jeder Ecke und 1/2 auf jeder der 6 Seitenflächen). Um einen Würfel aus solchen
+Einheitszelle zu erzeugen, werden $M^3$ solcher Zellen benötigt und damit $4M^3$ Teilchen. Die Bedingung 
+$N = 4M^4 = 4,32,108,256,\ldots$ führt zu den so genannten magic numbers. Um Zeit und Rechenaufwand zu sparen wurden in dieser
+Arbeit $N=32$ Teilchen verwendet.\\
+Die Erzeugung des Gitters wird mit Hilfe von 4 eindeutigen Punkten durchgeführt:
+\begin{eqnarray*}
+    p_1 &=& \{0,0,0\}\\
+    p_2 &=& \{0.5 \ a,0.5 \ a,0\}\\
+    p_3 &=& \{0.5 \ a,0,0.5 \ a\}\\
+    p_4 &=& \{0,0.5 \ a,0.5 \ a\}
+\end{eqnarray*}
+wobei $a$ die Gitterkonstante des FCC Gitters ist, gegeben durch 
+From the particle number $N$ and the number of FCC unit cells per edge $M$ the \textit{lattice constant} $a$ can be calculated
+\begin{equation}
+    a = \frac{L}{M}
+\end{equation}
+wobei $M$ die Anzahl der FCC Einheitszellen entlang einer Kante ist und $L$ die Seitenlänge des gesamten Systems, gegeben durch 
+\begin{equation}
+    L = \sqrt[3]{\frac{N}{\rho}}
+\end{equation}
+$\rho$ ist die Dichte des Systems. 
+
+
+\subsection{Laserstrahl - Wärmequelle}
+Das Teilchen in der Falle wird durch den Laserstrahl gefangen. Während die Schwerpunktsbewegung dabei lokalisert ist, absorbieren
+die einzelnen Atome des Nanoteilchens Wärme vom Laser und bekommen damit eine hohe interne Temperatur.\\
+Um dieses Verhalten zu simulieren wird anstatt eines Thermostaten ein Algorithmus verwendet, der Wärmeaustausch als Grundlage hat.
+Dieser Algorithmus heißt eHEX.\\
+Der grundsätzliche Aufbau sieht folgendermaßen aus: Im Gesamtsystem werden Regionen festgelegt, die entweder als Wärmequelle oder 
+Wärmesenken dienen. Diese Regionen werden mit $\Gamma_k$ bezeichnet und haben korrespondierende Mengen von ausgetauschter Wärme $\Delta Q_k$. 
+Negatives $\Delta Q_k$ bedeutet, dass die Region Wärme von der Umgebung aufnimmt und positives $\Delta Q_k$ bedeutet, dass die Region 
+Wärme an die Umgebung abgibt. Die Teilchen in der Simulationsbox $\Gamma$ und in den ,,Wärme''-Regionen besitzen 
+Schwerpunktsgeschwindigkeiten $v_\Omega$ und $v_{\Gamma_k}$. Die Änderung der Energie in den Regionen wird vorgenommen durch das Reskalieren 
+der Geschwindigkeiten mit einem Faktor $\xi_k$ und einem Shift:
+\begin{equation}
+    \mathbf{v}_i \rightarrow \mathbf{\bar{v}}_i = \xi_k \mathbf{v}_i + (1-\xi_k)\mathbf{v}_{\Gamma_k}
+\end{equation}
+\begin{equation}
+    \xi_k = \sqrt{1+\frac{\Delta Q_{\Gamma_k}}{\mathcal{K}_{\Gamma_k}}}
+\end{equation}
+wobei $\Delta Q_{\Gamma_k}$ die ausgetauschte Wärme in der Region ist und $\mathcal{K}_{\Gamma_k}$ die kinetische (Ruhe)-Energie der Region:
+\begin{equation}
+    \label{eq:kineticK}
+    \mathcal{K}_{\Gamma_k} = \sum_{i \in \gamma_k} \frac{m_i v_i^2}{2} - \frac{m_{\Gamma_k}v_{\Gamma_k}^2}{2}
+\end{equation}
+Um den Algorithmus durchzuführen werden noch einige Variablen benötigt, auf die ich hier nicht im Detail eingehen möchte.\\
+Die Situation für die Masterarbeit ist etwas einfacher: es gibt nur eine Region, die als Wärmequelle agiert und die
+Schwerpunktsgeschwindigkeit gleich Null.\\
+Der Algorithmus basiert auf einem Velocity-Verlet Algorithmus mit einem Halbschritt in der Geschwindigkeit, ist jedoch etwas komplizierter. 
+Deswegen werde
+ich nicht alle Formeln aufschreiben, sondern die Einzelnen Schritte beschreiben:
+\begin{enumerate}
+\item Berechnung aller intermolekularen Kräfte (Initialisierung)
+\item Reskalierung der Geschwindigkeiten -> $\bar{v}^n$
+\item Halbschritt der skalierten Geschwindigkeit durch addieren der Kraft -> $\bar{v}^{n+1/2}$
+\item Berechnung der skalierten Positionen mit dem Halbschritt der Geschwindigkeiten -> $\bar{r}^{n+1}$
+\item Berechnung der Kräfte basierend auf den neuen Positionen
+\item Halbschritt der skalierten Geschwindigkeit mit vorigem Halbschritt und neuen Kräften -> $\bar{v}^{n+1}$
+\item Berechnung der Geschwindigkeit durch erneute skalierung mit aktualisiertem $\xi$
+\item Berechnung der neuen Positionen und Korrektur
+\end{enumerate}
+Der Korrekturterm im letzten Schritt ist das Herzstück des eHEX Algorithmus. Er sorgt dafür, dass der Algorithmus keinen 
+Drift in der Energie im Langzeitverhalten aufweist. 
+
+
+\subsection{Laserstrahl - Lokalisierung}
+Die Lokalisierung des Teilchens wird durch ein harmonisches Potential simuliert. Kraft und Potential können geschrieben werden als
+\begin{eqnarray}
+    \mathbf{F} &=& -k \Big[\mathbf{r}_\text{COM}-\mathbf{x}_0\Big]\\
+    U &=& \frac12 k \Big[\mathbf{r}_\text{COM}-\mathbf{x}_0\Big]^2
+\end{eqnarray}
+wobei $r_\text{COM}$ die Position des Schwerpunkts, $x_0$ die Position des Minimums des Potentials und k die Federkonstante ist. Die 
+Schwerpunktsposition wird berechnet durch  
+\begin{equation}
+    \mathbf{r}_\text{COM} = \frac1N\sum_{i=1}^N \mathbf{r}_i
+\end{equation}
+Um das Potential in die Bewegungsgleichung einfließen zu lassen wird die Kraft auf den Schwerpunkt berechnet und zu den intermolekularen 
+Kräften hinzugefügt. 
+
+
+
+\subsection{Umgebendes Gas - Thermostat}
+Im Experiment ist Teilchen von einem Gas in einer Vakuumkammer umgeben. Dieses Gas wird durch einen Thermostaten/Barostaten 
+simuliert, der ein ideales Gas als Druckmedium verwendet.\\
+Die Gasteilchen strömen dabei in die Simulationsbox, interagieren mit dem Teilchen in der Falle und verlassen das System wieder (mit einer höheren
+Temperatur). Die Gasteilchen interagieren also nur mit dem Teilchen in der Falle, nicht untereinander. Dadurch ist dieses Modell der 
+Situation im Experiment sehr ähnlich.\\
+Dazu wird das simulierte Teilchen mit einem Volumen umgeben, das auf der Geometrie des Systems basiert. Der Algorithmus ist so 
+gestaltet, dass sich dieses Volumen im Laufe der Simulation der Geometrie des Systems anpasst. Ich habe mich entschlossen, eine simple, sich nicht
+ändernde Geometrie zu wählen: einen Würfel mit Seitenlänge L, der eine Seitenlänge des LJ-Systems vom Teilchen in der Falle entfernt ist. Damit gilt
+$L = 3s$. Das verwendete Potential für die Interaktion zwischen Gas und Nanoteilchen ist ein Soft-Sphere Potential
+\begin{equation}
+    \label{eq:softsphere}
+    U(r) = \varepsilon \left(\frac{\sigma}{r}\right)^{12}
+\end{equation}
+wo $\varepsilon$ die Interaktionsstärke ist, $\sigma$ die Interaktionslänge und $r$ die Distanz zwischen Gasteilchen und Atom im Nanoteilchen.\\
+Der Algorithmus kann für die vorliegende Situation folgendermaßen zusammengefasst werden:
+\begin{enumerate}
+\item Erzeuge Zufallszahl an Teilchen, die an einer Seite des umgebenden Volumens einströmen soll aus einer Poisson-Verteilung mit 
+Erwartungswert 
+        \begin{equation}
+            %\langle N_\text{fac}\rangle = \Delta t L^2 P \left(\frac{1}{2\pi m k_B T}\right)^\frac12
+            \label{eq:numberofparticles}
+            \langle N_\text{fac}\rangle = \Delta t L^2 P \sqrt{\frac{1}{2\pi m k_B T}}
+        \end{equation}
+wobei $\Delta t$ der Zeitschritt, $L$ Seitenlänge des Umgebenden Volumens, $P$ eingestellter Druck, $m$ Masse, $k_B$ Boltzmann Konstante und 
+$T$ die Temperatur.
+Die Positionen der Teilchen werden über entsprechende Fläche gleichmäßig veerteilt. Die Geschwindigkeiten werden aus zwei unterschiedlichen 
+Verteilungen gewürfelt. Die Komponente, die normal auf die gewählte Fläche des Volumens ist, wird aus einer Rayleigh Verteilung gewählt
+        \begin{equation}
+            p(v_i) = \frac{m}{k_B T}v_i \ e^{-\frac{mv_i^2}{2k_BT}}
+        \end{equation}
+Die restlichen Komponenten werden aus einer Maxwell-Boltzmann Verteilung gezogen.
+\item Führe den ersten Velocity Verlet Schritt aus, um neue Positionen zu berechnen
+\item Wenn Gasteilchen das umgebende Volumen verlassen habe, entferne sie
+\item Berechne die Kräfte
+\item Führe den zweiten Schritt des Velocity Verlet Algorithmus aus
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Ergebnisse}
+Da ich alle Modelle selbst umgesetzt habe, sollten alle Bestandteile auf Korrektheit untersucht werden.
+\subsection{Nanoteilchen}
+Um zu verfizieren, dass es sich um einen FCC Kristall handelt wird die Darstellung so gewählt, dass man das für den FCC Kristall typische
+ABC-Muster der close packed structure sieht. 
+
+\subsection{Velocity Verlet}
+Simulationen mit der Molekulardynamik Methode finden im mikrokanonischen Ensemble statt, d.h. Volumen, Teilchenzahl und Gesamtenergie sind konstant.
+Die Geschwindigkeiten der Teilchen werden bei der Initialisierung aus einer Maxwell-Boltzmann Verteilung gewürfelt. Danach müssen zwei Anpassungen 
+vorgenommen werden.\\
+Um zu verhindern, dass das System sich bewegt, wird die Schwerpunktsgeschwindigkeit berechnet und von allen Teilchen subtrahiert.
+\begin{eqnarray}
+    \mathbf{v}_\text{COM} &=& \frac1N\sum_{i=1}^N \mathbf{v}_i\\
+    %\mathbf{v}_\text{cut} &=& \frac{\mathbf{v}_\text{tot}}N\\
+    \mathbf{v}_i^\text{new} &=& \mathbf{v}_i - \mathbf{v}_\text{COM}
+\end{eqnarray}
+Da es für die Teilchen kein sehr natürlicher Zustand ist sich genau auf den Punkten in einem FCC Gitter zu befinden benötigt das System 
+einige Zeitschritte zur Equilibrierung, was dazu führen kann, dass sich eine andere Temperatur einstellt, als die, die gewünscht ist. Um zu 
+versichern, dass die Temperatur der gewünschten entspricht, müssen die Geschwindigkeiten der Teilchen reskaliert werden:
+\begin{eqnarray}
+\label{eq:rescale1}   E &=& \sum_{i=1}^N \frac{\mathbf{v}_i^2}{2} \\
+ \label{eq:rescale2}   \lambda &=& \sqrt{\frac{3(N-1)T}{2E}} \\
+ \label{eq:rescale3}   \mathbf{v}_i^\text{new} &=& \lambda \mathbf{v}_i  
+\end{eqnarray}
+Diese Reskalierung wird einige Male vorgenommen, bis das System die gewünschte Temperatur erreicht hat. Da diese Reskalierung keinem 
+natürlichen internen Prozess entspricht, kann man einen Sprung in der Kurve der Gesamtenergie sehen.
+
+\subsection{eHEX}
+Der eHEX Algorithmus besteht aus vielen Schritten und vielen Variablen, was ihn sehr fehleranfällig macht. Weiters sollte der Effekt von 
+verschiedenen Werten von $\Delta Q$ untersucht werden. 
+
+
+
+
+
+
+
+
+\end{document}
