@@ -408,8 +408,60 @@ natürlichen internen Prozess entspricht, kann man einen Sprung in der Kurve der
 
 \subsection{eHEX}
 Der eHEX Algorithmus besteht aus vielen Schritten und vielen Variablen, was ihn sehr fehleranfällig macht. Weiters sollte der Effekt von 
-verschiedenen Werten von $\Delta Q$ untersucht werden. 
+verschiedenen Werten von $\Delta Q$ untersucht werden. Was wir erwarten ist eine kontinuierliche Erhöhung der
+internen Temperatur des Systems. Die Rate der Erhöhung sollte mit steigendem $\Delta Q$ steigen und die Temperatur sollte sich 
+für $\Delta Q = 0$ nicht verändern. Weiters sollte mit steigender interner Temperatur auch die Gesamtenergie des Systems
+steigen. Diese zwei Erwartungen werden erfüllt, wie die beiden Bilder zeigen.
 
+\subsection{Thermostat}
+Der Thermostat hält das System davon ab sich zu überhitzen. Durch Interaktion von Gasteilchen mit dem Nanoteilchen in der Falle
+wird Energie auf die Gasteilchen übertragen und somit stellt sich eine neue, höhere konstante Temperatur ein. Diese höhrere
+Temperatur ist die Basis für die Messungen.
+
+
+\subsection{Simulation des Experiments}
+Da wir jetzt festgestellt haben, dass alle Teile individuell funktionieren, ist es Zeit sie zusammenzuführen, um das Experiment zu 
+simulieren, um die Frage zu beantworten: Welchen Einfluss hat die Laserintensität auf die Schwerpunktsbewegung des Gases? Und welche 
+Rolle spielt die Temperatur des Umgebenden Gases?\\
+Zunächst müssen wir feststellen, ob die Anwendung des eHEX Algorithmus die Schwerpunktsbewegung des Nanoteilchens beeinflusst. Diese Untersuchung
+resultiert in einer langweiligen Grafik mit einer konstanten, waagrechten Gerade, die zeigt, dass der eHEX Algorithmus alleine keinen 
+Einfluss auf die Schwerpunktsbewegung hat.\\
+Der nächste Schritt ist eine Art Kalibrierung. Bei Laserintensität $\Delta Q = 0$ und unter Einwirkung des Thermostaten sollte sich das
+gesamte System auf die selbe Temperatur, nämlich die Temperatur des umgebenden Gases einstellen. Dies ist der Fall, wie in 
+folgenden Grafiken zu sehen ist. Die gewählten Parameter sind: $P=0.8$, $T_\text{imp} = 0.05$, $T = 0.2$, $N=32$.\\
+Da nun der Algorithmus kalibriert ist, werden die interessanteren Fälle von $\Delta Q > 0$ untersucht. Der eingestellte Druck 
+ist proportional zur Anzahl der erzeugten Teilchen auf jeder Fläche. Höherer Druck bedeutet also mehr Teilchen, die Wärme vom 
+Nanoteilchen abführen können, was zu einem höheren Maximalwert von $\Delta Q$ führt. Die Temperatur des Umgebenden Gases fließt ebenfalls 
+in die Anzahl der erzeugten Teilchen ein, deshalb wurden zwei Temperaturen zur untersuchung gewählt: 0.05 und 0.1 - ein Viertel und die 
+Hälfte der ursprünglichen internen Temperatur des Gasteilchens. Der Druck wird von 0.1 bis 1.2 in Schritten von 0.1 variiert und die 
+zugeführte Wärmemenge von 0 bis 0.5 in Schritten von 0.05 im Allgemeinen (nicht konstant, sondern hängt von den Umständen ab, vor 
+allem bei $P=0.1$ und $P=0.2$). Für die Darstellung werden 3 Werte für den Druck gewählt: $P=0.1$, $P=0.5$ und $P=1.0$. Für jeden 
+dieser Druckwerte werden die Graphen für die Schwerpunktstemperatur, die interne Temperatur und die Temperatur des ausgehenden Gases 
+geplottet. Dabei ist auf die Unterschiedliche Skalierung der Achsen zu achten.\\
+Die Erste Beobachtung ist, dass die Schwerpunktsbewegung und die Temperatur des ausgehenden Gases mit steigendem $\Delta Q$ ansteigen.
+Das ist zu erwarten, da bei höherer ins System gempumpter Wärme mehr Energie an die umgebenden Teilchen abgegeben wird. Weiters wird 
+beobachtet, dass die Temperatur schneller für niedrige Drücke ansteigt (was durch die Unterschiedliche Skalierung der 
+Ordinate nicht sofort auffällt). Dieses Verhalten ist ebenfalls zu erwarten, weil das Umgebende Gas als Thermostat wirkt und 
+höherer Druck eine höhere Anzahl an Gasteilchen zur Folge hat, die mehr Wärme vom System abtransportieren.\\
+Die Entwicklung der Temperatur hängt auch von der Temperatur des Umgebenden Gases ab. Die zur Temperatur $T=0.1$ korrespondieren (blau) 
+steigen etwas schneller an, als die roten Kurven.\\
+Millen et al. geben eine Formel für die Entwicklung der Schwerpunktstemperatur an. Diese Formel kann mit den Ergebnissen verglichen werden. 
+Man sieht in der Grafik (die als Repräsentation gewählt wurde), 
+dass die gemessene Temperatur schneller ansteigt als die berechnete. Dies kann einige Gründe haben. Ein Grund dafür könnte
+ein Unterschiedlicher thermischer Akkomodationskoeffizient sein. Dieser ist gegeben durch
+\begin{equation}
+    \alpha = \frac{T_\text{em} - T_\text{imp}}{T_\text{sur} - T_\text{imp}}
+\end{equation}
+Der Akkomodationskoeffizient ist ein Maß für die übertragung der Energie vom Nanoteilchen auf das Gas. Der Wert für $\alpha$ im Paper von 
+Millen et al. ist $\alpha = 0.777$, während der berechnete Wert für diese Simulation bei $\alpha = 0.016$. Das bedeutet, dass 
+die Übertragung der Energie von Nanoteilchen auf Gasteilchen nicht auf die gleiche Art und Weise stattfindet. 
+
+
+
+\subsection{Conclusio}
+Um zusammenzufassen: Für diese Arbeit habe ich ein Optical Tweezer Experiment simuliert, um den Einfluss der Laserintensität 
+auf die Schwerpunktsbewegung zu untersuchen. Die Ergebnisse zeigen, dass die Laserintensität, die Temperatur
+des eingehenden Gases und der umgebende Druck die Schwerpunktsbewegung beeinflussen. 
 
 
 

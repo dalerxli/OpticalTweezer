@@ -17,15 +17,16 @@
 \usepackage[font=scriptsize]{subcaption}
 \usepackage{fancyhdr}
 \setlength{\headheight}{15.2pt}
-\pagestyle{fancy}
+\pagestyle{empty}
 \usepackage{listings} 
 \usepackage{pict2e}
 \usepackage{xfrac}
-\usepackage[english]{babel}
+\usepackage[german]{babel}
 \usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{pdfpages}
 \usetheme{Madrid}
+\usepackage{wrapfig}
 
 
 
@@ -95,41 +96,307 @@
 \begin{document}
 \title{Simulation of Nano Particles in a Laser Trap}
 %\subtitle{Präsentation der Masterarbeit}
-\author{Mathias Höld}
+\author{Mathias Höld, BSc}
 \date{23.03.2017}
 \begin{frame}
 \titlepage
-\thispagestyle{empty}
 \end{frame}
 
 \begin{frame}
 \tableofcontents
 \end{frame}
-\begin{frame}
-\frametitle{Test1}
-Test
-\end{frame}
 
 \section{Einleitung}
 \begin{frame}
 \frametitle{Einleitung}
-Test
+Verbindung von zwei Teilbereichen der Physik:
+\begin{itemize}
+\item Computational Physics
+\item Optische Fallen
+\end{itemize}
 \end{frame}
+
+\begin{frame}
+\frametitle{Computational Physics}
+\begin{itemize}
+\item Meilenstein: Entwicklung des Metropolis Monte Calro Algoithmus (1953)
+\item Seit dem enorme Verbesserung der Rechenleistung von Computern 
+\item Neue Methoden entwickelt (Transition Path Sampling, Finite-Elemente,\ldots)
+\item In dieser Arbeit verwendet: Molekulardynamik-Simulation
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Optische Fallen}
+\begin{itemize}
+\item Lokalisierung von Objekten durch Gradientenkraft eines Laserstrahls
+\item Objekte von subatomarer bis Mikrometer-Skala
+\item Erste Idee zu Beginn des 20. Jahrhunderts (Lebedev, Nichols, Hull)
+\item Realisierung 1970 durch Ashkin
+\end{itemize}
+\end{frame}
+
 \section{Motivation}
+\subsection{Experiment -- Gieseler et al.}
 \begin{frame}
-\frametitle{Test1}
-Test
+\frametitle{Experiment -- Gieseler et al.}
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.3]{../images/experimental_setup.jpg}
+\caption{Experimenteller Aufbau \cite{Gieseler2014}}
+\end{figure}
+\end{center}
 \end{frame}
+
+\begin{frame}
+\frametitle{Bewegungsgleichung}
+1-D Langevin-Gleichung:
+\begin{equation}
+    \label{eq:langevin}
+    \ddot{x} + \Gamma_0 \dot{x} + \Omega^2_0x = \frac 1 m \left(F_\text{fluct} + F_\text{ext}\right)
+\end{equation}
+\begin{tabular}{l l}
+$x$ & Ort des Teilchens\\
+$\dot{x}$ & Geschwindigkeit des Teilchens\\
+$\ddot{x}$ & Beschleunigung des Teilchens\\
+$m$ & Masse des Teilchens\\
+$\Gamma_0$ & Reibungskoeffizient\\
+$\Omega_0$ & Winkelfrequenz (Fluktuation)\\
+$F_\text{fluct}$ & stochastische Kraft\\
+$F_\text{ext}$ & externe Kraft
+\end{tabular}
+\end{frame}
+
+\begin{frame}
+\frametitle{Stochastische Kraft}
+Stochastische Kraft:
+\begin{equation}
+    \label{eq:ffluct}
+    F_\text{fluct} = \sqrt{2m\Gamma_0k_BT_0} \ \xi\left(t\right)
+\end{equation}
+\begin{tabular}{l l}
+$T$ & Temperatur Wärmereservoir\\
+$k_B$ & Boltzmann-Konstante\\
+$\xi(t)$ & Weißes Rauschen\\
+\end{tabular}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Fluktuationstheorem}
+Fluktuationstheorem für diese Situation:
+\begin{equation}
+    \label{eq:fluctuationtheorem}
+    \frac{p(-\Delta S)}{\Delta S} = e^{-\Delta S}
+\end{equation}
+%\end{frame}
+%\begin{frame}
+%\frametitle{Fluktuationstheorem}
+$\Delta S$: relative Entropieänderung
+\begin{equation}
+    \Delta S = \beta_0 Q + \Delta \phi
+\end{equation}
+\begin{tabular}{l l}
+$Q$ & absorbierte Wärme\\
+$\beta$ & reziproke Temperatur\\
+$\Delta \phi$ & Differenz der trajektoriebasierten Entropie
+\end{tabular}\\
+Untersucht für 2 externe Kräfte: Feedback-Mechanismus ohne und mit Parametrischem Drive
+\end{frame}
+
+\subsection{Temperaturmodell}
+\begin{frame}
+\frametitle{Experiment -- Millen et al.}
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.2]{../images/nnano_millen.jpg}
+\caption{Experimenteller Aufbau \cite{MillenJ.2014}}
+\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Temperaturen}
+4 unterschiedliche Temperaturen:
+\begin{itemize}
+\item Schwerpunktstemperatur $T_\text{COM}$
+\item Oberflächentemperatur$T_\text{sur}$
+\item Temperatur eingehendes Gas $T_\text{imp}$
+\item Temperatur ausgehendes Gas $T_\text{em}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Wärmereservoire des umgebenden Gases}
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.4]{../images/nano_nonequilibrium_cropped.jpg}
+\caption{Wärmereservoire des umgebenden Gases \cite{Kroy2014}}
+\end{figure}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Modifizierte Bewegungsgleichung}
+Modifizierte 1-D Langevin-Gleichung:
+\begin{equation}
+    M\ddot{x}(t) + M\left(\Gamma^\text{imp}+\Gamma^\text{em}\right)\dot{x}(t) + M\omega^2x(t) =F^\text{imp}+F^\text{em}
+\end{equation}
+\begin{tabular}{l l}
+$x$ & Ort des Teilchens\\
+$\dot{x}$ & Geschwindigkeit des Teilchens\\
+$\ddot{x}$ & Beschleunigung des Teilchens\\
+$M$ & Masse des Teilchens\\
+$\Gamma^\text{imp/em}$ & Reibungskoeffizient eingehendes/ausgehendes Gas\\
+$\omega$ & Winkelfrequenz (Fluktuation)\\
+$F^\text{imp/em}$ & Noise-Term eingehendes/ausgehendes Gas
+\end{tabular}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fragestellung}
+Mit Einführung der unterschiedlichen Temperaturen stellen sich folgende Fragen:
+\begin{itemize}
+\item Welchen Einfluss hat die Laserintensität auf die Schwerpunktsbewegung des Teilchens in der Falle?
+\item Welchen Einfluss hat die Temperatur des Umgebenden Gases?
+\end{itemize}
+\end{frame}
+
+
+
 \section{Simulation}
+
+\subsection{Velocity Verlet}
 \begin{frame}
-\frametitle{Test1}
-Test
+\frametitle{Velocity Verlet}
+Integration der Newton'schen Bewegungsgleichungen durch Velocity Verlet Algorithmus:
+\begin{equation}
+    \label{eq:velocityverlet}
+    \begin{aligned}
+        \mathbf{r}_i(t+\Delta t) = \mathbf{r}_i(t) + {\mathbf{v}}_i(t) \Delta t + \frac1{2m} {\mathbf{F}}_i(t) \Delta t^2\\
+        \mathbf{v}_i(t+\Delta t) = \mathbf{v}_i(t) + \frac1{2m} \Big[\mathbf{F}_i(t) + \mathbf{F}_i(t+\Delta t)\Big] \Delta t
+    \end{aligned}
+\end{equation}
+\begin{tabular}{l l}
+$\mathbf{r}_i$ & Position Teilchen $i$\\
+$\mathbf{v}_i$ & Geschwindigkeit Teilchen $i$\\
+$\mathbf{F}_i$ & Kraft auf Teilchen $i$\\
+$\Delta t$ & Zeitschritt\\
+\end{tabular}\\
 \end{frame}
+
+\subsection{Nanoteilchen}
+
+\begin{frame}
+\frametitle{Nanoteilchen}
+Nanoteilchen dargestellt durch System aus $N$ Teilchen, die über Lennard-Jones Potential wechselwirken:
+\begin{equation}
+    \label{eq:lj}
+    U(r) = 4\varepsilon\left[\left(\frac\sigma r\right)^{12} - \left(\frac\sigma r\right)^6\right]
+\end{equation}
+\begin{tabular}{l l}
+$\varepsilon$ & Potentialtiefe\\
+$\sigma$ & Abstand, wo Potential Null ist\\
+$r$ & Intermolekularer Abstand\\
+\end{tabular}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Lennard-Jones Potential}
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.3]{../images/LJ-2.pdf}
+\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Reduzierte Einheiten}
+Um Rechnung zu vereinfachen, werden reduzierte Einheiten verwendet:
+\begin{itemize}
+\item Länge: $\sigma$ $\rightarrow$ $r^* = r/\sigma$
+\item Energie: $\varepsilon$ $\rightarrow$ $U^* = U/\varepsilon$
+\item Masse: $m$
+\end{itemize}
+Lennard-Jones Potential und zugehörige Kraft in reduzierten Einheiten:
+\begin{eqnarray}
+    U(r) &=& 4\left[{r}^{-12} - {r}^{-6}\right] \\
+    F_{x} &=& -\frac{\partial}{\partial x} U(r) 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
+\end{eqnarray}
+\end{frame}
+
+
+
+\subsection{Laserstrahl -- Wärmequelle}
+\begin{frame}
+\frametitle{Laserstrahl -- Wärmequelle}
+Simulation der Aufnahme von Wärme des Lasers: eHEX (enhanced Heat Exchange Algorithm)\\
+Idee: sukzessive Reskalierung der Geschwindigkeiten 
+\begin{equation}
+    \mathbf{v}_i \rightarrow \mathbf{\bar{v}}_i = \xi_k \mathbf{v}_i
+\end{equation}
+kombiniert mit Velocity Verlet
+
+\end{frame}
+
+\subsection{Laserstrahl -- Lokalisierung}
+\begin{frame} 
+\frametitle{Laserstrahl -- Lokalisierung}
+Lokalisierung des Teilchens durch Laserstrahl: Harmonisches Potential
+\begin{eqnarray}
+    \mathbf{F} &=& -k \Big[\mathbf{r}_\text{COM}-\mathbf{x}_0\Big]\\
+    U &=& \frac12 k \Big[\mathbf{r}_\text{COM}-\mathbf{x}_0\Big]^2
+\end{eqnarray}
+\begin{tabular}{l l}
+$\mathbf{r_\text{COM}}$ & Schwerpunktsposition\\
+$\mathbf{x_0}$ & Minimum des Potentials\\
+$k$ & Federkonstante\\
+\end{tabular}\\
+\end{frame}
+
+\subsection{Umgebendes Gas -- Thermostat}
+\begin{frame}
+\frametitle{Umgebendes Gas -- Thermostat}
+Ideales Gas als Druckmedium mit Interaktionspotential
+\begin{equation}
+    \label{eq:softsphere}
+    U(r) = \varepsilon \left(\frac{\sigma}{r}\right)^{12}
+\end{equation}
+\begin{tabular}{l l}
+$\varepsilon$ & Interaktionsstärke\\
+$\sigma$ & Interaktionslänge\\
+\end{tabular}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Algorithmus}
+Wichtige Elemente des Algorithmus:
+\begin{itemize}
+\item Teilchen umgeben von Volumen
+\item Eingefügte Teilchenanzahl pro Fläche: 
+\begin{equation}
+    \langle N_\text{fac}\rangle = \Delta t L^2 P \sqrt{\frac{1}{2\pi m k_B T}}
+\end{equation}
+\item Geschwindigkeitskomponente Normal zur Fläche
+\begin{equation}
+    p(v_i) = \frac{m}{k_B T}v_i \ e^{-\frac{mv_i^2}{2k_BT}}
+\end{equation}
+\item Andere Komponenten: Maxwell-Boltzmann
+\end{itemize}
+\end{frame}
+
 \section{Ergebnisse}
+
 \begin{frame}
-\frametitle{Test1}
-Test
+\frametitle{Nanoteilchen}
+\begin{center}
+\begin{figure}
+\includegraph
+\end{figure}
+\end{center}
 \end{frame}
 
 
+\bibliography{../references}
+\bibliographystyle{unsrt}
 \end{document}

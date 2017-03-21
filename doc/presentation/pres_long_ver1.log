@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.28)  18 MAR 2017 15:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.28)  21 MAR 2017 12:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1144,37 +1144,115 @@ zust^^?anden durchgef^^?uhrt. Der
  []
 
 [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 180.
- [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 180.
+Underfull \hbox (badness 10000) in paragraph at lines 178--182
+
+ []
+
+[3]
+Overfull \hbox (1.51976pt too wide) in paragraph at lines 212--213
+[]\OT1/cmr/m/n/12 Berechne neue Geschwindigkeit mit neuen Kr^^?aften -> ben^^?u
+tze diese f^^?ur Schritt
+ []
+
+[4] [5] [6]
+Overfull \hbox (18.1307pt too wide) in paragraph at lines 305--306
+[]\OT1/cmr/m/n/12 Berechnung der skalierten Po-si-tio-nen mit dem Halb-schritt 
+der Geschwindigkeiten
+ []
+
+
+Overfull \hbox (2.79057pt too wide) in paragraph at lines 307--308
+[]\OT1/cmr/m/n/12 Halbschritt der skalierten Geschwindigkeit mit vorigem Halb-s
+chritt und neuen
+ []
+
+[7]
+Overfull \hbox (2.1767pt too wide) in paragraph at lines 332--341
+\OT1/cmr/m/n/12 Die Gasteilchen str^^?omen dabei in die Sim-u-la-tions-box, in-
+ter-agieren mit dem Teilchen
+ []
+
+
+Overfull \hbox (16.18907pt too wide) in paragraph at lines 354--359
+\OT1/cmr/m/n/12 wobei $^^A\OML/cmm/m/it/12 t$ \OT1/cmr/m/n/12 der Zeitschritt, 
+$\OML/cmm/m/it/12 L$ \OT1/cmr/m/n/12 Seit-enl^^?ange des Umgeben-den Vol-u-mens
+, $\OML/cmm/m/it/12 P$ \OT1/cmr/m/n/12 eingestell-
+ []
+
+
+Overfull \hbox (13.68074pt too wide) in paragraph at lines 354--359
+\OT1/cmr/m/n/12 Po-si-tio-nen der Teilchen wer-den ^^?uber entsprechende Fl^^?a
+che gle-ichm^^?a^^Yig veerteilt.
+ []
+
+
+Overfull \hbox (19.86263pt too wide) in paragraph at lines 354--359
+\OT1/cmr/m/n/12 Die Geschwindigkeiten wer-den aus zwei un-ter-schiedlichen Vert
+eilun-gen gew^^?urfelt.
+ []
+
+
+Overfull \hbox (0.93921pt too wide) in paragraph at lines 361--363
+\OT1/cmr/m/n/12 Die restlichen Kom-po-nen-ten wer-den aus einer Maxwell-Boltzma
+nn Verteilung
+ []
+
+[8]
+Overfull \hbox (19.09872pt too wide) in paragraph at lines 389--393
+\OT1/cmr/m/n/12 Um zu ver-hin-dern, dass das Sys-tem sich be-wegt, wird die Sch
+w-er-punk-ts-geschwindigkeit
+ []
+
+[9]
+Overfull \hbox (5.70398pt too wide) in paragraph at lines 405--408
+\OT1/cmr/m/n/12 Tem-per-atur er-re-icht hat. Da diese Reskalierung keinem nat^^
+?urlichen in-ter-nen Prozess
+ []
+
+[10] [11]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 472.
+ [12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 472.
  (./pres_long_ver1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 180.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 180.
-Package rerunfilecheck Info: File `pres_long_ver1.out' has not changed.
-(rerunfilecheck)             Checksum: D046783FBD41A78A0C180147319C76C1;180.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 180.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 472.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 472.
+
+
+Package rerunfilecheck Warning: File `pres_long_ver1.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `pres_long_ver1.out':
+(rerunfilecheck)             Before: D046783FBD41A78A0C180147319C76C1;180
+(rerunfilecheck)             After:  E23D58943E9D47B1FA435CC4D293A85B;1003.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 472.
  ) 
 Here is how much of TeX's memory you used:
- 17292 strings out of 493117
- 293917 string characters out of 6135432
- 410955 words of memory out of 5000000
- 20532 multiletter control sequences out of 15000+600000
- 9238 words of font info for 35 fonts, out of 8000000 for 9000
+ 17364 strings out of 493117
+ 294689 string characters out of 6135432
+ 413955 words of memory out of 5000000
+ 20546 multiletter control sequences out of 15000+600000
+ 10771 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,12n,49p,10452b,358s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,12n,49p,10452b,429s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
-/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
-sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
-/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/lo
-cal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
-al/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local
-/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on pres_long_ver1.pdf (3 pages, 103567 bytes).
+/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
+ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/loca
+l/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
+exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on pres_long_ver1.pdf (12 pages, 162132 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
+ 187 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
+ 69 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

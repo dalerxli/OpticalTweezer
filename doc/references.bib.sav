@@ -22,6 +22,7 @@
   Number                   = {4},
   Pages                    = {2384-2393},
   Volume                   = {72},
+
   Doi                      = {10.1063/1.439486},
   Eprint                   = { http://dx.doi.org/10.1063/1.439486 
 },
@@ -32,19 +33,21 @@
 }
 
 @Article{Ashkin2000,
-  author    = {A. Ashkin},
-  title     = {History of optical trapping and manipulation of small-neutral particle, atoms, and molecules},
-  journal   = {IEEE Journal of Selected Topics in Quantum Electronics},
-  year      = {2000},
-  volume    = {6},
-  number    = {6},
-  pages     = {841-856},
-  month     = {Nov},
-  issn      = {1077-260X},
-  doi       = {10.1109/2944.902132},
-  keywords  = {atom-photon collisions;bio-optics;history;molecule-photon collisions;particle optics;quantum optics;radiation pressure;reviews;atoms;biology;biology subfields;chemistry;chemistry subfields;history;molecules;optical manipulation;optical trapping;physics;physics subfields;reviews;small particles;small-neutral particles;unique characteristics;Atom optics;Atomic beams;Atomic measurements;Biomedical optical imaging;Charge carrier processes;History;Laser theory;Nonlinear optics;Optical scattering;Physics},
-  owner     = {motz},
-  timestamp = {2017.02.12},
+  Title                    = {History of optical trapping and manipulation of small-neutral particle, atoms, and molecules},
+  Author                   = {A. Ashkin},
+  Journal                  = {IEEE Journal of Selected Topics in Quantum Electronics},
+  Year                     = {2000},
+
+  Month                    = {Nov},
+  Number                   = {6},
+  Pages                    = {841-856},
+  Volume                   = {6},
+
+  Doi                      = {10.1109/2944.902132},
+  ISSN                     = {1077-260X},
+  Keywords                 = {atom-photon collisions;bio-optics;history;molecule-photon collisions;particle optics;quantum optics;radiation pressure;reviews;atoms;biology;biology subfields;chemistry;chemistry subfields;history;molecules;optical manipulation;optical trapping;physics;physics subfields;reviews;small particles;small-neutral particles;unique characteristics;Atom optics;Atomic beams;Atomic measurements;Biomedical optical imaging;Charge carrier processes;History;Laser theory;Nonlinear optics;Optical scattering;Physics},
+  Owner                    = {motz},
+  Timestamp                = {2017.02.12}
 }
 
 @Article{Berendsen1984,
@@ -148,6 +151,21 @@
   Publisher                = {Nature Publishing Group},
   Timestamp                = {2016.06.20},
   Url                      = {http://dx.doi.org/10.1038/nnano.2014.40}
+}
+
+@Article{Goodman1980,
+  Title                    = {Thermal accommodation coefficients},
+  Author                   = {Goodman, Frank O},
+  Journal                  = {The Journal of Physical Chemistry},
+  Year                     = {1980},
+  Number                   = {12},
+  Pages                    = {1431--1445},
+  Volume                   = {84},
+
+  __markedentry            = {[motz:6]},
+  Owner                    = {motz},
+  Publisher                = {ACS Publications},
+  Timestamp                = {2017.03.01}
 }
 
 @Article{Gruenwald2006,
@@ -255,6 +273,21 @@
   Url                      = {http://dx.doi.org/10.1038/nnano.2014.82}
 }
 
+@Article{Jauffred2008,
+  Title                    = {Three-Dimensional Optical Control of Individual Quantum Dots},
+  Author                   = {Jauffred, Liselotte and Richardson, Andrew C. and Oddershede, Lene B.},
+  Journal                  = {Nano Letters},
+  Year                     = {2008},
+  Note                     = {PMID: 18767883},
+  Number                   = {10},
+  Pages                    = {3376-3380},
+  Volume                   = {8},
+  Doi                      = {10.1021/nl801962f},
+  Eprint                   = {http://dx.doi.org/10.1021/nl801962f},
+  Url                      = { http://dx.doi.org/10.1021/nl801962f 
+}
+}
+
 @Article{Kroy2014,
   Title                    = {Levitating nanoparticles: Non-equilibrium nano-thermometry},
   Author                   = {Kroy, Klaus},
@@ -281,6 +314,7 @@
   Number                   = {11},
   Pages                    = {433--458},
   Volume                   = {311},
+
   Doi                      = {10.1002/andp.19013111102},
   ISSN                     = {1521-3889},
   Owner                    = {motz},
@@ -297,6 +331,7 @@
   Number                   = {11},
   Pages                    = {807--819},
   Volume                   = {8},
+
   ISSN                     = {1748-3387},
   Owner                    = {motz},
   Publisher                = {Nature Research},
@@ -304,19 +339,20 @@
 }
 
 @Article{Metropolis1953,
-  author    = {Nicholas Metropolis and Arianna W. Rosenbluth and Marshall N. Rosenbluth and Augusta H. Teller and Edward Teller},
-  title     = {Equation of State Calculations by Fast Computing Machines},
-  journal   = {The Journal of Chemical Physics},
-  year      = {1953},
-  volume    = {21},
-  number    = {6},
-  pages     = {1087-1092},
-  doi       = {10.1063/1.1699114},
-  eprint    = {http://dx.doi.org/10.1063/1.1699114},
-  owner     = {motz},
-  timestamp = {2017.02.12},
-  url       = { http://dx.doi.org/10.1063/1.1699114 
-},
+  Title                    = {Equation of State Calculations by Fast Computing Machines},
+  Author                   = {Nicholas Metropolis and Arianna W. Rosenbluth and Marshall N. Rosenbluth and Augusta H. Teller and Edward Teller},
+  Journal                  = {The Journal of Chemical Physics},
+  Year                     = {1953},
+  Number                   = {6},
+  Pages                    = {1087-1092},
+  Volume                   = {21},
+
+  Doi                      = {10.1063/1.1699114},
+  Eprint                   = {http://dx.doi.org/10.1063/1.1699114},
+  Owner                    = {motz},
+  Timestamp                = {2017.02.12},
+  Url                      = { http://dx.doi.org/10.1063/1.1699114 
+}
 }
 
 @Article{Nichols1901,
@@ -328,6 +364,7 @@
   Month                    = {Nov},
   Pages                    = {307--320},
   Volume                   = {13},
+
   Doi                      = {10.1103/PhysRevSeriesI.13.307},
   Issue                    = {5},
   Numpages                 = {0},
@@ -364,6 +401,24 @@
 
   Owner                    = {motz},
   Timestamp                = {2017.01.05}
+}
+
+@Article{Searles1999,
+  Title                    = {Fluctuation theorem for stochastic systems},
+  Author                   = {Searles, Debra J. and Evans, Denis J.},
+  Journal                  = {Phys. Rev. E},
+  Year                     = {1999},
+
+  Month                    = {Jul},
+  Pages                    = {159--164},
+  Volume                   = {60},
+
+  __markedentry            = {[motz:]},
+  Doi                      = {10.1103/PhysRevE.60.159},
+  Issue                    = {1},
+  Numpages                 = {0},
+  Publisher                = {American Physical Society},
+  Url                      = {http://link.aps.org/doi/10.1103/PhysRevE.60.159}
 }
 
 @Article{Sharma2000,
@@ -417,10 +472,28 @@
   Number                   = {1},
   Pages                    = {015012},
   Volume                   = {18},
+
   Abstract                 = {The Open Visualization Tool (OVITO) is a new 3D visualization software designed for post-processing atomistic data obtained from molecular dynamics or Monte Carlo simulations. Unique analysis, editing and animations functions are integrated into its easy-to-use graphical user interface. The software is written in object-oriented C++, controllable via Python scripts and easily extendable through a plug-in interface. It is distributed as open-source software and can be downloaded from the website http://ovito.sourceforge.net/ [http://ovito.sourceforge.net/] .},
   Owner                    = {motz},
   Timestamp                = {2017.01.05},
   Url                      = {http://stacks.iop.org/0965-0393/18/i=1/a=015012}
+}
+
+@Article{Svoboda1994,
+  Title                    = {Optical trapping of metallic Rayleigh particles},
+  Author                   = {Karel Svoboda and Steven M. Block},
+  Journal                  = {Opt. Lett.},
+  Year                     = {1994},
+
+  Month                    = {Jul},
+  Number                   = {13},
+  Pages                    = {930--932},
+  Volume                   = {19},
+
+  Abstract                 = {Metallic objects reflect light and have generally been considered poor candidates for optical traps, particularly with optical tweezers, which rely on a gradient force to provide trapping. We demonstrate that stable trapping can occur with optical tweezers when they are used with small metallic Rayleigh particles. In this size regime, the scattering pictures for metals and dielectrics are similar, and the larger polarizability of metals implies that trapping forces are greater. The latter fact makes the use of metal particles attractive for certain biological applications. Comparison of trapping forces for latex and gold spheres demonstrates that the gradient force is the major determinant of trapping strength and that competing effects, such as scattering or radiometric forces, are relatively minor.},
+  Doi                      = {10.1364/OL.19.000930},
+  Publisher                = {OSA},
+  Url                      = {http://ol.osa.org/abstract.cfm?URI=ol-19-13-930}
 }
 
 @Article{Swope1982,
@@ -438,6 +511,21 @@
   Url                      = {http://scitation.aip.org/content/aip/journal/jcp/76/1/10.1063/1.442716}
 }
 
+@Article{Tan2004,
+  Title                    = {Optical Trapping of Single-Walled Carbon Nanotubes},
+  Author                   = {Tan, Shida and Lopez, Herman A. and Cai, Colin W. and Zhang, Yuegang},
+  Journal                  = {Nano Letters},
+  Year                     = {2004},
+  Number                   = {8},
+  Pages                    = {1415-1419},
+  Volume                   = {4},
+
+  Doi                      = {10.1021/nl049347g},
+  Eprint                   = {http://dx.doi.org/10.1021/nl049347g},
+  Url                      = { http://dx.doi.org/10.1021/nl049347g 
+}
+}
+
 @Article{Urban2014,
   Title                    = {Optical trapping and manipulation of plasmonic nanoparticles: fundamentals{,} applications{,} and perspectives},
   Author                   = {Urban, Alexander S. and Carretero-Palacios, Sol and Lutich, Andrey A. and Lohmuller, Theobald and Feldmann, Jochen and Jackel, Frank},
@@ -445,6 +533,7 @@
   Year                     = {2014},
   Pages                    = {4458-4474},
   Volume                   = {6},
+
   Abstract                 = {This feature article discusses the optical trapping and manipulation of plasmonic nanoparticles{,} an area of current interest with potential applications in nanofabrication{,} sensing{,} analytics{,} biology and medicine. We give an overview over the basic theoretical concepts relating to optical forces{,} plasmon resonances and plasmonic heating. We discuss fundamental studies of plasmonic particles in optical traps and the temperature profiles around them. We place a particular emphasis on our own work employing optically trapped plasmonic nanoparticles towards nanofabrication{,} manipulation of biomimetic objects and sensing.},
   Doi                      = {10.1039/C3NR06617G},
   Issue                    = {9},
@@ -512,71 +601,6 @@
 
   Owner                    = {motz},
   Timestamp                = {2016.11.16}
-}
-
-@Article{Svoboda1994,
-  author    = {Karel Svoboda and Steven M. Block},
-  title     = {Optical trapping of metallic Rayleigh particles},
-  journal   = {Opt. Lett.},
-  year      = {1994},
-  volume    = {19},
-  number    = {13},
-  pages     = {930--932},
-  month     = {Jul},
-  abstract  = {Metallic objects reflect light and have generally been considered poor candidates for optical traps, particularly with optical tweezers, which rely on a gradient force to provide trapping. We demonstrate that stable trapping can occur with optical tweezers when they are used with small metallic Rayleigh particles. In this size regime, the scattering pictures for metals and dielectrics are similar, and the larger polarizability of metals implies that trapping forces are greater. The latter fact makes the use of metal particles attractive for certain biological applications. Comparison of trapping forces for latex and gold spheres demonstrates that the gradient force is the major determinant of trapping strength and that competing effects, such as scattering or radiometric forces, are relatively minor.},
-  doi       = {10.1364/OL.19.000930},
-  publisher = {OSA},
-  url       = {http://ol.osa.org/abstract.cfm?URI=ol-19-13-930},
-}
-
-@Article{Tan2004,
-  author  = {Tan, Shida and Lopez, Herman A. and Cai, Colin W. and Zhang, Yuegang},
-  title   = {Optical Trapping of Single-Walled Carbon Nanotubes},
-  journal = {Nano Letters},
-  year    = {2004},
-  volume  = {4},
-  number  = {8},
-  pages   = {1415-1419},
-  doi     = {10.1021/nl049347g},
-  eprint  = {http://dx.doi.org/10.1021/nl049347g},
-  url     = { 
-        http://dx.doi.org/10.1021/nl049347g
-    
-},
-}
-
-@Article{Jauffred2008,
-  author        = {Jauffred, Liselotte and Richardson, Andrew C. and Oddershede, Lene B.},
-  title         = {Three-Dimensional Optical Control of Individual Quantum Dots},
-  journal       = {Nano Letters},
-  year          = {2008},
-  volume        = {8},
-  number        = {10},
-  pages         = {3376-3380},
-  note          = {PMID: 18767883},
-  __markedentry = {[motz:]},
-  doi           = {10.1021/nl801962f},
-  eprint        = {http://dx.doi.org/10.1021/nl801962f},
-  url           = { 
-        http://dx.doi.org/10.1021/nl801962f
-    
-},
-}
-
-@Article{Searles1999,
-  author        = {Searles, Debra J. and Evans, Denis J.},
-  title         = {Fluctuation theorem for stochastic systems},
-  journal       = {Phys. Rev. E},
-  year          = {1999},
-  volume        = {60},
-  pages         = {159--164},
-  month         = {Jul},
-  __markedentry = {[motz:6]},
-  doi           = {10.1103/PhysRevE.60.159},
-  issue         = {1},
-  numpages      = {0},
-  publisher     = {American Physical Society},
-  url           = {http://link.aps.org/doi/10.1103/PhysRevE.60.159},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
