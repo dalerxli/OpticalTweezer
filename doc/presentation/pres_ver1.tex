@@ -94,6 +94,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
 \title{Simulation of Nano Particles in a Laser Trap}
 %\subtitle{Präsentation der Masterarbeit}
 \author{Mathias Höld, BSc}
@@ -102,6 +112,7 @@
 \titlepage
 \end{frame}
 
+\setbeamertemplate{section in toc}{\inserttocsection}
 \begin{frame}
 \tableofcontents
 \end{frame}
@@ -181,27 +192,6 @@ $\xi(t)$ & Weißes Rauschen\\
 \end{tabular}\\
 \end{frame}
 
-\begin{frame}
-\frametitle{Fluktuationstheorem}
-Fluktuationstheorem für diese Situation:
-\begin{equation}
-    \label{eq:fluctuationtheorem}
-    \frac{p(-\Delta S)}{\Delta S} = e^{-\Delta S}
-\end{equation}
-%\end{frame}
-%\begin{frame}
-%\frametitle{Fluktuationstheorem}
-$\Delta S$: relative Entropieänderung
-\begin{equation}
-    \Delta S = \beta_0 Q + \Delta \phi
-\end{equation}
-\begin{tabular}{l l}
-$Q$ & absorbierte Wärme\\
-$\beta$ & reziproke Temperatur\\
-$\Delta \phi$ & Differenz der trajektoriebasierten Entropie
-\end{tabular}\\
-Untersucht für 2 externe Kräfte: Feedback-Mechanismus ohne und mit Parametrischem Drive
-\end{frame}
 
 \subsection{Temperaturmodell}
 \begin{frame}
@@ -265,6 +255,12 @@ Mit Einführung der unterschiedlichen Temperaturen stellen sich folgende Fragen:
 
 
 \section{Simulation}
+\subsection{Molekulardynamik}
+\begin{frame}
+\frametitle{Molekulardynamik}
+Simulation der Entwicklung des Systems mit Molekulardynamik.\\
+Zentraler Bestandteil: Lösung der Newton'schen Bewegungsgleichungen
+\end{frame}
 
 \subsection{Velocity Verlet}
 \begin{frame}
@@ -289,7 +285,7 @@ $\Delta t$ & Zeitschritt\\
 
 \begin{frame}
 \frametitle{Nanoteilchen}
-Nanoteilchen dargestellt durch System aus $N$ Teilchen, die über Lennard-Jones Potential wechselwirken:
+Nanoteilchen dargestellt durch System aus $N$ Teilchen auf FCC Gitter, die über Lennard-Jones Potential wechselwirken:
 \begin{equation}
     \label{eq:lj}
     U(r) = 4\varepsilon\left[\left(\frac\sigma r\right)^{12} - \left(\frac\sigma r\right)^6\right]
@@ -321,7 +317,7 @@ Um Rechnung zu vereinfachen, werden reduzierte Einheiten verwendet:
 Lennard-Jones Potential und zugehörige Kraft in reduzierten Einheiten:
 \begin{eqnarray}
     U(r) &=& 4\left[{r}^{-12} - {r}^{-6}\right] \\
-    F_{x} &=& -\frac{\partial}{\partial x} U(r) 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
+    F_{x} &=& -\frac{\partial}{\partial x} U(r) = 48 \left[r^{-14} - 0.5 \ r^{-8}\right] x
 \end{eqnarray}
 \end{frame}
 
@@ -333,9 +329,14 @@ Lennard-Jones Potential und zugehörige Kraft in reduzierten Einheiten:
 Simulation der Aufnahme von Wärme des Lasers: eHEX (enhanced Heat Exchange Algorithm)\\
 Idee: sukzessive Reskalierung der Geschwindigkeiten 
 \begin{equation}
-    \mathbf{v}_i \rightarrow \mathbf{\bar{v}}_i = \xi_k \mathbf{v}_i
+    \mathbf{v}_i \rightarrow \mathbf{\bar{v}}_i = \xi \mathbf{v}_i
 \end{equation}
-kombiniert mit Velocity Verlet
+wobei 
+\begin{equation}
+    \xi = \sqrt{1+\frac{\Delta Q}{\mathcal{K}}}
+\end{equation}
+$\Delta Q$ \ldots Wärmemenge\\
+K \ldots gesamte kinetische Energie
 
 \end{frame}
 
@@ -372,7 +373,7 @@ $\sigma$ & Interaktionslänge\\
 \frametitle{Algorithmus}
 Wichtige Elemente des Algorithmus:
 \begin{itemize}
-\item Teilchen umgeben von Volumen
+\item Nanoteilchen umgeben von Volumen
 \item Eingefügte Teilchenanzahl pro Fläche: 
 \begin{equation}
     \langle N_\text{fac}\rangle = \Delta t L^2 P \sqrt{\frac{1}{2\pi m k_B T}}
@@ -385,18 +386,299 @@ Wichtige Elemente des Algorithmus:
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Zusammenfassung}
+\begin{itemize}
+\item System aus N Teilchen wird Initialisiert (Nanopartikel)
+\item Nanopartikel wird mit eHEX Algorithmus aufgeheizt
+\item Lokalisierung durch harmonisches Potential
+\item Gasteilchen strömen von umgebendem Volumen ein, interagieren mit Teilchen und verlassen die Simulationsbox (Thermostat)
+\end{itemize}
+%\begin{itemize}
+%\item Nanoteilchen $\rightarrow$ N Teilchen auf FCC Gitter, Lennard-Jones Wechselwirkung
+%\item Energieaufnahme $\rightarrow$ eHEX Algorithmus
+%\item Lokalisierung $\rightarrow$ Harmonisches Potential
+%\item Umgebendes Gas $\rightarrow$ Thermostat mit idealem Gas
+%\end{itemize}
+\end{frame}
+
 \section{Ergebnisse}
 
 \begin{frame}
-\frametitle{Nanoteilchen}
-\begin{center}
-\begin{figure}
-\includegraph
+\frametitle{Messung}
+Verwendetde Parameter:
+\begin{itemize}
+\item $N = 32$
+\item $T_\text{sur} = 0.2$
+\item $P=0.1$, $P=0.5$, $P=1.0$
+\item $T_\text{imp} = 0.05$, $T_\text{imp} = 0.1$, 
+\item $\Delta Q = 0 \ldots 0.5$
+\end{itemize}
+Gemessene Größen:
+\begin{itemize}
+\item Schwerpunktstemperatur $T_\text{COM}$
+\item Interne Temperatur $T_\text{Sur}$
+\item Temperatur des ausgehenden Gases $T_\text{em}$
+\end{itemize}
+
+Instantane Temperatur:
+\begin{equation}
+    T = \frac{1}{3 k_B N} \sum_{i=1}^N \vec{v}_i^{\, 2}
+\end{equation}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ergebnisse -- Überblick}
+\begin{figure}[h]
+    \begin{center}
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p01_com.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p05_com.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p1_com.pdf}
+        \end{subfigure} 
+        \\
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p01_int.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p05_int.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p1_int.pdf}
+        \end{subfigure} 
+        \\
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p01_out.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p05_out.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p1_out.pdf}
+        \end{subfigure} 
+    \end{center}
 \end{figure}
-\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ergebnisse -- Schwerpunktsbewegung}
+\begin{figure}
+    \begin{center}
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.11]{../images/p01_com.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.11]{../images/p05_com.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.11]{../images/p1_com.pdf}
+        \end{subfigure} 
+    \end{center}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ergebnisse -- Interne Temperatur}
+\begin{figure}
+    \begin{center}
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.11]{../images/p01_int.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.11]{../images/p05_int.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.11]{../images/p1_int.pdf}
+        \end{subfigure} 
+    \end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ergebnisse -- Temperatur des ausgehenden Gases}
+\begin{figure}
+    \begin{center}
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.11]{../images/p01_out.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.11]{../images/p05_out.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.11]{../images/p1_out.pdf}
+        \end{subfigure} 
+    \end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ergebnisse -- Überblick}
+\begin{figure}[h]
+    \begin{center}
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p01_com.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p05_com.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p1_com.pdf}
+        \end{subfigure} 
+        \\
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p01_int.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p05_int.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p1_int.pdf}
+        \end{subfigure} 
+        \\
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p01_out.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p05_out.pdf}
+        \end{subfigure} 
+        \
+        \begin{subfigure}[t]{0.3\textwidth}
+            \includegraphics[scale=0.09]{../images/p1_out.pdf}
+        \end{subfigure} 
+    \end{center}
+\end{figure}
 \end{frame}
 
 
+
+\begin{frame}
+\frametitle{Conclusio}
+\begin{itemize}
+\item Laserleistung beeinflusst die Schwerpunktstemperatur
+\item Laserleistung beeinflusst die Temperatur der ausgehenden Gasteilchen 
+\item Temperatur der einfallenden Gasteilchen beeinflusst andere Temperaturen 
+\end{itemize}
+\end{frame}
+
 \bibliography{../references}
 \bibliographystyle{unsrt}
+\section*{Appendix}
+\begin{frame}
+\frametitle{Fluktuationstheorem}
+Fluktuationstheorem für diese Situation:
+\begin{equation}
+    \label{eq:fluctuationtheorem}
+    \frac{p(-\Delta S)}{p(\Delta S)} = e^{-\Delta S}
+\end{equation}
+%\end{frame}
+%\begin{frame}
+%\frametitle{Fluktuationstheorem}
+$\Delta S$: relative Entropieänderung
+\begin{equation}
+    \Delta S = \beta_0 Q + \Delta \phi
+\end{equation}
+\begin{tabular}{l l}
+$Q$ & absorbierte Wärme\\
+$\beta$ & reziproke Temperatur\\
+$\Delta \phi$ & Differenz der trajektoriebasierten Entropie
+\end{tabular}\\
+Untersucht für 2 externe Kräfte: Feedback-Mechanismus ohne und mit Parametrischem Drive
+\end{frame}
+
+\begin{frame}
+\frametitle{Nanopartikel}
+\begin{center}
+\includegraphics[scale=0.2]{../images/fcc_rendering_layer_newcoloring.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Initialisierung}
+\begin{center}
+\includegraphics[scale=0.3]{../images/verlet_output_te.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{eHEX}
+\begin{center}
+\includegraphics[scale=0.3]{../images/ehex_temp_dq.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Gesamtsystem}
+\begin{center}
+\includegraphics[scale=0.2]{../images/baro_170126_large.png}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kalibrierung}
+\begin{center}
+\includegraphics[scale=0.2]{../images/t_int.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kalibrierung}
+\begin{center}
+\includegraphics[scale=0.2]{../images/vcomsqd.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Kalibrierung}
+\begin{center}
+\includegraphics[scale=0.2]{../images/vcomtemp.pdf}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Vergleich mit Modell}
+Modell für $T_\text{COM}$ von Millen et al.:
+\begin{equation}
+    T_\text{COM} = \frac{T_\text{imp}^{3/2}+\tfrac\pi 8 \ T_\text{em}^{3/2}}{T_\text{imp}^{1/2}+\tfrac\pi8 T_\text{em}^{1/2}}
+\end{equation}
+Vergleich mit Simulation bei $P=0.8$:
+\begin{figure}
+    \begin{center}
+        \includegraphics[scale=0.2]{../images/measurevscalc.pdf}
+    \end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Thermischer Akkomodationskoeffizient}
+Thermischer Akkomodationskoeffizient
+\begin{equation}
+    \alpha = \frac{T_\text{em} - T_\text{imp}}{T_\text{sur} - T_\text{imp}}
+\end{equation}
+Im Paper: $\alpha = 0.777$ \\
+Simulation: $\alpha = 0.016$
+
+\end{frame}
 \end{document}

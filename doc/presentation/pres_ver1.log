@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.28)  21 MAR 2017 15:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.28)  22 MAR 2017 15:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1669,7 +1669,7 @@ Package caption Info: End \AtBeginDocument code.
 (./pres_ver1.nav)
 
 Package hyperref Warning: Option `pdfauthor' has already been used,
-(hyperref)                setting the option has no effect on input line 99.
+(hyperref)                setting the option has no effect on input line 109.
 
 [1
 
@@ -1682,97 +1682,439 @@ Package hyperref Warning: Option `pdfauthor' has already been used,
 
 ] [5
 
+] [6
+
+] [7
+
 ]
-<../images/experimental_setup.jpg, id=212, 949.5475pt x 602.25pt>
+<../images/experimental_setup.jpg, id=277, 949.5475pt x 602.25pt>
 File: ../images/experimental_setup.jpg Graphic file (type jpg)
 
 <use ../images/experimental_setup.jpg>
-Package pdftex.def Info: ../images/experimental_setup.jpg used on input line 14
-9.
+Package pdftex.def Info: ../images/experimental_setup.jpg used on input line 16
+0.
 (pdftex.def)             Requested size: 284.86644pt x 180.67639pt.
- [6
+ [8
 
  <../images/experimental_setup.jpg>]
-LaTeX Font Info:    Try loading font information for U+msa on input line 168.
+LaTeX Font Info:    Try loading font information for U+msa on input line 179.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 168.
+LaTeX Font Info:    Try loading font information for U+msb on input line 179.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 168.
+line 179.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
-) [7
+) [9
 
-] [8
+] [10
 
-] [9
-
-] <../images/nnano_millen.jpg, id=328, 949.5475pt x 851.18pt>
+] <../images/nnano_millen.jpg, id=363, 949.5475pt x 851.18pt>
 File: ../images/nnano_millen.jpg Graphic file (type jpg)
 
 <use ../images/nnano_millen.jpg>
-Package pdftex.def Info: ../images/nnano_millen.jpg used on input line 215.
+Package pdftex.def Info: ../images/nnano_millen.jpg used on input line 205.
 (pdftex.def)             Requested size: 189.90613pt x 170.23297pt.
- [10
+ [11
 
- <../images/nnano_millen.jpg>] [11
+ <../images/nnano_millen.jpg>] [12
 
 ]
-<../images/nano_nonequilibrium_cropped.jpg, id=383, 289.08pt x 334.24875pt>
+<../images/nano_nonequilibrium_cropped.jpg, id=418, 289.08pt x 334.24875pt>
 File: ../images/nano_nonequilibrium_cropped.jpg Graphic file (type jpg)
 
 <use ../images/nano_nonequilibrium_cropped.jpg>
 Package pdftex.def Info: ../images/nano_nonequilibrium_cropped.jpg used on inpu
-t line 236.
+t line 226.
 (pdftex.def)             Requested size: 115.62994pt x 133.69713pt.
- [12
+ [13
 
- <../images/nano_nonequilibrium_cropped.jpg>] [13
-
-] [14
+ <../images/nano_nonequilibrium_cropped.jpg>] [14
 
 ] [15
 
 ] [16
 
-]
-<../images/LJ-2.pdf, id=514, 1123.19624pt x 745.47209pt>
-File: ../images/LJ-2.pdf Graphic file (type pdf)
+] [17
 
-<use ../images/LJ-2.pdf>
-Package pdftex.def Info: ../images/LJ-2.pdf used on input line 311.
-(pdftex.def)             Requested size: 336.96147pt x 223.64336pt.
-
-Overfull \vbox (6.57277pt too high) detected at line 311
- []
-
-[17
-
- <../images/LJ-2.pdf>] [18
+] [18
 
 ] [19
 
-] [20
+]
+<../images/LJ-2.pdf, id=602, 1123.19624pt x 745.47209pt>
+File: ../images/LJ-2.pdf Graphic file (type pdf)
 
-] [21
+<use ../images/LJ-2.pdf>
+Package pdftex.def Info: ../images/LJ-2.pdf used on input line 307.
+(pdftex.def)             Requested size: 336.96147pt x 223.64336pt.
+
+Overfull \vbox (6.57277pt too high) detected at line 307
+ []
+
+[20
+
+ <../images/LJ-2.pdf>] [21
 
 ] [22
 
 ] [23
 
+] [24
+
+] [25
+
+] [26
+
+] [27
+
+] [28
+
+]
+<../images/p01_com.pdf, id=852, 1137.24875pt x 853.1875pt>
+File: ../images/p01_com.pdf Graphic file (type pdf)
+
+<use ../images/p01_com.pdf>
+Package pdftex.def Info: ../images/p01_com.pdf used on input line 472.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+
+<../images/p05_com.pdf, id=853, 1137.24875pt x 853.1875pt>
+File: ../images/p05_com.pdf Graphic file (type pdf)
+
+<use ../images/p05_com.pdf>
+Package pdftex.def Info: ../images/p05_com.pdf used on input line 472.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+
+<../images/p1_com.pdf, id=854, 1137.24875pt x 853.1875pt>
+File: ../images/p1_com.pdf Graphic file (type pdf)
+
+<use ../images/p1_com.pdf>
+Package pdftex.def Info: ../images/p1_com.pdf used on input line 472.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+
+<../images/p01_int.pdf, id=855, 1137.24875pt x 853.1875pt>
+File: ../images/p01_int.pdf Graphic file (type pdf)
+
+<use ../images/p01_int.pdf>
+Package pdftex.def Info: ../images/p01_int.pdf used on input line 472.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+
+<../images/p05_int.pdf, id=856, 1137.24875pt x 853.1875pt>
+File: ../images/p05_int.pdf Graphic file (type pdf)
+
+<use ../images/p05_int.pdf>
+Package pdftex.def Info: ../images/p05_int.pdf used on input line 472.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+
+<../images/p1_int.pdf, id=857, 1137.24875pt x 853.1875pt>
+File: ../images/p1_int.pdf Graphic file (type pdf)
+
+<use ../images/p1_int.pdf>
+Package pdftex.def Info: ../images/p1_int.pdf used on input line 472.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+
+<../images/p01_out.pdf, id=858, 1137.24875pt x 853.1875pt>
+File: ../images/p01_out.pdf Graphic file (type pdf)
+
+<use ../images/p01_out.pdf>
+Package pdftex.def Info: ../images/p01_out.pdf used on input line 472.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+
+<../images/p05_out.pdf, id=859, 1137.24875pt x 853.1875pt>
+File: ../images/p05_out.pdf Graphic file (type pdf)
+
+<use ../images/p05_out.pdf>
+Package pdftex.def Info: ../images/p05_out.pdf used on input line 472.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+
+<../images/p1_out.pdf, id=860, 1137.24875pt x 853.1875pt>
+File: ../images/p1_out.pdf Graphic file (type pdf)
+
+<use ../images/p1_out.pdf>
+Package pdftex.def Info: ../images/p1_out.pdf used on input line 472.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+
+Overfull \vbox (15.28008pt too high) detected at line 472
+ []
+
+[29
+
+ <../images/p01_com.pdf> <../images/p05_com.pdf
+
+pdfTeX warning: pdflatex (file ../images/p05_com.pdf): PDF inclusion: multiple 
+pdfs with page group included in a single page
+> <../images/p1_com.pdf
+
+pdfTeX warning: pdflatex (file ../images/p1_com.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+> <../images/p01_int.pdf
+
+pdfTeX warning: pdflatex (file ../images/p01_int.pdf): PDF inclusion: multiple 
+pdfs with page group included in a single page
+> <../images/p05_int.pdf
+
+pdfTeX warning: pdflatex (file ../images/p05_int.pdf): PDF inclusion: multiple 
+pdfs with page group included in a single page
+> <../images/p1_int.pdf
+
+pdfTeX warning: pdflatex (file ../images/p1_int.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+> <../images/p01_out.pdf
+
+pdfTeX warning: pdflatex (file ../images/p01_out.pdf): PDF inclusion: multiple 
+pdfs with page group included in a single page
+> <../images/p05_out.pdf
+
+pdfTeX warning: pdflatex (file ../images/p05_out.pdf): PDF inclusion: multiple 
+pdfs with page group included in a single page
+> <../images/p1_out.pdf
+
+pdfTeX warning: pdflatex (file ../images/p1_out.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+>]
+File: ../images/p01_com.pdf Graphic file (type pdf)
+ <use ../images/p01_com.pdf>
+Package pdftex.def Info: ../images/p01_com.pdf used on input line 492.
+(pdftex.def)             Requested size: 125.09775pt x 93.8509pt.
+
+Overfull \hbox (22.40813pt too wide) in paragraph at lines 492--492
+[][] 
+ []
+
+File: ../images/p05_com.pdf Graphic file (type pdf)
+<use ../images/p05_com.pdf>
+Package pdftex.def Info: ../images/p05_com.pdf used on input line 492.
+(pdftex.def)             Requested size: 125.09775pt x 93.8509pt.
+
+Overfull \hbox (22.40813pt too wide) in paragraph at lines 492--492
+[][] 
+ []
+
+File: ../images/p1_com.pdf Graphic file (type pdf)
+<use ../images/p1_com.pdf>
+Package pdftex.def Info: ../images/p1_com.pdf used on input line 492.
+(pdftex.def)             Requested size: 125.09775pt x 93.8509pt.
+
+Overfull \hbox (22.40813pt too wide) in paragraph at lines 492--492
+[][] 
+ []
+
+[30
+
+]
+File: ../images/p01_int.pdf Graphic file (type pdf)
+ <use ../images/p01_int.pdf>
+Package pdftex.def Info: ../images/p01_int.pdf used on input line 511.
+(pdftex.def)             Requested size: 125.09775pt x 93.8509pt.
+
+Overfull \hbox (22.40813pt too wide) in paragraph at lines 511--511
+[][] 
+ []
+
+File: ../images/p05_int.pdf Graphic file (type pdf)
+<use ../images/p05_int.pdf>
+Package pdftex.def Info: ../images/p05_int.pdf used on input line 511.
+(pdftex.def)             Requested size: 125.09775pt x 93.8509pt.
+
+Overfull \hbox (22.40813pt too wide) in paragraph at lines 511--511
+[][] 
+ []
+
+File: ../images/p1_int.pdf Graphic file (type pdf)
+<use ../images/p1_int.pdf>
+Package pdftex.def Info: ../images/p1_int.pdf used on input line 511.
+(pdftex.def)             Requested size: 125.09775pt x 93.8509pt.
+
+Overfull \hbox (22.40813pt too wide) in paragraph at lines 511--511
+[][] 
+ []
+
+[31
+
+]
+File: ../images/p01_out.pdf Graphic file (type pdf)
+ <use ../images/p01_out.pdf>
+Package pdftex.def Info: ../images/p01_out.pdf used on input line 530.
+(pdftex.def)             Requested size: 125.09775pt x 93.8509pt.
+
+Overfull \hbox (22.40813pt too wide) in paragraph at lines 530--530
+[][] 
+ []
+
+File: ../images/p05_out.pdf Graphic file (type pdf)
+<use ../images/p05_out.pdf>
+Package pdftex.def Info: ../images/p05_out.pdf used on input line 530.
+(pdftex.def)             Requested size: 125.09775pt x 93.8509pt.
+
+Overfull \hbox (22.40813pt too wide) in paragraph at lines 530--530
+[][] 
+ []
+
+File: ../images/p1_out.pdf Graphic file (type pdf)
+<use ../images/p1_out.pdf>
+Package pdftex.def Info: ../images/p1_out.pdf used on input line 530.
+(pdftex.def)             Requested size: 125.09775pt x 93.8509pt.
+
+Overfull \hbox (22.40813pt too wide) in paragraph at lines 530--530
+[][] 
+ []
+
+[32
+
+]
+File: ../images/p01_com.pdf Graphic file (type pdf)
+ <use ../images/p01_com.pdf>
+Package pdftex.def Info: ../images/p01_com.pdf used on input line 573.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+File: ../images/p05_com.pdf Graphic file (type pdf)
+ <use ../images/p05_com.pdf>
+Package pdftex.def Info: ../images/p05_com.pdf used on input line 573.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+File: ../images/p1_com.pdf Graphic file (type pdf)
+
+<use ../images/p1_com.pdf>
+Package pdftex.def Info: ../images/p1_com.pdf used on input line 573.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+File: ../images/p01_int.pdf Graphic file (type pdf)
+ <use ../images/p01_int.pdf>
+Package pdftex.def Info: ../images/p01_int.pdf used on input line 573.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+File: ../images/p05_int.pdf Graphic file (type pdf)
+
+<use ../images/p05_int.pdf>
+Package pdftex.def Info: ../images/p05_int.pdf used on input line 573.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+File: ../images/p1_int.pdf Graphic file (type pdf)
+ <use ../images/p1_int.pdf>
+Package pdftex.def Info: ../images/p1_int.pdf used on input line 573.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+File: ../images/p01_out.pdf Graphic file (type pdf)
+
+<use ../images/p01_out.pdf>
+Package pdftex.def Info: ../images/p01_out.pdf used on input line 573.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+File: ../images/p05_out.pdf Graphic file (type pdf)
+ <use ../images/p05_out.pdf>
+Package pdftex.def Info: ../images/p05_out.pdf used on input line 573.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+File: ../images/p1_out.pdf Graphic file (type pdf)
+
+<use ../images/p1_out.pdf>
+Package pdftex.def Info: ../images/p1_out.pdf used on input line 573.
+(pdftex.def)             Requested size: 102.34796pt x 76.78355pt.
+
+Overfull \vbox (15.28008pt too high) detected at line 573
+ []
+
+[33
+
+] [34
+
 ] (./pres_ver1.bbl)
-[24
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [35
 
  </usr/local/texlive/2014/texmf-dist/tex/latex/beamer/art/beamericonarticle.pdf
 >]
+[36]
+<../images/fcc_rendering_layer_newcoloring.png, id=1202, 1204.5pt x 903.375pt>
+File: ../images/fcc_rendering_layer_newcoloring.png Graphic file (type png)
+
+<use ../images/fcc_rendering_layer_newcoloring.png>
+Package pdftex.def Info: ../images/fcc_rendering_layer_newcoloring.png used on 
+input line 616.
+(pdftex.def)             Requested size: 240.89574pt x 180.6718pt.
+ [37
+
+ <../images/fcc_rendering_layer_newcoloring.png>]
+<../images/verlet_output_te.pdf, id=1231, 1137.24875pt x 853.1875pt>
+File: ../images/verlet_output_te.pdf Graphic file (type pdf)
+
+<use ../images/verlet_output_te.pdf>
+Package pdftex.def Info: ../images/verlet_output_te.pdf used on input line 623.
+
+(pdftex.def)             Requested size: 341.17726pt x 255.95822pt.
+
+Overfull \vbox (38.88763pt too high) detected at line 623
+ []
+
+[38
+
+ <../images/verlet_output_te.pdf>]
+<../images/ehex_temp_dq.pdf, id=1266, 1137.24875pt x 853.1875pt>
+File: ../images/ehex_temp_dq.pdf Graphic file (type pdf)
+
+<use ../images/ehex_temp_dq.pdf>
+Package pdftex.def Info: ../images/ehex_temp_dq.pdf used on input line 630.
+(pdftex.def)             Requested size: 341.17726pt x 255.95822pt.
+
+Overfull \vbox (38.88763pt too high) detected at line 630
+ []
+
+[39
+
+ <../images/ehex_temp_dq.pdf>]
+<../images/baro_170126_large.png, id=1307, 1204.5pt x 903.375pt>
+File: ../images/baro_170126_large.png Graphic file (type png)
+
+<use ../images/baro_170126_large.png>
+Package pdftex.def Info: ../images/baro_170126_large.png used on input line 637
+.
+(pdftex.def)             Requested size: 240.89574pt x 180.6718pt.
+ [40
+
+ <../images/baro_170126_large.png>]
+<../images/t_int.pdf, id=1334, 1137.24875pt x 853.1875pt>
+File: ../images/t_int.pdf Graphic file (type pdf)
+
+<use ../images/t_int.pdf>
+Package pdftex.def Info: ../images/t_int.pdf used on input line 644.
+(pdftex.def)             Requested size: 227.44572pt x 170.63448pt.
+ [41
+
+ <../images/t_int.pdf>]
+<../images/vcomsqd.pdf, id=1368, 1137.24875pt x 853.1875pt>
+File: ../images/vcomsqd.pdf Graphic file (type pdf)
+
+<use ../images/vcomsqd.pdf>
+Package pdftex.def Info: ../images/vcomsqd.pdf used on input line 651.
+(pdftex.def)             Requested size: 227.44572pt x 170.63448pt.
+ [42
+
+ <../images/vcomsqd.pdf>]
+<../images/vcomtemp.pdf, id=1403, 1137.24875pt x 853.1875pt>
+File: ../images/vcomtemp.pdf Graphic file (type pdf)
+
+<use ../images/vcomtemp.pdf>
+Package pdftex.def Info: ../images/vcomtemp.pdf used on input line 658.
+(pdftex.def)             Requested size: 227.44572pt x 170.63448pt.
+ [43
+
+ <../images/vcomtemp.pdf>]
+<../images/measurevscalc.pdf, id=1437, 1137.24875pt x 853.1875pt>
+File: ../images/measurevscalc.pdf Graphic file (type pdf)
+
+<use ../images/measurevscalc.pdf>
+Package pdftex.def Info: ../images/measurevscalc.pdf used on input line 672.
+(pdftex.def)             Requested size: 227.44572pt x 170.63448pt.
+
+Overfull \vbox (27.32639pt too high) detected at line 672
+ []
+
+[44
+
+ <../images/measurevscalc.pdf>] [45
+
+]
 \tf@nav=\write6
 \openout6 = `pres_ver1.nav'.
 
@@ -1782,47 +2124,38 @@ Overfull \vbox (6.57277pt too high) detected at line 311
 \tf@snm=\write8
 \openout8 = `pres_ver1.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 397.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 397.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 684.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 684.
  (./pres_ver1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 397.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 397.
-
-
-Package rerunfilecheck Warning: File `pres_ver1.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `pres_ver1.out':
-(rerunfilecheck)             Before: 449AB9D2E71A34A680D61EF21DF89A96;615
-(rerunfilecheck)             After:  C8134141197988BA97F76D63F86F2F4D;696.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 397.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 684.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 684.
+Package rerunfilecheck Info: File `pres_ver1.out' has not changed.
+(rerunfilecheck)             Checksum: ACB58518BA3AE0001010F7074057A098;763.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 684.
  ) 
 Here is how much of TeX's memory you used:
- 27848 strings out of 493117
- 529196 string characters out of 6135432
- 611112 words of memory out of 5000000
- 30674 multiletter control sequences out of 15000+600000
+ 28023 strings out of 493117
+ 531927 string characters out of 6135432
+ 612112 words of memory out of 5000000
+ 30787 multiletter control sequences out of 15000+600000
  11328 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,13n,62p,10446b,685s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,13n,62p,10446b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><
-/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></
-usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></us
-r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></u
-sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></u
-sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></us
-r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
-/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on pres_ver1.pdf (24 pages, 828043 bytes).
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
+usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></us
+r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/
+local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/
+local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
+ocal/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on pres_ver1.pdf (45 pages, 5194886 bytes).
 PDF statistics:
- 796 PDF objects out of 1000 (max. 8388607)
- 726 compressed objects within 8 object streams
- 69 named destinations out of 1000 (max. 500000)
- 173 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1569 PDF objects out of 1728 (max. 8388607)
+ 1399 compressed objects within 14 object streams
+ 113 named destinations out of 1000 (max. 500000)
+ 268 words of extra memory for PDF output out of 10000 (max. 10000000)
 
